@@ -1,0 +1,4 @@
+Edit this file to indicate who has the main scene checked out.
+Don't forget to push/pull the changes for this file before/after you edit the main scene.
+
+
