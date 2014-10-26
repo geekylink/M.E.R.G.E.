@@ -6,7 +6,7 @@ public class Player : BaseShip {
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 	public GameObject ammoPrefab;
-
+    public float fireRate = 0.5f;
 	public UnityEngine.UI.Text gtHealth;
 
 	// Used to prevent firing constantly
@@ -26,7 +26,6 @@ public class Player : BaseShip {
 	}
 
 	private void UpdateHUD() {
-		print ("lol");
 		gtHealth.text = "Health: " + health;
 	}
 
@@ -61,21 +60,32 @@ public class Player : BaseShip {
 		leftTurret.transform.eulerAngles = leftRot;
 		rightTurret.transform.eulerAngles = rightRot;
 
-		if (leftFire == 1 && lastLeftFire != 1) {
+		if (leftFire == 1 && lastLeftFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, leftTurret.transform.position, leftTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
             b.setDefaults(-leftRot.z, bulletVelocity);
+            lastLeftFire = fireRate;
 		}
 
-		if (rightFire == 1 && lastRightFire != 1) {
+		if (rightFire == 1 && lastRightFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
             b.setDefaults(-rightRot.z, bulletVelocity);
+            lastRightFire = fireRate;
 		}
 
-		lastLeftFire = leftFire;
-		lastRightFire = rightFire;
+        lastRightFire -= Time.deltaTime;
+        lastLeftFire -= Time.deltaTime;
 	}
+
+    void ResetLeftFire()
+    {
+        lastLeftFire = 0;
+    }
+    void ResetRightFire()
+    {
+        lastRightFire = 0;
+    }
 
 	// Handles player movement, likely to be replaced with thrusters
 	private void UpdatePlayer() {

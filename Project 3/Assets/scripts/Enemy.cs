@@ -51,9 +51,9 @@ public class Enemy : BaseShip {
 			Player player = playerGO.GetComponent("Player") as Player;
 			player.TakeDamage(1);
 
+
 			Die ();
         }
-        print("col");
 	}
 
 	void FireProjectile(){

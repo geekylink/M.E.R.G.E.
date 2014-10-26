@@ -5,6 +5,7 @@ public class BaseShip : MonoBehaviour {
 
 	public int maxHealth;
 	protected int health;
+    public GameObject explosion;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,10 @@ public class BaseShip : MonoBehaviour {
 	}
 
 	public void Die() {
+        if(explosion != null)
+        {
+            GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
+        }
 		Destroy (this.gameObject);
 	}
 
