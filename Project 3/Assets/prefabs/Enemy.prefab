@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 50: {fileID: 5000000}
   - 61: {fileID: 6100000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b34a3de0664d574c9622f499e3982cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 1
   projectile: {fileID: 100000, guid: a820af67510076f4bad8dda9a4decb15, type: 2}
-  health: 2
   moveSpeed: 2
   targetPos: {x: 0, y: 0, z: 0}
   waitTime: 2

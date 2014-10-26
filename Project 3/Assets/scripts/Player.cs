@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : BaseShip {
 
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 	public GameObject ammoPrefab;
+
+	public UnityEngine.UI.Text gtHealth;
 
 	// Used to prevent firing constantly
 	private float lastLeftFire = 0;
@@ -13,13 +15,19 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		health = maxHealth;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		UpdateTurrets ();
 		UpdatePlayer ();
+		UpdateHUD ();
+	}
+
+	private void UpdateHUD() {
+		print ("lol");
+		gtHealth.text = "Health: " + health;
 	}
 
 	// Handles the angles of the turrets and firing bullets

@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : BaseShip {
 
 	GameObject currTarget;
 	public GameObject projectile;
-	public int health = 2;
 	public float moveSpeed = 2f;
 	Vector3 velocity;
 	public Vector3 targetPos;
@@ -40,18 +39,19 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
+		print ("col: " + col.gameObject.name);
 		if (col.gameObject.tag == "Bullet") {
-			if(health == 1){
-				Destroy (this.gameObject);
-			} else{
-				health -= 1;
-			}
 			Destroy (col.gameObject);
+			TakeDamage(1);
 		}
 
         if(col.gameObject.tag == "Target")
         {
-            Destroy(this.gameObject);
+			GameObject playerGO = GameObject.Find("Player");
+			Player player = playerGO.GetComponent("Player") as Player;
+			player.TakeDamage(1);
+
+			Die ();
         }
         print("col");
 	}

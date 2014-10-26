@@ -14,8 +14,7 @@ public class Bullet : MonoBehaviour {
 		vel.x = Mathf.Cos (angle*Mathf.Deg2Rad)*velocity;
 
 
-		this.rigidbody.velocity = vel;
-
+		this.rigidbody2D.velocity = vel;
 	}
 	
 	// Update is called once per frame
