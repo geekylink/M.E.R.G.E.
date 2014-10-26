@@ -248,7 +248,7 @@ GameObject:
   - 114: {fileID: 808025190}
   - 50: {fileID: 808025187}
   - 61: {fileID: 808025186}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -295,8 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b34a3de0664d574c9622f499e3982cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 1
   projectile: {fileID: 100000, guid: a820af67510076f4bad8dda9a4decb15, type: 2}
-  health: 2
   moveSpeed: 2
   targetPos: {x: 0, y: 0, z: 0}
   waitTime: 2
@@ -1719,9 +1719,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c19be953c620a94e9c5957f8f1a12ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   velocityMult: 3
   bulletVelocity: 5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
+  gtHealth: {fileID: 0}
 --- !u!1 &1905488228
 GameObject:
   m_ObjectHideFlags: 0
