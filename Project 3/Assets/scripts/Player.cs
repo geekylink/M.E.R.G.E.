@@ -33,7 +33,6 @@ public class Player : MonoBehaviour {
 
 		float leftAngle = Mathf.Atan2 (leftY, leftX)*Mathf.Rad2Deg;
 		float rightAngle = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
-        print(rightAngle);
 
 
 		GameObject leftTurret = GameObject.Find ("LeftTurret");

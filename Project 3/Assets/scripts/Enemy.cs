@@ -20,10 +20,12 @@ public class Enemy : MonoBehaviour {
 		//Vector3 dir = currTarget.transform.position - transform.position;
 		//float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
 		//transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+        currTarget = GameObject.FindGameObjectWithTag("Target");
+
 		if (currTarget != null) {
 			timeElapsed += Time.deltaTime;
 			if (timeElapsed > waitTime) {
-					FireProjectile ();
+					//FireProjectile ();
 					timeElapsed = 0f;
 			}
 			currTarget = GameObject.FindGameObjectWithTag ("Target");
@@ -33,8 +35,8 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider col){
-		if (col.tag == "Bullet") {
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag == "Bullet") {
 			if(health == 1){
 				Destroy (this.gameObject);
 			} else{
@@ -42,6 +44,12 @@ public class Enemy : MonoBehaviour {
 			}
 			Destroy (col.gameObject);
 		}
+
+        if(col.gameObject.tag == "Target")
+        {
+            Destroy(this.gameObject);
+        }
+        print("col");
 	}
 
 	void FireProjectile(){
