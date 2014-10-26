@@ -28,11 +28,15 @@ public class Enemy : MonoBehaviour {
 					//FireProjectile ();
 					timeElapsed = 0f;
 			}
-			currTarget = GameObject.FindGameObjectWithTag ("Target");
 			targetPos = currTarget.transform.position;
 			velocity = (currTarget.transform.position - transform.position).normalized * moveSpeed;
 			transform.position = transform.position + velocity * Time.deltaTime;
-		}
+
+            var dir = targetPos - transform.position;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 180;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
