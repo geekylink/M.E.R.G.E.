@@ -33,13 +33,23 @@ public class Player : MonoBehaviour {
 
 		float leftAngle = Mathf.Atan2 (leftY, leftX)*Mathf.Rad2Deg;
 		float rightAngle = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
-		
+        print(rightAngle);
+
+
 		GameObject leftTurret = GameObject.Find ("LeftTurret");
 		GameObject rightTurret = GameObject.Find ("RightTurret");
 		Vector3 leftRot = Vector3.zero, rightRot = Vector3.zero;
-		
-		leftRot.z = -leftAngle;
-		rightRot.z = -rightAngle;
+
+        if (leftAngle < 0 && leftAngle > -180)
+            leftRot.z = -leftAngle;
+        else
+            leftRot.z = leftTurret.transform.eulerAngles.z;
+
+        if (rightAngle > 0 && rightAngle < 180)
+            rightRot.z = -rightAngle;
+        else
+            rightRot.z = rightTurret.transform.eulerAngles.z;
+
 		
 		leftTurret.transform.eulerAngles = leftRot;
 		rightTurret.transform.eulerAngles = rightRot;
@@ -47,13 +57,13 @@ public class Player : MonoBehaviour {
 		if (leftFire == 1 && lastLeftFire != 1) {
 			GameObject bulletGO = Instantiate(ammoPrefab, leftTurret.transform.position, leftTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
-			b.setDefaults(leftAngle, bulletVelocity);
+            b.setDefaults(-leftRot.z, bulletVelocity);
 		}
 
 		if (rightFire == 1 && lastRightFire != 1) {
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
-			b.setDefaults(rightAngle, bulletVelocity);
+            b.setDefaults(-rightRot.z, bulletVelocity);
 		}
 
 		lastLeftFire = leftFire;

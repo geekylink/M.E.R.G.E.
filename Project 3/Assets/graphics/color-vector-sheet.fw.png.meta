@@ -1,0 +1,289 @@
+fileFormatVersion: 2
+guid: e7a596e811598e043a4b2fe78b78495d
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: color-vector-sheet.fw_0
+    21300002: color-vector-sheet.fw_1
+    21300004: color-vector-sheet.fw_2
+    21300006: color-vector-sheet.fw_3
+    21300008: color-vector-sheet.fw_4
+    21300010: color-vector-sheet.fw_5
+    21300012: color-vector-sheet.fw_6
+    21300014: color-vector-sheet.fw_7
+    21300016: color-vector-sheet.fw_8
+    21300018: color-vector-sheet.fw_9
+    21300020: color-vector-sheet.fw_10
+    21300022: color-vector-sheet.fw_11
+    21300024: color-vector-sheet.fw_12
+    21300026: color-vector-sheet.fw_13
+    21300028: color-vector-sheet.fw_14
+    21300030: color-vector-sheet.fw_15
+    21300032: color-vector-sheet.fw_16
+    21300034: color-vector-sheet.fw_17
+    21300036: color-vector-sheet.fw_18
+    21300038: color-vector-sheet.fw_19
+    21300040: color-vector-sheet.fw_20
+    21300042: color-vector-sheet.fw_21
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: color-vector-sheet.fw_0
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 376
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_1
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 372
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_2
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 371
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_3
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 356
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_4
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 352
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_5
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 351
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_6
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 337
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_7
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 332
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_8
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 333
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_9
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 332
+        width: 46
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_10
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 299
+        width: 23
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_11
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 197
+        width: 72
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_12
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 314
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_13
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 311
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_14
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 310
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_15
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 315
+        width: 36
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_16
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 284
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_17
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 299
+        width: 29
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_18
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 261
+        width: 59
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_19
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 270
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_20
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 197
+        width: 227
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: color-vector-sheet.fw_21
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 115
+        width: 326
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
