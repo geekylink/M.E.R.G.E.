@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : BaseShip {
 
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
+
+	public float bounciness = 0.5f;
+
 	public GameObject ammoPrefab;
     public float fireRate = 0.5f;
 	public UnityEngine.UI.Text gtHealth;
+
 
 	// Used to prevent firing constantly
 	private float lastLeftFire = 0;
@@ -37,6 +42,7 @@ public class Player : BaseShip {
 		float rightY = Input.GetAxis ("Right Analog Y");
 		float leftFire = Input.GetAxis ("Fire1");
 		float rightFire = Input.GetAxis ("Fire2");
+
 
 		float leftAngle = Mathf.Atan2 (leftY, leftX)*Mathf.Rad2Deg;
 		float rightAngle = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
@@ -89,24 +95,99 @@ public class Player : BaseShip {
 
 	// Handles player movement, likely to be replaced with thrusters
 	private void UpdatePlayer() {
-		float dPadX = Input.GetAxis ("DPad Horizontal");
-		float dPadY = Input.GetAxis ("DPad Vertical");
 
-		Vector3 pos = this.transform.position;
+		bool engineLeft = Input.GetButton("EngineLeft");
+		bool engineRight = Input.GetButton("EngineRight");
 
-		if (dPadY == -1) {
-			pos.y += 1*velocityMult*Time.deltaTime;
+		if(engineLeft && engineRight){
+			
+			foreach(GameObject engine in enginesTurnLeft){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+			foreach(GameObject engine in enginesTurnRight){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+
+			foreach(GameObject engine in enginesStraight){
+				engine.GetComponent<Engine>().TurnOn();
+			}
 		}
-		if (dPadY == 1) {
-			pos.y -= 1*velocityMult*Time.deltaTime;
+		else if(engineLeft){
+
+			foreach(GameObject engine in enginesTurnRight){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+			foreach(GameObject engine in enginesStraight){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+
+			foreach(GameObject engine in enginesTurnLeft){
+				engine.GetComponent<Engine>().TurnOn(true);
+			}
 		}
-		if (dPadX == -1) {
-			pos.x -= 1*velocityMult*Time.deltaTime;
+		else if(engineRight){
+			
+			foreach(GameObject engine in enginesTurnLeft){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+			foreach(GameObject engine in enginesStraight){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+
+			foreach(GameObject engine in enginesTurnRight){
+				engine.GetComponent<Engine>().TurnOn(true);
+			}
 		}
-		if (dPadX == 1) {
-			pos.x += 1*velocityMult*Time.deltaTime;
+		else{
+			foreach(GameObject engine in enginesTurnLeft){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+			foreach(GameObject engine in enginesTurnRight){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+			foreach(GameObject engine in enginesStraight){
+				engine.GetComponent<Engine>().TurnOff();
+			}
+		}
+		ClampObjectIntoView ();
+
+		if(Mathf.Abs (rigidbody2D.angularVelocity) > maxRotSpeed){
+			rigidbody2D.angularVelocity = maxRotSpeed * rigidbody2D.angularVelocity/(Mathf.Abs (rigidbody2D.angularVelocity));
 		}
 
-		this.transform.position = pos;
 	}
+
+	void ClampObjectIntoView () {
+		float z = transform.position.z-Camera.main.transform.position.z;
+
+		float topPosY = Camera.main.ViewportToWorldPoint(new Vector3(0,1,z)).y;
+		float bottomPosY = Camera.main.ViewportToWorldPoint(new Vector3(0,0,z)).y;
+		float leftPosX = Camera.main.ViewportToWorldPoint(new Vector3(0,0,z)).x;
+		float rightPosX = Camera.main.ViewportToWorldPoint(new Vector3(1,0,z)).x;
+
+		
+		Vector2 vel = rigidbody2D.velocity;
+		Vector3 pos = transform.position;
+
+		if (transform.position.y>topPosY) {
+			vel.y = -vel.y * bounciness;
+			pos.y = topPosY;
+		} 
+		else if (transform.position.y < bottomPosY) {
+			vel.y = -vel.y * bounciness;
+			pos.y = bottomPosY;
+		}
+		else if (transform.position.x>rightPosX) {
+			vel.x = -vel.x * bounciness;
+			pos.x = rightPosX;
+		} 
+		else if (transform.position.x<leftPosX) {
+			vel.x = -vel.x * bounciness;
+			pos.x = leftPosX;
+		}
+		rigidbody2D.velocity = vel;
+		transform.position = pos;
+	}
+
+
 }

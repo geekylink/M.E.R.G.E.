@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BaseShip : MonoBehaviour {
 
@@ -7,6 +8,12 @@ public class BaseShip : MonoBehaviour {
 	protected int health;
     public GameObject explosion;
     public static int score;
+	public float maxRotSpeed;
+
+	
+	public List<GameObject> enginesTurnRight;
+	public List<GameObject> enginesTurnLeft;
+	public List<GameObject> enginesStraight;
 
 	// Use this for initialization
 	void Start () {
