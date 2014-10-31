@@ -25,80 +25,58 @@ public class Player : BaseShip {
 	
 	// Update is called once per frame
 	void Update () {
-		UpdateTurrets ();
+		//UpdateTurrets ();
 		UpdatePlayer ();
 		UpdateHUD ();
+
+		lastRightFire -= Time.deltaTime;
+		lastLeftFire -= Time.deltaTime;
 	}
 
 	private void UpdateHUD() {
 		gtHealth.text = "Health: " + health;
 	}
-
-	// Handles the angles of the turrets and firing bullets
-	private void UpdateTurrets() {
-		float leftX = Input.GetAxis ("Left Analog X");
-		float leftY = Input.GetAxis ("Left Analog Y");
-		float rightX = Input.GetAxis ("Right Analog X");
-		float rightY = Input.GetAxis ("Right Analog Y");
-		float leftFire = Input.GetAxis ("Fire1");
-		float rightFire = Input.GetAxis ("Fire2");
-
-
-		float leftAngle = Mathf.Atan2 (leftY, leftX)*Mathf.Rad2Deg;
-		float rightAngle = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
-
-
+	
+	// Updates angles for the left and right turrets
+	public void UpdateTurrets(float leftAngle, float rightAngle) {
 		GameObject leftTurret = GameObject.Find ("LeftTurret");
 		GameObject rightTurret = GameObject.Find ("RightTurret");
+
 		Vector3 leftRot = Vector3.zero, rightRot = Vector3.zero;
 
-        if (leftAngle < 0 && leftAngle > -180)
-            leftRot.z = -leftAngle;
-        else
-            leftRot.z = leftTurret.transform.eulerAngles.z;
-
-        if (rightAngle > 0 && rightAngle < 180)
-            rightRot.z = -rightAngle;
-        else
-            rightRot.z = rightTurret.transform.eulerAngles.z;
-
+		leftRot.z = leftAngle;
+		rightRot.z = rightAngle;		
 		
 		leftTurret.transform.eulerAngles = leftRot;
 		rightTurret.transform.eulerAngles = rightRot;
-
-		if (leftFire == 1 && lastLeftFire <= 0) {
-			GameObject bulletGO = Instantiate(ammoPrefab, leftTurret.transform.position, leftTurret.transform.rotation) as GameObject;
-			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
-            b.setDefaults(-leftRot.z, bulletVelocity);
-            lastLeftFire = fireRate;
-		}
-
-		if (rightFire == 1 && lastRightFire <= 0) {
-			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
-			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
-            b.setDefaults(-rightRot.z, bulletVelocity);
-            lastRightFire = fireRate;
-		}
-
-        lastRightFire -= Time.deltaTime;
-        lastLeftFire -= Time.deltaTime;
 	}
 
-    void ResetLeftFire()
-    {
-        lastLeftFire = 0;
-    }
-    void ResetRightFire()
-    {
-        lastRightFire = 0;
-    }
+	// Fires from the left turret
+	public void FireLeftTurret() {
+		GameObject leftTurret = GameObject.Find ("LeftTurret");
 
-	// Handles player movement, likely to be replaced with thrusters
-	private void UpdatePlayer() {
+		if (lastLeftFire <= 0) {
+			GameObject bulletGO = Instantiate(ammoPrefab, leftTurret.transform.position, leftTurret.transform.rotation) as GameObject;
+			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
+			b.setDefaults(-leftTurret.transform.eulerAngles.z, bulletVelocity);
+			lastLeftFire = fireRate;
+		}
+	}
 
-		bool engineLeft = Input.GetButton("EngineLeft");
-		bool engineRight = Input.GetButton("EngineRight");
+	// Fires from the right turret
+	public void FireRightTurret() {
+		GameObject rightTurret = GameObject.Find ("RightTurret");
 
+		if (lastRightFire <= 0) {
+			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
+			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
+			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity);
+			lastRightFire = fireRate;
+		}
+	}
+
+	// Fires the engines
+	public void FireEngines(bool engineLeft, bool engineRight) {
 		if(engineLeft && engineRight){
 			
 			foreach(GameObject engine in enginesTurnLeft){
@@ -107,20 +85,20 @@ public class Player : BaseShip {
 			foreach(GameObject engine in enginesTurnRight){
 				engine.GetComponent<Engine>().TurnOff();
 			}
-
+			
 			foreach(GameObject engine in enginesStraight){
 				engine.GetComponent<Engine>().TurnOn();
 			}
 		}
 		else if(engineLeft){
-
+			
 			foreach(GameObject engine in enginesTurnRight){
 				engine.GetComponent<Engine>().TurnOff();
 			}
 			foreach(GameObject engine in enginesStraight){
 				engine.GetComponent<Engine>().TurnOff();
 			}
-
+			
 			foreach(GameObject engine in enginesTurnLeft){
 				engine.GetComponent<Engine>().TurnOn(true);
 			}
@@ -133,7 +111,7 @@ public class Player : BaseShip {
 			foreach(GameObject engine in enginesStraight){
 				engine.GetComponent<Engine>().TurnOff();
 			}
-
+			
 			foreach(GameObject engine in enginesTurnRight){
 				engine.GetComponent<Engine>().TurnOn(true);
 			}
@@ -149,12 +127,24 @@ public class Player : BaseShip {
 				engine.GetComponent<Engine>().TurnOff();
 			}
 		}
+	}
+
+    void ResetLeftFire()
+    {
+        lastLeftFire = 0;
+    }
+    void ResetRightFire()
+    {
+        lastRightFire = 0;
+    }
+
+	// Handles player movement, likely to be replaced with thrusters
+	private void UpdatePlayer() {
 		ClampObjectIntoView ();
 
 		if(Mathf.Abs (rigidbody2D.angularVelocity) > maxRotSpeed){
 			rigidbody2D.angularVelocity = maxRotSpeed * rigidbody2D.angularVelocity/(Mathf.Abs (rigidbody2D.angularVelocity));
 		}
-
 	}
 
 	void ClampObjectIntoView () {
