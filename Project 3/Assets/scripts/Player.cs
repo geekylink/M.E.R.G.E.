@@ -89,6 +89,7 @@ public class Player : BaseShip {
 			foreach(GameObject engine in enginesStraight){
 				engine.GetComponent<Engine>().TurnOn();
 			}
+            this.rigidbody2D.angularVelocity = 0;
 		}
 		else if(engineLeft){
 			
