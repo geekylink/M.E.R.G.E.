@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class Player : BaseShip {
 
+	public KeyCode leftFire;
+	public KeyCode rightFire;
+	public KeyCode mergeButton;
+
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 
@@ -18,6 +22,18 @@ public class Player : BaseShip {
 	private float lastLeftFire = 0;
 	private float lastRightFire = 0;
 
+	bool canMerge = false;
+	public bool CanMerge{
+		get{return canMerge;}
+		set{canMerge = value;}
+	}
+
+	bool tryingToMerge = false;
+	public bool TryingToMerge{
+		get{return tryingToMerge;}
+		set{tryingToMerge = value;}
+	}
+
 	// Use this for initialization
 	void Start () {
 		health = maxHealth;
@@ -28,6 +44,17 @@ public class Player : BaseShip {
 		UpdateTurrets ();
 		UpdatePlayer ();
 		UpdateHUD ();
+
+		CheckMerge();
+	}
+
+	private void CheckMerge(){
+		if(Input.GetKey(mergeButton)){
+			tryingToMerge = true;
+		}
+		else{
+			tryingToMerge = false;
+		}
 	}
 
 	private void UpdateHUD() {
@@ -96,8 +123,10 @@ public class Player : BaseShip {
 	// Handles player movement, likely to be replaced with thrusters
 	private void UpdatePlayer() {
 
-		bool engineLeft = Input.GetButton("EngineLeft");
-		bool engineRight = Input.GetButton("EngineRight");
+		//bool engineLeft = Input.GetButton("EngineLeft");
+		//bool engineRight = Input.GetButton("EngineRight");
+		bool engineLeft = Input.GetKey(leftFire);
+		bool engineRight = Input.GetKey(rightFire);
 
 		if(engineLeft && engineRight){
 			
@@ -151,13 +180,17 @@ public class Player : BaseShip {
 		}
 		ClampObjectIntoView ();
 
-		if(Mathf.Abs (rigidbody2D.angularVelocity) > maxRotSpeed){
-			rigidbody2D.angularVelocity = maxRotSpeed * rigidbody2D.angularVelocity/(Mathf.Abs (rigidbody2D.angularVelocity));
+		if(rigidbody2D != null){
+			if(Mathf.Abs (rigidbody2D.angularVelocity) > maxRotSpeed){
+				rigidbody2D.angularVelocity = maxRotSpeed * rigidbody2D.angularVelocity/(Mathf.Abs (rigidbody2D.angularVelocity));
+			}
 		}
 
 	}
 
 	void ClampObjectIntoView () {
+		if(rigidbody2D == null) return;
+
 		float z = transform.position.z-Camera.main.transform.position.z;
 
 		float topPosY = Camera.main.ViewportToWorldPoint(new Vector3(0,1,z)).y;
@@ -189,5 +222,15 @@ public class Player : BaseShip {
 		transform.position = pos;
 	}
 
+	public void ChangeColor(Color color){
+		Transform body = transform.FindChild("Body");
+		body.GetComponent<SpriteRenderer>().color = color;
+	}
+	
+	public Color GetColor(){
+		Transform body = transform.FindChild("Body");
+		Color returnColor = body.GetComponent<SpriteRenderer>().color;
+		return returnColor;
+	}
 
 }
