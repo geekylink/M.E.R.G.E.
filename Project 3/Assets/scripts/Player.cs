@@ -56,17 +56,8 @@ public class Player : BaseShip {
 		
 		lastRightFire -= Time.deltaTime;
 		lastLeftFire -= Time.deltaTime;
-		CheckMerge();
 	}
 
-	private void CheckMerge(){
-		if(Input.GetKey(mergeButton)){
-			tryingToMerge = true;
-		}
-		else{
-			tryingToMerge = false;
-		}
-	}
 
 	private void UpdateHUD() {
 		gtHealth.text = "Health: " + health;
@@ -171,10 +162,6 @@ public class Player : BaseShip {
 
 	// Handles player movement, likely to be replaced with thrusters
 	private void UpdatePlayer() {
-		bool engLeft = Input.GetKey(leftFire);
-		bool engRight = Input.GetKey(rightFire);
-
-		FireEngines(engLeft, engRight);
 
 		ClampObjectIntoView ();
 
