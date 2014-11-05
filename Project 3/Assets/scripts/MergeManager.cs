@@ -7,6 +7,7 @@ public class MergeManager : MonoBehaviour {
 
 	public GameObject mergeImage;
 	public float mergeDistance;
+	public float rotMergeTime;
 
 	List<Player> players = new List<Player>();
 	List<Color> normPlayerColor;
@@ -58,19 +59,52 @@ public class MergeManager : MonoBehaviour {
 						tryingToMergeWith[i].Add (players[j]);
 					}
 					else{
-						
-						GameObject mImage = Instantiate(mergeImage) as GameObject;
-						mImage.transform.position = posCurr + dir/2;
-						currMergeImages.Add (mImage);
+						if(!currentlyMergedWith[i].Contains(players[j])){
+							GameObject mImage = Instantiate(mergeImage) as GameObject;
+							mImage.transform.position = posCurr + dir/2;
+							currMergeImages.Add (mImage);
+						}
 					}
 				}
 			}
 		}
-
-
-
-
 	}
+
+
+	IEnumerator ShipMerger(GameObject mergedGO, GameObject p1, GameObject p2){
+		mergedGO.rigidbody2D.Sleep();
+
+		Vector2 middleRightVector = (p1.transform.right + p2.transform.right).normalized;
+		Vector2 middleUpVector = (p1.transform.up + p2.transform.up).normalized;
+		Vector2 origp1 = p1.transform.right;
+		Vector2 origp2 = p2.transform.right;
+
+
+		Vector2 centerPos = mergedGO.transform.position;
+		Vector2 p1Pos = p1.transform.position;
+		Vector2 p2Pos = p2.transform.position;
+
+		Vector2 newP1Pos = centerPos + middleRightVector * -0.66f;
+		Vector2 newP2Pos = centerPos  + middleUpVector * -0.66f;
+
+		float t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / rotMergeTime;
+
+			p1.transform.right = Vector2.Lerp(origp1, middleRightVector, t);
+			p2.transform.right = Vector2.Lerp(origp2, middleUpVector, t);
+
+			p1.transform.position = Vector2.Lerp (p1Pos, newP1Pos, t);
+			p2.transform.position = Vector2.Lerp (p2Pos, newP2Pos, t);
+
+			yield return 0;
+		}
+
+
+		mergedGO.rigidbody2D.WakeUp();
+	}
+
+
 
 	void Merge(){
 		for(int i = 0; i < players.Count; ++i){
@@ -86,10 +120,13 @@ public class MergeManager : MonoBehaviour {
 				Vector2 posTwo = pTwo.transform.position;
 				Vector2 dir = posOne - posTwo;
 
-
 				GameObject merged = new GameObject();
 				Rigidbody2D mergedRB = merged.AddComponent<Rigidbody2D>();
-				merged.transform.position = posOne + dir/2;
+				MergedShip mergedShipScript = merged.AddComponent<MergedShip>();
+				mergedShipScript.Bounciness = pOne.bounciness;
+				mergedShipScript.NumberOfMergedShips = 2;
+
+				merged.transform.position = posTwo + dir/2;
 
 				mergedRB.mass = pOne.rigidbody2D.mass + pTwo.rigidbody2D.mass;
 				mergedRB.velocity = pOne.rigidbody2D.velocity + pTwo.rigidbody2D.velocity;
@@ -101,6 +138,12 @@ public class MergeManager : MonoBehaviour {
 				Destroy (pOne.rigidbody2D);
 				pTwo.transform.parent = merged.transform;
 				Destroy (pTwo.rigidbody2D);
+
+				pOne.IsCurrentlyMerged = true;
+				pTwo.IsCurrentlyMerged = true;
+
+				StartCoroutine(ShipMerger(merged, pOne.gameObject, pTwo.gameObject));
+
 			}
 		}
 	}

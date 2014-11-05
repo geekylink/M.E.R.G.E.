@@ -22,6 +22,12 @@ public class Player : BaseShip {
 	private float lastLeftFire = 0;
 	private float lastRightFire = 0;
 
+	bool isCurrentlyMerged = false;
+	public bool IsCurrentlyMerged{
+		get{return isCurrentlyMerged;}
+		set{isCurrentlyMerged = value;}
+	}
+
 	bool canMerge = false;
 	public bool CanMerge{
 		get{return canMerge;}
@@ -115,7 +121,9 @@ public class Player : BaseShip {
 			foreach(GameObject engine in enginesStraight){
 				engine.GetComponent<Engine>().TurnOn();
 			}
-            this.rigidbody2D.angularVelocity = 0;
+			if(rigidbody2D != null){
+				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 1.01f;
+			}
 		}
 		else if(engineLeft){
 			
@@ -167,6 +175,11 @@ public class Player : BaseShip {
 
 	// Handles player movement, likely to be replaced with thrusters
 	private void UpdatePlayer() {
+		bool engLeft = Input.GetKey(leftFire);
+		bool engRight = Input.GetKey(rightFire);
+
+		FireEngines(engLeft, engRight);
+
 		ClampObjectIntoView ();
 
 		if(rigidbody2D != null){

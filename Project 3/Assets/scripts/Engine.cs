@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Engine : MonoBehaviour {
 
+	public float force = 1;
 	public bool shouldForceOnTurn = true;
 	bool on = false;
 
@@ -13,7 +14,7 @@ public class Engine : MonoBehaviour {
 
 	void Update(){
 		if(on){
-			transform.root.rigidbody2D.AddForceAtPosition(-transform.forward, transform.position);
+			transform.root.rigidbody2D.AddForceAtPosition(-transform.forward * force, transform.position);
 		}
 	}
 

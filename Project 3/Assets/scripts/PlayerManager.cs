@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		InputDevice device = InputManager.ActiveDevice;
@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour {
 		p.UpdateTurrets (leftAngle, rightAngle);
 
 		// Fires turrets
-		if (device.LeftTrigger)		p.FireLeftTurret();
+		if (device.LeftTrigger)		p.FireLeftTurret(); 
 		if (device.RightTrigger)	p.FireRightTurret();
 
 		// Fires the engines
