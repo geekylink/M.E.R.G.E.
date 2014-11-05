@@ -17,6 +17,8 @@ public class Player : BaseShip {
     public float fireRate = 0.5f;
 	public UnityEngine.UI.Text gtHealth;
 
+	public GameObject leftTurret;
+	public GameObject rightTurret;
 
 	// Used to prevent firing constantly
 	private float lastLeftFire = 0;
@@ -43,6 +45,7 @@ public class Player : BaseShip {
 	// Use this for initialization
 	void Start () {
 		health = maxHealth;
+		lastLeftFire = lastRightFire = 0;
 	}
 	
 	// Update is called once per frame
@@ -71,9 +74,6 @@ public class Player : BaseShip {
 	
 	// Updates angles for the left and right turrets
 	public void UpdateTurrets(float leftAngle, float rightAngle) {
-		GameObject leftTurret = GameObject.Find ("LeftTurret");
-		GameObject rightTurret = GameObject.Find ("RightTurret");
-
 		Vector3 leftRot = Vector3.zero, rightRot = Vector3.zero;
 
 		leftRot.z = leftAngle;
@@ -85,8 +85,6 @@ public class Player : BaseShip {
 
 	// Fires from the left turret
 	public void FireLeftTurret() {
-		GameObject leftTurret = GameObject.Find ("LeftTurret");
-
 		if (lastLeftFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, leftTurret.transform.position, leftTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
@@ -97,8 +95,6 @@ public class Player : BaseShip {
 
 	// Fires from the right turret
 	public void FireRightTurret() {
-		GameObject rightTurret = GameObject.Find ("RightTurret");
-
 		if (lastRightFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
