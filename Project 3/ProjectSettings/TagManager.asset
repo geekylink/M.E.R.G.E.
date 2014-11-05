@@ -9,6 +9,7 @@ TagManager:
   - EnemyProjectile
   - Target
   - Bullet
+  - Camera
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
