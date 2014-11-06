@@ -34,12 +34,11 @@ public class PlayerManager : MonoBehaviour {
 
 		// Updates angles
 		player.UpdateTurrets (leftAngle, rightAngle);
-		print (device.LeftTrigger);
 		if (device.LeftTrigger)		player.FireLeftTurret(); 
 		if (device.RightTrigger)	player.FireRightTurret();
 
-		if(device.Action1) player.TryingToMerge = true;
-		else player.TryingToMerge = false;
+		//Check if A button is pushed (currently for merge/unmerge purposes
+		player.CheckMerge (device.Action1, device.Action2);
 
 		// Fires the engines
 		player.FireEngines (device.LeftBumper, device.RightBumper);

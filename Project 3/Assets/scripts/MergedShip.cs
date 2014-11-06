@@ -1,9 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MergedShip : MonoBehaviour {
 
-	public bool[] shipsInPosition;
+	public bool[] shipsInPosition = new bool[4];
+	public int[] pNumAtPosition = new int[4];
+
+	float rotMergeTime = 0;
+	public float RotMergeTime{
+		get{return rotMergeTime;}
+		set{rotMergeTime = value;}
+	}
 
 	float bounciness = 0;
 	public float Bounciness{
@@ -19,7 +27,6 @@ public class MergedShip : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		shipsInPosition = new bool[4];
 	}
 	
 	// Update is called once per frame
@@ -59,5 +66,68 @@ public class MergedShip : MonoBehaviour {
 		}
 		rigidbody2D.velocity = vel;
 		transform.position = pos;
+	}
+
+	IEnumerator MoveAndRotatePlayerShip(Player player, int numberInMerge){
+		player.IsMerging = true;
+		rigidbody2D.Sleep();
+		Vector2 center = transform.position;
+		Vector2 right = transform.right;
+		Vector2 up = transform.up;
+
+		Vector2 oldRight = player.transform.right;
+		Vector2 oldPos = player.transform.position;
+		
+		Vector2 newPos = Vector2.zero;
+		Vector2 newRight = Vector2.zero;
+		if(numberInMerge == 0)	{
+			newPos = center + right * -0.66f;
+			newRight = right;
+		}
+		else if(numberInMerge == 1)	{
+			newPos = center + up * -0.66f;
+			newRight = up;
+		}
+		else if(numberInMerge == 2)	{
+			newPos = center + right * 0.66f;
+			newRight = -right;
+		}
+		else if(numberInMerge == 3)	{
+			newPos = center + up * 0.66f;
+			newRight = -up;
+		}
+		
+		float t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / rotMergeTime;
+			
+			player.transform.right = Vector2.Lerp(oldRight, newRight, t);
+			player.transform.position = Vector2.Lerp (oldPos, newPos, t);
+			
+			yield return 0;
+		}
+		
+		player.IsMerging = false;
+		rigidbody2D.WakeUp();
+	}
+
+	public void AddShip(Player playerScript, int pNum){
+		playerScript.IsCurrentlyMerged = true;
+
+		int index = System.Array.IndexOf(shipsInPosition, false);
+		shipsInPosition[index] = true;
+		pNumAtPosition[index] = pNum;
+
+		StartCoroutine(MoveAndRotatePlayerShip(playerScript, index));
+		numberOfMergedShips++;
+	}
+
+	public void RemoveShip(Player playerScript, int pNum){
+		int index = System.Array.IndexOf(pNumAtPosition, pNum);
+
+		shipsInPosition[index] = false;
+		pNumAtPosition[index] = -1;
+		
+		numberOfMergedShips--;
 	}
 }

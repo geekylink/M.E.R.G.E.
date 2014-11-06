@@ -87,6 +87,7 @@ GameObject:
   - 124: {fileID: 22428380}
   - 81: {fileID: 22428379}
   - 114: {fileID: 22428384}
+  - 114: {fileID: 22428385}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -175,6 +176,17 @@ MonoBehaviour:
   - {fileID: 433889811}
   - {fileID: 1122374697}
   - {fileID: 1597300283}
+--- !u!114 &22428385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22428378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b0e18570fed3a4db29a59a9fa0cbf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &44002113
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,11 +397,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400034, guid: 3219493577f30f549b3f01f55684220c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 14.691
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: 3219493577f30f549b3f01f55684220c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.53390002
       objectReference: {fileID: 0}
     - target: {fileID: 400034, guid: 3219493577f30f549b3f01f55684220c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -426,6 +438,10 @@ Prefab:
     - target: {fileID: 11400004, guid: 3219493577f30f549b3f01f55684220c, type: 2}
       propertyPath: shouldForceOnTurn
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: unmergeButton
+      value: 107
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3219493577f30f549b3f01f55684220c, type: 2}
@@ -3149,7 +3165,7 @@ Transform:
   m_PrefabInternal: {fileID: 2096320617}
   m_GameObject: {fileID: 433889811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.01399994, y: -2.13820004, z: 0}
+  m_LocalPosition: {x: 5.89160013, y: -6.69820023, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1574541524}
@@ -3192,6 +3208,7 @@ MonoBehaviour:
   leftFire: 113
   rightFire: 119
   mergeButton: 115
+  unmergeButton: 97
   velocityMult: 1
   bulletVelocity: 5
   bounciness: .5
@@ -10830,7 +10847,7 @@ Transform:
   m_PrefabInternal: {fileID: 1991711988}
   m_GameObject: {fileID: 1122374697}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.01399994, y: 4.86180019, z: 0}
+  m_LocalPosition: {x: -19.6030006, y: 4.86180019, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1654570955}
@@ -10873,6 +10890,7 @@ MonoBehaviour:
   leftFire: 110
   rightFire: 109
   mergeButton: 44
+  unmergeButton: 46
   velocityMult: 1
   bulletVelocity: 5
   bounciness: .5
@@ -12736,7 +12754,7 @@ Transform:
   m_PrefabInternal: {fileID: 1495396234}
   m_GameObject: {fileID: 1597300283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.98600006, y: -2.13820004, z: 0}
+  m_LocalPosition: {x: -5.98600006, y: 8.50049973, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1070193885}
@@ -12778,6 +12796,7 @@ MonoBehaviour:
   leftFire: 122
   rightFire: 120
   mergeButton: 32
+  unmergeButton: 306
   velocityMult: 1
   bulletVelocity: 5
   bounciness: .5
@@ -18358,7 +18377,7 @@ Transform:
   m_PrefabInternal: {fileID: 68309100}
   m_GameObject: {fileID: 2096854465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 14.691, y: 3.53390002, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1516910349}
@@ -18401,6 +18420,7 @@ MonoBehaviour:
   leftFire: 111
   rightFire: 112
   mergeButton: 108
+  unmergeButton: 107
   velocityMult: 1
   bulletVelocity: 5
   bounciness: .5

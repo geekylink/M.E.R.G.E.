@@ -7,6 +7,7 @@ public class Player : BaseShip {
 	public KeyCode leftFire;
 	public KeyCode rightFire;
 	public KeyCode mergeButton;
+	public KeyCode unmergeButton;
 
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
@@ -23,6 +24,12 @@ public class Player : BaseShip {
 	// Used to prevent firing constantly
 	private float lastLeftFire = 0;
 	private float lastRightFire = 0;
+
+	bool isMerging = false;
+	public bool IsMerging{
+		get{return isMerging;}
+		set{isMerging = value;}
+	}
 
 	bool isCurrentlyMerged = false;
 	public bool IsCurrentlyMerged{
@@ -56,6 +63,23 @@ public class Player : BaseShip {
 		
 		lastRightFire -= Time.deltaTime;
 		lastLeftFire -= Time.deltaTime;
+
+		//CheckMerge(Input.GetKey(mergeButton), Input.GetKey (unmergeButton));
+	}
+
+	public void CheckMerge(bool pushingMerge, bool pushingUnmerge){
+		if(isMerging) return;
+
+		if(pushingMerge){
+			tryingToMerge = true;
+		}
+		else{
+			tryingToMerge = false;
+		}
+
+		if(isCurrentlyMerged && pushingUnmerge){
+			MergeManager.S.Unmerge(this);
+		}
 	}
 
 
@@ -96,6 +120,8 @@ public class Player : BaseShip {
 
 	// Fires the engines
 	public void FireEngines(bool engineLeft, bool engineRight) {
+		if(isMerging) return;
+
 		if(engineLeft && engineRight){
 			
 			foreach(GameObject engine in enginesTurnLeft){
@@ -162,6 +188,10 @@ public class Player : BaseShip {
 
 	// Handles player movement, likely to be replaced with thrusters
 	private void UpdatePlayer() {
+		bool firingLeft = Input.GetKey(leftFire);
+		bool firingRight = Input.GetKey(rightFire);
+
+		//FireEngines(firingLeft,	firingRight);
 
 		ClampObjectIntoView ();
 
