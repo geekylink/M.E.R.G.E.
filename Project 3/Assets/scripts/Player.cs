@@ -13,6 +13,7 @@ public class Player : BaseShip {
 	//easily editable variables in the inspector
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
+	public float gravityMult = 0.5f;
 
 	public float bounciness = 0.5f;
 
@@ -67,8 +68,6 @@ public class Player : BaseShip {
 		
 		lastRightFire -= Time.deltaTime;
 		lastLeftFire -= Time.deltaTime;
-
-		//comment out this line if using controllers
 		//CheckMerge(Input.GetKey(mergeButton), Input.GetKey (unmergeButton));
 	}
 
