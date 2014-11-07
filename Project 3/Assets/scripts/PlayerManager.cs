@@ -22,6 +22,10 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
+	public GameObject[] getPlayers() {
+		return players;
+	}
+
 	private void UpdatePlayer(InputDevice device, Player player) {
 		float leftX = device.LeftStickX;
 		float leftY = device.LeftStickY;
