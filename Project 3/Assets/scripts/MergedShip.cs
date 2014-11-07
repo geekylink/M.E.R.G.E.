@@ -4,9 +4,12 @@ using System.Collections.Generic;
 
 public class MergedShip : MonoBehaviour {
 
+	//has to know where ships are in order to
+	//add new ships
 	public bool[] shipsInPosition = new bool[4];
 	public int[] pNumAtPosition = new int[4];
 
+	//time it takes for ships to join - edited in mergeManager.cs
 	float rotMergeTime = 0;
 	public float RotMergeTime{
 		get{return rotMergeTime;}
@@ -34,8 +37,10 @@ public class MergedShip : MonoBehaviour {
 		ClampObjectIntoView();
 	}
 
+	//clamp object into view - same as in Player.cs
 	void ClampObjectIntoView () {
 		if(rigidbody2D == null) return;
+		if(Camera.main == null) return;
 		
 		float z = transform.position.z-Camera.main.transform.position.z;
 		
@@ -68,6 +73,11 @@ public class MergedShip : MonoBehaviour {
 		transform.position = pos;
 	}
 
+	//coroutine which figures out where player should go in larger merge ship,
+	//then rotates and moves the player to that position
+	//
+	//This is the function which should be edited to change up how players should
+	//form the larger ship
 	IEnumerator MoveAndRotatePlayerShip(Player player, int numberInMerge){
 		player.IsMerging = true;
 		rigidbody2D.Sleep();
@@ -111,6 +121,7 @@ public class MergedShip : MonoBehaviour {
 		rigidbody2D.WakeUp();
 	}
 
+	//insert a player into the merged ship
 	public void AddShip(Player playerScript, int pNum){
 		playerScript.IsCurrentlyMerged = true;
 
@@ -122,6 +133,7 @@ public class MergedShip : MonoBehaviour {
 		numberOfMergedShips++;
 	}
 
+	//remove a player from the merged ship
 	public void RemoveShip(Player playerScript, int pNum){
 		int index = System.Array.IndexOf(pNumAtPosition, pNum);
 

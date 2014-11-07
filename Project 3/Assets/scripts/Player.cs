@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 public class Player : BaseShip {
 
+	//Used for testing on keyboard - when I don't have 4 xbox controllers
 	public KeyCode leftFire;
 	public KeyCode rightFire;
 	public KeyCode mergeButton;
 	public KeyCode unmergeButton;
 
+	//easily editable variables in the inspector
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 
@@ -18,6 +20,7 @@ public class Player : BaseShip {
     public float fireRate = 0.5f;
 	public UnityEngine.UI.Text gtHealth;
 
+	//turrets should be assigned here in the inspector
 	public GameObject leftTurret;
 	public GameObject rightTurret;
 
@@ -25,6 +28,7 @@ public class Player : BaseShip {
 	private float lastLeftFire = 0;
 	private float lastRightFire = 0;
 
+	//lots of things to deal with merging
 	bool isMerging = false;
 	public bool IsMerging{
 		get{return isMerging;}
@@ -64,9 +68,11 @@ public class Player : BaseShip {
 		lastRightFire -= Time.deltaTime;
 		lastLeftFire -= Time.deltaTime;
 
+		//comment out this line if using controllers
 		//CheckMerge(Input.GetKey(mergeButton), Input.GetKey (unmergeButton));
 	}
 
+	//checking to see if the player wants to merge/unmerge
 	public void CheckMerge(bool pushingMerge, bool pushingUnmerge){
 		if(isMerging) return;
 
@@ -191,6 +197,7 @@ public class Player : BaseShip {
 		bool firingLeft = Input.GetKey(leftFire);
 		bool firingRight = Input.GetKey(rightFire);
 
+		//comment out this line when using controllers
 		//FireEngines(firingLeft,	firingRight);
 
 		ClampObjectIntoView ();
@@ -202,8 +209,10 @@ public class Player : BaseShip {
 		}
 	}
 
+	//clamps object when using a main camera (all players in same view, so probably want some way to clamp it)
 	void ClampObjectIntoView () {
 		if(rigidbody2D == null) return;
+		if(Camera.main == null) return;
 
 		float z = transform.position.z-Camera.main.transform.position.z;
 
