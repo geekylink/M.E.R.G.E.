@@ -37,9 +37,9 @@ public class Enemy : BaseShip {
 			TakeDamage(1);
 		}
 
-        if(col.gameObject.tag == "Target")
+        if(col.gameObject.tag == "Player")
         {
-			GameObject playerGO = GameObject.Find("Player");
+			GameObject playerGO = col.gameObject;
 			Player player = playerGO.GetComponent("Player") as Player;
 			player.TakeDamage(1);
 
