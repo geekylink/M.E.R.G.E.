@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &184240712
 ParticleSystemRenderer:
@@ -2791,8 +2791,8 @@ RectTransform:
   m_Children:
   - {fileID: 865032384}
   - {fileID: 554540355}
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 279281312}
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3057,9 +3057,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 210459767}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 11
 --- !u!1 &281862978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,9 +3298,10 @@ MonoBehaviour:
   rightFire: 119
   mergeButton: 115
   unmergeButton: 97
-  velocityMult: 1
+  velocityMult: 2
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
@@ -3483,9 +3485,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2089272143}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 13
 --- !u!1 &474690886
 GameObject:
   m_ObjectHideFlags: 0
@@ -3925,7 +3928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &561761948
 ParticleSystemRenderer:
@@ -5292,9 +5295,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2052771697}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 12
 --- !u!1 &650125038
 GameObject:
   m_ObjectHideFlags: 0
@@ -6656,7 +6660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &787138569
 ParticleSystemRenderer:
@@ -9152,7 +9156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &917265531
 ParticleSystemRenderer:
@@ -10567,7 +10571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &1039492608
 ParticleSystemRenderer:
@@ -11888,9 +11892,10 @@ MonoBehaviour:
   rightFire: 109
   mergeButton: 44
   unmergeButton: 46
-  velocityMult: 1
+  velocityMult: 2
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
@@ -12149,7 +12154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: target
@@ -12470,6 +12475,22 @@ Prefab:
       propertyPath: playerColor.b
       value: .917241335
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: breakMult
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: velocityMult
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: force
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: force
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3219493577f30f549b3f01f55684220c, type: 2}
   m_RootGameObject: {fileID: 2096854465}
@@ -12512,7 +12533,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: target
@@ -12626,7 +12647,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: target
@@ -13841,7 +13862,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 4e0ad283eb69394438cc13cbb07d08fd, type: 2}
       propertyPath: target
@@ -14342,9 +14363,10 @@ MonoBehaviour:
   rightFire: 120
   mergeButton: 32
   unmergeButton: 306
-  velocityMult: 1
+  velocityMult: 2
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
@@ -14615,8 +14637,8 @@ RectTransform:
   - {fileID: 1002000182}
   - {fileID: 1102120356}
   - {fileID: 944086298}
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 2099076546}
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -15112,7 +15134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &1871063839
 ParticleSystemRenderer:
@@ -16467,7 +16489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &1967013978
 ParticleSystemRenderer:
@@ -17880,7 +17902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 2
   shouldForceOnTurn: 0
 --- !u!199 &2051616510
 ParticleSystemRenderer:
@@ -18996,8 +19018,8 @@ RectTransform:
   - {fileID: 690959076}
   - {fileID: 1913871540}
   - {fileID: 2011046078}
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 644606497}
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -19107,8 +19129,8 @@ RectTransform:
   - {fileID: 598048873}
   - {fileID: 513825422}
   - {fileID: 1853555789}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 435119417}
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -19408,9 +19430,10 @@ MonoBehaviour:
   rightFire: 112
   mergeButton: 108
   unmergeButton: 107
-  velocityMult: 1
+  velocityMult: 200
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
@@ -19526,9 +19549,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1676133899}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!1 &2112666402
 GameObject:
   m_ObjectHideFlags: 0
