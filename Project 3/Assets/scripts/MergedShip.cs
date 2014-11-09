@@ -176,19 +176,16 @@ public class MergedShip : MonoBehaviour {
 		
 		numberOfMergedShips--;
 
-		GameObject leftEngine = playerScript.leftEnginePiece;
-		GameObject rightEngine = playerScript.rightEnginePiece;
+		GameObject leftEngine = player.leftEnginePiece;
+		GameObject rightEngine = player.rightEnginePiece;
 		
-		Vector2 currentLeftRot = leftEngine.transform.localRotation.eulerAngles;
-		Vector2 currentRightRot = rightEngine.transform.localRotation.eulerAngles;
+		Vector3 leftRot = leftEngine.transform.rotation.eulerAngles;
+		Vector3 rightRot = rightEngine.transform.rotation.eulerAngles;
 		
-		Vector2 newLeftRot = currentLeftRot;
-		Vector2 newRightRot = currentRightRot;
+		leftRot.x += 45;
+		rightRot.x -= 45;
 		
-		newLeftRot.x = -45;
-		newRightRot.x = 45;
-		
-		leftEngine.transform.Rotate(newLeftRot, Space.Self);
-		rightEngine.transform.Rotate(newRightRot, Space.Self);
+		leftEngine.transform.rotation = Quaternion.Euler(leftRot);
+		rightEngine.transform.rotation = Quaternion.Euler(rightRot);
 	}
 }
