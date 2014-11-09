@@ -70,7 +70,7 @@ public class Player : BaseShip {
 		lastLeftFire -= Time.deltaTime;
 		
 		//comment out this line when using controllers
-		CheckMerge(Input.GetKey(mergeButton), Input.GetKey (unmergeButton));
+		//CheckMerge(Input.GetKey(mergeButton), Input.GetKey (unmergeButton));
 	}
 
 	//checking to see if the player wants to merge/unmerge
@@ -199,7 +199,7 @@ public class Player : BaseShip {
 		bool firingRight = Input.GetKey(rightFire);
 
 		//comment out this line when using controllers
-		FireEngines(firingLeft,	firingRight);
+		//FireEngines(firingLeft,	firingRight);
 
 		ClampObjectIntoView ();
 

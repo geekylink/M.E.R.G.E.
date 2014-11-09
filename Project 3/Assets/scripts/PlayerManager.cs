@@ -43,10 +43,10 @@ public class PlayerManager : MonoBehaviour {
 
 		//Check if A button is pushed (currently for merge/unmerge purposes
 		//Comment out this line if testing with keyboard
-		//player.CheckMerge (device.Action1, device.Action2);
+		player.CheckMerge (device.Action1, device.Action2);
 
 		// Fires the engines
 		//Comment out this line if testing with keyboard
-		//player.FireEngines (device.LeftBumper, device.RightBumper);
+		player.FireEngines (device.LeftBumper, device.RightBumper);
 	}
 }
