@@ -64,7 +64,7 @@ MonoBehaviour:
   enginesStraight: []
   projectile: {fileID: 100000, guid: 2a75ca4f6d04b334e96f0dc4ea70f192, type: 2}
   moveSpeed: 1
-  fireRate: 2
+  fireRate: 6
   hoverDistance: 8
   projectileSpeed: 4
 --- !u!212 &21200000
