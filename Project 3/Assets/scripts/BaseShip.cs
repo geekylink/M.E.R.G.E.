@@ -29,7 +29,7 @@ public class BaseShip : MonoBehaviour {
 		}
 	}
 
-	public void Die() {
+	public virtual void Die() {
         if(explosion != null)
         {
             GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
@@ -42,7 +42,17 @@ public class BaseShip : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	    
+	}
+
+	public void RestrictToMap(){
+		Vector2 pos = transform.position;
+		if(Mathf.Abs (pos.x) > 120	){
+			pos.x = 120 * Mathf.Abs (pos.x) / pos.x;
+		}
+		if(Mathf.Abs (pos.y) > 120){
+			pos.x = 120 * Mathf.Abs (pos.y) / pos.y;
+		}
+		transform.position = pos;
 	}
 
 	// Gets a random player

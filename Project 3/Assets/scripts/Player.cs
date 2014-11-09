@@ -67,6 +67,7 @@ public class Player : BaseShip {
 	
 	// Update is called once per frame
 	void Update () {
+		RestrictToMap();
 		//UpdateTurrets ();
 		UpdatePlayer ();
 		UpdateHUD ();

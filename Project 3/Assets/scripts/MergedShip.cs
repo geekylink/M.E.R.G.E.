@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MergedShip : MonoBehaviour {
+public class MergedShip : BaseShip {
 
 	//has to know where ships are in order to
 	//add new ships
@@ -34,7 +34,12 @@ public class MergedShip : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		RestrictToMap();
 		ClampObjectIntoView();
+	}
+
+	public override void Die(){
+
 	}
 
 	//clamp object into view - same as in Player.cs
