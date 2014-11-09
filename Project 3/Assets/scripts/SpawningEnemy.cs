@@ -48,7 +48,7 @@ public class SpawningEnemy : BaseShip
 
     void FireShip(Quaternion angle)
     {
-        GameObject bulletGO = Instantiate(projectile, this.transform.position + new Vector3(0,-5,0), this.transform.rotation) as GameObject;
+        GameObject bulletGO = Instantiate(projectile, this.transform.position + Quaternion.Euler(-angle.eulerAngles.z +90,0,0) * (new Vector3( -1, 0, 0)), this.transform.rotation) as GameObject;
         
     }
 }
