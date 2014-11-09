@@ -45,6 +45,7 @@ public class BaseShip : MonoBehaviour {
 	    
 	}
 
+	// Gets a random player
 	public GameObject getRandomPlayer() {
 		GameObject cam = GameObject.Find ("Main Camera");
 		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;

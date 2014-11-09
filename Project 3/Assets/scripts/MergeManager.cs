@@ -13,13 +13,13 @@ public class MergeManager : MonoBehaviour {
 	//time it takes for players to merge into the ship
 	public float rotMergeTime;
 
-	List<Player> players = new List<Player>();
+	public List<Player> players = new List<Player>();
 
 	//list of images telling players they can merge
 	List<GameObject> mergeVisualCues = new List<GameObject>();
 
 	//Who each player is merged with
-	List<List<Player>> currentlyMergedWith = new List<List<Player>>();
+	public List<List<Player>> currentlyMergedWith = new List<List<Player>>();
 
 	void Start(){
 		if(S == null)

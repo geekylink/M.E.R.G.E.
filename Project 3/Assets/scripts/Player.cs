@@ -110,6 +110,11 @@ public class Player : BaseShip {
 		if (lastLeftFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, leftTurret.transform.position, leftTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
+			//if (isCurrentlyMerged)
+
+			int id = MergeManager.S.players.IndexOf(this);
+			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
+
 			b.setDefaults(-leftTurret.transform.eulerAngles.z, bulletVelocity);
 			lastLeftFire = fireRate;
 		}
@@ -120,6 +125,10 @@ public class Player : BaseShip {
 		if (lastRightFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
+
+			int id = MergeManager.S.players.IndexOf(this);
+			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
+
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity);
 			lastRightFire = fireRate;
 		}

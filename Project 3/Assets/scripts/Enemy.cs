@@ -33,8 +33,10 @@ public class Enemy : BaseShip {
 		print ("col: " + col.gameObject.name);
 
 		if (col.gameObject.tag == "Bullet") {
+			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
+
 			Destroy (col.gameObject);
-			TakeDamage(1);
+			TakeDamage(b.damageDealt);
 		}
 
         if(col.gameObject.tag == "Player")
