@@ -44,4 +44,13 @@ public class BaseShip : MonoBehaviour {
 	void Update () {
 	    
 	}
+
+	public GameObject getRandomPlayer() {
+		GameObject cam = GameObject.Find ("Main Camera");
+		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;
+		GameObject[] players = pm.getPlayers ();
+		int randomNum = Random.Range (0, players.Length);
+
+		return players [randomNum];	
+	}
 }

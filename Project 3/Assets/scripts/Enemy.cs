@@ -12,13 +12,11 @@ public class Enemy : BaseShip {
 	float timeElapsed = 0f;
 	// Use this for initialization
 	void Start () {
+		currTarget = getRandomPlayer ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-        currTarget = GameObject.FindGameObjectWithTag("Target");
-
 		if (currTarget != null) {
             targetPos = currTarget.transform.position;
             var dir = targetPos - transform.position;

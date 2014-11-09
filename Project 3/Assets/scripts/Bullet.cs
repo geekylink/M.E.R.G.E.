@@ -12,8 +12,7 @@ public class Bullet : MonoBehaviour {
 		Vector3 vel = Vector3.zero;
 		vel.y = -Mathf.Sin (angle*Mathf.Deg2Rad)*velocity;
 		vel.x = Mathf.Cos (angle*Mathf.Deg2Rad)*velocity;
-
-
+		
 		this.rigidbody2D.velocity = vel;
 	}
 	
