@@ -34,8 +34,6 @@ public class Enemy : BaseShip {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
-		print ("col: " + col.gameObject.name);
-
 		if (col.gameObject.tag == "Bullet") {
 			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
 

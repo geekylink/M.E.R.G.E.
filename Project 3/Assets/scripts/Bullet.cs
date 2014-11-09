@@ -5,6 +5,9 @@ public class Bullet : MonoBehaviour {
 
 	public int damageDealt;
 
+	public float lifeTime = 5;
+	float lifeCounter = 0;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -16,10 +19,16 @@ public class Bullet : MonoBehaviour {
 		vel.x = Mathf.Cos (angle*Mathf.Deg2Rad)*velocity;
 		
 		this.rigidbody2D.velocity = vel;
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+		lifeCounter += Time.deltaTime;
+		if(lifeCounter > lifeTime){
+			Destroy(this.gameObject);
+		}
 	}
 }

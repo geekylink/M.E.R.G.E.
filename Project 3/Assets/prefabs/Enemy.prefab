@@ -87,8 +87,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 12.1345692, y: 13.6513519, z: 10.9210815}
+  m_LocalPosition: {x: 0, y: -1.30390006e-07, z: 10}
+  m_LocalScale: {x: 7.03455162, y: 7.91384649, z: 6.3310771}
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 1
@@ -153,17 +153,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b34a3de0664d574c9622f499e3982cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 39d3321df5ff8c2469ba080fd0fefca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
   explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
-  maxRotSpeed: 0
+  maxRotSpeed: 20
   enginesTurnRight: []
   enginesTurnLeft: []
   enginesStraight: []
   sphere: {fileID: 100004}
-  projectile: {fileID: 100000, guid: a820af67510076f4bad8dda9a4decb15, type: 2}
+  projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
   moveSpeed: 2
   targetPos: {x: 0, y: 0, z: 0}
   waitTime: 2

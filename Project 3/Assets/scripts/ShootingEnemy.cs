@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShootingEnemy : BaseShip
 {
-
+	public GameObject sphere;
     public GameObject projectile;
     public float moveSpeed = 2f;
     public float fireRate = 2f;
@@ -14,7 +14,7 @@ public class ShootingEnemy : BaseShip
 
 	// Use this for initialization
 	void Start () {
-	
+		sphere.renderer.material.color = Color.red;
 	}
 	
 	// Update is called once per frame
@@ -25,7 +25,6 @@ public class ShootingEnemy : BaseShip
         {
             Vector3 targetPos = currTarget.transform.position;
             var dist = targetPos - transform.position;
-            print(dist.magnitude);
             if (dist.magnitude > hoverDistance)
                 this.rigidbody2D.velocity = dist.normalized * moveSpeed;
             else
@@ -52,4 +51,22 @@ public class ShootingEnemy : BaseShip
         Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
         b.setDefaults(-angle.eulerAngles.z + 90, projectileSpeed);
     }
+
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag == "Bullet") {
+			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
+			print (b.damageDealt);
+			Destroy (col.gameObject);
+			TakeDamage(b.damageDealt);
+		}
+		
+		if(col.gameObject.tag == "Player")
+		{
+			GameObject playerGO = col.gameObject;
+			Player player = playerGO.GetComponent("Player") as Player;
+			player.TakeDamage(1);
+			
+			Die ();
+		}
+	}
 }

@@ -90,6 +90,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400010}
+  - 33: {fileID: 3300000}
+  - 135: {fileID: 13500000}
+  - 23: {fileID: 2300000}
+  m_Layer: 12
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -145,15 +163,55 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.83650017, y: .0730289966, z: 0}
+  m_LocalPosition: {x: 21.3190002, y: .0730289966, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400006}
   - {fileID: 400004}
   - {fileID: 400002}
   - {fileID: 400000}
+  - {fileID: 400010}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &400010
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5.9605e-08, z: 10}
+  m_LocalScale: {x: 17.5151405, y: 17.515089, z: 17.515089}
+  m_Children: []
+  m_Father: {fileID: 400008}
+  m_RootOrder: 4
+--- !u!23 &2300000
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 84b9e1d19d11078d11005b9844295342, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3300000
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!50 &5000002
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -236,16 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8855a582a74e94da072e09ecda8a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenVolleys: 8
-  timeBetweenShots: .140000001
-  projectile: {fileID: 0}
-  angle: 180
-  degreesApart: 0
   health: 50
   activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   inactiveSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
-  active: 1
+  activePoint: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,16 +310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8855a582a74e94da072e09ecda8a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenVolleys: 8
-  timeBetweenShots: .140000001
-  projectile: {fileID: 0}
-  angle: 180
-  degreesApart: 0
   health: 50
   activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   inactiveSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
-  active: 0
+  activePoint: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,6 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37af636b01f4a5843b88399a1fd7a873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sphere: {fileID: 100010}
+  weakPoints: []
   timeBetweenVolleys: 3
   timeBetweenShots: .330000013
   projectile: {fileID: 100000, guid: a820af67510076f4bad8dda9a4decb15, type: 2}
@@ -294,16 +344,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8855a582a74e94da072e09ecda8a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenVolleys: 8
-  timeBetweenShots: .140000001
-  projectile: {fileID: 0}
-  angle: 180
-  degreesApart: 0
   health: 50
   activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   inactiveSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
-  active: 0
+  activePoint: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,16 +360,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8855a582a74e94da072e09ecda8a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenVolleys: 8
-  timeBetweenShots: .140000001
-  projectile: {fileID: 0}
-  angle: 180
-  degreesApart: 0
   health: 50
   activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   inactiveSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
-  active: 0
+  activePoint: 0
+--- !u!135 &13500000
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

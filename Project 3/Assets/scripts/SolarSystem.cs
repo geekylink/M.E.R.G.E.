@@ -23,6 +23,7 @@ public class SolarSystem : MonoBehaviour {
 			GravityWell well = wellObj.GetComponent ("GravityWell") as GravityWell;
 
 			foreach (GameObject player in players) {
+				if(player == null) continue;
 				Vector2 force = wellObj.transform.position - player.transform.position;
 
 				player.transform.root.rigidbody2D.AddForceAtPosition (force*(1/force.magnitude)*well.gravityMult, player.transform.position);

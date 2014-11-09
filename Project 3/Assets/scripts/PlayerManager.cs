@@ -36,10 +36,17 @@ public class PlayerManager : MonoBehaviour {
 		float leftAngle = Mathf.Atan2 (leftY, leftX)*Mathf.Rad2Deg;
 		float rightAngle = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
 
+		if(Mathf.Abs (leftY) < 0.3f && Mathf.Abs(leftX) < 0.3f){
+			leftAngle = 0;
+		}
+		if(Mathf.Abs (rightY) < 0.3f && Mathf.Abs(rightX) < 0.3f){
+			rightAngle = 0;
+		}
+
 		// Updates angles
 		player.UpdateTurrets (leftAngle, rightAngle);
-		if (device.LeftTrigger)		player.FireLeftTurret(); 
-		if (device.RightTrigger)	player.FireRightTurret();
+		//if (device.LeftTrigger)		player.FireLeftTurret(); 
+		//if (device.RightTrigger)	player.FireRightTurret();
 
 		//Check if A button is pushed (currently for merge/unmerge purposes
 		//Comment out this line if testing with keyboard

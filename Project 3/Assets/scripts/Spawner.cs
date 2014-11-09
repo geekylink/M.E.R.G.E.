@@ -8,10 +8,10 @@ public class Spawner : MonoBehaviour {
 
 	public float spawnTimer;
 
+	public float mapSize;
+
 	// Use this for initialization
 	void Start () {
-
-
 
 	}
 
@@ -28,22 +28,22 @@ public class Spawner : MonoBehaviour {
 		
 		Vector2 posToSpawn = Vector2.zero;
 		if(side == 0){
-			posToSpawn.y = 1.1f; 
-			posToSpawn.x = Random.value;
+			posToSpawn.y = mapSize; 
+			posToSpawn.x = (Random.value - 0.5f) * 2 * mapSize;
 		}
 		else if(side == 1){
-			posToSpawn.y = -.1f;
-			posToSpawn.x = Random.value;
+			posToSpawn.y = -mapSize;
+			posToSpawn.x = (Random.value - 0.5f) * 2 * mapSize;
 		}
 		else if(side == 2){
-			posToSpawn.x = 1.1f;
-			posToSpawn.y = Random.value;
+			posToSpawn.x = mapSize;
+			posToSpawn.y = (Random.value - 0.5f) * 2 * mapSize;
 		}
 		else{
-			posToSpawn.x = -.1f;
-			posToSpawn.y = Random.value;
+			posToSpawn.x = -mapSize;
+			posToSpawn.y = (Random.value - 0.5f) * 2 * mapSize;
 		}
-		posToSpawn = Camera.main.ViewportToWorldPoint(posToSpawn);
+		//posToSpawn = minimapCam.ViewportToWorldPoint(posToSpawn);
 		
 		GameObject enemyGO = Instantiate (enemiesToSpawn[randomEnemy]) as GameObject;
 		enemyGO.transform.position = posToSpawn;

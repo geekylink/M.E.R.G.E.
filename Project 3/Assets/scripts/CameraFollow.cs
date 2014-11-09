@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (target.transform)
+		if (target)
 		{
 			Vector3 point = camera.WorldToViewportPoint(target.transform.position);
 			Vector3 delta = target.transform.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));

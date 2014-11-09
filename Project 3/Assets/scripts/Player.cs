@@ -79,6 +79,14 @@ public class Player : BaseShip {
 		//CheckMerge(Input.GetKey(mergeButton), Input.GetKey (unmergeButton));
 	}
 
+	
+	public override void Die(){
+		if(isCurrentlyMerged){
+			MergeManager.S.Unmerge(this);
+		}
+		base.Die();
+	}
+
 	//checking to see if the player wants to merge/unmerge
 	public void CheckMerge(bool pushingMerge, bool pushingUnmerge){
 		if(isMerging) return;
@@ -102,6 +110,10 @@ public class Player : BaseShip {
 	
 	// Updates angles for the left and right turrets
 	public void UpdateTurrets(float leftAngle, float rightAngle) {
+		if(leftAngle == 0 && rightAngle == 0){
+			return;
+		}
+
 		Vector3 leftRot = Vector3.zero, rightRot = Vector3.zero;
 
 		leftRot.z = leftAngle;
@@ -109,6 +121,13 @@ public class Player : BaseShip {
 		
 		leftTurret.transform.eulerAngles = leftRot;
 		rightTurret.transform.eulerAngles = rightRot;
+		if(leftAngle != 0){
+			FireLeftTurret();
+		}
+		if(rightAngle != 0){
+			FireRightTurret();
+		}
+
 	}
 
 	// Fires from the left turret
@@ -135,7 +154,7 @@ public class Player : BaseShip {
 			int id = MergeManager.S.players.IndexOf(this);
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
 
-			b.setDefaults(-leftTurret.transform.eulerAngles.z, bulletVelocity);
+			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity);
 			b.rigidbody2D.velocity += this.rigidbody2D.velocity;
 			lastRightFire = fireRate;
 		}
@@ -278,5 +297,13 @@ public class Player : BaseShip {
 		Color returnColor = body.GetComponent<SpriteRenderer>().color;
 		return returnColor;
 	}
-
+	void OnCollisionEnter2D(Collision2D col){
+		
+		if (col.gameObject.tag == "Bullet-Enemy") {
+			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
+			
+			Destroy (col.gameObject);
+			TakeDamage(b.damageDealt);
+		}
+	}
 }

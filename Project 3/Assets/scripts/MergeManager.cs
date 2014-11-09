@@ -70,6 +70,7 @@ public class MergeManager : MonoBehaviour {
 			if(mergingAtNextUpdateWith[i] != -1){
 				continue;
 			}
+			if(players[i] == null) continue;
 
 			Vector2 posCurr = players[i].transform.position;
 			if(players[i].transform.parent != null){
@@ -81,7 +82,7 @@ public class MergeManager : MonoBehaviour {
 				if(mergingAtNextUpdateWith[j] != -1){
 					continue;
 				}
-
+				if(players[j] == null) continue;
 				Vector2 posComp = players[j].transform.position;
 				if(players[j].transform.parent != null){
 					posComp = players[j].transform.parent.position;

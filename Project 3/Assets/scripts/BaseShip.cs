@@ -22,7 +22,6 @@ public class BaseShip : MonoBehaviour {
 
 	public void TakeDamage(int amount) {
 		health -= amount;
-
 		if (health <= 0) {
 			health = 0;
 			Die();

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BossShip : MonoBehaviour {
 
+	public GameObject sphere;
 	public BossWeakPoint[] weakPoints;
 	public float timeBetweenVolleys = 8f;
 	public float timeBetweenShots = 0.14f;
@@ -23,6 +24,7 @@ public class BossShip : MonoBehaviour {
 		} else if (S != this) {
 			Destroy(this.gameObject);
 		}
+		sphere.renderer.material.color = Color.red;
 
 	}
 
