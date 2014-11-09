@@ -11793,7 +11793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1109848595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14509,6 +14509,7 @@ GameObject:
   - 4: {fileID: 1659985216}
   - 198: {fileID: 1659985215}
   - 199: {fileID: 1659985214}
+  - 114: {fileID: 1659985217}
   m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
@@ -14792,7 +14793,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10000
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -14810,7 +14811,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 15
+      scalar: 6000
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14842,7 +14843,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 30
+    cnt0: 6000
     cnt1: 30
     cnt2: 30
     cnt3: 30
@@ -14863,8 +14864,8 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: 1
-          value: 1
+        - time: .978021979
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -15606,12 +15607,23 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1659985213}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 20.302, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 25, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.302, y: 0, z: -4.41989994}
+  m_LocalScale: {x: 500, y: 500, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1659985217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1659985213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa488e4a9e5caf428334958270137c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1672753516
 GameObject:
   m_ObjectHideFlags: 0
