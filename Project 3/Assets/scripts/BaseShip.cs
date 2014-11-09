@@ -48,9 +48,17 @@ public class BaseShip : MonoBehaviour {
 		Vector2 pos = transform.position;
 		if(Mathf.Abs (pos.x) > 120	){
 			pos.x = 120 * Mathf.Abs (pos.x) / pos.x;
+
+			Vector3 vel = this.rigidbody2D.velocity;
+			vel.x = 0;
+			this.rigidbody2D.velocity = vel;
 		}
 		if(Mathf.Abs (pos.y) > 120){
 			pos.y = 120 * Mathf.Abs (pos.y) / pos.y;
+
+			Vector3 vel = this.rigidbody2D.velocity;
+			vel.y = 0;
+			this.rigidbody2D.velocity = vel;
 		}
 		transform.position = pos;
 	}
