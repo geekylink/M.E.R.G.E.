@@ -25,7 +25,7 @@ public class SolarSystem : MonoBehaviour {
 			foreach (GameObject player in players) {
 				Vector2 force = wellObj.transform.position - player.transform.position;
 
-				player.rigidbody2D.AddForceAtPosition (force*(1/force.magnitude)*well.gravityMult, player.transform.position);
+				player.transform.root.rigidbody2D.AddForceAtPosition (force*(1/force.magnitude)*well.gravityMult, player.transform.position);
 			}
 		}
 	}
