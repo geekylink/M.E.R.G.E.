@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		// Cycle through the controllers and players
 		for (int i = 0; i < InputManager.Devices.Count; i++) {
 			if (i < players.Length) {
@@ -44,6 +44,8 @@ public class PlayerManager : MonoBehaviour {
 		//Check if A button is pushed (currently for merge/unmerge purposes
 		//Comment out this line if testing with keyboard
 		player.CheckMerge (device.Action1, device.Action2);
+
+		if (device.Action3)	player.useBreaks ();
 
 		// Fires the engines
 		//Comment out this line if testing with keyboard

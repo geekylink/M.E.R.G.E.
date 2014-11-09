@@ -35,6 +35,5 @@ public class Engine : MonoBehaviour {
 		if(particleSystem != null){
 			particleSystem.enableEmission = false;
 		}
-
 	}
 }

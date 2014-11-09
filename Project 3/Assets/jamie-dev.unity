@@ -202,7 +202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!212 &44002115
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ Transform:
   m_LocalScale: {x: .0900000036, y: 1, z: .5}
   m_Children: []
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!114 &51082179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +431,10 @@ Prefab:
       propertyPath: unmergeButton
       value: 107
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: breakMult
+      value: 48
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3219493577f30f549b3f01f55684220c, type: 2}
   m_RootGameObject: {fileID: 2096854465}
@@ -463,7 +467,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!212 &110139393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3200,12 +3204,15 @@ MonoBehaviour:
   velocityMult: 1
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
   gtHealth: {fileID: 1779651957}
   leftTurret: {fileID: 476132160}
   rightTurret: {fileID: 1081768993}
+  minimapBlip: {fileID: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &433889814
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -4686,7 +4693,7 @@ Transform:
   m_LocalScale: {x: .589999974, y: .589999974, z: 1}
   m_Children: []
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!61 &650125040
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4822,7 +4829,7 @@ Transform:
   m_LocalScale: {x: .0399999991, y: 1, z: .5}
   m_Children: []
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!199 &730231603
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -9495,7 +9502,7 @@ Transform:
   m_Children:
   - {fileID: 213171415}
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &980052904
 GameObject:
   m_ObjectHideFlags: 0
@@ -10883,12 +10890,15 @@ MonoBehaviour:
   velocityMult: 1
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
   gtHealth: {fileID: 66903294}
   leftTurret: {fileID: 545052499}
   rightTurret: {fileID: 284438843}
+  minimapBlip: {fileID: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1122374700
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -11276,7 +11286,7 @@ Transform:
   - {fileID: 1281372277}
   - {fileID: 281862979}
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &1408362864
 GameObject:
   m_ObjectHideFlags: 0
@@ -12649,7 +12659,7 @@ Transform:
   m_Children:
   - {fileID: 1840888107}
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1001 &1495396234
 Prefab:
   m_ObjectHideFlags: 0
@@ -12727,7 +12737,7 @@ Transform:
   - {fileID: 1804731835}
   - {fileID: 1623952633}
   m_Father: {fileID: 2096854466}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1551388127
 GameObject:
   m_ObjectHideFlags: 0
@@ -12972,12 +12982,15 @@ MonoBehaviour:
   velocityMult: 1
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
   gtHealth: {fileID: 2128205928}
   leftTurret: {fileID: 368145106}
   rightTurret: {fileID: 283166667}
+  minimapBlip: {fileID: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1597300286
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -15815,6 +15828,78 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
+--- !u!1 &1918004478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100036, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+  m_PrefabInternal: {fileID: 68309100}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1918004479}
+  - 33: {fileID: 1918004482}
+  - 135: {fileID: 1918004481}
+  - 23: {fileID: 1918004480}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1918004479
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400036, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+  m_PrefabInternal: {fileID: 68309100}
+  m_GameObject: {fileID: 1918004478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.3870306, y: -.493835151, z: 0}
+  m_LocalScale: {x: .666666687, y: .666666687, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2096854466}
+  m_RootOrder: 0
+--- !u!23 &1918004480
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 3219493577f30f549b3f01f55684220c,
+    type: 2}
+  m_PrefabInternal: {fileID: 68309100}
+  m_GameObject: {fileID: 1918004478}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!135 &1918004481
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13500000, guid: 3219493577f30f549b3f01f55684220c,
+    type: 2}
+  m_PrefabInternal: {fileID: 68309100}
+  m_GameObject: {fileID: 1918004478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1918004482
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: 3219493577f30f549b3f01f55684220c,
+    type: 2}
+  m_PrefabInternal: {fileID: 68309100}
+  m_GameObject: {fileID: 1918004478}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1949988454
 GameObject:
   m_ObjectHideFlags: 0
@@ -18640,6 +18725,7 @@ Transform:
   m_LocalPosition: {x: 14.691, y: 3.53390002, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
+  - {fileID: 1918004479}
   - {fileID: 1516910349}
   - {fileID: 44002114}
   - {fileID: 110139392}
@@ -18684,12 +18770,15 @@ MonoBehaviour:
   velocityMult: 1
   bulletVelocity: 5
   gravityMult: .5
+  breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   fireRate: .100000001
   gtHealth: {fileID: 1764231845}
   leftTurret: {fileID: 1481075860}
   rightTurret: {fileID: 968337306}
+  minimapBlip: {fileID: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &2096854468
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -18736,6 +18825,7 @@ MonoBehaviour:
   mergeImage: {fileID: 100000, guid: 0cb1d44ea18be414aabce622ef5f410d, type: 2}
   mergeDistance: 4
   rotMergeTime: 1
+  players: []
 --- !u!4 &2112666404
 Transform:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class Player : BaseShip {
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 	public float gravityMult = 0.5f;
+	public float breakMult = 0.01f;
 
 	public float bounciness = 0.5f;
 
@@ -195,6 +196,12 @@ public class Player : BaseShip {
 				engine.GetComponent<Engine>().TurnOff();
 			}
 		}
+	}
+
+	public void useBreaks() {
+		Vector3 vel = this.rigidbody2D.velocity;
+		vel *= breakMult*Time.fixedDeltaTime;
+		this.rigidbody2D.velocity = vel;
 	}
 
     void ResetLeftFire()
