@@ -155,7 +155,7 @@ public class Player : BaseShip {
 				engine.GetComponent<Engine>().TurnOn();
 			}
 			if(rigidbody2D != null){
-				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 1.01f;
+				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 5.01f;
 			}
 		}
 		else if(engineLeft){
