@@ -54,10 +54,14 @@ public class Player : BaseShip {
 		set{tryingToMerge = value;}
 	}
 
+	public GameObject minimapBlip;
+	public Color playerColor;
+
 	// Use this for initialization
 	void Start () {
 		health = maxHealth;
 		lastLeftFire = lastRightFire = 0;
+		minimapBlip.renderer.material.color = playerColor;
 	}
 	
 	// Update is called once per frame
