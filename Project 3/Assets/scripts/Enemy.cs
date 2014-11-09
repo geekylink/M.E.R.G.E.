@@ -16,22 +16,15 @@ public class Enemy : BaseShip {
 	
 	// Update is called once per frame
 	void Update () {
-		//Vector3 dir = currTarget.transform.position - transform.position;
-		//float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
-		//transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+
         currTarget = GameObject.FindGameObjectWithTag("Target");
 
 		if (currTarget != null) {
-			timeElapsed += Time.deltaTime;
-			if (timeElapsed > waitTime) {
-					//FireProjectile ();
-					timeElapsed = 0f;
-			}
-			targetPos = currTarget.transform.position;
-			velocity = (currTarget.transform.position - transform.position).normalized * moveSpeed;
-			transform.position = transform.position + velocity * Time.deltaTime;
-
+            targetPos = currTarget.transform.position;
             var dir = targetPos - transform.position;
+
+            this.rigidbody2D.velocity = dir.normalized * moveSpeed;
+
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 180;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
@@ -40,6 +33,7 @@ public class Enemy : BaseShip {
 
 	void OnCollisionEnter2D(Collision2D col){
 		print ("col: " + col.gameObject.name);
+
 		if (col.gameObject.tag == "Bullet") {
 			Destroy (col.gameObject);
 			TakeDamage(1);
@@ -51,13 +45,9 @@ public class Enemy : BaseShip {
 			Player player = playerGO.GetComponent("Player") as Player;
 			player.TakeDamage(1);
 
-
 			Die ();
         }
 	}
 
-	void FireProjectile(){
-		GameObject newProj = (GameObject)Instantiate (projectile, transform.position, Quaternion.identity);
-		newProj.GetComponent<Projectile> ().SetVelocity (currTarget.transform.position - transform.position);
-	}
+
 }

@@ -43,8 +43,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.80323839, y: -1.9111588, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 2.50466418, y: .242445931, z: 0}
+  m_LocalScale: {x: .899999976, y: .800000012, z: 1}
   m_Children:
   - {fileID: 400002}
   m_Father: {fileID: 0}
@@ -100,6 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
+  maxRotSpeed: 0
+  enginesTurnRight: []
+  enginesTurnLeft: []
+  enginesStraight: []
   projectile: {fileID: 100000, guid: a820af67510076f4bad8dda9a4decb15, type: 2}
   moveSpeed: 2
   targetPos: {x: 0, y: 0, z: 0}
@@ -1208,7 +1212,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300036, guid: e7a596e811598e043a4b2fe78b78495d, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 8ab7bb886a76f4c4aa07080311bfc2e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
