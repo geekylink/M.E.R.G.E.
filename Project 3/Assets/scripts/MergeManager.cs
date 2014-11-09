@@ -92,6 +92,7 @@ public class MergeManager : MonoBehaviour {
 				if(dist < mergeDistance){
 					Vector2 dir = posComp - posCurr;
 					//check if both are pressing the merge button, and are not merged with each other
+					//if((players[i].TryingToMerge || players[j].TryingToMerge) && (!currentlyMergedWith[i].Contains(players[j]))){
 					if(players[i].TryingToMerge && players[j].TryingToMerge && (!currentlyMergedWith[i].Contains(players[j]))){
 						Debug.DrawRay(posCurr, dir, Color.green);
 						mergingAtNextUpdateWith[i] = j;

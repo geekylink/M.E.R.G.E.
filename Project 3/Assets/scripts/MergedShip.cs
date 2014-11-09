@@ -111,6 +111,19 @@ public class MergedShip : MonoBehaviour {
 		
 		Vector2 newPos = Vector2.zero;
 		Vector2 newRight = Vector2.zero;
+
+		GameObject leftEngine = player.leftEnginePiece;
+		GameObject rightEngine = player.rightEnginePiece;
+
+		Vector3 leftRot = leftEngine.transform.rotation.eulerAngles;
+		Vector3 rightRot = rightEngine.transform.rotation.eulerAngles;
+
+		leftRot.x -= 45;
+		rightRot.x += 45;
+
+		leftEngine.transform.rotation = Quaternion.Euler(leftRot);
+		rightEngine.transform.rotation = Quaternion.Euler(rightRot);
+
 		if(numberInMerge == 0)	{
 			newPos = center + right * -0.66f;
 			newRight = right;
@@ -162,5 +175,20 @@ public class MergedShip : MonoBehaviour {
 		pNumAtPosition[index] = -1;
 		
 		numberOfMergedShips--;
+
+		GameObject leftEngine = playerScript.leftEnginePiece;
+		GameObject rightEngine = playerScript.rightEnginePiece;
+		
+		Vector2 currentLeftRot = leftEngine.transform.localRotation.eulerAngles;
+		Vector2 currentRightRot = rightEngine.transform.localRotation.eulerAngles;
+		
+		Vector2 newLeftRot = currentLeftRot;
+		Vector2 newRightRot = currentRightRot;
+		
+		newLeftRot.x = -45;
+		newRightRot.x = 45;
+		
+		leftEngine.transform.Rotate(newLeftRot, Space.Self);
+		rightEngine.transform.Rotate(newRightRot, Space.Self);
 	}
 }

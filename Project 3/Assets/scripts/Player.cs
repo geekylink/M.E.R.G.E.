@@ -57,12 +57,16 @@ public class Player : BaseShip {
 
 	public GameObject minimapBlip;
 	public Color playerColor;
+	public GameObject body;
+	public GameObject leftEnginePiece;
+	public GameObject rightEnginePiece;
 
 	// Use this for initialization
 	void Start () {
 		health = maxHealth;
 		lastLeftFire = lastRightFire = 0;
 		minimapBlip.renderer.material.color = playerColor;
+		body.GetComponent<SpriteRenderer>().color = playerColor;
 	}
 	
 	// Update is called once per frame
@@ -140,7 +144,7 @@ public class Player : BaseShip {
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
 
 			b.setDefaults(-leftTurret.transform.eulerAngles.z, bulletVelocity);
-			b.rigidbody2D.velocity += this.rigidbody2D.velocity;
+			b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 			lastLeftFire = fireRate;
 		}
 	}
@@ -155,7 +159,7 @@ public class Player : BaseShip {
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
 
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity);
-			b.rigidbody2D.velocity += this.rigidbody2D.velocity;
+			b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 			lastRightFire = fireRate;
 		}
 	}
@@ -220,9 +224,9 @@ public class Player : BaseShip {
 	}
 
 	public void useBreaks() {
-		Vector3 vel = this.rigidbody2D.velocity;
+		Vector3 vel = transform.root.rigidbody2D.velocity;
 		vel *= breakMult*Time.fixedDeltaTime;
-		this.rigidbody2D.velocity = vel;
+		transform.root.rigidbody2D.velocity = vel;
 	}
 
     void ResetLeftFire()

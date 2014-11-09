@@ -48,16 +48,16 @@ public class BaseShip : MonoBehaviour {
 		if(Mathf.Abs (pos.x) > 120	){
 			pos.x = 120 * Mathf.Abs (pos.x) / pos.x;
 
-			Vector3 vel = this.rigidbody2D.velocity;
+			Vector3 vel = transform.root.rigidbody2D.velocity;
 			vel.x = 0;
-			this.rigidbody2D.velocity = vel;
+			transform.root.rigidbody2D.velocity = vel;
 		}
 		if(Mathf.Abs (pos.y) > 120){
 			pos.y = 120 * Mathf.Abs (pos.y) / pos.y;
 
-			Vector3 vel = this.rigidbody2D.velocity;
+			Vector3 vel = transform.root.rigidbody2D.velocity;
 			vel.y = 0;
-			this.rigidbody2D.velocity = vel;
+			transform.root.rigidbody2D.velocity = vel;
 		}
 		transform.position = pos;
 	}
@@ -68,6 +68,15 @@ public class BaseShip : MonoBehaviour {
 		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;
 		GameObject[] players = pm.getPlayers ();
 		int randomNum = Random.Range (0, players.Length);
+
+		int counter = 0;
+		while(players[randomNum] == null && counter < 4){
+			counter++;
+			randomNum++;
+			if(randomNum >= players.Length){
+				randomNum = 0;
+			}
+		}
 
 		return players [randomNum];	
 	}
