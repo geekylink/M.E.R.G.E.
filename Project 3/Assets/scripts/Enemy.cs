@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Enemy : BaseShip {
-
+	public GameObject sphere;
 	GameObject currTarget;
 	public GameObject projectile;
 	public float moveSpeed = 2f;
@@ -13,6 +13,10 @@ public class Enemy : BaseShip {
 	// Use this for initialization
 	void Start () {
 		currTarget = getRandomPlayer ();
+	}
+
+	void Awake(){
+		sphere.renderer.material.color = Color.red;
 	}
 	
 	// Update is called once per frame
