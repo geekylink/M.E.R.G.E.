@@ -50,7 +50,7 @@ public class BaseShip : MonoBehaviour {
 			pos.x = 120 * Mathf.Abs (pos.x) / pos.x;
 		}
 		if(Mathf.Abs (pos.y) > 120){
-			pos.x = 120 * Mathf.Abs (pos.y) / pos.y;
+			pos.y = 120 * Mathf.Abs (pos.y) / pos.y;
 		}
 		transform.position = pos;
 	}
