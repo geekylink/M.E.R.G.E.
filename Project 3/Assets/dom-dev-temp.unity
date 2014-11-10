@@ -2649,7 +2649,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &434131998
@@ -11336,7 +11336,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1378994968
@@ -11687,7 +11687,7 @@ MonoBehaviour:
   - {fileID: 1354119970}
   timeBetweenVolleys: 3
   timeBetweenShots: .330000013
-  projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
+  projectile: {fileID: 100000, guid: e3eed2f1d31adad4280afa3c1bfbf9d2, type: 2}
   angle: 180
   bulletVelocity: 2
   degreesApart: 20
@@ -11812,6 +11812,22 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 21200002, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200004, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 100000, guid: e3eed2f1d31adad4280afa3c1bfbf9d2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
   m_RootGameObject: {fileID: 1424119311}
@@ -14862,7 +14878,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1693194121
