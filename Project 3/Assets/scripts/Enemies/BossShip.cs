@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class BossShip : MonoBehaviour {
+	
+	public GameObject explosion;
 
 	public GameObject sphere;
 	public BossWeakPoint[] weakPoints;
@@ -46,8 +48,19 @@ public class BossShip : MonoBehaviour {
 			weakPoints [3].sr.sprite = weakPoints [2].activeSprite;
 			final = true;
 		} else {
-			Destroy (this.gameObject);
+			Die ();
 		}
+	}
+
+	void Die(){
+		if(explosion != null)
+		{
+			GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
+		}
+		UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
+		BaseShip.score = BaseShip.score + 100;
+		txt.text = "Score: " + BaseShip.score;
+		Destroy (this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -84,7 +97,9 @@ public class BossShip : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 			GameObject playerGO = col.gameObject;
 			Player player = playerGO.GetComponent("Player") as Player;
-			player.TakeDamage(1);
+			if(player){
+				player.TakeDamage(1);
+			}
 		}
 
 		if(col.gameObject.tag == "Bullet"){

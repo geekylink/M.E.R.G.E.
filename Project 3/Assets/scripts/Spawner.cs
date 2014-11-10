@@ -6,9 +6,15 @@ public class Spawner : MonoBehaviour {
 
 	public List<GameObject> enemiesToSpawn;
 
+
 	public float spawnTimer;
 
 	public float mapSize;
+
+	public GameObject boss;
+	public float bossSpawnTimer;
+	public Vector3 bossSpawnLoc;
+	public UnityEngine.UI.Text bossTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -52,8 +58,24 @@ public class Spawner : MonoBehaviour {
 		StartCoroutine(SpawnCoroutine());
 	}
 
+	IEnumerator SpawnBoss(){
+		float timer = 0;
+		
+		while(timer < bossSpawnTimer){
+			timer += Time.deltaTime * Time.timeScale;
+			int timeUntilSpawn = Mathf.RoundToInt(bossSpawnTimer - timer);
+			bossTimer.text = "Time Until Boss Spawn: " + timeUntilSpawn;
+			yield return 0;
+		}
+
+		
+		GameObject bossGO = Instantiate (boss) as GameObject;
+		bossGO.transform.position = bossSpawnLoc;
+	}
+
 	void Awake(){
 		StartCoroutine(SpawnCoroutine());
+		StartCoroutine(SpawnBoss());
 	}
 	
 	// Update is called once per frame

@@ -44,9 +44,10 @@ public class Enemy : BaseShip {
         {
 			GameObject playerGO = col.gameObject;
 			Player player = playerGO.GetComponent("Player") as Player;
-			player.TakeDamage(1);
-
-			Die ();
+			if(player){
+				player.TakeDamage(1);
+				Die ();
+			}
         }
 	}
 
