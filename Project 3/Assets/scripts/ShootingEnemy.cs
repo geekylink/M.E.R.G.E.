@@ -57,20 +57,4 @@ public class ShootingEnemy : BaseShip
         b.setDefaults(-angle.eulerAngles.z + 90, projectileSpeed);
     }
 
-	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.tag == "Bullet") {
-			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
-			Destroy (col.gameObject);
-			TakeDamage(b.damageDealt);
-		}
-		
-		if(col.gameObject.tag == "Player")
-		{
-			GameObject playerGO = col.gameObject;
-			Player player = playerGO.GetComponent("Player") as Player;
-			player.TakeDamage(1);
-			
-			Die ();
-		}
-	}
 }
