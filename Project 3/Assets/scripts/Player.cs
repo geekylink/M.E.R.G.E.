@@ -301,13 +301,5 @@ public class Player : BaseShip {
 		Color returnColor = body.GetComponent<SpriteRenderer>().color;
 		return returnColor;
 	}
-	void OnCollisionEnter2D(Collision2D col){
-		
-		if (col.gameObject.tag == "Bullet-Enemy") {
-			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
-			
-			Destroy (col.gameObject);
-			TakeDamage(b.damageDealt);
-		}
-	}
+    
 }

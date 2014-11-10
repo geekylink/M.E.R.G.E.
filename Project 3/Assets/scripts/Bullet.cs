@@ -31,4 +31,15 @@ public class Bullet : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 	}
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        BaseShip bs = col.gameObject.GetComponent<BaseShip>();
+        if(bs != null)
+        { 
+            bs.TakeDamage(damageDealt);
+            Destroy(this.gameObject);
+        }
+    }
+
 }
