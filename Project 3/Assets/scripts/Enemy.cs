@@ -35,12 +35,7 @@ public class Enemy : BaseShip {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.tag == "Bullet") {
-			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
 
-			Destroy (col.gameObject);
-			TakeDamage(b.damageDealt);
-		}
 
         if(col.gameObject.tag == "Player")
         {
