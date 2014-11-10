@@ -30,6 +30,7 @@ public class MergedShip : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		gameObject.tag = "Player";
 	}
 	
 	// Update is called once per frame
@@ -115,14 +116,15 @@ public class MergedShip : MonoBehaviour {
 		GameObject leftEngine = player.leftEnginePiece;
 		GameObject rightEngine = player.rightEnginePiece;
 
-		Vector3 leftRot = leftEngine.transform.rotation.eulerAngles;
-		Vector3 rightRot = rightEngine.transform.rotation.eulerAngles;
 
-		leftRot.x -= 45;
-		rightRot.x += 45;
+		Vector3 leftRot = leftEngine.transform.localRotation.eulerAngles;
+		Vector3 rightRot = rightEngine.transform.localRotation.eulerAngles;
 
-		leftEngine.transform.rotation = Quaternion.Euler(leftRot);
-		rightEngine.transform.rotation = Quaternion.Euler(rightRot);
+		leftRot.x = -45;
+		rightRot.x = 45;
+
+		leftEngine.transform.localRotation = Quaternion.Euler(leftRot);
+		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);
 
 		if(numberInMerge == 0)	{
 			newPos = center + right * -0.66f;
@@ -179,13 +181,13 @@ public class MergedShip : MonoBehaviour {
 		GameObject leftEngine = playerScript.leftEnginePiece;
 		GameObject rightEngine = playerScript.rightEnginePiece;
 		
-		Vector3 leftRot = leftEngine.transform.rotation.eulerAngles;
-		Vector3 rightRot = rightEngine.transform.rotation.eulerAngles;
+		Vector3 leftRot = leftEngine.transform.localRotation.eulerAngles;
+		Vector3 rightRot = rightEngine.transform.localRotation.eulerAngles;
 		
-		leftRot.x += 45;
-		rightRot.x -= 45;
+		leftRot.x = 0;
+		rightRot.x = 0;
 		
-		leftEngine.transform.rotation = Quaternion.Euler(leftRot);
-		rightEngine.transform.rotation = Quaternion.Euler(rightRot);
+		leftEngine.transform.localRotation = Quaternion.Euler(leftRot);
+		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);
 	}
 }

@@ -44,6 +44,10 @@ public class ShootingEnemy : BaseShip
                 fireTimer += Time.deltaTime;
             }
         }
+		
+		else{
+			currTarget = getRandomPlayer();
+		}
 	}
 
     void FireProjectile(Quaternion angle)
@@ -56,7 +60,6 @@ public class ShootingEnemy : BaseShip
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "Bullet") {
 			Bullet b = col.gameObject.GetComponent("Bullet") as Bullet;
-			print (b.damageDealt);
 			Destroy (col.gameObject);
 			TakeDamage(b.damageDealt);
 		}

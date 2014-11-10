@@ -31,6 +31,9 @@ public class Enemy : BaseShip {
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 180;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+		else{
+			currTarget = getRandomPlayer();
+		}
 
 	}
 

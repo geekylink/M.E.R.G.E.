@@ -86,6 +86,10 @@ public class BossShip : MonoBehaviour {
 			Player player = playerGO.GetComponent("Player") as Player;
 			player.TakeDamage(1);
 		}
+
+		if(col.gameObject.tag == "Bullet"){
+			Destroy(col.gameObject);
+		}
 	}
 
 	Vector3 Deg2Vec (float degree)

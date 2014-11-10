@@ -71,7 +71,9 @@ public class Player : BaseShip {
 	
 	// Update is called once per frame
 	void Update () {
-		RestrictToMap();
+		if(rigidbody2D){
+			RestrictToMap();
+		}
 		//UpdateTurrets ();
 		UpdatePlayer ();
 		UpdateHUD ();
@@ -85,6 +87,7 @@ public class Player : BaseShip {
 
 	
 	public override void Die(){
+		UpdateHUD();
 		if(isCurrentlyMerged){
 			MergeManager.S.Unmerge(this);
 		}
