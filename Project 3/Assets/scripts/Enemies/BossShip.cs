@@ -13,7 +13,9 @@ public class BossShip : MonoBehaviour {
 	float waitTime = 0f;
 	float fireWaitTime = 0f;
 	public float angle = 180f;
+	public float bulletVelocity = 2f;
 	public int degreesApart;
+
 
 	public static BossShip S;
 
@@ -31,8 +33,10 @@ public class BossShip : MonoBehaviour {
 	public void NextStage(){
 		if (!first) {
 			weakPoints [1].activePoint = true;
+			weakPoints [1].shielded = true;
 			weakPoints [1].sr.sprite = weakPoints [1].activeSprite;
 			weakPoints [2].activePoint = true;
+			weakPoints [2].shielded = true;
 			weakPoints [2].sr.sprite = weakPoints [2].activeSprite;
 			first = true;
 		} else if (first && !second) {
@@ -71,8 +75,8 @@ public class BossShip : MonoBehaviour {
 	void Fire(){
 		GameObject proj1 = (GameObject)Instantiate (projectile, transform.position, Quaternion.identity);
 		GameObject proj2 = (GameObject)Instantiate (projectile, transform.position, Quaternion.identity);
-		proj1.GetComponent<EnemyProjectile> ().SetVelocity (Deg2Vec (angle));
-		proj2.GetComponent<EnemyProjectile> ().SetVelocity (Deg2Vec (angle - 180f));
+		proj1.GetComponent<Bullet> ().setDefaults (angle, bulletVelocity);
+		proj2.GetComponent<Bullet> ().setDefaults (angle - 180f, bulletVelocity);
 		angle += degreesApart;
 	}
 

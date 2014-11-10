@@ -16,8 +16,10 @@ public class PlayerManager : MonoBehaviour {
 		// Cycle through the controllers and players
 		for (int i = 0; i < InputManager.Devices.Count; i++) {
 			if (i < players.Length) {
-				Player p = players[i].GetComponent ("Player") as Player;
-				UpdatePlayer (InputManager.Devices[i], p);
+				if(players[i]){
+					Player p = players[i].GetComponent ("Player") as Player;
+					UpdatePlayer (InputManager.Devices[i], p);
+				}
 			}
 		}
 	}

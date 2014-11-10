@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400008}
   - 50: {fileID: 5000008}
+  - 61: {fileID: 6100006}
   m_Layer: 10
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -29,6 +30,7 @@ GameObject:
   - 212: {fileID: 21200002}
   - 114: {fileID: 11400006}
   - 50: {fileID: 5000006}
+  - 61: {fileID: 6100004}
   m_Layer: 10
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -47,6 +49,7 @@ GameObject:
   - 212: {fileID: 21200004}
   - 114: {fileID: 11400002}
   - 50: {fileID: 5000004}
+  - 61: {fileID: 6100002}
   m_Layer: 10
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -163,7 +166,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.3190002, y: .0730289966, z: 0}
+  m_LocalPosition: {x: -114.449997, y: -87.1719971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400006}
@@ -283,6 +286,39 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 1.14285719, y: 1.71428573}
   m_Center: {x: 0, y: 0}
+--- !u!61 &6100002
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 1.14285719, y: 1.71428573}
+  m_Center: {x: 0, y: 0}
+--- !u!61 &6100004
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 1.14285719, y: 1.71428573}
+  m_Center: {x: 0, y: 0}
+--- !u!61 &6100006
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 1.14285719, y: 1.71428573}
+  m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,9 +332,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
-  inactiveSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
+  altSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
-  activePoint: 0
+  activePoint: 1
+  shielded: 0
+  flashTime: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,10 +349,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
-  inactiveSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
+  activeSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
+  altSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
   activePoint: 0
+  shielded: 0
+  flashTime: .5
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,11 +367,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphere: {fileID: 100010}
-  weakPoints: []
+  weakPoints:
+  - {fileID: 11400000}
+  - {fileID: 11400002}
+  - {fileID: 11400006}
+  - {fileID: 11400008}
   timeBetweenVolleys: 3
   timeBetweenShots: .330000013
-  projectile: {fileID: 100000, guid: a820af67510076f4bad8dda9a4decb15, type: 2}
+  projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
   angle: 180
+  bulletVelocity: 2
   degreesApart: 20
 --- !u!114 &11400006
 MonoBehaviour:
@@ -345,10 +390,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
-  inactiveSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
+  activeSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
+  altSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
   activePoint: 0
+  shielded: 0
+  flashTime: .5
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,9 +409,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   activeSprite: {fileID: 21300000, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
-  inactiveSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
+  altSprite: {fileID: 21300002, guid: a77bd527b1e0cc64d9bb59b052394047, type: 3}
   sr: {fileID: 0}
   activePoint: 0
+  shielded: 0
+  flashTime: .5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

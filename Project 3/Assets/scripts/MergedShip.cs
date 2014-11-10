@@ -176,8 +176,8 @@ public class MergedShip : MonoBehaviour {
 		
 		numberOfMergedShips--;
 
-		GameObject leftEngine = player.leftEnginePiece;
-		GameObject rightEngine = player.rightEnginePiece;
+		GameObject leftEngine = playerScript.leftEnginePiece;
+		GameObject rightEngine = playerScript.rightEnginePiece;
 		
 		Vector3 leftRot = leftEngine.transform.rotation.eulerAngles;
 		Vector3 rightRot = rightEngine.transform.rotation.eulerAngles;
