@@ -15,11 +15,12 @@ public class ShootingEnemy : BaseShip
 	// Use this for initialization
 	void Start () {
 		sphere.renderer.material.color = Color.red;
+        currTarget = getRandomPlayer();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        currTarget = GameObject.FindGameObjectWithTag("Target");
+        //currTarget = GameObject.FindGameObjectWithTag("Target");
 
         if (currTarget != null)
         {

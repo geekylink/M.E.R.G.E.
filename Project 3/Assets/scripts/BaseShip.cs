@@ -9,11 +9,12 @@ public class BaseShip : MonoBehaviour {
     public GameObject explosion;
     public static int score;
 	public float maxRotSpeed;
-
 	
 	public List<GameObject> enginesTurnRight;
 	public List<GameObject> enginesTurnLeft;
 	public List<GameObject> enginesStraight;
+
+    public GameObject drop;
 
 	// Use this for initialization
 	void Start () {
@@ -36,7 +37,14 @@ public class BaseShip : MonoBehaviour {
         UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
         score++;
         txt.text = "Score: " + score;
-		Destroy (this.gameObject);
+		
+        if(this.drop != null)
+        {
+            Instantiate(drop, transform.position, Quaternion.identity);
+        }
+        
+        Destroy (this.gameObject);
+
 	}
 
 	// Update is called once per frame

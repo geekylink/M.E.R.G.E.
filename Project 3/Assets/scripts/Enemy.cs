@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : BaseShip {
 	public GameObject sphere;
-	GameObject currTarget;
+	public GameObject currTarget;
 	public GameObject projectile;
 	public float moveSpeed = 2f;
 	Vector3 velocity;
@@ -12,6 +12,7 @@ public class Enemy : BaseShip {
 	float timeElapsed = 0f;
 	// Use this for initialization
 	void Start () {
+        sphere.renderer.material.color = Color.red;
 		currTarget = getRandomPlayer ();
 	}
 
