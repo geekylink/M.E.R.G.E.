@@ -1,0 +1,27 @@
+Initialize engine version: 4.6.0b20 (a3ecf55f1347)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     32 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.214 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found.
+<RI> Input initialized.
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\vertSlice_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 12.876292 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 779.
+Total: 3.519520 ms (FindLiveObjects: 0.101237 ms CreateObjectMapping: 0.041521 ms MarkObjects: 1.160732 ms  DeleteObjects: 0.020060 ms)
+

@@ -46,7 +46,8 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		// Updates angles
-		player.UpdateTurrets (leftAngle, rightAngle);
+		//player.UpdateTurrets (0, rightAngle);
+		player.UpdateTurrets(leftAngle, rightAngle);
 		//if (device.LeftTrigger)		player.FireLeftTurret(); 
 		//if (device.RightTrigger)	player.FireRightTurret();
 
@@ -54,10 +55,38 @@ public class PlayerManager : MonoBehaviour {
 		//Comment out this line if testing with keyboard
 		player.CheckMerge (device.Action1, device.Action2);
 
-		if (device.Action3)	player.useBreaks ();
+		//if (device.Action3)	player.useBreaks ();
 
 		// Fires the engines
 		//Comment out this line if testing with keyboard
+		/*bool turnLeft = false;
+		bool turnRight = false;
+		if(leftX < -0.3f){
+			turnLeft = true;
+		}
+		else if(leftX > 0.3f){
+			turnRight = true;
+		}
+		player.FireEngines (turnLeft, turnRight);*/
 		player.FireEngines (device.LeftBumper, device.RightBumper);
+
+		/*if(device.LeftBumper){
+			player.FlyForward(0.2f);
+		}
+		else{
+			player.useBreaks();
+		}*/
+		//player.Turn(leftX, -10);
+		//player.TurnTowards(leftAngle);
+		/*Vector3 rot = Vector3.zero;
+		rot.z = leftAngle;
+		float speed = Mathf.Sqrt(leftX * leftX + leftY * leftY);
+		if(speed > 0){
+			player.FlyForward((speed / 3));
+		}
+		else{
+			player.useBreaks();
+		}*/
+
 	}
 }

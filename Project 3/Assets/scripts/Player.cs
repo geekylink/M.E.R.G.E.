@@ -167,6 +167,37 @@ public class Player : BaseShip {
 		}
 	}
 
+	public void FlyForward(float speed){
+		rigidbody2D.velocity += (Vector2)transform.right * speed;
+	}
+
+	public void Turn(float turnDir, float speed){
+		if(Mathf.Abs (turnDir) < 0.1f){
+			if(rigidbody2D != null){
+				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 1.1f;
+			}
+			return;
+		}
+
+		rigidbody2D.angularVelocity += turnDir * speed;
+	}
+
+	public void TurnTowards(float angle){
+		if(angle == 0){
+			return;
+		}
+
+		Vector3 turnVector = Vector3.zero;
+		turnVector.z = angle;
+		transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.Euler(turnVector), Time.deltaTime * 5);
+
+	}
+
+	public void TurnTowardsAndFly(float angle){
+
+	}
+
+
 	// Fires the engines
 	public void FireEngines(bool engineLeft, bool engineRight) {
 		if(isMerging) return;
@@ -188,7 +219,7 @@ public class Player : BaseShip {
 			}
 		}
 		else if(engineLeft){
-			
+			useBreaks();
 			foreach(GameObject engine in enginesTurnRight){
 				engine.GetComponent<Engine>().TurnOff();
 			}
@@ -201,7 +232,7 @@ public class Player : BaseShip {
 			}
 		}
 		else if(engineRight){
-			
+			useBreaks();
 			foreach(GameObject engine in enginesTurnLeft){
 				engine.GetComponent<Engine>().TurnOff();
 			}
@@ -223,6 +254,11 @@ public class Player : BaseShip {
 			foreach(GameObject engine in enginesStraight){
 				engine.GetComponent<Engine>().TurnOff();
 			}
+			useBreaks();
+			
+			if(rigidbody2D != null){
+				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 5.01f;
+			}
 		}
 	}
 
@@ -243,12 +279,6 @@ public class Player : BaseShip {
 
 	// Handles player movement, likely to be replaced with thrusters
 	private void UpdatePlayer() {
-		bool firingLeft = Input.GetKey(leftFire);
-		bool firingRight = Input.GetKey(rightFire);
-
-		//comment out this line when using controllers
-		//FireEngines(firingLeft,	firingRight);
-
 		ClampObjectIntoView ();
 
 		if(rigidbody2D != null){
