@@ -193,11 +193,6 @@ public class Player : BaseShip {
 
 	}
 
-	public void TurnTowardsAndFly(float angle){
-
-	}
-
-
 	// Fires the engines
 	public void FireEngines(bool engineLeft, bool engineRight) {
 		if(isMerging) return;

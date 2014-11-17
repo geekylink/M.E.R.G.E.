@@ -46,8 +46,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		// Updates angles
-		//player.UpdateTurrets (0, rightAngle);
-		player.UpdateTurrets(leftAngle, rightAngle);
+
 		//if (device.LeftTrigger)		player.FireLeftTurret(); 
 		//if (device.RightTrigger)	player.FireRightTurret();
 
@@ -55,30 +54,38 @@ public class PlayerManager : MonoBehaviour {
 		//Comment out this line if testing with keyboard
 		player.CheckMerge (device.Action1, device.Action2);
 
-		//if (device.Action3)	player.useBreaks ();
+		#region Aim with sticks, fly with bumpers
+		/*player.UpdateTurrets(leftAngle, rightAngle);
+		player.FireEngines (device.LeftBumper, device.RightBumper);*/
+		#endregion
 
-		// Fires the engines
-		//Comment out this line if testing with keyboard
-		/*bool turnLeft = false;
-		bool turnRight = false;
-		if(leftX < -0.3f){
-			turnLeft = true;
-		}
-		else if(leftX > 0.3f){
-			turnRight = true;
-		}
-		player.FireEngines (turnLeft, turnRight);*/
-		player.FireEngines (device.LeftBumper, device.RightBumper);
-
-		/*if(device.LeftBumper){
+		#region Turn left/right with stick, fly forward with bumper
+		/*player.UpdateTurrets (0, rightAngle);
+		player.Turn(leftX, -10);
+		
+		if(device.LeftBumper){
 			player.FlyForward(0.2f);
 		}
 		else{
 			player.useBreaks();
 		}*/
-		//player.Turn(leftX, -10);
-		//player.TurnTowards(leftAngle);
-		/*Vector3 rot = Vector3.zero;
+		#endregion
+
+		#region Aim in desired flying direction with left stick, fly forward with bumper
+		player.UpdateTurrets (0, rightAngle);
+		player.TurnTowards(leftAngle);
+		if(device.LeftBumper){
+			player.FlyForward(0.2f);
+		}
+		else{
+			player.useBreaks();
+		}
+		#endregion
+
+		#region Fly in the direction of the left stick
+		/*player.UpdateTurrets (0, rightAngle);
+		player.TurnTowards(leftAngle);
+		Vector3 rot = Vector3.zero;
 		rot.z = leftAngle;
 		float speed = Mathf.Sqrt(leftX * leftX + leftY * leftY);
 		if(speed > 0){
@@ -87,6 +94,11 @@ public class PlayerManager : MonoBehaviour {
 		else{
 			player.useBreaks();
 		}*/
+		#endregion
+
+		//if (device.Action3)	player.useBreaks ();
+
+		//
 
 	}
 }
