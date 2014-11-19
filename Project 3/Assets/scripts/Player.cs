@@ -75,6 +75,9 @@ public class Player : BaseShip {
 		lastLeftFire = lastRightFire = 0;
 		minimapBlip.renderer.material.color = playerColor;
 		body.GetComponent<SpriteRenderer>().color = playerColor;
+
+		enginesTurnLeft[0].particleSystem.enableEmission = true;
+		enginesTurnRight[0].particleSystem.enableEmission = true;
 	}
 	
 	// Update is called once per frame
@@ -176,8 +179,17 @@ public class Player : BaseShip {
 		}
 	}
 
-	public void FlyForward(float speed){
-		rigidbody2D.velocity += (Vector2)transform.right * speed;
+	public void FlyForward(float speed, float actualSpeed){
+
+		Vector2 finalSpeed = ((Vector2)transform.right * speed * actualSpeed) / transform.root.rigidbody2D.mass;
+
+		transform.root.rigidbody2D.velocity = Vector2.Lerp(transform.root.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
+
+
+
+		enginesTurnLeft[0].particleSystem.startLifetime = speed / 3.0f;
+		enginesTurnRight[0].particleSystem.startLifetime = speed / 3.0f;
+
 	}
 
 	public void Turn(float turnDir, float speed){
