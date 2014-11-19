@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: aa25db7e54182424999b75a79226b4d6
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - orbitTarget: {instanceID: 0}
+  - ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
+  - target: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

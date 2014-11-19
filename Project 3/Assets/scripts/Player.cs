@@ -19,6 +19,8 @@ public class Player : BaseShip {
 	public float bounciness = 0.5f;
 
 	public GameObject ammoPrefab;
+	public GameObject autoTurretPrefab;
+
     public float fireRate = 0.5f;
 	public UnityEngine.UI.Text gtHealth;
 
@@ -112,7 +114,7 @@ public class Player : BaseShip {
 
 
 	private void UpdateHUD() {
-		gtHealth.text = "Health: " + health;
+		//gtHealth.text = "Health: " + health;
 	}
 	
 	// Updates angles for the left and right turrets
@@ -330,4 +332,10 @@ public class Player : BaseShip {
 		return returnColor;
 	}
     
+	public void SpawnTurret() {
+		GameObject sat = Instantiate (autoTurretPrefab, this.transform.position, this.transform.rotation) as GameObject;
+		TurretSatellite s = sat.GetComponent ("TurretSatellite") as TurretSatellite;
+		s.orbitTarget = this.gameObject;
+		s.targetObject = this.gameObject;
+	}
 }

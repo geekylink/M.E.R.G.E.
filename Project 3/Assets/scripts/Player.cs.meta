@@ -2,7 +2,18 @@ fileFormatVersion: 2
 guid: 4c19be953c620a94e9c5957f8f1a12ea
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - explosion: {instanceID: 0}
+  - drop: {instanceID: 0}
+  - ammoPrefab: {instanceID: 0}
+  - autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  - gtHealth: {instanceID: 0}
+  - leftTurret: {instanceID: 0}
+  - rightTurret: {instanceID: 0}
+  - minimapBlip: {instanceID: 0}
+  - body: {instanceID: 0}
+  - leftEnginePiece: {instanceID: 0}
+  - rightEnginePiece: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -45,6 +45,10 @@ public class PlayerManager : MonoBehaviour {
 			rightAngle = 0;
 		}
 
+		if (device.DPadDown.WasPressed) {
+			player.SpawnTurret();
+		}
+
 		// Updates angles
 
 		//if (device.LeftTrigger)		player.FireLeftTurret(); 

@@ -793,6 +793,7 @@ MonoBehaviour:
   breakMult: 48
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
+  autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   fireRate: .100000001
   gtHealth: {fileID: 0}
   leftTurret: {fileID: 100022}
