@@ -46,7 +46,15 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		if (device.DPadDown.WasPressed) {
-			player.SpawnTurret();
+			player.SpawnTurret(BaseSatellite.SatelliteType.TURRET, player.gameObject);
+		}
+
+		if (device.DPadUp.WasPressed) {
+			player.SpawnTurret(BaseSatellite.SatelliteType.HEALER, player.gameObject);
+		}
+
+		if (device.DPadRight.WasPressed) {
+			player.SpawnTurret(BaseSatellite.SatelliteType.MINER, player.gameObject);
 		}
 
 		// Updates angles

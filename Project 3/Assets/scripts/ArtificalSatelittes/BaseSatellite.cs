@@ -3,10 +3,14 @@ using System.Collections;
 
 public class BaseSatellite : MonoBehaviour {
 
+	public enum SatelliteType { TURRET, HEALER, MINER };
+
 	public int orbitRadius = 10;
 	public float orbitSpeed = 0.01f;
 	public GameObject orbitTarget;
-	
+	public GameObject creatorObj;
+
+
 	private float orbitAngle = 0;
 
 	// Use this for initialization

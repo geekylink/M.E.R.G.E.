@@ -2839,6 +2839,7 @@ RectTransform:
   m_Children:
   - {fileID: 865032384}
   - {fileID: 554540355}
+  - {fileID: 837458015}
   m_Father: {fileID: 279281312}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -3402,8 +3403,11 @@ MonoBehaviour:
   bounciness: .5
   ammoPrefab: {fileID: 0}
   autoTurretPrefab: {fileID: 0}
+  healSatPrefab: {fileID: 0}
+  mineSatPrefab: {fileID: 0}
   fireRate: .5
-  gtHealth: {fileID: 0}
+  gtHealth: {fileID: 1853555790}
+  gtRes: {fileID: 793561242}
   leftTurret: {fileID: 0}
   rightTurret: {fileID: 0}
   minimapBlip: {fileID: 0}
@@ -3736,6 +3740,73 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 513825421}
   m_HideIfInvisible: 0
+--- !u!1 &514305650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 514305653}
+  - 222: {fileID: 514305652}
+  - 114: {fileID: 514305651}
+  m_Layer: 5
+  m_Name: gtRes4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &514305651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514305650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Resources: 0'
+--- !u!222 &514305652
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514305650}
+  m_HideIfInvisible: 0
+--- !u!224 &514305653
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514305650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1676133899}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 69.0000229, y: -50}
+  m_SizeDelta: {x: 130, y: 20}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &523640907
 GameObject:
   m_ObjectHideFlags: 0
@@ -7918,6 +7989,73 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
+--- !u!1 &793561241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 793561244}
+  - 222: {fileID: 793561243}
+  - 114: {fileID: 793561242}
+  m_Layer: 5
+  m_Name: gtRes3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &793561242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 793561241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Resources: 0'
+--- !u!222 &793561243
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 793561241}
+  m_HideIfInvisible: 0
+--- !u!224 &793561244
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 793561241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2089272143}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 597.330017, y: -50}
+  m_SizeDelta: {x: 130, y: 30}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &803597734
 GameObject:
   m_ObjectHideFlags: 0
@@ -8051,6 +8189,73 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3593916f567dfeb44819e21709756f47, type: 3}
   m_Color: {r: .613793373, g: 0, b: 1, a: 1}
+--- !u!1 &837458014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 837458015}
+  - 222: {fileID: 837458017}
+  - 114: {fileID: 837458016}
+  m_Layer: 5
+  m_Name: gtRes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &837458015
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837458014}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 210459767}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 575.27002, y: -90}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &837458016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837458014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .963235319, g: .963235319, b: .963235319, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Resources: 0'
+--- !u!222 &837458017
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837458014}
+  m_HideIfInvisible: 0
 --- !u!1 &865032383
 GameObject:
   m_ObjectHideFlags: 0
@@ -12061,8 +12266,11 @@ MonoBehaviour:
   bounciness: .5
   ammoPrefab: {fileID: 0}
   autoTurretPrefab: {fileID: 0}
+  healSatPrefab: {fileID: 0}
+  mineSatPrefab: {fileID: 0}
   fireRate: .5
-  gtHealth: {fileID: 0}
+  gtHealth: {fileID: 1913871538}
+  gtRes: {fileID: 1971568015}
   leftTurret: {fileID: 0}
   rightTurret: {fileID: 0}
   minimapBlip: {fileID: 0}
@@ -12657,6 +12865,10 @@ Prefab:
       propertyPath: force
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: gtRes
+      value: 
+      objectReference: {fileID: 514305651}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3219493577f30f549b3f01f55684220c, type: 2}
   m_RootGameObject: {fileID: 2096854465}
@@ -14529,8 +14741,11 @@ MonoBehaviour:
   bounciness: .5
   ammoPrefab: {fileID: 0}
   autoTurretPrefab: {fileID: 0}
+  healSatPrefab: {fileID: 0}
+  mineSatPrefab: {fileID: 0}
   fireRate: .5
-  gtHealth: {fileID: 0}
+  gtHealth: {fileID: 865032385}
+  gtRes: {fileID: 837458016}
   leftTurret: {fileID: 0}
   rightTurret: {fileID: 0}
   minimapBlip: {fileID: 0}
@@ -14800,6 +15015,7 @@ RectTransform:
   - {fileID: 1002000182}
   - {fileID: 1102120356}
   - {fileID: 944086298}
+  - {fileID: 514305653}
   m_Father: {fileID: 2099076546}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -17741,6 +17957,73 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
+--- !u!1 &1971568013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1971568014}
+  - 222: {fileID: 1971568016}
+  - 114: {fileID: 1971568015}
+  m_Layer: 5
+  m_Name: gtRes2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1971568014
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1971568013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2052771697}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 69.0000229, y: -50}
+  m_SizeDelta: {x: 130, y: 30}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1971568015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1971568013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Resources: 0'
+--- !u!222 &1971568016
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1971568013}
+  m_HideIfInvisible: 0
 --- !u!1001 &1991711988
 Prefab:
   m_ObjectHideFlags: 0
@@ -19182,6 +19465,7 @@ RectTransform:
   - {fileID: 690959076}
   - {fileID: 1913871540}
   - {fileID: 2011046078}
+  - {fileID: 1971568014}
   m_Father: {fileID: 644606497}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -19293,6 +19577,7 @@ RectTransform:
   - {fileID: 598048873}
   - {fileID: 513825422}
   - {fileID: 1853555789}
+  - {fileID: 793561244}
   m_Father: {fileID: 435119417}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -19603,8 +19888,11 @@ MonoBehaviour:
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  healSatPrefab: {fileID: 100000, guid: 79b62299d2a6f22428e6be4486506203, type: 2}
+  mineSatPrefab: {fileID: 100000, guid: c0dd304f350b34e45b141ca786c2b2fd, type: 2}
   fireRate: .100000001
   gtHealth: {fileID: 1002000180}
+  gtRes: {fileID: 514305651}
   leftTurret: {fileID: 1481075860}
   rightTurret: {fileID: 968337306}
   minimapBlip: {fileID: 525407787}

@@ -20,9 +20,12 @@ public class Player : BaseShip {
 
 	public GameObject ammoPrefab;
 	public GameObject autoTurretPrefab;
+	public GameObject healSatPrefab;
+	public GameObject mineSatPrefab;
 
     public float fireRate = 0.5f;
 	public UnityEngine.UI.Text gtHealth;
+	public UnityEngine.UI.Text gtRes;
 
 	//turrets should be assigned here in the inspector
 	public GameObject leftTurret;
@@ -63,8 +66,11 @@ public class Player : BaseShip {
 	public GameObject leftEnginePiece;
 	public GameObject rightEnginePiece;
 
+	private int numResources;
+
 	// Use this for initialization
 	void Start () {
+		numResources = 0;
 		health = maxHealth;
 		lastLeftFire = lastRightFire = 0;
 		minimapBlip.renderer.material.color = playerColor;
@@ -114,7 +120,8 @@ public class Player : BaseShip {
 
 
 	private void UpdateHUD() {
-		//gtHealth.text = "Health: " + health;
+		gtHealth.text = "Health: " + health;
+		gtRes.text = "Resources: " + numResources;
 	}
 	
 	// Updates angles for the left and right turrets
@@ -332,10 +339,32 @@ public class Player : BaseShip {
 		return returnColor;
 	}
     
-	public void SpawnTurret() {
-		GameObject sat = Instantiate (autoTurretPrefab, this.transform.position, this.transform.rotation) as GameObject;
-		TurretSatellite s = sat.GetComponent ("TurretSatellite") as TurretSatellite;
-		s.orbitTarget = this.gameObject;
-		s.targetObject = this.gameObject;
+	public void GetResources(int amount) {
+		numResources += amount;
+	}
+
+	// Spawns a turret
+	public void SpawnTurret(BaseSatellite.SatelliteType Type, GameObject orbitObj) {
+		switch (Type) {
+		case BaseSatellite.SatelliteType.TURRET:
+			GameObject autoSat = Instantiate (autoTurretPrefab, this.transform.position, this.transform.rotation) as GameObject;
+			TurretSatellite satTurret = autoSat.GetComponent ("TurretSatellite") as TurretSatellite;
+			satTurret.orbitTarget = orbitObj;
+			satTurret.creatorObj = this.gameObject;
+			satTurret.targetObject = this.gameObject;
+			break;
+		case BaseSatellite.SatelliteType.HEALER:
+			GameObject healSat = Instantiate (healSatPrefab, this.transform.position, this.transform.rotation) as GameObject;
+			HealerSatellite satHealer = healSat.GetComponent ("HealerSatellite") as HealerSatellite;
+			satHealer.orbitTarget = orbitObj;
+			satHealer.creatorObj = this.gameObject;
+			break;
+		case BaseSatellite.SatelliteType.MINER:
+			GameObject mineSat = Instantiate (mineSatPrefab, this.transform.position, this.transform.rotation) as GameObject;
+			MinerSatellite satMine = mineSat.GetComponent ("MinerSatellite") as MinerSatellite;
+			satMine.orbitTarget = orbitObj;
+			satMine.creatorObj = this.gameObject;
+			break;
+		}
 	}
 }

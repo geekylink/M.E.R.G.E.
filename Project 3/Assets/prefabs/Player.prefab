@@ -794,8 +794,11 @@ MonoBehaviour:
   bounciness: .5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  healSatPrefab: {fileID: 100000, guid: 79b62299d2a6f22428e6be4486506203, type: 2}
+  mineSatPrefab: {fileID: 100000, guid: c0dd304f350b34e45b141ca786c2b2fd, type: 2}
   fireRate: .100000001
   gtHealth: {fileID: 0}
+  gtRes: {fileID: 0}
   leftTurret: {fileID: 100022}
   rightTurret: {fileID: 100016}
   minimapBlip: {fileID: 100036}

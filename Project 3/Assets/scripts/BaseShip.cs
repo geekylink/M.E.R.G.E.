@@ -29,6 +29,14 @@ public class BaseShip : MonoBehaviour {
 		}
 	}
 
+	public void Heal(int amount) {
+		health += amount;
+
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+	}
+
 	public virtual void Die() {
         if(explosion != null)
         {

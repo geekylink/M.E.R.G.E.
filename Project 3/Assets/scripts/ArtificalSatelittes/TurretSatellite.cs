@@ -26,6 +26,7 @@ public class TurretSatellite : BaseSatellite {
 		Fire ();
 	}
 
+	// Finds a target
 	private void GetTarget() {
 		if (hasTarget) {
 			if (targetObject) {
@@ -33,7 +34,6 @@ public class TurretSatellite : BaseSatellite {
 				if (dist.magnitude < targetRadius) {
 					return;
 				}
-				print ("Finding new target...");
 			}
 		}
 
