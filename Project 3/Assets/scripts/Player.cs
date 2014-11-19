@@ -87,7 +87,7 @@ public class Player : BaseShip {
 		}
 		//UpdateTurrets ();
 		UpdatePlayer ();
-		UpdateHUD ();
+		//UpdateHUD ();
 		
 		lastRightFire -= Time.deltaTime;
 		lastLeftFire -= Time.deltaTime;
@@ -98,7 +98,7 @@ public class Player : BaseShip {
 
 	
 	public override void Die(){
-		UpdateHUD();
+		//UpdateHUD();
 		if(isCurrentlyMerged){
 			MergeManager.S.Unmerge(this);
 		}
@@ -159,7 +159,7 @@ public class Player : BaseShip {
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
 
 			b.setDefaults(-leftTurret.transform.eulerAngles.z, bulletVelocity);
-			b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
+			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 			lastLeftFire = fireRate;
 		}
 	}
@@ -173,13 +173,19 @@ public class Player : BaseShip {
 			int id = MergeManager.S.players.IndexOf(this);
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
 
-			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity);
-			b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
+			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
+			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 			lastRightFire = fireRate;
 		}
 	}
 
 	public void FlyForward(float speed, float actualSpeed){
+
+		if(transform.parent != null){
+			MergedShip parentShip = transform.root.GetComponent<MergedShip>();
+			parentShip.Fly(speed, actualSpeed);
+			return;
+		}
 
 		Vector2 finalSpeed = ((Vector2)transform.right * speed * actualSpeed) / transform.root.rigidbody2D.mass;
 

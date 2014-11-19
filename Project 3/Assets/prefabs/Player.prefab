@@ -90,7 +90,6 @@ GameObject:
   - 4: {fileID: 400010}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
-  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: eng3
   m_TagString: Untagged
@@ -249,7 +248,6 @@ GameObject:
   - 4: {fileID: 400032}
   - 198: {fileID: 19800004}
   - 199: {fileID: 19900004}
-  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: eng1
   m_TagString: Untagged
@@ -550,7 +548,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.8059998, y: 29.4899998, z: 0}
+  m_LocalPosition: {x: 5.33850002, y: 29.4899998, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 400036}
@@ -692,19 +690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 1
   shouldForceOnTurn: 1
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 2
-  shouldForceOnTurn: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -744,19 +729,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 1
   shouldForceOnTurn: 1
---- !u!114 &11400012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98dbeef5dd1950647b2a387890a0d901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 2
-  shouldForceOnTurn: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -770,7 +742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   explosion: {fileID: 100000, guid: 77c11b9f449918b4d9355e9b03efa427, type: 2}
-  maxRotSpeed: 200
+  maxRotSpeed: 500
   enginesTurnRight:
   - {fileID: 100032}
   - {fileID: 100026}
@@ -788,7 +760,7 @@ MonoBehaviour:
   mergeButton: 108
   unmergeButton: 107
   velocityMult: 200
-  bulletVelocity: 5
+  bulletVelocity: 10
   gravityMult: .5
   breakMult: 48
   bounciness: .5

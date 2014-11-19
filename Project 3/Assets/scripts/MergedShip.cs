@@ -9,6 +9,11 @@ public class MergedShip : MonoBehaviour {
 	public bool[] shipsInPosition = new bool[4];
 	public int[] pNumAtPosition = new int[4];
 
+	public List<Player> players = new List<Player>();
+
+	float flyingSpeed = 0;
+	float highestFractionalSpeed = 0;
+
 	//time it takes for ships to join - edited in mergeManager.cs
 	float rotMergeTime = 0;
 	public float RotMergeTime{
@@ -37,6 +42,7 @@ public class MergedShip : MonoBehaviour {
 	void Update () {
 		RestrictToMap();
 		ClampObjectIntoView();
+		StartCoroutine(FlyAtEndOfFrame());
 	}
 
 	public void RestrictToMap(){
@@ -56,6 +62,29 @@ public class MergedShip : MonoBehaviour {
 			this.rigidbody2D.velocity = vel;
 		}
 		transform.position = pos;
+	}
+
+	IEnumerator FlyAtEndOfFrame(){
+		yield return new WaitForEndOfFrame();
+		foreach(Player p in players){
+			Vector2 finalSpeed = ((Vector2)p.transform.right * highestFractionalSpeed * flyingSpeed) / transform.rigidbody2D.mass;
+			transform.rigidbody2D.velocity = Vector2.Lerp(transform.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
+			
+			
+			
+			p.enginesTurnLeft[0].particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
+			p.enginesTurnRight[0].particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
+		}
+		
+		flyingSpeed = 0;
+		highestFractionalSpeed = 0;
+	}
+
+	public void Fly(float speed, float actualSpeed){
+		if(speed > highestFractionalSpeed){
+			highestFractionalSpeed = speed;
+		}
+		flyingSpeed = actualSpeed;
 	}
 
 
@@ -113,7 +142,7 @@ public class MergedShip : MonoBehaviour {
 		Vector2 newPos = Vector2.zero;
 		Vector2 newRight = Vector2.zero;
 
-		GameObject leftEngine = player.leftEnginePiece;
+		/*GameObject leftEngine = player.leftEnginePiece;
 		GameObject rightEngine = player.rightEnginePiece;
 
 
@@ -125,7 +154,7 @@ public class MergedShip : MonoBehaviour {
 
 		leftEngine.transform.localRotation = Quaternion.Euler(leftRot);
 		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);
-
+*/
 		if(numberInMerge == 0)	{
 			newPos = center + right * -0.66f;
 			newRight = right;
@@ -159,6 +188,8 @@ public class MergedShip : MonoBehaviour {
 
 	//insert a player into the merged ship
 	public void AddShip(Player playerScript, int pNum){
+		players.Add (playerScript);
+
 		playerScript.IsCurrentlyMerged = true;
 
 		int index = System.Array.IndexOf(shipsInPosition, false);
@@ -171,6 +202,8 @@ public class MergedShip : MonoBehaviour {
 
 	//remove a player from the merged ship
 	public void RemoveShip(Player playerScript, int pNum){
+		players.Remove(playerScript);
+
 		int index = System.Array.IndexOf(pNumAtPosition, pNum);
 
 		shipsInPosition[index] = false;
@@ -178,7 +211,7 @@ public class MergedShip : MonoBehaviour {
 		
 		numberOfMergedShips--;
 
-		GameObject leftEngine = playerScript.leftEnginePiece;
+		/*GameObject leftEngine = playerScript.leftEnginePiece;
 		GameObject rightEngine = playerScript.rightEnginePiece;
 		
 		Vector3 leftRot = leftEngine.transform.localRotation.eulerAngles;
@@ -188,6 +221,6 @@ public class MergedShip : MonoBehaviour {
 		rightRot.x = 0;
 		
 		leftEngine.transform.localRotation = Quaternion.Euler(leftRot);
-		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);
+		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);*/
 	}
 }
