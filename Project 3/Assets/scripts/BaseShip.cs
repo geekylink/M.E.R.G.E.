@@ -42,9 +42,9 @@ public class BaseShip : MonoBehaviour {
         {
             GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
         }
-        UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
+       /* UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
         score++;
-        txt.text = "Score: " + score;
+        txt.text = "Score: " + score;*/
 		
         if(this.drop != null)
         {

@@ -32,7 +32,7 @@ public class CameraMove : MonoBehaviour {
 		GameObject[] players = PlayerManager.S.players;
 		
 		foreach (GameObject player in players){
-			
+			if(!player) continue;
 			Vector3 tempPlayer = player.transform.position;
 			
 			//X Bounds
@@ -56,6 +56,7 @@ public class CameraMove : MonoBehaviour {
 		GameObject[] players = PlayerManager.S.players;
 
 		foreach(GameObject player in players){
+			if(!player) continue;
 			cameraCenter += player.transform.position;
 		}
 		cameraCenter.x = (maxX + minX) * 0.5f;
