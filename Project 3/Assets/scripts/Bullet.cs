@@ -6,7 +6,10 @@ public class Bullet : MonoBehaviour {
 	public int damageDealt;
 
 	public float lifeTime = 5;
-	float lifeCounter = 0;
+    public GameObject explosion;
+
+
+    float lifeCounter = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +41,10 @@ public class Bullet : MonoBehaviour {
         if(bs != null)
         { 
             bs.TakeDamage(damageDealt);
+            if (explosion != null)
+            {
+                GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
+            }
             Destroy(this.gameObject);
         }
 		/*else{
