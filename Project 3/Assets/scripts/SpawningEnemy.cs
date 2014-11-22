@@ -10,10 +10,9 @@ public class SpawningEnemy : EnemyBaseShip
     public float hoverDistance = 6;
     public float projectileSpeed = 4;
     private float fireTimer = 0f;
-    //private GameObject currTarget;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		sphere.renderer.material.color = Color.red;
         currTarget = getRandomPlayer();
 	}
@@ -48,7 +47,7 @@ public class SpawningEnemy : EnemyBaseShip
 
     void FireShip(Quaternion angle)
     {
-        GameObject bulletGO = Instantiate(projectile, this.transform.position + Quaternion.Euler(-angle.eulerAngles.z +90,0,0) * (new Vector3( -1, 0, 0)), this.transform.rotation) as GameObject;
+        Instantiate(projectile, this.transform.position + Quaternion.Euler(-angle.eulerAngles.z +90,0,0) * (new Vector3( -1, 0, 0)), this.transform.rotation);
         
     }
 

@@ -34,7 +34,6 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	void InitialSpawn(){
-		int numPlayers = playerColors.Count;
 
 		players = new GameObject[InputManager.Devices.Count];
 

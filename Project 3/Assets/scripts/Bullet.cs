@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour {
             bs.TakeDamage(damageDealt);
             if (explosion != null)
             {
-                GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
+                Instantiate(explosion, this.transform.position, Quaternion.identity);
             }
             Destroy(this.gameObject);
         }

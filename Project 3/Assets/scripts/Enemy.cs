@@ -3,16 +3,14 @@ using System.Collections;
 
 public class Enemy : EnemyBaseShip {
 	public GameObject sphere;
-	//public GameObject currTarget;
 	public GameObject projectile;
 	public float moveSpeed = 2f;
-	//public Vector3 velocity;
 	public Vector3 targetPos;
 	public float waitTime = 2f;
+
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
         sphere.renderer.material.color = Color.red;
-		//currTarget = getRandomPlayer ();
 	}
 
 	void Awake(){

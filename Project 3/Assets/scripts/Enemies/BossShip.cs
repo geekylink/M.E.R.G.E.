@@ -55,7 +55,7 @@ public class BossShip : MonoBehaviour {
 	void Die(){
 		if(explosion != null)
 		{
-			GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
+			Instantiate(explosion, this.transform.position, Quaternion.identity);
 		}
 		UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
 		BaseShip.score = BaseShip.score + 100;

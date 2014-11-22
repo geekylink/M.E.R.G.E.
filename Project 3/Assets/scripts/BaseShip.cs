@@ -36,7 +36,7 @@ public class BaseShip : MonoBehaviour {
 	public virtual void Die() {
         if(explosion != null)
         {
-            GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
+            Instantiate(explosion, this.transform.position, Quaternion.identity);
         }
 		
         if(this.drop != null)

@@ -10,12 +10,10 @@ public class ShootingEnemy : EnemyBaseShip
     public float hoverDistance = 6;
     public float projectileSpeed = 4;
     private float fireTimer = 0f;
-    //private GameObject currTarget;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		sphere.renderer.material.color = Color.red;
-        //currTarget = getRandomPlayer();
 	}
 	
 	// Update is called once per frame

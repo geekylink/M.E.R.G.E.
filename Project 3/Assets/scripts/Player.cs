@@ -64,7 +64,7 @@ public class Player : BaseShip {
 	public int playerManagerArrayPos = -1;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		numResources = 0;
 		health = maxHealth;
 		minimapBlip.renderer.material.color = playerColor;
