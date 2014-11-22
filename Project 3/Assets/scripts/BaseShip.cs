@@ -9,10 +9,6 @@ public class BaseShip : MonoBehaviour {
     public GameObject explosion;
     public static int score;
 	public float maxRotSpeed;
-	
-	public List<GameObject> enginesTurnRight;
-	public List<GameObject> enginesTurnLeft;
-	public List<GameObject> enginesStraight;
 
     public GameObject drop;
 
@@ -42,9 +38,6 @@ public class BaseShip : MonoBehaviour {
         {
             GameObject exp = (GameObject)Instantiate(explosion, this.transform.position, Quaternion.identity);
         }
-       /* UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
-        score++;
-        txt.text = "Score: " + score;*/
 		
         if(this.drop != null)
         {
@@ -83,9 +76,15 @@ public class BaseShip : MonoBehaviour {
 		GameObject cam = GameObject.Find ("Main Camera");
 		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;
 		GameObject[] players = pm.getPlayers ();
+
+		if(players == null || players.Length == 0){
+			return null;
+		}
+
 		int randomNum = Random.Range (0, players.Length);
 
 		int counter = 0;
+
 		while(players[randomNum] == null && counter < 4){
 			counter++;
 			randomNum++;

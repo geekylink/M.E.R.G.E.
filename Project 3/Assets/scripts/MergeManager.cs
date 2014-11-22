@@ -39,12 +39,19 @@ public class MergeManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		Player[] playArr = FindObjectsOfType(typeof(Player)) as Player[];
-		players.AddRange(playArr);
-		
-		for(int i = 0; i < players.Count; ++i){
-			currentlyMergedWith.Add(new List<Player>());
+
+	}
+
+	public void AddPlayer(Player player, int index){
+
+		if(index >= players.Count){
+			players.Add (player);
+			currentlyMergedWith.Add (new List<Player>());
 		}
+		else{
+			players[index] = player;
+		}
+
 	}
 	
 	// Update is called once per frame
