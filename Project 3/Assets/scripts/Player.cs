@@ -17,6 +17,8 @@ public class Player : BaseShip {
 	public float breakMult = 0.01f;
 
 	public float bounciness = 0.5f;
+	public float satSpawnRadius = 50;
+	public int maxOwnSats = 3;
 
 	public GameObject ammoPrefab;
 	public GameObject autoTurretPrefab;
@@ -68,6 +70,8 @@ public class Player : BaseShip {
 
 	private int numResources;
 
+	private ArrayList ownSats;
+
 	// Use this for initialization
 	void Start () {
 		numResources = 0;
@@ -78,6 +82,8 @@ public class Player : BaseShip {
 
 		enginesTurnLeft[0].particleSystem.enableEmission = true;
 		enginesTurnRight[0].particleSystem.enableEmission = true;
+
+		ownSats = new ArrayList ();
 	}
 	
 	// Update is called once per frame
@@ -87,7 +93,7 @@ public class Player : BaseShip {
 		}
 		//UpdateTurrets ();
 		UpdatePlayer ();
-		//UpdateHUD ();
+		UpdateHUD ();
 		
 		lastRightFire -= Time.deltaTime;
 		lastLeftFire -= Time.deltaTime;
@@ -102,6 +108,14 @@ public class Player : BaseShip {
 		if(isCurrentlyMerged){
 			MergeManager.S.Unmerge(this);
 		}
+
+		// Remove satellites on death
+		foreach (BaseSatellite sat in ownSats) {
+			Destroy (sat.gameObject);
+		}
+
+		ownSats.Clear ();
+
 		base.Die();
 	}
 
@@ -362,7 +376,24 @@ public class Player : BaseShip {
 	}
 
 	// Spawns a turret
-	public void SpawnTurret(BaseSatellite.SatelliteType Type, GameObject orbitObj) {
+	public void SpawnTurret(BaseSatellite.SatelliteType Type) {
+		GameObject orbitObj = this.gameObject;
+
+		// Find any planets nearby to spawn the satellite around
+		GameObject[] planetObjs = GameObject.FindGameObjectsWithTag ("Planet");
+		foreach (GameObject planetObj in planetObjs) {
+			Vector3 dist = planetObj.transform.position - this.transform.position;
+			if (dist.magnitude < satSpawnRadius) {
+				orbitObj = planetObj;
+				break;
+			}
+		}
+
+		// Limit the number of satellites we can make
+		if (ownSats.Count == maxOwnSats) {
+			return;
+		}
+
 		switch (Type) {
 		case BaseSatellite.SatelliteType.TURRET:
 			GameObject autoSat = Instantiate (autoTurretPrefab, this.transform.position, this.transform.rotation) as GameObject;
@@ -370,18 +401,21 @@ public class Player : BaseShip {
 			satTurret.orbitTarget = orbitObj;
 			satTurret.creatorObj = this.gameObject;
 			satTurret.targetObject = this.gameObject;
+			ownSats.Add(satTurret);
 			break;
 		case BaseSatellite.SatelliteType.HEALER:
 			GameObject healSat = Instantiate (healSatPrefab, this.transform.position, this.transform.rotation) as GameObject;
 			HealerSatellite satHealer = healSat.GetComponent ("HealerSatellite") as HealerSatellite;
 			satHealer.orbitTarget = orbitObj;
 			satHealer.creatorObj = this.gameObject;
+			ownSats.Add(satHealer);
 			break;
 		case BaseSatellite.SatelliteType.MINER:
 			GameObject mineSat = Instantiate (mineSatPrefab, this.transform.position, this.transform.rotation) as GameObject;
 			MinerSatellite satMine = mineSat.GetComponent ("MinerSatellite") as MinerSatellite;
 			satMine.orbitTarget = orbitObj;
 			satMine.creatorObj = this.gameObject;
+			ownSats.Add(satMine);
 			break;
 		}
 	}
