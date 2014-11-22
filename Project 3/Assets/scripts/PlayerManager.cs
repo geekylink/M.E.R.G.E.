@@ -147,7 +147,7 @@ public class PlayerManager : MonoBehaviour {
 		Vector3 rot = Vector3.zero;
 		rot.z = leftAngle;
 		float speed = Mathf.Sqrt(leftX * leftX + leftY * leftY);
-		player.FlyForward(speed, playerSpeed);
+		player.ApplyFly(speed, playerSpeed);
 		/*if(speed == 0){
 			player.useBreaks();
 		}*/

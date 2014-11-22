@@ -34,6 +34,10 @@ public class SquadManager : MonoBehaviour {
 	}
 
 	public void RemoveEnemy(EnemyBaseShip enemy, int id){
-		squads [id - 1].squadMembers.Remove (enemy);
+
+		if(id != 0){
+			squads [id - 1].squadMembers.Remove (enemy);
+		}
+
 	}
 }

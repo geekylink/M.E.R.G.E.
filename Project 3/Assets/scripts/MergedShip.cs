@@ -67,13 +67,7 @@ public class MergedShip : MonoBehaviour {
 	IEnumerator FlyAtEndOfFrame(){
 		yield return new WaitForEndOfFrame();
 		foreach(Player p in players){
-			Vector2 finalSpeed = ((Vector2)p.transform.right * highestFractionalSpeed * flyingSpeed) / transform.rigidbody2D.mass;
-			transform.rigidbody2D.velocity = Vector2.Lerp(transform.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
-			
-			
-			
-			p.leftEnginePiece.particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
-			p.rightEnginePiece.particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
+			p.Fly(highestFractionalSpeed, flyingSpeed);
 		}
 		
 		flyingSpeed = 0;

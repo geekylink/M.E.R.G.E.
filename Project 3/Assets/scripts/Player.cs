@@ -149,21 +149,25 @@ public class Player : BaseShip {
 		}
 	}
 
-	public void FlyForward(float speed, float actualSpeed){
+	public void Fly(float engineLength, float speed){
+		
+		
+		Vector2 finalSpeed = ((Vector2)transform.right * engineLength * speed);
+		
+		transform.root.rigidbody2D.velocity = Vector2.Lerp(transform.root.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
+		
+		leftEnginePiece.particleSystem.startLifetime = engineLength / 6.0f;
+		rightEnginePiece.particleSystem.startLifetime = engineLength / 6.0f;
+	}
+
+	public void ApplyFly(float engineLength, float actualSpeed){
 
 		if(transform.parent != null){
 			MergedShip parentShip = transform.root.GetComponent<MergedShip>();
-			parentShip.Fly(speed, actualSpeed);
+			parentShip.Fly(engineLength, actualSpeed);
 			return;
 		}
-
-		Vector2 finalSpeed = ((Vector2)transform.right * speed * actualSpeed) / transform.root.rigidbody2D.mass;
-
-		transform.root.rigidbody2D.velocity = Vector2.Lerp(transform.root.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
-
-		leftEnginePiece.particleSystem.startLifetime = speed / 3.0f;
-		rightEnginePiece.particleSystem.startLifetime = speed / 3.0f;
-
+		Fly (engineLength, actualSpeed);
 	}
 
 	public void TurnTowards(float angle){

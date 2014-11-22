@@ -66,6 +66,13 @@ public class Spawner : MonoBehaviour {
 		EnemySquad eSquad = eSquadGO.GetComponent<EnemySquad>();
 		eSquad.squadMembers = new List<EnemyBaseShip> ();
 		eSquad.target = getRandomPlayer ();
+
+		while(eSquad.target == null){
+			
+			eSquad.target = getRandomPlayer ();
+			yield return 0;
+		}
+
 		SquadManager.S.squads.Add (eSquad);
 		foreach (int enemy in squad1) {
 			GameObject squadMemberGO = Instantiate(enemiesToSpawn[enemy]) as GameObject;
@@ -105,17 +112,22 @@ public class Spawner : MonoBehaviour {
 		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;
 		GameObject[] players = pm.getPlayers ();
 		int randomNum = Random.Range (0, players.Length);
-		
-		int counter = 0;
-		while(players[randomNum] == null && counter < 4){
-			counter++;
-			randomNum++;
-			if(randomNum >= players.Length){
-				randomNum = 0;
+
+
+		if(players.Length != 0){
+			
+			int counter = 0;
+			while(players[randomNum] == null && counter < 4){
+				counter++;
+				randomNum++;
+				if(randomNum >= players.Length){
+					randomNum = 0;
+				}
 			}
+			return players [randomNum];
 		}
-		
-		return players [randomNum];	
+		return null;
+			
 	}
 
 	// Update is called once per frame

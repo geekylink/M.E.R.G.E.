@@ -49,6 +49,7 @@ public class Bullet : MonoBehaviour {
             }
             Destroy(this.gameObject);
         }
+
 		/*else{
 			bs = col.gameObject.GetComponentInChildren<BaseShip>();
 			

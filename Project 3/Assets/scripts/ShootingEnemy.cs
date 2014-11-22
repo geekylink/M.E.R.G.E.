@@ -28,15 +28,14 @@ public class ShootingEnemy : EnemyBaseShip
             var dist = targetPos - transform.position;
             if (dist.magnitude > hoverDistance){
 				if(squadId != 0){
-					velocity = dist.normalized * moveSpeed + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
+					rigidbody2D.velocity = dist.normalized * moveSpeed + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
 				}
 				else{
-					velocity = dist.normalized * moveSpeed;
+					rigidbody2D.velocity = dist.normalized * moveSpeed;
 				}
 			}
             else
-                velocity = Vector3.zero;
-			this.rigidbody2D.velocity = velocity;
+				rigidbody2D.velocity = Vector3.zero;
             var angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
 
@@ -52,7 +51,10 @@ public class ShootingEnemy : EnemyBaseShip
         }
 		
 		else{
-			//currTarget = getRandomPlayer();
+			
+			if(squadId == 0){
+				currTarget = getRandomPlayer();
+			}
 		}
 	}
 

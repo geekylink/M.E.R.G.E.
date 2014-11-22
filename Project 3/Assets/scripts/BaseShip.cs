@@ -13,7 +13,7 @@ public class BaseShip : MonoBehaviour {
     public GameObject drop;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		health = maxHealth;
 	}
 
@@ -83,16 +83,19 @@ public class BaseShip : MonoBehaviour {
 
 		int randomNum = Random.Range (0, players.Length);
 
-		int counter = 0;
 
-		while(players[randomNum] == null && counter < 4){
-			counter++;
-			randomNum++;
-			if(randomNum >= players.Length){
-				randomNum = 0;
+		if(players.Length != 0){
+			
+			int counter = 0;
+			while(players[randomNum] == null && counter < 4){
+				counter++;
+				randomNum++;
+				if(randomNum >= players.Length){
+					randomNum = 0;
+				}
 			}
+			return players [randomNum];
 		}
-
-		return players [randomNum];	
+		return null;
 	}
 }

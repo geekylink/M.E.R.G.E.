@@ -43,6 +43,7 @@ MonoBehaviour:
   distanceLimit: 10
   velocityMatchFactor: 8
   towardTargetFactor: 100
+  towardCenterFactor: 100
   avoidTarget: 0
   disperseSquad: 0
   squadID: 1
