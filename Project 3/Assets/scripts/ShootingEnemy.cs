@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShootingEnemy : BaseShip
+public class ShootingEnemy : EnemyBaseShip
 {
 	public GameObject sphere;
     public GameObject projectile;
@@ -10,12 +10,12 @@ public class ShootingEnemy : BaseShip
     public float hoverDistance = 6;
     public float projectileSpeed = 4;
     private float fireTimer = 0f;
-    private GameObject currTarget;
+    //private GameObject currTarget;
 
 	// Use this for initialization
 	void Start () {
 		sphere.renderer.material.color = Color.red;
-        currTarget = getRandomPlayer();
+        //currTarget = getRandomPlayer();
 	}
 	
 	// Update is called once per frame
@@ -26,11 +26,17 @@ public class ShootingEnemy : BaseShip
         {
             Vector3 targetPos = currTarget.transform.position;
             var dist = targetPos - transform.position;
-            if (dist.magnitude > hoverDistance)
-                this.rigidbody2D.velocity = dist.normalized * moveSpeed;
+            if (dist.magnitude > hoverDistance){
+				if(squadId != 0){
+					velocity = dist.normalized * moveSpeed + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
+				}
+				else{
+					velocity = dist.normalized * moveSpeed;
+				}
+			}
             else
-                this.rigidbody2D.velocity = Vector3.zero;
-
+                velocity = Vector3.zero;
+			this.rigidbody2D.velocity = velocity;
             var angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
 
@@ -46,7 +52,7 @@ public class ShootingEnemy : BaseShip
         }
 		
 		else{
-			currTarget = getRandomPlayer();
+			//currTarget = getRandomPlayer();
 		}
 	}
 

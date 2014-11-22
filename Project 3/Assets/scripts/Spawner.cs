@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public class Spawner : MonoBehaviour {
 
 	public List<GameObject> enemiesToSpawn;
-
-
+	public GameObject squadPrefab;
 	public float spawnTimer;
+
+	public List<int> squad1;
+	public Vector3[] spawnLocs;
 
 	public float mapSize;
 
@@ -58,6 +60,25 @@ public class Spawner : MonoBehaviour {
 		StartCoroutine(SpawnCoroutine());
 	}
 
+	IEnumerator SpawnSquad(){
+		int i = 0;
+		GameObject eSquadGO = squadPrefab;
+		EnemySquad eSquad = eSquadGO.GetComponent<EnemySquad>();
+		eSquad.squadMembers = new List<EnemyBaseShip> ();
+		eSquad.target = getRandomPlayer ();
+		SquadManager.S.squads.Add (eSquad);
+		foreach (int enemy in squad1) {
+			GameObject squadMemberGO = Instantiate(enemiesToSpawn[enemy]) as GameObject;
+			EnemyBaseShip ship = squadMemberGO.GetComponent<EnemyBaseShip>();
+			eSquad.squadMembers.Add(ship);
+			ship.squadId = SquadManager.nextID;
+			squadMemberGO.transform.position = spawnLocs[i++];
+			ship.currTarget = eSquad.target;
+		}
+		SquadManager.nextID++;
+		yield return 0;
+	}
+
 	IEnumerator SpawnBoss(){
 		float timer = 0;
 		
@@ -76,8 +97,27 @@ public class Spawner : MonoBehaviour {
 	void Awake(){
 		StartCoroutine(SpawnCoroutine());
 		StartCoroutine(SpawnBoss());
+		StartCoroutine (SpawnSquad ());
 	}
-	
+
+	public GameObject getRandomPlayer() {
+		GameObject cam = GameObject.Find ("Main Camera");
+		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;
+		GameObject[] players = pm.getPlayers ();
+		int randomNum = Random.Range (0, players.Length);
+		
+		int counter = 0;
+		while(players[randomNum] == null && counter < 4){
+			counter++;
+			randomNum++;
+			if(randomNum >= players.Length){
+				randomNum = 0;
+			}
+		}
+		
+		return players [randomNum];	
+	}
+
 	// Update is called once per frame
 	void Update () {
 	}

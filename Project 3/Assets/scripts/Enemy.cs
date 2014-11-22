@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : BaseShip {
+public class Enemy : EnemyBaseShip {
 	public GameObject sphere;
-	public GameObject currTarget;
+	//public GameObject currTarget;
 	public GameObject projectile;
 	public float moveSpeed = 2f;
-	Vector3 velocity;
+	//public Vector3 velocity;
 	public Vector3 targetPos;
 	public float waitTime = 2f;
-	float timeElapsed = 0f;
 	// Use this for initialization
 	void Start () {
         sphere.renderer.material.color = Color.red;
-		currTarget = getRandomPlayer ();
+		//currTarget = getRandomPlayer ();
 	}
 
 	void Awake(){
@@ -25,14 +24,18 @@ public class Enemy : BaseShip {
 		if (currTarget != null) {
             targetPos = currTarget.transform.position;
             var dir = targetPos - transform.position;
-
-            this.rigidbody2D.velocity = dir.normalized * moveSpeed;
+			if(squadId != 0){
+				this.rigidbody2D.velocity = dir.normalized * moveSpeed + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
+			}
+			else{
+				this.rigidbody2D.velocity = dir.normalized * moveSpeed;
+			}
 
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 180;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 		else{
-			currTarget = getRandomPlayer();
+			//currTarget = getRandomPlayer();
 		}
 
 	}

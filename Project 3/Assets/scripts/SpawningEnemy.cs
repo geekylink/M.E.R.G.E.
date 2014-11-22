@@ -10,7 +10,7 @@ public class SpawningEnemy : BaseShip
     public float hoverDistance = 6;
     public float projectileSpeed = 4;
     private float fireTimer = 0f;
-    private GameObject currTarget;
+    //private GameObject currTarget;
 
 	// Use this for initialization
 	void Start () {
