@@ -46,11 +46,19 @@ TagManager:
   User Layer 30: 
   User Layer 31: 
   m_SortingLayers:
+  - name: Background
+    userID: 1
+    uniqueID: 1311673341
+    locked: 0
+  - name: Engines
+    userID: 3
+    uniqueID: 311870401
+    locked: 0
   - name: Default
     userID: 0
     uniqueID: 0
     locked: 0
-  - name: TestLayer
-    userID: 1
-    uniqueID: 1311673341
+  - name: Explosions
+    userID: 2
+    uniqueID: 3445702967
     locked: 0
