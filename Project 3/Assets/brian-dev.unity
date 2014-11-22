@@ -9359,7 +9359,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -38816,7 +38816,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -42069,6 +42069,14 @@ Prefab:
     - target: {fileID: 11400014, guid: 3219493577f30f549b3f01f55684220c, type: 2}
       propertyPath: bulletVelocity
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 3219493577f30f549b3f01f55684220c, type: 2}
+      propertyPath: moveWithTransform
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3219493577f30f549b3f01f55684220c, type: 2}

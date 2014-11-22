@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="519.60836"
-     inkscape:cy="844.38242"
+     inkscape:zoom="15.839192"
+     inkscape:cx="641.7491"
+     inkscape:cy="811.56694"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -70,24 +70,8 @@
        inkscape:export-ydpi="159.72298"
        transform="scale(-1,-1)" />
     <path
-       style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 608.57143,224.50504 0,50 5,0 0,-50 z"
-       id="path4085"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 628.57143,224.50504 0,50 5,0 0,-50 z"
-       id="path4085-2"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 618.57143,224.50505 0,50 5,0 0,-50 z"
+       style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1.13932669px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 614.29937,224.57471 0,24.1464 13.43953,0 0,-24.1464 z"
        id="path4085-2-5"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
