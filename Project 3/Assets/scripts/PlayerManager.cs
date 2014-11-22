@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using InControl;
 
 public class PlayerManager : MonoBehaviour {
@@ -7,6 +8,13 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject[] players;
 
 	public float playerSpeed = 30;
+
+	public GameObject playerPrefab;
+
+	public float respawnTime;
+
+	public List<Color> playerColors;
+	public List<UnityEngine.UI.Text> playerResourceTexts;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +31,27 @@ public class PlayerManager : MonoBehaviour {
 			if(this != S)
 				Destroy(this.gameObject);
 		}
+	}
+
+	void InitialSpawn(){
+		int numPlayers = playerColors.Count;
+
+		players = new GameObject[InputManager.Devices.Count];
+
+		for(int i = 0; i < InputManager.Devices.Count; ++i){
+			SpawnPlayer(i, playerColors[i], i);
+		}
+
+
+	}
+
+	IEnumerator SpawnAtEndOfFrame(){
+		yield return new WaitForEndOfFrame();
+		InitialSpawn();
+	}
+
+	void Awake(){
+		StartCoroutine(SpawnAtEndOfFrame());
 	}
 
 	// Update is called once per frame
@@ -113,7 +142,7 @@ public class PlayerManager : MonoBehaviour {
 		#endregion
 
 		#region Fly in the direction of the left stick
-		player.UpdateTurrets (0, rightAngle);
+		player.UpdateTurrets (rightAngle);
 		player.TurnTowards(leftAngle);
 		Vector3 rot = Vector3.zero;
 		rot.z = leftAngle;
@@ -128,6 +157,65 @@ public class PlayerManager : MonoBehaviour {
 		//if (device.Action3)	player.useBreaks ();
 
 		//
+
+	}
+
+	void SpawnPlayer(int arrayPos, Color playerColor, int mergeIndex){
+		GameObject playerGO = Instantiate(playerPrefab) as GameObject;
+
+		Vector2 pos = camera.transform.position;
+		if(arrayPos == 0){
+			pos.x += 1.5f;
+			pos.y += 1.5f;
+		}
+		if(arrayPos == 1){
+			pos.x += -1.5f;
+			pos.y += 1.5f;
+		}
+		if(arrayPos == 2){
+			pos.x += -1.5f;
+			pos.y += -1.5f;
+		}
+		if(arrayPos == 3){
+			pos.x += 1.5f;
+			pos.y += -1.5f;
+		}
+
+		playerGO.transform.position = pos;
+		
+		Player pScript = playerGO.GetComponent<Player>();
+		pScript.gtRes = playerResourceTexts[arrayPos];
+
+		pScript.ChangeColor(playerColor);
+		pScript.playerManagerArrayPos = arrayPos;
+		
+		players[arrayPos] = playerGO;
+
+		MergeManager.S.AddPlayer(pScript, mergeIndex);
+
+	}
+
+	IEnumerator Respawn(int arrayPos, Color playerColor, int mergeIndex){
+		float t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / respawnTime;
+			yield return 0;
+		}
+
+		SpawnPlayer(arrayPos, playerColor, mergeIndex);
+
+	}
+
+
+	public void PlayerDied(Player player, int posInArray){
+		Color playerColor = player.playerColor;
+		if(posInArray == -1){
+			Debug.LogError("Error, cannot find player to respawn");
+		}
+
+		int mergeIndex = MergeManager.S.players.IndexOf (player);
+
+		StartCoroutine(Respawn(posInArray, playerColor, mergeIndex));
 
 	}
 }

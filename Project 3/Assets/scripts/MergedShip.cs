@@ -72,8 +72,8 @@ public class MergedShip : MonoBehaviour {
 			
 			
 			
-			p.enginesTurnLeft[0].particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
-			p.enginesTurnRight[0].particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
+			p.leftEnginePiece.particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
+			p.rightEnginePiece.particleSystem.startLifetime = highestFractionalSpeed / 3.0f;
 		}
 		
 		flyingSpeed = 0;

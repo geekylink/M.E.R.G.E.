@@ -30,9 +30,10 @@ public class CameraMove : MonoBehaviour {
 		minX = Mathf.Infinity; maxX = -Mathf.Infinity; minY = Mathf.Infinity; maxY = -Mathf.Infinity;
 		
 		GameObject[] players = PlayerManager.S.players;
-		
+		int numPlayers = 0;
 		foreach (GameObject player in players){
 			if(!player) continue;
+			numPlayers++;
 			Vector3 tempPlayer = player.transform.position;
 			
 			//X Bounds
@@ -49,7 +50,7 @@ public class CameraMove : MonoBehaviour {
 			if (tempPlayer.y > maxY)
 				maxY = tempPlayer.y;
 		}
-		
+		//print (numPlayers);
 	}
 
 	void CalculateCameraPosAndSize() { 
@@ -59,8 +60,23 @@ public class CameraMove : MonoBehaviour {
 			if(!player) continue;
 			cameraCenter += player.transform.position;
 		}
+
+		if(maxX == -Mathf.Infinity){
+			maxX = 0;
+		}
+		if(minX == Mathf.Infinity){
+			minX = 0;
+		}
+		if(maxY == -Mathf.Infinity){
+			maxY = 0;
+		}
+		if(minY == Mathf.Infinity){
+			minY = 0;
+		}
+
 		cameraCenter.x = (maxX + minX) * 0.5f;
 		cameraCenter.y = (maxY + minY) * 0.5f;
+		cameraCenter.z = -10;
 
 		transform.position = Vector3.Lerp(transform.position, cameraCenter, camSpeed * Time.deltaTime);
 		
