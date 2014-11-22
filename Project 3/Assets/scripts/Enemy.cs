@@ -35,7 +35,9 @@ public class Enemy : EnemyBaseShip {
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 		else{
-			//currTarget = getRandomPlayer();
+			if(squadId == 0){
+				currTarget = getRandomPlayer();
+			}
 		}
 
 	}

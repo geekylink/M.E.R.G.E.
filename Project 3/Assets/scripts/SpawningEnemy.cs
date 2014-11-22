@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawningEnemy : BaseShip
+public class SpawningEnemy : EnemyBaseShip
 {
 	public GameObject sphere;
     public GameObject projectile;

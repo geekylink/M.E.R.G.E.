@@ -3,18 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player : BaseShip {
-
-	//Used for testing on keyboard - when I don't have 4 xbox controllers
-	public KeyCode leftFire;
-	public KeyCode rightFire;
-	public KeyCode mergeButton;
-	public KeyCode unmergeButton;
-
+	
 	//easily editable variables in the inspector
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 	public float gravityMult = 0.5f;
-	public float breakMult = 0.01f;
 
 	public float bounciness = 0.5f;
 	public float satSpawnRadius = 50;
@@ -26,15 +19,12 @@ public class Player : BaseShip {
 	public GameObject mineSatPrefab;
 
     public float fireRate = 0.5f;
-	public UnityEngine.UI.Text gtHealth;
 	public UnityEngine.UI.Text gtRes;
 
 	//turrets should be assigned here in the inspector
-	public GameObject leftTurret;
 	public GameObject rightTurret;
 
 	// Used to prevent firing constantly
-	private float lastLeftFire = 0;
 	private float lastRightFire = 0;
 
 	//lots of things to deal with merging
@@ -65,25 +55,25 @@ public class Player : BaseShip {
 	public GameObject minimapBlip;
 	public Color playerColor;
 	public GameObject body;
-	public GameObject leftEnginePiece;
 	public GameObject rightEnginePiece;
+	public GameObject leftEnginePiece;
 
 	private int numResources;
 
 	private ArrayList ownSats;
+	public int playerManagerArrayPos = -1;
 
 	// Use this for initialization
 	void Start () {
 		numResources = 0;
 		health = maxHealth;
-		lastLeftFire = lastRightFire = 0;
 		minimapBlip.renderer.material.color = playerColor;
 		body.GetComponent<SpriteRenderer>().color = playerColor;
 
-		enginesTurnLeft[0].particleSystem.enableEmission = true;
-		enginesTurnRight[0].particleSystem.enableEmission = true;
-
 		ownSats = new ArrayList ();
+
+		leftEnginePiece.particleSystem.enableEmission = true;
+		rightEnginePiece.particleSystem.enableEmission = true;
 	}
 	
 	// Update is called once per frame
@@ -96,10 +86,6 @@ public class Player : BaseShip {
 		UpdateHUD ();
 		
 		lastRightFire -= Time.deltaTime;
-		lastLeftFire -= Time.deltaTime;
-		
-		//comment out this line when using controllers
-		//CheckMerge(Input.GetKey(mergeButton), Input.GetKey (unmergeButton));
 	}
 
 	
@@ -115,6 +101,8 @@ public class Player : BaseShip {
 		}
 
 		ownSats.Clear ();
+		PlayerManager.S.PlayerDied(this, playerManagerArrayPos);
+
 
 		base.Die();
 	}
@@ -137,45 +125,25 @@ public class Player : BaseShip {
 
 
 	private void UpdateHUD() {
-		gtHealth.text = "Health: " + health;
+		//gtHealth.text = "Health: " + health;
 		gtRes.text = "Resources: " + numResources;
 	}
 	
 	// Updates angles for the left and right turrets
-	public void UpdateTurrets(float leftAngle, float rightAngle) {
-		if(leftAngle == 0 && rightAngle == 0){
+	public void UpdateTurrets(float rightAngle) {
+		if(rightAngle == 0){
 			return;
 		}
 
-		Vector3 leftRot = Vector3.zero, rightRot = Vector3.zero;
+		Vector3 rightRot = Vector3.zero;
 
-		leftRot.z = leftAngle;
 		rightRot.z = rightAngle;		
-		
-		leftTurret.transform.eulerAngles = leftRot;
+
 		rightTurret.transform.eulerAngles = rightRot;
-		if(leftAngle != 0){
-			FireLeftTurret();
-		}
 		if(rightAngle != 0){
 			FireRightTurret();
 		}
 
-	}
-
-	// Fires from the left turret
-	public void FireLeftTurret() {
-		if (lastLeftFire <= 0) {
-			GameObject bulletGO = Instantiate(ammoPrefab, leftTurret.transform.position, leftTurret.transform.rotation) as GameObject;
-			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
-
-			int id = MergeManager.S.players.IndexOf(this);
-			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
-
-			b.setDefaults(-leftTurret.transform.eulerAngles.z, bulletVelocity);
-			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
-			lastLeftFire = fireRate;
-		}
 	}
 
 	// Fires from the right turret
@@ -193,34 +161,25 @@ public class Player : BaseShip {
 		}
 	}
 
-	public void FlyForward(float speed, float actualSpeed){
+	public void Fly(float engineLength, float speed){
+		
+		
+		Vector2 finalSpeed = ((Vector2)transform.right * engineLength * speed);
+		
+		transform.root.rigidbody2D.velocity = Vector2.Lerp(transform.root.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
+		
+		leftEnginePiece.particleSystem.startLifetime = engineLength / 6.0f;
+		rightEnginePiece.particleSystem.startLifetime = engineLength / 6.0f;
+	}
+
+	public void ApplyFly(float engineLength, float actualSpeed){
 
 		if(transform.parent != null){
 			MergedShip parentShip = transform.root.GetComponent<MergedShip>();
-			parentShip.Fly(speed, actualSpeed);
+			parentShip.Fly(engineLength, actualSpeed);
 			return;
 		}
-
-		Vector2 finalSpeed = ((Vector2)transform.right * speed * actualSpeed) / transform.root.rigidbody2D.mass;
-
-		transform.root.rigidbody2D.velocity = Vector2.Lerp(transform.root.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
-
-
-
-		enginesTurnLeft[0].particleSystem.startLifetime = speed / 3.0f;
-		enginesTurnRight[0].particleSystem.startLifetime = speed / 3.0f;
-
-	}
-
-	public void Turn(float turnDir, float speed){
-		if(Mathf.Abs (turnDir) < 0.1f){
-			if(rigidbody2D != null){
-				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 1.1f;
-			}
-			return;
-		}
-
-		rigidbody2D.angularVelocity += turnDir * speed;
+		Fly (engineLength, actualSpeed);
 	}
 
 	public void TurnTowards(float angle){
@@ -234,80 +193,6 @@ public class Player : BaseShip {
 
 	}
 
-	// Fires the engines
-	public void FireEngines(bool engineLeft, bool engineRight) {
-		if(isMerging) return;
-
-		if(engineLeft && engineRight){
-			
-			foreach(GameObject engine in enginesTurnLeft){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			foreach(GameObject engine in enginesTurnRight){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			
-			foreach(GameObject engine in enginesStraight){
-				engine.GetComponent<Engine>().TurnOn();
-			}
-			if(rigidbody2D != null){
-				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 5.01f;
-			}
-		}
-		else if(engineLeft){
-			useBreaks();
-			foreach(GameObject engine in enginesTurnRight){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			foreach(GameObject engine in enginesStraight){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			
-			foreach(GameObject engine in enginesTurnLeft){
-				engine.GetComponent<Engine>().TurnOn(true);
-			}
-		}
-		else if(engineRight){
-			useBreaks();
-			foreach(GameObject engine in enginesTurnLeft){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			foreach(GameObject engine in enginesStraight){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			
-			foreach(GameObject engine in enginesTurnRight){
-				engine.GetComponent<Engine>().TurnOn(true);
-			}
-		}
-		else{
-			foreach(GameObject engine in enginesTurnLeft){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			foreach(GameObject engine in enginesTurnRight){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			foreach(GameObject engine in enginesStraight){
-				engine.GetComponent<Engine>().TurnOff();
-			}
-			useBreaks();
-			
-			if(rigidbody2D != null){
-				this.rigidbody2D.angularVelocity = this.rigidbody2D.angularVelocity / 5.01f;
-			}
-		}
-	}
-
-	public void useBreaks() {
-		Vector3 vel = transform.root.rigidbody2D.velocity;
-		vel *= breakMult*Time.fixedDeltaTime;
-		transform.root.rigidbody2D.velocity = vel;
-	}
-
-    void ResetLeftFire()
-    {
-        lastLeftFire = 0;
-    }
     void ResetRightFire()
     {
         lastRightFire = 0;
@@ -361,8 +246,10 @@ public class Player : BaseShip {
 	}
 
 	public void ChangeColor(Color color){
-		Transform body = transform.FindChild("Body");
 		body.GetComponent<SpriteRenderer>().color = color;
+		gtRes.color = color;
+		minimapBlip.renderer.material.color = color;
+		playerColor = color;
 	}
 	
 	public Color GetColor(){

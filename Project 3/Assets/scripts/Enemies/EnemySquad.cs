@@ -29,8 +29,8 @@ public class EnemySquad : MonoBehaviour {
 		}
 	}
 
-	public Vector3 ApplyBoids(EnemyBaseShip enemy){
-		Vector3 v1, v2, v3, v4;
+	public Vector2 ApplyBoids(EnemyBaseShip enemy){
+		Vector2 v1, v2, v3, v4;
 		v1 = TowardCenter (enemy);
 		v2 = Separation (enemy);
 		v3 = MatchVelocity (enemy);
@@ -46,29 +46,28 @@ public class EnemySquad : MonoBehaviour {
 		return v1 + v2 + v3 + v4;
 	}
 
-	Vector3 TowardCenter(EnemyBaseShip enemy){
-		Vector3 positionSum = Vector3.zero;
+	Vector2 TowardCenter(EnemyBaseShip enemy){
+		Vector2 positionSum = Vector2.zero;
 		foreach (EnemyBaseShip e in squadMembers) {
 			if (e){
 				if(e != enemy){
-					positionSum += e.transform.position;
+					positionSum += (Vector2)e.transform.position;
 				}
 			}
 		}
-		Vector3 center = positionSum / (float)(squadMembers.Count - 1);
+		Vector2 center = positionSum / (float)(squadMembers.Count);
 		center.x = (center.x - enemy.transform.position.x) / towardCenterFactor;
 		center.y = (center.y - enemy.transform.position.y) / towardCenterFactor;
-		center.z = (center.z - enemy.transform.position.z) / towardCenterFactor;
 		return center;
 	}
 
-	Vector3 Separation(EnemyBaseShip enemy){
-		Vector3 positionSum = Vector3.zero;
+	Vector2 Separation(EnemyBaseShip enemy){
+		Vector2 positionSum = Vector2.zero;
 		foreach (EnemyBaseShip e in squadMembers) {
 			if(e){
 				if (e != enemy){
-					if (Vector3.Distance(e.transform.position, enemy.transform.position) > distanceLimit){
-						positionSum -= e.transform.position - enemy.transform.position;
+					if (Vector2.Distance(e.transform.position, enemy.transform.position) > distanceLimit){
+						positionSum -= (Vector2)e.transform.position - (Vector2)enemy.transform.position;
 					}
 				}
 			}
@@ -76,18 +75,18 @@ public class EnemySquad : MonoBehaviour {
 		return positionSum;
 	}
 
-	Vector3 MatchVelocity(EnemyBaseShip enemy){
-		Vector3 velocitySum = Vector3.zero;
+	Vector2 MatchVelocity(EnemyBaseShip enemy){
+		Vector2 velocitySum = Vector2.zero;
 		foreach (EnemyBaseShip e in squadMembers) {
 			if(e != enemy){
-				velocitySum += e.velocity;
+				velocitySum += e.rigidbody2D.velocity;
 			}
 		}
-		velocitySum = velocitySum / (float)(squadMembers.Count - 1);
-		return (velocitySum - enemy.velocity) / velocityMatchFactor;
+		velocitySum = velocitySum / (float)(squadMembers.Count);
+		return (velocitySum - enemy.rigidbody2D.velocity) / velocityMatchFactor;
 	}
 
-	Vector3 TendTowardTarget(EnemyBaseShip enemy){
+	Vector2 TendTowardTarget(EnemyBaseShip enemy){
 		return (target.transform.position - enemy.transform.position) / towardTargetFactor;
 	}
 }
