@@ -30,6 +30,8 @@ public class CapturePoint : MonoBehaviour {
 	public int maxSatellites;
 	public List<BaseSatellite> satsInOrbit = new List<BaseSatellite>();
 
+	public float angle;
+
 	// Use this for initialization
 	void Start () {
 		sr = planetObj.GetComponent<SpriteRenderer>();
@@ -59,6 +61,9 @@ public class CapturePoint : MonoBehaviour {
 			satTurret.team = BaseSatellite.SatelliteTeam.Enemy;
 			satsInOrbit.Add (satTurret);
 		}
+
+		BaseSatellite bs = gameObject.GetComponent<BaseSatellite>();
+		bs.SetStartAngle(Mathf.Deg2Rad * angle);
 		//subPoints = GetComponentsInChildren<SubCapturePoint> ();
 	}
 

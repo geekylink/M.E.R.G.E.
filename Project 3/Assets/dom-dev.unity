@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: 120
   borderSprite: {fileID: 21300000, guid: 8edd75fee4fac1749a2c4fb993bdc94b, type: 3}
+  playerColors: []
 --- !u!4 &16991587
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ MonoBehaviour:
   camMoveSpeed: 20
   camSizeSpeed: 5
   minCameraSize: 20
-  maxCameraSize: 40
+  maxCameraSize: 30
   camBuffer: {x: 30, y: 30}
   minX: 0
   maxX: 0
@@ -906,6 +907,7 @@ MonoBehaviour:
   orbiting: 0
   team: 0
   health: 0
+  orbitAngle: 0
 --- !u!114 &555395490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +926,7 @@ MonoBehaviour:
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 1
   satsInOrbit: []
+  angle: 180
 --- !u!1 &622140609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1267,7 @@ MonoBehaviour:
   orbiting: 0
   team: 0
   health: 0
+  orbitAngle: 0
 --- !u!114 &1043585240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,6 +1286,7 @@ MonoBehaviour:
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
+  angle: 0
 --- !u!1 &1078075266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1338,7 @@ MonoBehaviour:
   orbiting: 0
   team: 0
   health: 0
+  orbitAngle: 0
 --- !u!114 &1078075269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,6 +1357,7 @@ MonoBehaviour:
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 2
   satsInOrbit: []
+  angle: 180
 --- !u!1 &1130763458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3457,6 +3464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mergeImage: {fileID: 100000, guid: 0cb1d44ea18be414aabce622ef5f410d, type: 2}
+  mergeLine: {fileID: 100000, guid: 21d74fa1b7cc76d4b96b1d3b673635e4, type: 2}
   mergeDistance: 10
   rotMergeTime: 1
   players: []

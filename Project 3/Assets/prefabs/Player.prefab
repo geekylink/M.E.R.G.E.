@@ -395,7 +395,7 @@ MonoBehaviour:
   bulletVelocity: 10
   gravityMult: .5
   bounciness: .5
-  satSpawnRadius: 10
+  satSpawnRadius: 25
   maxOwnSats: 3
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}

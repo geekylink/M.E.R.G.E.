@@ -37,7 +37,6 @@ public class BaseSatellite : MonoBehaviour {
 
 	public void SetStartAngle(float angle) {
 		orbitAngle = angle;
-		print ("angle: " + orbitAngle);
 	}
 
 	// Updates the position of the turret's orbit
