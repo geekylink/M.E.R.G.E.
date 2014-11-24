@@ -8,6 +8,7 @@ public class MergeManager : MonoBehaviour {
 
 	//Image used to indicate players can merge, e.g., an Xbox 'A'
 	public GameObject mergeImage;
+    public GameObject mergeLine;
 	//maximum distance at which players can merge
 	public float mergeDistance;
 	//time it takes for players to merge into the ship
@@ -112,6 +113,32 @@ public class MergeManager : MonoBehaviour {
 							GameObject mImage = Instantiate(mergeImage) as GameObject;
 							mImage.transform.position = posCurr + dir/2;
 							mergeVisualCues.Add (mImage);
+
+                            if(mergeLine)
+                            { 
+                                GameObject mLine1 = Instantiate(mergeLine) as GameObject;
+                                GameObject mLine2 = Instantiate(mergeLine) as GameObject;
+
+                                LineRenderer mRender1 = mLine1.GetComponent<LineRenderer>();
+                                mRender1.SetPosition(0, posCurr);
+                                mRender1.SetPosition(1, posCurr + dir / 2);
+
+                                LineRenderer mRender2 = mLine2.GetComponent<LineRenderer>();
+                                mRender2.SetPosition(0, posComp);
+                                mRender2.SetPosition(1, posCurr + dir / 2);
+                                if(players[i].TryingToMerge)
+                                {
+                                    mRender1.SetColors(Color.green, new Color(0,200,0,166));
+                                }
+                                if (players[j].TryingToMerge)
+                                {
+                                    mRender2.SetColors(Color.green, new Color(0, 200, 0, 166));
+                                }
+                                mergeVisualCues.Add(mLine1);
+                                mergeVisualCues.Add(mLine2);
+
+                            }
+
 						}
 					}
 				}

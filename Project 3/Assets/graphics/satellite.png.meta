@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 8ab7bb886a76f4c4aa07080311bfc2e2
+guid: c083b17641b6f9c47bd6494174a89a47
 TextureImporter:
   fileIDToRecycleName:
-    21300000: enemies_0
-    21300002: enemies_1
-    21300004: enemies_2
+    21300000: satellite_0
+    21300002: satellite_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,33 +45,23 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: enemies_0
+    - name: satellite_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 125
-        width: 295
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemies_1
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 129
-        width: 118
+        y: 146
+        width: 127
         height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemies_2
+    - name: satellite_1
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 159
-        height: 64
+        width: 127
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

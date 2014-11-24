@@ -7,14 +7,21 @@ public class Bullet : MonoBehaviour {
 
 	public float lifeTime = 5;
     public GameObject explosion;
-
+    public Color color;
 
     float lifeCounter = 0;
 
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
+
+    public void SetColor(Color color)
+    {
+        this.GetComponent<SpriteRenderer>().color = color;
+        ParticleSystem sys = this.GetComponentInChildren<ParticleSystem>();
+        sys.startColor = color;
+    }
 
 	public void setDefaults(float angle, float velocity) {
 		Vector3 vel = Vector3.zero;

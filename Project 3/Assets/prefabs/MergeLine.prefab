@@ -8,10 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 212: {fileID: 21200000}
-  - 114: {fileID: 11400000}
+  - 120: {fileID: 12000000}
   m_Layer: 0
-  m_Name: MineSatellite
+  m_Name: MergeLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,36 +23,20 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.0686297417, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400000
-MonoBehaviour:
+--- !u!120 &12000000
+LineRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bab208c5fc200e4aa1cc32cefa676a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbitRadius: 10
-  orbitSpeed: .00999999978
-  orbitTarget: {fileID: 0}
-  creatorObj: {fileID: 0}
-  mineRate: 10
---- !u!212 &21200000
-SpriteRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
@@ -65,8 +48,19 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c083b17641b6f9c47bd6494174a89a47, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Positions:
+  - {x: 0, y: 0, z: 1}
+  - {x: 5, y: 5, z: 1}
+  m_Parameters:
+    startWidth: .300000012
+    endWidth: .300000012
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 2801795071
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 2801795071
+  m_UseWorldSpace: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

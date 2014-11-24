@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="newship3w.svg">
+   sodipodi:docname="satellite.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,19 +24,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="509.74891"
-     inkscape:cy="670.60906"
+     inkscape:zoom="1.4"
+     inkscape:cx="480.82325"
+     inkscape:cy="658.65751"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:snap-to-guides="true"
-     inkscape:snap-grids="true"
-     inkscape:window-width="1440"
-     inkscape:window-height="900"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
+     inkscape:snap-grids="false"
+     inkscape:window-width="944"
+     inkscape:window-height="1001"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
      inkscape:snap-page="false">
     <inkscape:grid
        type="xygrid"
@@ -58,28 +58,6 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-5"
-       width="20.000015"
-       height="19.999847"
-       x="-307.36218"
-       y="475"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(0,-1,1,0,0,0)" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9"
-       width="20.000015"
-       height="19.999847"
-       x="-307.36218"
-       y="515.00012"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(0,-1,1,0,0,0)" />
     <path
        style="fill:#ffffff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
        d="m 380,262.36218 0,40 10,10 40,0 10,-10 0,-40 -10,-10 -40,0 z"
@@ -89,56 +67,6 @@
        inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#0000ff;fill-opacity:1"
-       id="path3009"
-       sodipodi:cx="485"
-       sodipodi:cy="327.36218"
-       sodipodi:rx="15"
-       sodipodi:ry="15"
-       d="m 500,327.36218 a 15,15 0 0 1 -2e-5,0.023 L 485,327.36218 z"
-       sodipodi:start="0"
-       sodipodi:end="0.0015306072"
-       transform="translate(-25.355301,-12.928909)"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 497.57359,244.07792 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 L 540,286.5043 l 0,-14.14212 -28.28427,-28.28427 z"
-       id="path2985-6"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.81009252;stroke-miterlimit:4;stroke-dasharray:none"
-       id="path3785-0-7"
-       sodipodi:cx="552.5"
-       sodipodi:cy="272.36218"
-       sodipodi:rx="17.5"
-       sodipodi:ry="15"
-       d="m 570,272.36218 a 17.5,15 0 1 1 -35,0 17.5,15 0 1 1 35,0 z"
-       transform="matrix(0.80812236,0.80812236,-0.94280881,0.94280881,314.94251,-423.83988)"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.81009252;stroke-miterlimit:4;stroke-dasharray:none"
-       id="path3785-0-7-1"
-       sodipodi:cx="552.5"
-       sodipodi:cy="272.36218"
-       sodipodi:rx="17.5"
-       sodipodi:ry="15"
-       d="m 570,272.36218 a 17.5,15 0 1 1 -35,0 17.5,15 0 1 1 35,0 z"
-       transform="matrix(0.80812236,0.80812236,-0.94280881,0.94280881,391.15572,-260.05303)"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png" />
     <rect
        style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect3808-9-7"
@@ -150,39 +78,6 @@
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298"
        transform="matrix(0,-1,1,0,0,0)" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-7-0"
-       width="20.000015"
-       height="19.999847"
-       x="-696.95734"
-       y="123.28673"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-5-9"
-       width="20.000015"
-       height="19.999847"
-       x="-619.78198"
-       y="66.111374"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-4"
-       width="20.000015"
-       height="19.999847"
-       x="-648.06635"
-       y="94.395729"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
     <path
        sodipodi:type="arc"
        style="fill:#0000ff;fill-opacity:1"
@@ -200,125 +95,11 @@
        inkscape:export-ydpi="159.72298" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 497.57347,324.07792 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
-       id="path2985-6-8"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.81009252;stroke-miterlimit:4;stroke-dasharray:none"
-       id="path3785-0-7-2"
-       sodipodi:cx="552.5"
-       sodipodi:cy="272.36218"
-       sodipodi:rx="17.5"
-       sodipodi:ry="15"
-       d="m 570,272.36218 a 17.5,15 0 1 1 -35,0 17.5,15 0 1 1 35,0 z"
-       transform="matrix(0.80812236,0.80812236,-0.94280881,0.94280881,314.94239,-343.83988)"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-5-4"
-       width="20.000015"
-       height="19.999847"
-       x="-392.36218"
-       y="380.00015"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(0,-1,1,0,0,0)" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-55"
-       width="20.000015"
-       height="19.999847"
-       x="-392.36218"
-       y="420.00027"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(0,-1,1,0,0,0)" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#0000ff;fill-opacity:1"
-       id="path3009-1"
-       sodipodi:cx="485"
-       sodipodi:cy="327.36218"
-       sodipodi:rx="15"
-       sodipodi:ry="15"
-       d="m 500,327.36218 a 15,15 0 0 1 -2e-5,0.023 L 485,327.36218 z"
-       sodipodi:start="0"
-       sodipodi:end="0.0015306072"
-       transform="translate(-120.35515,72.071093)"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 402.57374,329.07792 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
-       id="path2985-6-7"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-5-9-5"
-       width="20.000015"
-       height="19.999847"
-       x="-612.71106"
-       y="-61.167736"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
-    <rect
-       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect3808-9-4-2"
-       width="20.000015"
-       height="19.999847"
-       x="-640.99542"
-       y="-32.883385"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#0000ff;fill-opacity:1"
-       id="path3009-8-7"
-       sodipodi:cx="485"
-       sodipodi:cy="327.36218"
-       sodipodi:rx="15"
-       sodipodi:ry="15"
-       d="m 500,327.36218 a 15,15 0 0 1 -2e-5,0.023 L 485,327.36218 z"
-       sodipodi:start="0"
-       sodipodi:end="0.0015306072"
-       transform="translate(-120.35527,152.07109)"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 402.57362,409.07792 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
-       id="path2985-6-8-6"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 497.57359,409.9358 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 L 540,452.36218 l 0,-14.14212 -28.28427,-28.28427 z"
+       d="m 498.07866,409.17819 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
        id="path2985-6-8-6-4"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png"
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298" />
     <rect
@@ -331,6 +112,58 @@
        inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298" />
+    <rect
+       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3808-9-7-0"
+       width="35.780903"
+       height="35.780602"
+       x="-689.31573"
+       y="24.830807"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png"
+       inkscape:export-xdpi="159.72298"
+       inkscape:export-ydpi="159.72298"
+       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+    <path
+       inkscape:export-ydpi="159.72298"
+       inkscape:export-xdpi="159.72298"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:connector-curvature="0"
+       id="path3896"
+       d="m 498.1093,491.75816 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <rect
+       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)"
+       inkscape:export-ydpi="159.72298"
+       inkscape:export-xdpi="159.72298"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png"
+       y="-33.540386"
+       x="-747.73022"
+       height="35.780602"
+       width="35.780903"
+       id="rect3898"
+       style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 499.97742,512.2575 9.86657,0 0,9.86656 9.86656,0 0,9.86657 -9.86656,0 0,9.86656 -9.86657,0 0,-9.86656 -9.86656,0 0,-9.86657 9.86656,0 z"
+       id="path2987"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png"
+       inkscape:export-xdpi="159.72298"
+       inkscape:export-ydpi="159.72298" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.63680267;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3785-0-7-1"
+       sodipodi:cx="552.5"
+       sodipodi:cy="272.36218"
+       sodipodi:rx="17.5"
+       sodipodi:ry="15"
+       d="m 570,272.36218 a 17.5,15 0 1 1 -35,0 17.5,15 0 1 1 35,0 z"
+       transform="matrix(0.39995896,0.39995896,-0.46661849,0.46661849,411.20832,96.794977)"
+       inkscape:export-xdpi="159.72298"
+       inkscape:export-ydpi="159.72298"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png" />
   </g>
   <g
      inkscape:groupmode="layer"

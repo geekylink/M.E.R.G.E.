@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   - 50: {fileID: 5000000}
   - 61: {fileID: 6100000}
   m_Layer: 10
@@ -29,6 +29,7 @@ GameObject:
   - 4: {fileID: 400002}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: eng1
   m_TagString: Untagged
@@ -61,11 +62,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.7490005, y: .242449999, z: 0}
-  m_LocalScale: {x: .899999976, y: .800000012, z: 1}
+  m_LocalPosition: {x: 17.7409992, y: -12.842, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400002}
   - {fileID: 400004}
+  - {fileID: 400002}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &400002
@@ -74,12 +75,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: .5, y: -.5, z: .5, w: -.5}
-  m_LocalPosition: {x: .238780007, y: -.00783819985, z: 0}
-  m_LocalScale: {x: .0900000036, y: 1, z: .5}
+  m_LocalRotation: {x: -.500000179, y: .500000179, z: -.499999881, w: .499999881}
+  m_LocalPosition: {x: .781679988, y: -.0207020007, z: 1}
+  m_LocalScale: {x: .200000003, y: 1, z: .75}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -91,7 +92,7 @@ Transform:
   m_LocalScale: {x: 7.03455162, y: 7.91384649, z: 6.3310771}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -143,9 +144,22 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .590000093, y: .27000007}
+  m_Size: {x: 1.59000003, y: .5}
   m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bc4f4fdcc8b154dac43745bbdaa64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayer: Engines
+  sortingOrder: 1
+--- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -159,9 +173,9 @@ MonoBehaviour:
   maxHealth: 1
   explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
   maxRotSpeed: 20
-  enginesTurnRight: []
-  enginesTurnLeft: []
-  enginesStraight: []
+  drop: {fileID: 0}
+  squadId: 0
+  currTarget: {fileID: 0}
   sphere: {fileID: 100004}
   projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
   moveSpeed: 2
@@ -192,7 +206,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -356,7 +370,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -441,7 +455,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 400
+      scalar: 600
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -518,7 +532,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 1
   RotationModule:
-    enabled: 1
+    enabled: 0
     curve:
       scalar: 8.72664642
       maxCurve:

@@ -74,6 +74,7 @@ public class Player : BaseShip {
 
 		leftEnginePiece.particleSystem.enableEmission = true;
 		rightEnginePiece.particleSystem.enableEmission = true;
+
 	}
 	
 	// Update is called once per frame
@@ -155,6 +156,7 @@ public class Player : BaseShip {
 			int id = MergeManager.S.players.IndexOf(this);
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
 
+            b.SetColor(playerColor);
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
 			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 			lastRightFire = fireRate;
