@@ -221,16 +221,24 @@ public class PlayerManager : MonoBehaviour {
 			flashingSprintTimer += 0.1f;
 			if(flashingSprintTimer > 1){
 				flashingSprintTimer = 0;
-				pScript.body.GetComponent<SpriteRenderer>().enabled = !pScript.body.GetComponent<SpriteRenderer>().enabled;
-			}
+				//pScript.body.GetComponent<SpriteRenderer>().enabled = !pScript.body.GetComponent<SpriteRenderer>().enabled;
+			
+                foreach(SpriteRenderer sp in player.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sp.enabled = !sp.enabled;
+                }
+            }
 
 			yield return 0;
 		}
 
 		
 		player.collider2D.enabled = true;
-		pScript.body.GetComponent<SpriteRenderer>().enabled = true;
-		pScript.isInvulnerable = false;
+        foreach (SpriteRenderer sp in player.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sp.enabled = true;
+        } 
+        pScript.isInvulnerable = false;
 	}
 
 	IEnumerator Respawn(int arrayPos, Color playerColor, int mergeIndex){
