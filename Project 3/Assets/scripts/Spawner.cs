@@ -18,11 +18,6 @@ public class Spawner : MonoBehaviour {
 	public Vector3 bossSpawnLoc;
 	public UnityEngine.UI.Text bossTimer;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
 	IEnumerator SpawnCoroutine(){
 		float timer = 0;
 		
@@ -61,29 +56,47 @@ public class Spawner : MonoBehaviour {
 	}
 
 	IEnumerator SpawnSquad(){
-		int i = 0;
-		GameObject eSquadGO = squadPrefab;
-		EnemySquad eSquad = eSquadGO.GetComponent<EnemySquad>();
-		eSquad.squadMembers = new List<EnemyBaseShip> ();
-		eSquad.target = getRandomPlayer ();
-
-		while(eSquad.target == null){
-			
-			eSquad.target = getRandomPlayer ();
+		float timer = 0;
+		
+		while(timer < 7){
+			timer += Time.deltaTime * Time.timeScale / spawnTimer;
 			yield return 0;
 		}
 
-		SquadManager.S.squads.Add (eSquad);
-		foreach (int enemy in squad1) {
-			GameObject squadMemberGO = Instantiate(enemiesToSpawn[enemy]) as GameObject;
+		GameObject eSquadGO = squadPrefab;
+		EnemySquad eSquad = eSquadGO.GetComponent<EnemySquad>();
+
+		while(eSquad.target == null){
+			eSquad.target = getRandomPlayer();
+			yield return 0;
+		}
+
+		int i = Random.Range (0, 4);
+		Vector2 loc = SquadManager.S.startingLocations [Random.Range (0, SquadManager.S.startingLocations.Count)];
+		List<Vector2> enemyLocs = new List<Vector2>();
+		if (i == 0) {
+			enemyLocs = SquadManager.S.ThreeSquad (loc);
+		} else if (i == 1) {
+			enemyLocs = SquadManager.S.FourSquad (loc);
+		} else if (i == 2) {
+			enemyLocs = SquadManager.S.FiveSquad (loc);
+		} else {
+			enemyLocs = SquadManager.S.SevenSquad (loc);
+		}
+
+		eSquad.squadMembers = new List<EnemyBaseShip> ();
+
+		foreach (Vector2 eLoc in enemyLocs) {
+			GameObject squadMemberGO = Instantiate(enemiesToSpawn[Random.Range(0,2)]) as GameObject;
 			EnemyBaseShip ship = squadMemberGO.GetComponent<EnemyBaseShip>();
 			eSquad.squadMembers.Add(ship);
 			ship.squadId = SquadManager.nextID;
-			squadMemberGO.transform.position = spawnLocs[i++];
+			squadMemberGO.transform.position = eLoc;
 			ship.currTarget = eSquad.target;
 		}
+		SquadManager.S.squads.Add (eSquad);
 		SquadManager.nextID++;
-		yield return 0;
+		StartCoroutine (SpawnSquad ());
 	}
 
 	IEnumerator SpawnBoss(){
@@ -130,7 +143,4 @@ public class Spawner : MonoBehaviour {
 			
 	}
 
-	// Update is called once per frame
-	void Update () {
-	}
 }

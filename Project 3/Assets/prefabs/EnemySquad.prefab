@@ -39,8 +39,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d98e82072272d84aab11dbfb37b5444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squadMembers: []
-  distanceLimit: 10
+  squadMembers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  distanceLimit: 3
   velocityMatchFactor: 8
   towardTargetFactor: 100
   towardCenterFactor: 100

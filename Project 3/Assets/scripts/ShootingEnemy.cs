@@ -26,7 +26,7 @@ public class ShootingEnemy : EnemyBaseShip
             var dist = targetPos - transform.position;
             if (dist.magnitude > hoverDistance){
 				if(squadId != 0){
-					rigidbody2D.velocity = dist.normalized * moveSpeed + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
+					rigidbody2D.velocity = dist.normalized * moveSpeed;// + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
 				}
 				else{
 					rigidbody2D.velocity = dist.normalized * moveSpeed;

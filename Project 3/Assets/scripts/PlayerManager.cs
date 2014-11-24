@@ -35,9 +35,12 @@ public class PlayerManager : MonoBehaviour {
 
 	void InitialSpawn(){
 
-		players = new GameObject[InputManager.Devices.Count];
+		//players = new GameObject[InputManager.Devices.Count];
+		players = new GameObject[4];
+		
 
-		for(int i = 0; i < InputManager.Devices.Count; ++i){
+		//for(int i = 0; i < InputManager.Devices.Count; ++i){
+		for(int i = 0; i < 4; ++i){
 			SpawnPlayer(i, playerColors[i], i);
 		}
 

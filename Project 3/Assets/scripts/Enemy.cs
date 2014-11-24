@@ -23,7 +23,7 @@ public class Enemy : EnemyBaseShip {
             targetPos = currTarget.transform.position;
             var dir = targetPos - transform.position;
 			if(squadId != 0){
-				this.rigidbody2D.velocity = dir.normalized * moveSpeed + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
+				this.rigidbody2D.velocity = dir.normalized * moveSpeed ;//+ SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
 			}
 			else{
 				this.rigidbody2D.velocity = dir.normalized * moveSpeed;

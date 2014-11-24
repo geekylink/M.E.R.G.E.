@@ -14,6 +14,7 @@ public class EnemySquad : MonoBehaviour {
 	public bool disperseSquad;
 	public int squadID;
 	public GameObject target;
+	public float vLimit;
 	// Use this for initialization
 	void Start () {
 		//squadMembers = new List<EnemyBaseShip> ();
@@ -21,12 +22,7 @@ public class EnemySquad : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		foreach (EnemyBaseShip enemy in squadMembers) {
-			if(target){
-				enemy.currTarget = target;
-				ApplyBoids(enemy);
-			}
-		}
+
 	}
 
 	public Vector2 ApplyBoids(EnemyBaseShip enemy){
@@ -42,8 +38,11 @@ public class EnemySquad : MonoBehaviour {
 		if (avoidTarget) {
 			v4 *= -1f;
 		}
-
-		return v1 + v2 + v3 + v4;
+		Vector2 velocity = v1 + v3 + v4;
+		if (velocity.magnitude > vLimit) {
+			return new Vector2(velocity.normalized.x / Mathf.Abs(velocity.normalized.x), velocity.normalized.y / Mathf.Abs(velocity.normalized.y)) * vLimit;
+		}
+			return v1 + v2 + v3 + v4;
 	}
 
 	Vector2 TowardCenter(EnemyBaseShip enemy){
