@@ -48,8 +48,11 @@ public class Enemy : EnemyBaseShip {
 			GameObject playerGO = col.gameObject;
 			Player player = playerGO.GetComponent("Player") as Player;
 			if(player){
-				player.TakeDamage(1);
-				Die ();
+				if(!player.isInvulnerable){
+					
+					player.TakeDamage(1);
+					Die ();
+				}
 			}
         }
 	}

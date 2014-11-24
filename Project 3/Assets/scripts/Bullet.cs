@@ -39,15 +39,31 @@ public class Bullet : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
+		if(col.gameObject.tag == "Satellite"){
+			BaseSatellite sat = col.collider.GetComponent<BaseSatellite>();
+			sat.TakeDamage(damageDealt);
+			if (explosion != null)
+			{
+				Instantiate(explosion, this.transform.position, Quaternion.identity);
+			}
+			Destroy(this.gameObject);
+
+			return;
+
+		}
+
         BaseShip bs = col.collider.GetComponent<BaseShip>();
         if(bs != null)
         { 
-            bs.TakeDamage(damageDealt);
-            if (explosion != null)
-            {
-                Instantiate(explosion, this.transform.position, Quaternion.identity);
-            }
-            Destroy(this.gameObject);
+			if(!bs.isInvulnerable){
+				
+				bs.TakeDamage(damageDealt);
+				if (explosion != null)
+				{
+					Instantiate(explosion, this.transform.position, Quaternion.identity);
+				}
+				Destroy(this.gameObject);
+			}
         }
 
 		/*else{
