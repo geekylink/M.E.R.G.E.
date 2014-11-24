@@ -18,7 +18,7 @@ public class BaseSatellite : MonoBehaviour {
 	public int health;
 
 
-	private float orbitAngle = 0;
+	public float orbitAngle = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -26,12 +26,18 @@ public class BaseSatellite : MonoBehaviour {
 		//This puts the satellite at the angle that is set in the inspector (for planets and such that are already spawned)
 		float angle = Vector3.Angle(transform.position - orbitTarget.transform.position, Vector3.right);
 		float sign = Mathf.Sign(Vector3.Dot(transform.position - orbitTarget.transform.position, Vector3.right));
-		orbitAngle = Mathf.Deg2Rad * sign * angle;
+		//orbitAngle = Mathf.Deg2Rad * sign * angle;
+		//print ("why angle: " + orbitAngle);
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		UpdateOrbit ();
+	}
+
+	public void SetStartAngle(float angle) {
+		orbitAngle = angle;
+		print ("angle: " + orbitAngle);
 	}
 
 	// Updates the position of the turret's orbit

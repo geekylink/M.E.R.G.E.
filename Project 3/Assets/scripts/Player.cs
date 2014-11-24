@@ -279,16 +279,24 @@ public class Player : BaseShip {
 		BaseSatellite satTurret = autoSat.GetComponent ("BaseSatellite") as BaseSatellite;
 		satTurret.orbitTarget = orbitObj;
 		satTurret.creatorObj = this.gameObject;
-		if(orbitObj != this.gameObject){
-			planet.AddSat(satTurret, CapturePoint.ControlledBy.Player);
+		if (orbitObj != this.gameObject) {
+			planet.AddSat (satTurret, CapturePoint.ControlledBy.Player);
 			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
+		} else {
+			if (orbitObj == this.gameObject) {
+				// Position each satellite equal distance apart
+				float startAngle = ((2 * Mathf.PI) / maxOwnSats);
+				if (ownSats.Count > 0) {
+					BaseSatellite sat = ownSats[ownSats.Count-1] as BaseSatellite;
+					startAngle += sat.orbitAngle;
+				}
+				satTurret.SetStartAngle (startAngle);
+				ownSats.Add (satTurret);
+				satTurret.orbiting = BaseSatellite.OrbitingType.Player;
+			}
+			satTurret.team = BaseSatellite.SatelliteTeam.Player;
+			autoSat.layer = 8;
 		}
-		else{
-			ownSats.Add(satTurret);
-			satTurret.orbiting = BaseSatellite.OrbitingType.Player;
-		}
-		satTurret.team = BaseSatellite.SatelliteTeam.Player;
-		autoSat.layer = 8;
 	}
 
 	void GetOrbitObj(ref GameObject orbitObj, ref CapturePoint planet){

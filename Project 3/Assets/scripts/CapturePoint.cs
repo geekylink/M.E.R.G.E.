@@ -70,6 +70,13 @@ public class CapturePoint : MonoBehaviour {
 	}
 
 	public void AddSat(BaseSatellite sat, ControlledBy capturedBy){
+		float startAngle = ((2 * Mathf.PI) / maxSatellites);
+		if (satsInOrbit.Count > 0) {
+			BaseSatellite lastSat = satsInOrbit[satsInOrbit.Count-1] as BaseSatellite;
+			startAngle += lastSat.orbitAngle;
+		}
+		sat.SetStartAngle (startAngle);
+
 		satsInOrbit.Add (sat);
 		controlledBy = capturedBy;
 		ChangeController();
