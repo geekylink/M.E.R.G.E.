@@ -12,12 +12,16 @@ public class BaseShip : MonoBehaviour {
 
     public GameObject drop;
 
+	public bool isInvulnerable = false;
+
 	// Use this for initialization
 	public virtual void Start () {
 		health = maxHealth;
 	}
 
 	public void TakeDamage(int amount) {
+		if(isInvulnerable) return;
+
 		health -= amount;
 		if (health <= 0) {
 			health = 0;
@@ -54,15 +58,15 @@ public class BaseShip : MonoBehaviour {
 
 	public void RestrictToMap(){
 		Vector2 pos = transform.position;
-		if(Mathf.Abs (pos.x) > 120	){
-			pos.x = 120 * Mathf.Abs (pos.x) / pos.x;
+		if(Mathf.Abs (pos.x) > GameManager.S.mapSize	){
+			pos.x = GameManager.S.mapSize * Mathf.Abs (pos.x) / pos.x;
 
 			Vector3 vel = transform.root.rigidbody2D.velocity;
 			vel.x = 0;
 			transform.root.rigidbody2D.velocity = vel;
 		}
-		if(Mathf.Abs (pos.y) > 120){
-			pos.y = 120 * Mathf.Abs (pos.y) / pos.y;
+		if(Mathf.Abs (pos.y) > GameManager.S.mapSize){
+			pos.y = GameManager.S.mapSize * Mathf.Abs (pos.y) / pos.y;
 
 			Vector3 vel = transform.root.rigidbody2D.velocity;
 			vel.y = 0;

@@ -11,7 +11,8 @@ public class MergeManager : MonoBehaviour {
     public GameObject mergeLine;
 	//maximum distance at which players can merge
 	public float mergeDistance;
-	//time it takes for players to merge into the ship
+	//time it takes for players to merge into the ship.
+
 	public float rotMergeTime;
 
 	public List<Player> players = new List<Player>();
