@@ -42,9 +42,11 @@ public class CapturePoint : MonoBehaviour {
 			TurretSatellite satTurret = autoSat.GetComponent ("TurretSatellite") as TurretSatellite;
 			satTurret.orbitTarget = this.gameObject;
 			satTurret.creatorObj = this.gameObject;
-			satTurret.targetObject = this.gameObject;
 			autoSat.layer = 8;
 			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
+			satTurret.team = BaseSatellite.SatelliteTeam.Player;
+
+			satsInOrbit.Add (satTurret);
 			
 		}
 		if(controlledBy == ControlledBy.Enemy){
@@ -52,15 +54,18 @@ public class CapturePoint : MonoBehaviour {
 			TurretSatellite satTurret = autoSat.GetComponent ("TurretSatellite") as TurretSatellite;
 			satTurret.orbitTarget = this.gameObject;
 			satTurret.creatorObj = this.gameObject;
-			satTurret.targetObject = this.gameObject;
 			autoSat.layer = 10;
 			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
+			satTurret.team = BaseSatellite.SatelliteTeam.Enemy;
+			satsInOrbit.Add (satTurret);
 		}
 		//subPoints = GetComponentsInChildren<SubCapturePoint> ();
 	}
 
-	public bool CanAddSat(){
+	public bool CanAddSat(ControlledBy tryingToAdd){
 		if(satsInOrbit.Count >= maxSatellites) return false;
+		if(tryingToAdd == ControlledBy.Enemy && controlledBy == ControlledBy.Player) return false;
+		if(controlledBy == ControlledBy.Enemy && tryingToAdd == ControlledBy.Player) return false;
 		return true;
 	}
 

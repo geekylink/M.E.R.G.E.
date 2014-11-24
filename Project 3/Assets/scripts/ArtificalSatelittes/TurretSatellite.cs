@@ -11,6 +11,7 @@ public class TurretSatellite : BaseSatellite {
 
 	public GameObject targetObject;
 	public GameObject ammoPrefab;
+	public GameObject enemyAmmoPrefab;
 
 	private float lastFire = 0;
 
@@ -38,12 +39,18 @@ public class TurretSatellite : BaseSatellite {
 		}
 
 		hasTarget = false;
-		GameObject [] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		GameObject [] enemies;
+
+		if(team == SatelliteTeam.Player){
+			enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		}
+		else{
+			enemies = GameObject.FindGameObjectsWithTag ("Player");
+		}
 		foreach (GameObject obj in enemies) {
-			Enemy enemy = obj.GetComponent("Enemy") as Enemy;
-			Vector3 dist = enemy.transform.position - this.transform.position;
+			Vector3 dist = obj.transform.position - this.transform.position;
 			if (dist.magnitude < targetRadius) {
-				targetObject = enemy.gameObject;
+				targetObject = obj;
 				hasTarget = true;
 				return;
 			}
@@ -54,7 +61,14 @@ public class TurretSatellite : BaseSatellite {
 	private void Fire() {
 		if (hasTarget) {
 			if (lastFire <= 0) {
-				GameObject bulletGO = Instantiate (ammoPrefab, this.transform.position, this.transform.rotation) as GameObject;
+				GameObject bulletGO;
+
+				if(team == SatelliteTeam.Player){
+					bulletGO = Instantiate (ammoPrefab, this.transform.position, this.transform.rotation) as GameObject;
+				}
+				else{
+					bulletGO = Instantiate (enemyAmmoPrefab, this.transform.position, this.transform.rotation) as GameObject;
+				}
 				Bullet b = bulletGO.GetComponent ("Bullet") as Bullet;
 
 				Vector2 ammoVel = Vector2.zero;

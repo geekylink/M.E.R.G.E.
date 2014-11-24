@@ -67,6 +67,7 @@ public class Player : BaseShip {
 	private int numResources;
 
 	private ArrayList ownSats;
+	List<GameObject> ghostSatellites = new List<GameObject>();
 	public int playerManagerArrayPos = -1;
 
 	// Use this for initialization
@@ -271,24 +272,42 @@ public class Player : BaseShip {
 		ownSats.Remove (sat);
 	}
 
-	// Spawns a turret
-	public void SpawnTurret(BaseSatellite.SatelliteType Type) {
+	void SpawnSpecificSat(GameObject prefab, GameObject orbitObj, CapturePoint planet){
+		GameObject autoSat = Instantiate (prefab, orbitObj.transform.position, this.transform.rotation) as GameObject;
+		BaseSatellite satTurret = autoSat.GetComponent ("BaseSatellite") as BaseSatellite;
+		satTurret.orbitTarget = orbitObj;
+		satTurret.creatorObj = this.gameObject;
+		if(orbitObj != this.gameObject){
+			planet.AddSat(satTurret, CapturePoint.ControlledBy.Player);
+			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
+		}
+		else{
+			ownSats.Add(satTurret);
+			satTurret.orbiting = BaseSatellite.OrbitingType.Player;
+		}
+		satTurret.team = BaseSatellite.SatelliteTeam.Player;
+		autoSat.layer = 8;
+	}
 
-		GameObject orbitObj = this.gameObject;
-		CapturePoint planet = null;
-
-		// Find any planets nearby to spawn the satellite around
+	void GetOrbitObj(ref GameObject orbitObj, ref CapturePoint planet){
 		GameObject[] planetObjs = GameObject.FindGameObjectsWithTag ("Planet");
 		foreach (GameObject planetObj in planetObjs) {
 			Vector3 dist = planetObj.transform.position - this.transform.position;
 			if (dist.magnitude < satSpawnRadius) {
 				planet = planetObj.GetComponent<CapturePoint>();
-				if(!planet.CanAddSat()) continue;
+				if(!planet.CanAddSat(CapturePoint.ControlledBy.Player)) continue;
 				orbitObj = planetObj;
 				break;
 			}
 		}
 
+	}
+
+	// Spawns a turret
+	public void SpawnTurret(BaseSatellite.SatelliteType Type) {
+		GameObject orbitObj = this.gameObject;
+		CapturePoint planet = null;
+		GetOrbitObj(ref orbitObj, ref planet);
 		if(orbitObj == this.gameObject){
 			// Limit the number of satellites we can make
 			if (ownSats.Count >= maxOwnSats) {
@@ -298,51 +317,58 @@ public class Player : BaseShip {
 
 		switch (Type) {
 		case BaseSatellite.SatelliteType.TURRET:
-			GameObject autoSat = Instantiate (autoTurretPrefab, this.transform.position, this.transform.rotation) as GameObject;
-			TurretSatellite satTurret = autoSat.GetComponent ("TurretSatellite") as TurretSatellite;
-			satTurret.orbitTarget = orbitObj;
-			satTurret.creatorObj = this.gameObject;
-			satTurret.targetObject = this.gameObject;
-			if(orbitObj != this.gameObject){
-				planet.AddSat(satTurret, CapturePoint.ControlledBy.Player);
-				satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
-			}
-			else{
-				ownSats.Add(satTurret);
-				satTurret.orbiting = BaseSatellite.OrbitingType.Player;
-			}
-			autoSat.layer = 8;
+			SpawnSpecificSat(autoTurretPrefab, orbitObj, planet);
 			break;
 		case BaseSatellite.SatelliteType.HEALER:
-			GameObject healSat = Instantiate (healSatPrefab, this.transform.position, this.transform.rotation) as GameObject;
-			HealerSatellite satHealer = healSat.GetComponent ("HealerSatellite") as HealerSatellite;
-			satHealer.orbitTarget = orbitObj;
-			satHealer.creatorObj = this.gameObject;
-			if(orbitObj != this.gameObject){
-				planet.AddSat(satHealer, CapturePoint.ControlledBy.Player);
-				satHealer.orbiting = BaseSatellite.OrbitingType.Planet;
-			}
-			else{
-				ownSats.Add(satHealer);
-				satHealer.orbiting = BaseSatellite.OrbitingType.Player;
-			}
-			healSat.layer = 8;
+			SpawnSpecificSat(healSatPrefab, orbitObj, planet);
 			break;
 		case BaseSatellite.SatelliteType.MINER:
-			GameObject mineSat = Instantiate (mineSatPrefab, this.transform.position, this.transform.rotation) as GameObject;
-			MinerSatellite satMine = mineSat.GetComponent ("MinerSatellite") as MinerSatellite;
-			satMine.orbitTarget = orbitObj;
-			satMine.creatorObj = this.gameObject;
-			if(orbitObj != this.gameObject){
-				planet.AddSat(satMine, CapturePoint.ControlledBy.Player);
-				satMine.orbiting = BaseSatellite.OrbitingType.Planet;
-			}
-			else{
-				ownSats.Add(satMine);
-				satMine.orbiting = BaseSatellite.OrbitingType.Player;
-			}
-			mineSat.layer = 8;
+			SpawnSpecificSat(mineSatPrefab, orbitObj, planet);
 			break;
 		}
+	}
+
+	
+	
+	public void UnshowSats(){
+		for(int i = 0; i < ghostSatellites.Count; ++i){
+			Destroy(ghostSatellites[i]);
+		}
+		ghostSatellites.RemoveRange(0, ghostSatellites.Count);
+	}
+	
+	public void ShowSats(){
+		UnshowSats();
+		
+		
+		GameObject orbitObj = this.gameObject;
+		CapturePoint planet = null;
+		GetOrbitObj(ref orbitObj, ref planet);
+		if(orbitObj == this.gameObject){
+			// Limit the number of satellites we can make
+			if (ownSats.Count >= maxOwnSats) {
+				return;
+			}
+		}
+		
+		
+		GameObject turret = new GameObject();
+		turret.transform.position = orbitObj.transform.position + Vector3.down * 7;
+		turret.AddComponent<SpriteRenderer>();
+		turret.GetComponent<SpriteRenderer>().sprite = autoTurretPrefab.GetComponent<SpriteRenderer>().sprite;
+		
+		GameObject healer = new GameObject();
+		healer.transform.position = orbitObj.transform.position + Vector3.up * 7;
+		healer.AddComponent<SpriteRenderer>();
+		healer.GetComponent<SpriteRenderer>().sprite = healSatPrefab.GetComponent<SpriteRenderer>().sprite;
+		
+		GameObject miner = new GameObject();
+		miner.transform.position = orbitObj.transform.position + Vector3.right * 7;
+		miner.AddComponent<SpriteRenderer>();
+		miner.GetComponent<SpriteRenderer>().sprite = mineSatPrefab.GetComponent<SpriteRenderer>().sprite;
+		
+		ghostSatellites.Add (turret);
+		ghostSatellites.Add (healer);
+		ghostSatellites.Add (miner);
 	}
 }

@@ -89,17 +89,24 @@ public class PlayerManager : MonoBehaviour {
 			rightAngle = 0;
 		}
 
-		if (device.DPadDown.WasPressed) {
-			player.SpawnTurret(BaseSatellite.SatelliteType.TURRET);
+		if(device.Action3){
+			player.ShowSats();
+			if (device.DPadDown.WasPressed) {
+				player.SpawnTurret(BaseSatellite.SatelliteType.TURRET);
+			}
+			
+			if (device.DPadUp.WasPressed) {
+				player.SpawnTurret(BaseSatellite.SatelliteType.HEALER);
+			}
+			
+			if (device.DPadRight.WasPressed) {
+				player.SpawnTurret(BaseSatellite.SatelliteType.MINER);
+			}
+		}
+		else{
+			player.UnshowSats();
 		}
 
-		if (device.DPadUp.WasPressed) {
-			player.SpawnTurret(BaseSatellite.SatelliteType.HEALER);
-		}
-
-		if (device.DPadRight.WasPressed) {
-			player.SpawnTurret(BaseSatellite.SatelliteType.MINER);
-		}
 
 		// Updates angles
 

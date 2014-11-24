@@ -4,6 +4,7 @@ using System.Collections;
 public class BaseSatellite : MonoBehaviour {
 	public enum OrbitingType {Player, Planet};
 	public enum SatelliteType { TURRET, HEALER, MINER };
+	public enum SatelliteTeam {Player, Enemy};
 
 	public int orbitRadius = 10;
 	public float orbitSpeed = 0.01f;
@@ -12,6 +13,7 @@ public class BaseSatellite : MonoBehaviour {
 	public GameObject explosion;
 
 	public OrbitingType orbiting;
+	public SatelliteTeam team;
 
 	public int health;
 

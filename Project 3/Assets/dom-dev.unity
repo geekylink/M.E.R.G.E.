@@ -876,6 +876,7 @@ MonoBehaviour:
   creatorObj: {fileID: 0}
   explosion: {fileID: 0}
   orbiting: 0
+  team: 0
   health: 0
 --- !u!114 &555395490
 MonoBehaviour:
@@ -1233,6 +1234,7 @@ MonoBehaviour:
   creatorObj: {fileID: 0}
   explosion: {fileID: 0}
   orbiting: 0
+  team: 0
   health: 0
 --- !u!114 &1043585240
 MonoBehaviour:
@@ -1301,6 +1303,7 @@ MonoBehaviour:
   creatorObj: {fileID: 0}
   explosion: {fileID: 0}
   orbiting: 0
+  team: 0
   health: 0
 --- !u!114 &1078075269
 MonoBehaviour:
