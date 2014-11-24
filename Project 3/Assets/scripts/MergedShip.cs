@@ -47,15 +47,15 @@ public class MergedShip : MonoBehaviour {
 
 	public void RestrictToMap(){
 		Vector2 pos = transform.position;
-		if(Mathf.Abs (pos.x) > 120	){
-			pos.x = 120 * Mathf.Abs (pos.x) / pos.x;
+		if(Mathf.Abs (pos.x) > GameManager.S.mapSize	){
+			pos.x = GameManager.S.mapSize * Mathf.Abs (pos.x) / pos.x;
 			
 			Vector3 vel = this.rigidbody2D.velocity;
 			vel.x = 0;
 			this.rigidbody2D.velocity = vel;
 		}
-		if(Mathf.Abs (pos.y) > 120){
-			pos.y = 120 * Mathf.Abs (pos.y) / pos.y;
+		if(Mathf.Abs (pos.y) > GameManager.S.mapSize){
+			pos.y = GameManager.S.mapSize * Mathf.Abs (pos.y) / pos.y;
 			
 			Vector3 vel = this.rigidbody2D.velocity;
 			vel.y = 0;
@@ -169,6 +169,7 @@ public class MergedShip : MonoBehaviour {
 		float t = 0;
 		while(t < 1){
 			t += Time.deltaTime * Time.timeScale / rotMergeTime;
+			newPos = transform.position;
 			
 			player.transform.right = Vector2.Lerp(oldRight, newRight, t);
 			player.transform.position = Vector2.Lerp (oldPos, newPos, t);

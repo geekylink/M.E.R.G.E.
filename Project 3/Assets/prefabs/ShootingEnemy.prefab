@@ -36,7 +36,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +47,7 @@ GameObject:
   - 4: {fileID: 400004}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: eng1
   m_TagString: Untagged
@@ -61,7 +62,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.76599979, y: 3.02489996, z: 0}
+  m_LocalPosition: {x: 22.0292397, y: -13.7031145, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -86,9 +87,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: .774339974, z: 4.61550016e-08}
-  m_LocalScale: {x: .300000012, y: 1, z: 1}
+  m_LocalRotation: {x: -.707106829, y: 2.24010674e-15, z: 2.24010674e-15, w: .707106829}
+  m_LocalPosition: {x: .00641980022, y: .740570009, z: 1}
+  m_LocalScale: {x: .200000003, y: 1, z: .75}
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 1
@@ -159,16 +160,28 @@ MonoBehaviour:
   maxHealth: 2
   explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
   maxRotSpeed: 0
-  enginesTurnRight: []
-  enginesTurnLeft: []
-  enginesStraight: []
   drop: {fileID: 0}
+  squadId: 0
+  currTarget: {fileID: 0}
   sphere: {fileID: 100002}
   projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
   moveSpeed: 2
   fireRate: 2
   hoverDistance: 6
   projectileSpeed: 4
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bc4f4fdcc8b154dac43745bbdaa64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayer: Engines
+  sortingOrder: 1
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -194,7 +207,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -358,7 +371,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -443,7 +456,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 400
+      scalar: 600
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -491,10 +504,10 @@ ParticleSystem:
       maxCurve:
         serializedVersion: 2
         m_Curve:
-        - time: 0
-          value: .513513565
-          inSlope: .100385152
-          outSlope: .100385152
+        - time: .00274725282
+          value: .324324369
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
         - time: 1
           value: 0
@@ -520,7 +533,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 1
   RotationModule:
-    enabled: 1
+    enabled: 0
     curve:
       scalar: 8.72664642
       maxCurve:

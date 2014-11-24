@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject playerPrefab;
 
 	public float respawnTime;
+	public float respawnInvunerablityTime;
 
 	public List<Color> playerColors;
 	public List<UnityEngine.UI.Text> playerResourceTexts;
@@ -31,20 +32,17 @@ public class PlayerManager : MonoBehaviour {
 			if(this != S)
 				Destroy(this.gameObject);
 		}
+
+		for(int i = 0; i < GameManager.S.playerColors.Count; ++i){
+			playerColors[i] = GameManager.S.playerColors[i];
+		}
 	}
 
 	void InitialSpawn(){
-
-		//players = new GameObject[InputManager.Devices.Count];
-		players = new GameObject[4];
-		
-
-		//for(int i = 0; i < InputManager.Devices.Count; ++i){
-		for(int i = 0; i < 4; ++i){
-			SpawnPlayer(i, playerColors[i], i);
+		players = new GameObject[InputManager.Devices.Count];
+		for(int i = 0; i < InputManager.Devices.Count; ++i){
+			SpawnPlayer(i, playerColors[i], i, false);
 		}
-
-
 	}
 
 	IEnumerator SpawnAtEndOfFrame(){
@@ -91,17 +89,24 @@ public class PlayerManager : MonoBehaviour {
 			rightAngle = 0;
 		}
 
-		if (device.DPadDown.WasPressed) {
-			player.SpawnTurret(BaseSatellite.SatelliteType.TURRET);
+		if(device.Action3){
+			player.ShowSats();
+			if (device.DPadDown.WasPressed) {
+				player.SpawnTurret(BaseSatellite.SatelliteType.TURRET);
+			}
+			
+			if (device.DPadUp.WasPressed) {
+				player.SpawnTurret(BaseSatellite.SatelliteType.HEALER);
+			}
+			
+			if (device.DPadRight.WasPressed) {
+				player.SpawnTurret(BaseSatellite.SatelliteType.MINER);
+			}
+		}
+		else{
+			player.UnshowSats();
 		}
 
-		if (device.DPadUp.WasPressed) {
-			player.SpawnTurret(BaseSatellite.SatelliteType.HEALER);
-		}
-
-		if (device.DPadRight.WasPressed) {
-			player.SpawnTurret(BaseSatellite.SatelliteType.MINER);
-		}
 
 		// Updates angles
 
@@ -162,7 +167,7 @@ public class PlayerManager : MonoBehaviour {
 
 	}
 
-	void SpawnPlayer(int arrayPos, Color playerColor, int mergeIndex){
+	void SpawnPlayer(int arrayPos, Color playerColor, int mergeIndex, bool isInvulnerable){
 		GameObject playerGO = Instantiate(playerPrefab) as GameObject;
 
 		Vector2 pos = camera.transform.position;
@@ -195,6 +200,37 @@ public class PlayerManager : MonoBehaviour {
 
 		MergeManager.S.AddPlayer(pScript, mergeIndex);
 
+		if(isInvulnerable){
+			StartCoroutine(RespawnInvulnerability(playerGO));
+		}
+
+	}
+
+	IEnumerator RespawnInvulnerability(GameObject player){
+		Player pScript = player.GetComponent<Player>();
+		pScript.isInvulnerable = true;
+		player.collider2D.enabled = false;
+
+		float t = 0;
+
+		float flashingSprintTimer = 0;
+
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / respawnInvunerablityTime;
+
+			flashingSprintTimer += 0.1f;
+			if(flashingSprintTimer > 1){
+				flashingSprintTimer = 0;
+				pScript.body.GetComponent<SpriteRenderer>().enabled = !pScript.body.GetComponent<SpriteRenderer>().enabled;
+			}
+
+			yield return 0;
+		}
+
+		
+		player.collider2D.enabled = true;
+		pScript.body.GetComponent<SpriteRenderer>().enabled = true;
+		pScript.isInvulnerable = false;
 	}
 
 	IEnumerator Respawn(int arrayPos, Color playerColor, int mergeIndex){
@@ -204,7 +240,7 @@ public class PlayerManager : MonoBehaviour {
 			yield return 0;
 		}
 
-		SpawnPlayer(arrayPos, playerColor, mergeIndex);
+		SpawnPlayer(arrayPos, playerColor, mergeIndex, true);
 
 	}
 

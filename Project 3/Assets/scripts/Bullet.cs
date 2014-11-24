@@ -7,14 +7,21 @@ public class Bullet : MonoBehaviour {
 
 	public float lifeTime = 5;
     public GameObject explosion;
-
+    public Color color;
 
     float lifeCounter = 0;
 
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
+
+    public void SetColor(Color color)
+    {
+        this.GetComponent<SpriteRenderer>().color = color;
+        ParticleSystem sys = this.GetComponentInChildren<ParticleSystem>();
+        sys.startColor = color;
+    }
 
 	public void setDefaults(float angle, float velocity) {
 		Vector3 vel = Vector3.zero;
@@ -39,15 +46,31 @@ public class Bullet : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
+		if(col.gameObject.tag == "Satellite"){
+			BaseSatellite sat = col.collider.GetComponent<BaseSatellite>();
+			sat.TakeDamage(damageDealt);
+			if (explosion != null)
+			{
+				Instantiate(explosion, this.transform.position, Quaternion.identity);
+			}
+			Destroy(this.gameObject);
+
+			return;
+
+		}
+
         BaseShip bs = col.collider.GetComponent<BaseShip>();
         if(bs != null)
         { 
-            bs.TakeDamage(damageDealt);
-            if (explosion != null)
-            {
-                Instantiate(explosion, this.transform.position, Quaternion.identity);
-            }
-            Destroy(this.gameObject);
+			if(!bs.isInvulnerable){
+				
+				bs.TakeDamage(damageDealt);
+				if (explosion != null)
+				{
+					Instantiate(explosion, this.transform.position, Quaternion.identity);
+				}
+				Destroy(this.gameObject);
+			}
         }
 
 		/*else{

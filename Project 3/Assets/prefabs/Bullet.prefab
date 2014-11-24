@@ -101,6 +101,7 @@ MonoBehaviour:
   damageDealt: 1
   lifeTime: 16
   explosion: {fileID: 100000, guid: fe924960e65ff7b4bbe36bbd4d321070, type: 2}
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -475,7 +476,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       maxGradient:
         key0:

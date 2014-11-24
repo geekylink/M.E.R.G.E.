@@ -3,17 +3,23 @@ using System.Collections;
 
 public class CameraMove : MonoBehaviour {
 
-	public float camSpeed;
+	public float camMoveSpeed;
+	public float camSizeSpeed;
+
 	public float minCameraSize;
 	public float maxCameraSize;
 
 	Vector3 cameraCenter;
+	Vector3 previousCamCenter;
 
 	public Vector2 camBuffer;
 	
 	public float minX, maxX, minY, maxY;
 
 	float camSize;
+	float previousCamSize;
+
+	bool allPlayersDead = false;
 
 	void Start(){
 		cameraCenter = Vector3.zero;
@@ -50,6 +56,12 @@ public class CameraMove : MonoBehaviour {
 			if (tempPlayer.y > maxY)
 				maxY = tempPlayer.y;
 		}
+		if(numPlayers == 0){
+			allPlayersDead = true;
+		}
+		else{
+			allPlayersDead = false;
+		}
 		//print (numPlayers);
 	}
 
@@ -78,9 +90,15 @@ public class CameraMove : MonoBehaviour {
 		cameraCenter.y = (maxY + minY) * 0.5f;
 		cameraCenter.z = -10;
 
-		transform.position = Vector3.Lerp(transform.position, cameraCenter, camSpeed * Time.deltaTime);
+		if(allPlayersDead){
+			cameraCenter = previousCamCenter;
+		}
+
+		transform.position = Vector3.Lerp(transform.position, cameraCenter, camMoveSpeed * Time.deltaTime);
+
+
 		
-		//finalLookAt = Vector3.Lerp (finalLookAt, finalCameraCenter, camSpeed * Time.deltaTime);
+		//finalLookAt = Vector3.Lerp (finalLookAt, finalCameraCenter, camMoveSpeed * Time.deltaTime);
 		
 		//transform.LookAt(finalLookAt);
 		
@@ -89,10 +107,33 @@ public class CameraMove : MonoBehaviour {
 		float sizeY = maxY - minY + camBuffer.y;
 		
 		camSize = (sizeX > sizeY ? sizeX : sizeY);
-		
-		camera.orthographicSize = camSize * 0.5f;
+
+		/*camera.orthographicSize = camSize * 0.5f;
 		camera.orthographicSize = (camera.orthographicSize < minCameraSize ? minCameraSize : camera.orthographicSize);
-		camera.orthographicSize = (camera.orthographicSize > maxCameraSize ? maxCameraSize : camera.orthographicSize);
+		camera.orthographicSize = (camera.orthographicSize > maxCameraSize ? maxCameraSize : camera.orthographicSize);*/
+
+		camSize = camSize * 0.5f;
+		camSize = (camSize < minCameraSize ? minCameraSize : camSize);
+		camSize = (camSize > maxCameraSize ? maxCameraSize : camSize);
+
+		camSize = Mathf.Lerp(previousCamSize, camSize, camSizeSpeed * Time.deltaTime);
+
+		camera.orthographicSize = camSize;
+
+		Vector3 pos = transform.position;
+		pos.z = -10;
+		float width = camSize * camera.aspect;
+		if(Mathf.Abs (pos.x) > (GameManager.S.mapSize - width)	){
+			pos.x = (GameManager.S.mapSize - width) * Mathf.Abs (pos.x) / pos.x;
+		}
+		if(Mathf.Abs (pos.y) > (GameManager.S.mapSize - camSize)){
+			pos.y = (GameManager.S.mapSize - camSize) * Mathf.Abs (pos.y) / pos.y;
+		}
+		transform.position = pos;
+		cameraCenter = pos;
+
+		previousCamCenter = cameraCenter;
+		previousCamSize = camSize;
 		
 } 
 }

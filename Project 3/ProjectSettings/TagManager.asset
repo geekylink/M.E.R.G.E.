@@ -13,6 +13,7 @@ TagManager:
   - WeakPoint
   - Bullet-Enemy
   - Planet
+  - Satellite
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   User Layer 10: Enemy
   User Layer 11: Enemy Bullet
   User Layer 12: Minimap Rendering
-  User Layer 13: 
+  User Layer 13: Gravity
   User Layer 14: 
   User Layer 15: 
   User Layer 16: 
