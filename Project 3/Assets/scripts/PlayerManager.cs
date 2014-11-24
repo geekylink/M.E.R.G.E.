@@ -32,6 +32,10 @@ public class PlayerManager : MonoBehaviour {
 			if(this != S)
 				Destroy(this.gameObject);
 		}
+
+		for(int i = 0; i < GameManager.S.playerColors.Count; ++i){
+			playerColors[i] = GameManager.S.playerColors[i];
+		}
 	}
 
 	void InitialSpawn(){

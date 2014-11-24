@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 	
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour {
 	public float mapSize;
 
 	public Sprite borderSprite;
+
+	public List<Color> playerColors; 
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +27,18 @@ public class GameManager : MonoBehaviour {
 			if(this != S)
 				Destroy(this.gameObject);
 		}
+		DontDestroyOnLoad(this.gameObject);
 
+		print ("Instantiating playerColors");
+		playerColors = new List<Color>();
+
+	}
+
+	public void CreateMapBoundaries(){
 		CreateWall(0, mapSize, mapSize * 2.5f, 1);
 		CreateWall(0, -mapSize, mapSize * 2.5f, 1);
 		CreateWall(mapSize, 0, 1, mapSize * 2.5f);
 		CreateWall(-mapSize, 0, 1, mapSize * 2.5f);
-
 	}
 
 	void CreateWall(float x, float y, float xScale, float yScale){

@@ -7,7 +7,7 @@ public class SplashScreen : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(InputManager.ActiveDevice.Action1){
-			Application.LoadLevel(1);
+			Application.LoadLevel("PlayerSelectionScreen");
 		}
 	}
 }
