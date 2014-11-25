@@ -62,8 +62,7 @@ public class BossShip : MonoBehaviour {
 		UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
 		BaseShip.score = BaseShip.score + 100;
 		txt.text = "Score: " + BaseShip.score;
-
-		Application.LoadLevel("WinScreen");
+		GameManager.S.End();
 
 		Destroy (this.gameObject);
 	}

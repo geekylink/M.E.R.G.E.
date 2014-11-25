@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour {
 	public void CheckForBossSpawn(){
 		bool bossShouldSpawn = true;
 
+		if(capturePoints.Count == 0) return;
+
 		foreach(CapturePoint cp in capturePoints){
 			if(cp.controlledBy != CapturePoint.ControlledBy.Player){
 				bossShouldSpawn = false;
@@ -73,6 +75,15 @@ public class GameManager : MonoBehaviour {
 			Spawner.S.SpawnBoss();
 		}
 
+	}
+
+	IEnumerator EndGame(){
+		yield return new WaitForSeconds(3);
+		Application.LoadLevel("WinScreen");
+	}
+
+	public void End(){
+		StartCoroutine(EndGame());
 	}
 	
 	// Update is called once per frame

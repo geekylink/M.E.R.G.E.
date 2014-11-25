@@ -2095,6 +2095,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 2fa741b2fc2846f46982f80abef480d6, type: 2}
+      propertyPath: mapsize
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2fa741b2fc2846f46982f80abef480d6, type: 2}
   m_RootGameObject: {fileID: 1461437920}
@@ -2420,18 +2424,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: 2a75ca4f6d04b334e96f0dc4ea70f192, type: 2}
   squadPrefab: {fileID: 100000, guid: 06afbea6c23e3924ab0d29368f18f662, type: 2}
   spawnTimer: 1
-  squad1: 00000000010000000000000001000000010000000000000001000000010000000000000001000000
-  spawnLocs:
-  - {x: 100, y: 0, z: 0}
-  - {x: 100, y: 1, z: 0}
-  - {x: 100, y: -1, z: 0}
-  - {x: 100, y: 0, z: 0}
-  - {x: 100, y: 0, z: 0}
-  - {x: 100, y: 1, z: 0}
-  - {x: 100, y: 1, z: 0}
-  - {x: 100, y: -1, z: 0}
-  - {x: 100, y: -1, z: 0}
-  - {x: 100, y: 0, z: 0}
+  spawnLocs: []
   mapSize: 120
   boss: {fileID: 100008, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
   bossSpawnTimer: 5000
@@ -2652,7 +2645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
       propertyPath: spawnLocs.Array.size
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
       propertyPath: enemiesToSpawn.Array.size
