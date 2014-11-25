@@ -343,7 +343,10 @@ public class Player : BaseShip {
 			SpawnSpecificSat(healSatPrefab, orbitObj, planet);
 			break;
 		case BaseSatellite.SatelliteType.MINER:
-			SpawnSpecificSat(mineSatPrefab, orbitObj, planet);
+			// Only spawn miners on planets
+			if (orbitObj != this.gameObject) {
+				SpawnSpecificSat(mineSatPrefab, orbitObj, planet);
+			}
 			break;
 		}
 	}
