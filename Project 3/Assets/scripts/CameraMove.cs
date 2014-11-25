@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CameraMove : MonoBehaviour {
+	public static CameraMove S;
 
 	public float camMoveSpeed;
 	public float camSizeSpeed;
@@ -9,7 +10,7 @@ public class CameraMove : MonoBehaviour {
 	public float minCameraSize;
 	public float maxCameraSize;
 
-	Vector3 cameraCenter;
+	public Vector3 cameraCenter;
 	Vector3 previousCamCenter;
 
 	public Vector2 camBuffer;
@@ -22,8 +23,19 @@ public class CameraMove : MonoBehaviour {
 	bool allPlayersDead = false;
 
 	void Start(){
-		cameraCenter = Vector3.zero;
-		cameraCenter.z = -10;
+		if(S == null)
+		{
+			//If I am the first instance, make me the Singleton
+			S = this;
+			//DontDestroyOnLoad(this);
+		}
+		else
+		{
+			//If a Singleton already exists and you find
+			//another reference in scene, destroy it!
+			if(this != S)
+				Destroy(this.gameObject);
+		}
 	}
 
 	void Update() {
@@ -135,5 +147,12 @@ public class CameraMove : MonoBehaviour {
 		previousCamCenter = cameraCenter;
 		previousCamSize = camSize;
 		
-} 
+	} 
+
+	public void MoveCamCenter(Vector2 newCamCenter){
+		cameraCenter = (Vector3)newCamCenter;
+		cameraCenter.z = -10;
+		previousCamCenter = cameraCenter;
+		transform.position = cameraCenter;
+	}
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour {
 
+	public static Spawner S;
+
 	public List<GameObject> enemiesToSpawn;
 	public GameObject squadPrefab;
 	public float spawnTimer;
@@ -16,7 +18,23 @@ public class Spawner : MonoBehaviour {
 	public GameObject boss;
 	public float bossSpawnTimer;
 	public Vector3 bossSpawnLoc;
-	public UnityEngine.UI.Text bossTimer;
+	//public UnityEngine.UI.Text bossTimer;
+
+	void Start(){
+		if(S == null)
+		{
+			//If I am the first instance, make me the Singleton
+			S = this;
+			//DontDestroyOnLoad(this);
+		}
+		else
+		{
+			//If a Singleton already exists and you find
+			//another reference in scene, destroy it!
+			if(this != S)
+				Destroy(this.gameObject);
+		}
+	}
 
 	IEnumerator SpawnCoroutine(){
 		float timer = 0;
@@ -99,25 +117,28 @@ public class Spawner : MonoBehaviour {
 		StartCoroutine (SpawnSquad ());
 	}
 
-	IEnumerator SpawnBoss(){
+	IEnumerator SpawnBossCo(){
 		float timer = 0;
 		
 		while(timer < bossSpawnTimer){
 			timer += Time.deltaTime * Time.timeScale;
 			int timeUntilSpawn = Mathf.RoundToInt(bossSpawnTimer - timer);
-			bossTimer.text = "Time Until Boss Spawn: " + timeUntilSpawn;
+			//bossTimer.text = "Time Until Boss Spawn: " + timeUntilSpawn;
 			yield return 0;
 		}
 
-		
+		SpawnBoss();
+	}
+
+	public void SpawnBoss(){
 		GameObject bossGO = Instantiate (boss) as GameObject;
 		bossGO.transform.position = bossSpawnLoc;
 	}
 
 	void Awake(){
-		StartCoroutine(SpawnCoroutine());
-		StartCoroutine(SpawnBoss());
-		StartCoroutine (SpawnSquad ());
+		//StartCoroutine(SpawnCoroutine());
+		//StartCoroutine(SpawnBossCo());
+		//StartCoroutine (SpawnSquad ());
 	}
 
 	public GameObject getRandomPlayer() {

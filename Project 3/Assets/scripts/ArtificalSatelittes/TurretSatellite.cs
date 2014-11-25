@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class TurretSatellite : BaseSatellite {
 
@@ -42,7 +43,7 @@ public class TurretSatellite : BaseSatellite {
 		GameObject [] enemies;
 
 		if(team == SatelliteTeam.Player){
-			enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+			enemies = (GameObject.FindGameObjectsWithTag ("Enemy")).Concat(GameObject.FindGameObjectsWithTag("WeakPoint")).ToArray();
 		}
 		else{
 			enemies = GameObject.FindGameObjectsWithTag ("Player");

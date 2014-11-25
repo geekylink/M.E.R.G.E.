@@ -20,6 +20,8 @@ public class MinerSatellite : BaseSatellite {
 
 	private void Mine() {
 		if (lastMine < 0) {
+			if(creatorObj == null) return;
+
 			Player player = creatorObj.GetComponent("Player") as Player;
 			player.GetResources(1);
 			lastMine = mineRate;

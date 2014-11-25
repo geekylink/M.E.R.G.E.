@@ -39,6 +39,17 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	void InitialSpawn(){
+		GameManager.S.AcquireCaptures();
+
+		Vector2 playerPlanetPos = Vector2.zero;
+		foreach(CapturePoint cp in GameManager.S.capturePoints){
+			if(cp.controlledBy == CapturePoint.ControlledBy.Player){
+				playerPlanetPos = cp.transform.position;
+			}
+		}
+
+		CameraMove.S.MoveCamCenter(playerPlanetPos);
+
 		players = new GameObject[InputManager.Devices.Count];
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
 			SpawnPlayer(i, playerColors[i], i, false);
@@ -172,20 +183,16 @@ public class PlayerManager : MonoBehaviour {
 
 		Vector2 pos = camera.transform.position;
 		if(arrayPos == 0){
-			pos.x += 1.5f;
-			pos.y += 1.5f;
+			pos.y += 10;
 		}
 		if(arrayPos == 1){
-			pos.x += -1.5f;
-			pos.y += 1.5f;
+			pos.x += 10;
 		}
 		if(arrayPos == 2){
-			pos.x += -1.5f;
-			pos.y += -1.5f;
+			pos.y += -10;
 		}
 		if(arrayPos == 3){
-			pos.x += 1.5f;
-			pos.y += -1.5f;
+			pos.x += -10;
 		}
 
 		playerGO.transform.position = pos;

@@ -28,6 +28,7 @@ public class HealerSatellite : BaseSatellite {
 			GameObject[] players = pm.getPlayers ();
 
 			foreach (GameObject playerObj in players) {
+				if(playerObj == null) continue;
 				Player player = playerObj.GetComponent ("Player") as Player;
 				Vector3 dist = player.transform.position - this.transform.position;
 				if (dist.magnitude < healRadius) {

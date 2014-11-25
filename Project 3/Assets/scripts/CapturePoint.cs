@@ -111,6 +111,10 @@ public class CapturePoint : MonoBehaviour {
 			sr.color = Color.grey;
 			minimapBlip.renderer.material.color = Color.grey;
 		}
+		if(GameManager.S){
+			GameManager.S.CheckForBossSpawn();
+
+		}
 	}
 
 

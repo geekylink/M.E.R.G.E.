@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public Sprite borderSprite;
 
 	public List<Color> playerColors; 
+	public List<CapturePoint> capturePoints = new List<CapturePoint>();
 
 	// Use this for initialization
 	void Start () {
@@ -29,9 +30,15 @@ public class GameManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad(this.gameObject);
 
-		print ("Instantiating playerColors");
 		playerColors = new List<Color>();
 
+	}
+
+	public void AcquireCaptures(){
+		GameObject[] planets = GameObject.FindGameObjectsWithTag("Planet");
+		foreach(GameObject planet in planets){
+			capturePoints.Add (planet.GetComponent<CapturePoint>());
+		}
 	}
 
 	public void CreateMapBoundaries(){
@@ -51,6 +58,21 @@ public class GameManager : MonoBehaviour {
 		edge.transform.localScale = tempScale;
 		edge.AddComponent<SpriteRenderer>();
 		edge.GetComponent<SpriteRenderer>().sprite = borderSprite;
+	}
+
+	public void CheckForBossSpawn(){
+		bool bossShouldSpawn = true;
+
+		foreach(CapturePoint cp in capturePoints){
+			if(cp.controlledBy != CapturePoint.ControlledBy.Player){
+				bossShouldSpawn = false;
+			}
+		}
+
+		if(bossShouldSpawn && Spawner.S){
+			Spawner.S.SpawnBoss();
+		}
+
 	}
 	
 	// Update is called once per frame

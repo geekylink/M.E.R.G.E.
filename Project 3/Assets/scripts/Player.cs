@@ -99,6 +99,7 @@ public class Player : BaseShip {
 	
 	public override void Die(){
 		//UpdateHUD();
+		UnshowSats();
 		if(isCurrentlyMerged){
 			MergeManager.S.Unmerge(this);
 		}
@@ -279,9 +280,12 @@ public class Player : BaseShip {
 		BaseSatellite satTurret = autoSat.GetComponent ("BaseSatellite") as BaseSatellite;
 		satTurret.orbitTarget = orbitObj;
 		satTurret.creatorObj = this.gameObject;
+		satTurret.playerWhoSpawned = playerManagerArrayPos;
 		if (orbitObj != this.gameObject) {
 			planet.AddSat (satTurret, CapturePoint.ControlledBy.Player);
 			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
+			
+			autoSat.layer = 8;
 		} else {
 			if (orbitObj == this.gameObject) {
 				// Position each satellite equal distance apart
@@ -293,6 +297,7 @@ public class Player : BaseShip {
 				satTurret.SetStartAngle (startAngle);
 				ownSats.Add (satTurret);
 				satTurret.orbiting = BaseSatellite.OrbitingType.Player;
+
 			}
 			satTurret.team = BaseSatellite.SatelliteTeam.Player;
 			autoSat.layer = 8;
@@ -318,6 +323,11 @@ public class Player : BaseShip {
 		GameObject orbitObj = this.gameObject;
 		CapturePoint planet = null;
 		GetOrbitObj(ref orbitObj, ref planet);
+
+		if(planet != null && orbitObj == this.gameObject){
+			return;
+		}
+
 		if(orbitObj == this.gameObject){
 			// Limit the number of satellites we can make
 			if (ownSats.Count >= maxOwnSats) {
@@ -354,6 +364,12 @@ public class Player : BaseShip {
 		GameObject orbitObj = this.gameObject;
 		CapturePoint planet = null;
 		GetOrbitObj(ref orbitObj, ref planet);
+
+		
+		if(planet != null && orbitObj == this.gameObject){
+			return;
+		}
+
 		if(orbitObj == this.gameObject){
 			// Limit the number of satellites we can make
 			if (ownSats.Count >= maxOwnSats) {

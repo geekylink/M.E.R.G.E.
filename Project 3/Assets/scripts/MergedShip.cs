@@ -149,27 +149,30 @@ public class MergedShip : MonoBehaviour {
 		leftEngine.transform.localRotation = Quaternion.Euler(leftRot);
 		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);
 */
+		Vector2 addOn = Vector2.zero;
+
 		if(numberInMerge == 0)	{
-			newPos = center + right * -0.66f;
+			addOn = right * -.66f;
 			newRight = right;
 		}
 		else if(numberInMerge == 1)	{
-			newPos = center + up * -0.66f;
+			addOn = up * -.66f;
 			newRight = up;
 		}
 		else if(numberInMerge == 2)	{
-			newPos = center + right * 0.66f;
+			addOn = right * 0.66f;
 			newRight = -right;
 		}
 		else if(numberInMerge == 3)	{
-			newPos = center + up * 0.66f;
+			addOn = up * .66f;
 			newRight = -up;
 		}
+		newPos = center + addOn;
 		
 		float t = 0;
 		while(t < 1){
 			t += Time.deltaTime * Time.timeScale / rotMergeTime;
-			newPos = transform.position;
+			newPos = (Vector2)transform.position + addOn;
 			
 			player.transform.right = Vector2.Lerp(oldRight, newRight, t);
 			player.transform.position = Vector2.Lerp (oldPos, newPos, t);
