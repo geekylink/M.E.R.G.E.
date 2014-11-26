@@ -11,6 +11,9 @@ public class MergedShip : MonoBehaviour {
 
 	public List<Player> players = new List<Player>();
 
+	public GameObject mergedLine;
+	public List<GameObject> lineList = new List<GameObject>();
+
 	float flyingSpeed = 0;
 	float highestFractionalSpeed = 0;
 
@@ -43,6 +46,32 @@ public class MergedShip : MonoBehaviour {
 		RestrictToMap();
 		ClampObjectIntoView();
 		StartCoroutine(FlyAtEndOfFrame());
+		//ShowMergedLine();
+	}
+
+	void ShowMergedLine(){
+		foreach(GameObject go in lineList){
+			Destroy (go);
+		}
+		lineList.RemoveRange(0, lineList.Count);
+
+		for(int i = 0; i < players.Count; ++i){
+			for(int j = i; j < players.Count; ++j){
+				GameObject mLine1 = Instantiate(mergedLine) as GameObject;
+				
+				LineRenderer mRender1 = mLine1.GetComponent<LineRenderer>();
+				mRender1.SetPosition(0, players[i].transform.position);
+				mRender1.SetPosition(1,  players[j].transform.position);
+
+				Color lineColor = Color.green;
+				lineColor.a = .4f;
+
+				mRender1.SetColors(lineColor, lineColor);
+				lineList.Add(mLine1);
+			}
+		}
+
+
 	}
 
 	public void RestrictToMap(){

@@ -118,6 +118,7 @@ public class Player : BaseShip {
 
 	//checking to see if the player wants to merge/unmerge
 	public void CheckMerge(bool pushingMerge, bool pushingUnmerge){
+
 		if(isMerging) return;
 
 		if(pushingMerge){
