@@ -388,6 +388,7 @@ public class Player : BaseShip {
 		turret.GetComponent<SpriteRenderer>().sprite = autoTurretPrefab.GetComponent<SpriteRenderer>().sprite;
 		Vector3 temp = turret.transform.localScale * 2;
 		turret.transform.localScale = temp;
+		ghostSatellites.Add (turret);
 		
 		GameObject healer = new GameObject();
 		healer.transform.position = orbitObj.transform.position + Vector3.up * 7;
@@ -395,16 +396,21 @@ public class Player : BaseShip {
 		healer.GetComponent<SpriteRenderer>().sprite = healSatPrefab.GetComponent<SpriteRenderer>().sprite;
 		temp = healer.transform.localScale * 2;
 		healer.transform.localScale = temp;
-		
-		GameObject miner = new GameObject();
-		miner.transform.position = orbitObj.transform.position + Vector3.right * 7;
-		miner.AddComponent<SpriteRenderer>();
-		miner.GetComponent<SpriteRenderer>().sprite = mineSatPrefab.GetComponent<SpriteRenderer>().sprite;
-		temp = miner.transform.localScale * 2;
-		miner.transform.localScale = temp;
-		
-		ghostSatellites.Add (turret);
 		ghostSatellites.Add (healer);
-		ghostSatellites.Add (miner);
+
+
+		if(orbitObj != this.gameObject){
+			
+			GameObject miner = new GameObject();
+			miner.transform.position = orbitObj.transform.position + Vector3.right * 7;
+			miner.AddComponent<SpriteRenderer>();
+			miner.GetComponent<SpriteRenderer>().sprite = mineSatPrefab.GetComponent<SpriteRenderer>().sprite;
+			temp = miner.transform.localScale * 2;
+			miner.transform.localScale = temp;
+			ghostSatellites.Add (miner);
+		}
+
+
+
 	}
 }
