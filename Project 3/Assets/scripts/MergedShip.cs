@@ -56,19 +56,17 @@ public class MergedShip : MonoBehaviour {
 		lineList.RemoveRange(0, lineList.Count);
 
 		for(int i = 0; i < players.Count; ++i){
-			for(int j = i; j < players.Count; ++j){
-				GameObject mLine1 = Instantiate(mergedLine) as GameObject;
-				
-				LineRenderer mRender1 = mLine1.GetComponent<LineRenderer>();
-				mRender1.SetPosition(0, players[i].transform.position);
-				mRender1.SetPosition(1,  players[j].transform.position);
+			GameObject mLine1 = Instantiate(mergedLine) as GameObject;
+			
+			LineRenderer mRender1 = mLine1.GetComponent<LineRenderer>();
+			mRender1.SetPosition(0, players[i].transform.position);
+			mRender1.SetPosition(1, transform.position);
 
-				Color lineColor = Color.green;
-				lineColor.a = .4f;
+			Color lineColor = Color.green;
+			lineColor.a = .4f;
 
-				mRender1.SetColors(lineColor, lineColor);
-				lineList.Add(mLine1);
-			}
+			mRender1.SetColors(lineColor, lineColor);
+			lineList.Add(mLine1);
 		}
 
 
@@ -97,6 +95,7 @@ public class MergedShip : MonoBehaviour {
 		yield return new WaitForEndOfFrame();
 		foreach(Player p in players){
 			p.Fly(highestFractionalSpeed, flyingSpeed);
+
 		}
 		
 		flyingSpeed = 0;
@@ -181,11 +180,11 @@ public class MergedShip : MonoBehaviour {
 		Vector2 addOn = Vector2.zero;
 
 		if(numberInMerge == 0)	{
-			addOn = right * -.66f;
+			addOn = right * -0.66f;
 			newRight = right;
 		}
 		else if(numberInMerge == 1)	{
-			addOn = up * -.66f;
+			addOn = up * -0.66f;
 			newRight = up;
 		}
 		else if(numberInMerge == 2)	{
@@ -193,7 +192,7 @@ public class MergedShip : MonoBehaviour {
 			newRight = -right;
 		}
 		else if(numberInMerge == 3)	{
-			addOn = up * .66f;
+			addOn = up * 0.66f;
 			newRight = -up;
 		}
 		newPos = center + addOn;

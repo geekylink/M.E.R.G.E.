@@ -14,6 +14,11 @@ public class BaseShip : MonoBehaviour {
 
 	public bool isInvulnerable = false;
 
+	
+	
+	public GameObject shieldPrefab;
+	GameObject shield;
+
 	// Use this for initialization
 	public virtual void Start () {
 		health = maxHealth;
@@ -21,6 +26,10 @@ public class BaseShip : MonoBehaviour {
 
 	public void TakeDamage(int amount) {
 		if(isInvulnerable) return;
+		if(shield){
+			RemoveShield();
+			return;
+		}
 
 		health -= amount;
 		if (health <= 0) {
@@ -101,5 +110,22 @@ public class BaseShip : MonoBehaviour {
 			return players [randomNum];
 		}
 		return null;
+	}
+
+	
+	public void AddShield(){
+		if(shield != null) return;
+		GameObject newShield = Instantiate(shieldPrefab) as GameObject;
+		shield = newShield;
+
+		//shield.transform.position = transform.position;
+		shield.transform.parent = this.transform;
+		shield.transform.localPosition = Vector3.zero;
+		shield.transform.localScale = Vector2.one * 0.25f;
+	}
+	
+	public void RemoveShield(){
+		if(shield == null) return;
+		Destroy(shield);
 	}
 }

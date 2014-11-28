@@ -342,6 +342,7 @@ public class Player : BaseShip {
 			break;
 		case BaseSatellite.SatelliteType.HEALER:
 			SpawnSpecificSat(healSatPrefab, orbitObj, planet);
+			AddShield();
 			break;
 		case BaseSatellite.SatelliteType.MINER:
 			// Only spawn miners on planets
@@ -413,4 +414,6 @@ public class Player : BaseShip {
 
 
 	}
+
+
 }

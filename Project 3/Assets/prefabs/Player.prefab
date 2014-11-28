@@ -391,6 +391,7 @@ MonoBehaviour:
   maxRotSpeed: 500
   drop: {fileID: 0}
   isInvulnerable: 0
+  shieldPrefab: {fileID: 100000, guid: 12955a1cce2ec704eaaa0004710456e1, type: 2}
   velocityMult: 200
   bulletVelocity: 10
   gravityMult: .5
