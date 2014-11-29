@@ -170,6 +170,16 @@ public class Player : BaseShip {
 			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 			lastRightFire = fireRate;
 		}
+
+		foreach(var satVar in ownSats){
+			TurretSatellite ts = satVar as TurretSatellite;
+			if(ts){
+				Vector2 vel = Vector2.zero;
+				vel.y = -Mathf.Sin (-rightTurret.transform.eulerAngles.z*Mathf.Deg2Rad);
+				vel.x = Mathf.Cos (-rightTurret.transform.eulerAngles.z*Mathf.Deg2Rad);
+				ts.PlayerFire(vel);
+			}
+		}
 	}
 
 	public void Fly(float engineLength, float speed){
@@ -339,6 +349,10 @@ public class Player : BaseShip {
 		switch (Type) {
 		case BaseSatellite.SatelliteType.TURRET:
 			SpawnSpecificSat(autoTurretPrefab, orbitObj, planet);
+			if (orbitObj == this.gameObject) {
+				TurretSatellite ts = ownSats[ownSats.Count - 1] as TurretSatellite;
+				ts.shouldAutoFire = false;
+			}
 			break;
 		case BaseSatellite.SatelliteType.HEALER:
 			SpawnSpecificSat(healSatPrefab, orbitObj, planet);
