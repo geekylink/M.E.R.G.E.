@@ -8,9 +8,6 @@ public class Spawner : MonoBehaviour {
 	public GameObject squadPrefab;
 	public float spawnTimer;
 
-	public List<int> squad1;
-	public Vector3[] spawnLocs;
-
 	public float mapSize;
 
 	public GameObject boss;
