@@ -13,12 +13,15 @@ public class Player : BaseShip {
 	public float satSpawnRadius = 50;
 	public int maxOwnSats = 3;
 
+	public int score = -1;
+	public float scoreTimer = 5.0f;
+
 	public GameObject ammoPrefab;
 	public GameObject autoTurretPrefab;
 	public GameObject healSatPrefab;
 	public GameObject mineSatPrefab;
 
-    public float fireRate = 0.5f;
+    public float fireRate = 1.0f;
 	public UnityEngine.UI.Text gtRes;
 
 	//turrets should be assigned here in the inspector
@@ -26,6 +29,7 @@ public class Player : BaseShip {
 
 	// Used to prevent firing constantly
 	private float lastRightFire = 0;
+	private float lastScore = 0;
 
 	//lots of things to deal with merging
 	bool isMerging = false;
@@ -92,8 +96,32 @@ public class Player : BaseShip {
 		//UpdateTurrets ();
 		UpdatePlayer ();
 		UpdateHUD ();
+		UpdateUpgrades ();
 		
 		lastRightFire -= Time.deltaTime;
+		lastScore -= Time.deltaTime;
+	}
+
+	// Handle the upgrades
+	public void UpdateUpgrades() {
+		if (lastScore <= 0) {
+			score++;
+			lastScore = scoreTimer;
+		}
+
+		// Halve fire rate every 15 points
+		if (score <= 15) {
+			fireRate = 1.0f;
+		}
+		else if (score <= 30) {
+			fireRate = 0.5f;
+		}
+		else if (score <= 45) {
+			fireRate = 0.25f;
+		}
+		else {
+			fireRate = 0.125f;
+		}
 	}
 
 	
@@ -112,6 +140,7 @@ public class Player : BaseShip {
 		ownSats.Clear ();
 		PlayerManager.S.PlayerDied(this, playerManagerArrayPos);
 
+		score = 0;
 
 		base.Die();
 	}
@@ -136,7 +165,7 @@ public class Player : BaseShip {
 
 	private void UpdateHUD() {
 		//gtHealth.text = "Health: " + health;
-		gtRes.text = "Resources: " + numResources;
+		gtRes.text = "Score: " + score;
 	}
 	
 	// Updates angles for the left and right turrets
@@ -164,6 +193,7 @@ public class Player : BaseShip {
 
 			int id = MergeManager.S.players.IndexOf(this);
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
+			b.owner = this;
 
             b.SetColor(playerColor);
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
@@ -292,6 +322,9 @@ public class Player : BaseShip {
 		satTurret.orbitTarget = orbitObj;
 		satTurret.creatorObj = this.gameObject;
 		satTurret.playerWhoSpawned = playerManagerArrayPos;
+
+		score++;
+
 		if (orbitObj != this.gameObject) {
 			planet.AddSat (satTurret, CapturePoint.ControlledBy.Player);
 			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;

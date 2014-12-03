@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour {
     public GameObject explosion;
     public Color color;
 
+	public Player owner;
+
     float lifeCounter = 0;
 
 	// Use this for initialization
@@ -53,6 +55,11 @@ public class Bullet : MonoBehaviour {
 			{
 				Instantiate(explosion, this.transform.position, Quaternion.identity);
 			}
+
+			if (owner != null) {
+				owner.score+= 3;
+			}
+
 			Destroy(this.gameObject);
 
 			return;
@@ -69,6 +76,11 @@ public class Bullet : MonoBehaviour {
 				{
 					Instantiate(explosion, this.transform.position, Quaternion.identity);
 				}
+
+				if (owner != null) {
+					owner.score+= 2;
+				}
+
 				Destroy(this.gameObject);
 			}
         }
