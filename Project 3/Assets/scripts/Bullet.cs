@@ -25,10 +25,10 @@ public class Bullet : MonoBehaviour {
 
 	public void setDefaults(float angle, float velocity) {
 		Vector3 vel = Vector3.zero;
-		vel.y = -Mathf.Sin (angle*Mathf.Deg2Rad)*velocity;
-		vel.x = Mathf.Cos (angle*Mathf.Deg2Rad)*velocity;
+		vel.y = -Mathf.Sin (angle*Mathf.Deg2Rad);
+		vel.x = Mathf.Cos (angle*Mathf.Deg2Rad);
 		
-		this.rigidbody2D.velocity = vel;
+		this.rigidbody2D.velocity = vel.normalized * velocity;
 	}
 
 	public void setDefaults(Vector2 velocity) {
@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 		lifeCounter += Time.deltaTime;
 		if(lifeCounter > lifeTime){
 			Destroy(this.gameObject);

@@ -17,6 +17,7 @@ public class SquadManager : MonoBehaviour {
 		} else if (S != this) {
 			Destroy (this.gameObject);
 		}
+		mapsize = GameManager.S.mapSize;
 		nextID = 1;
 		squads = new List<EnemySquad>();
 		startingLocations = new List<Vector2> ();

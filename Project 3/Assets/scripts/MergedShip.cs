@@ -11,6 +11,9 @@ public class MergedShip : MonoBehaviour {
 
 	public List<Player> players = new List<Player>();
 
+	public GameObject mergedLine;
+	public List<GameObject> lineList = new List<GameObject>();
+
 	float flyingSpeed = 0;
 	float highestFractionalSpeed = 0;
 
@@ -43,6 +46,30 @@ public class MergedShip : MonoBehaviour {
 		RestrictToMap();
 		ClampObjectIntoView();
 		StartCoroutine(FlyAtEndOfFrame());
+		//ShowMergedLine();
+	}
+
+	void ShowMergedLine(){
+		foreach(GameObject go in lineList){
+			Destroy (go);
+		}
+		lineList.RemoveRange(0, lineList.Count);
+
+		for(int i = 0; i < players.Count; ++i){
+			GameObject mLine1 = Instantiate(mergedLine) as GameObject;
+			
+			LineRenderer mRender1 = mLine1.GetComponent<LineRenderer>();
+			mRender1.SetPosition(0, players[i].transform.position);
+			mRender1.SetPosition(1, transform.position);
+
+			Color lineColor = Color.green;
+			lineColor.a = .4f;
+
+			mRender1.SetColors(lineColor, lineColor);
+			lineList.Add(mLine1);
+		}
+
+
 	}
 
 	public void RestrictToMap(){
@@ -68,6 +95,7 @@ public class MergedShip : MonoBehaviour {
 		yield return new WaitForEndOfFrame();
 		foreach(Player p in players){
 			p.Fly(highestFractionalSpeed, flyingSpeed);
+
 		}
 		
 		flyingSpeed = 0;
@@ -149,27 +177,30 @@ public class MergedShip : MonoBehaviour {
 		leftEngine.transform.localRotation = Quaternion.Euler(leftRot);
 		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);
 */
+		Vector2 addOn = Vector2.zero;
+
 		if(numberInMerge == 0)	{
-			newPos = center + right * -0.66f;
+			addOn = right * -0.66f;
 			newRight = right;
 		}
 		else if(numberInMerge == 1)	{
-			newPos = center + up * -0.66f;
+			addOn = up * -0.66f;
 			newRight = up;
 		}
 		else if(numberInMerge == 2)	{
-			newPos = center + right * 0.66f;
+			addOn = right * 0.66f;
 			newRight = -right;
 		}
 		else if(numberInMerge == 3)	{
-			newPos = center + up * 0.66f;
+			addOn = up * 0.66f;
 			newRight = -up;
 		}
+		newPos = center + addOn;
 		
 		float t = 0;
 		while(t < 1){
 			t += Time.deltaTime * Time.timeScale / rotMergeTime;
-			newPos = transform.position;
+			newPos = (Vector2)transform.position + addOn;
 			
 			player.transform.right = Vector2.Lerp(oldRight, newRight, t);
 			player.transform.position = Vector2.Lerp (oldPos, newPos, t);

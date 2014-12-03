@@ -20,6 +20,8 @@ public class BaseSatellite : MonoBehaviour {
 
 	public float orbitAngle = 0;
 
+	public int playerWhoSpawned = -1;
+
 	// Use this for initialization
 	void Start () {
 
@@ -32,6 +34,9 @@ public class BaseSatellite : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(creatorObj == null && playerWhoSpawned != -1){
+			creatorObj = PlayerManager.S.players[playerWhoSpawned];
+		}
 		UpdateOrbit ();
 	}
 

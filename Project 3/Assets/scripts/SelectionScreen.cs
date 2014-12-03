@@ -42,7 +42,7 @@ public class SelectionScreen : MonoBehaviour {
 	}
 
 	void Continue(){
-		Application.LoadLevel("dom-dev");
+		Application.LoadLevel("mainscene");
 	}
 	
 	// Update is called once per frame

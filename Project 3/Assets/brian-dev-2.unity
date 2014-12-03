@@ -995,6 +995,7 @@ MonoBehaviour:
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 1
   satsInOrbit: []
+  angle: 0
 --- !u!1 &622140609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1354,7 @@ MonoBehaviour:
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
+  angle: 0
 --- !u!1 &1068753580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,6 +1522,7 @@ MonoBehaviour:
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 2
   satsInOrbit: []
+  angle: 0
 --- !u!1 &1130763458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,6 +2069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squads: []
+  startingLocations: []
+  mapsize: 0
 --- !u!4 &1461437922
 Transform:
   m_ObjectHideFlags: 0

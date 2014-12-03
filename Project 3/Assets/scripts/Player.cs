@@ -99,6 +99,7 @@ public class Player : BaseShip {
 	
 	public override void Die(){
 		//UpdateHUD();
+		UnshowSats();
 		if(isCurrentlyMerged){
 			MergeManager.S.Unmerge(this);
 		}
@@ -117,6 +118,7 @@ public class Player : BaseShip {
 
 	//checking to see if the player wants to merge/unmerge
 	public void CheckMerge(bool pushingMerge, bool pushingUnmerge){
+
 		if(isMerging) return;
 
 		if(pushingMerge){
@@ -167,6 +169,16 @@ public class Player : BaseShip {
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
 			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 			lastRightFire = fireRate;
+		}
+
+		foreach(var satVar in ownSats){
+			TurretSatellite ts = satVar as TurretSatellite;
+			if(ts){
+				Vector2 vel = Vector2.zero;
+				vel.y = -Mathf.Sin (-rightTurret.transform.eulerAngles.z*Mathf.Deg2Rad);
+				vel.x = Mathf.Cos (-rightTurret.transform.eulerAngles.z*Mathf.Deg2Rad);
+				ts.PlayerFire(vel);
+			}
 		}
 	}
 
@@ -279,9 +291,12 @@ public class Player : BaseShip {
 		BaseSatellite satTurret = autoSat.GetComponent ("BaseSatellite") as BaseSatellite;
 		satTurret.orbitTarget = orbitObj;
 		satTurret.creatorObj = this.gameObject;
+		satTurret.playerWhoSpawned = playerManagerArrayPos;
 		if (orbitObj != this.gameObject) {
 			planet.AddSat (satTurret, CapturePoint.ControlledBy.Player);
 			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
+			
+			autoSat.layer = 8;
 		} else {
 			if (orbitObj == this.gameObject) {
 				// Position each satellite equal distance apart
@@ -293,6 +308,7 @@ public class Player : BaseShip {
 				satTurret.SetStartAngle (startAngle);
 				ownSats.Add (satTurret);
 				satTurret.orbiting = BaseSatellite.OrbitingType.Player;
+
 			}
 			satTurret.team = BaseSatellite.SatelliteTeam.Player;
 			autoSat.layer = 8;
@@ -318,6 +334,11 @@ public class Player : BaseShip {
 		GameObject orbitObj = this.gameObject;
 		CapturePoint planet = null;
 		GetOrbitObj(ref orbitObj, ref planet);
+
+		if(planet != null && orbitObj == this.gameObject){
+			return;
+		}
+
 		if(orbitObj == this.gameObject){
 			// Limit the number of satellites we can make
 			if (ownSats.Count >= maxOwnSats) {
@@ -328,12 +349,20 @@ public class Player : BaseShip {
 		switch (Type) {
 		case BaseSatellite.SatelliteType.TURRET:
 			SpawnSpecificSat(autoTurretPrefab, orbitObj, planet);
+			if (orbitObj == this.gameObject) {
+				TurretSatellite ts = ownSats[ownSats.Count - 1] as TurretSatellite;
+				ts.shouldAutoFire = false;
+			}
 			break;
 		case BaseSatellite.SatelliteType.HEALER:
 			SpawnSpecificSat(healSatPrefab, orbitObj, planet);
+			AddShield();
 			break;
 		case BaseSatellite.SatelliteType.MINER:
-			SpawnSpecificSat(mineSatPrefab, orbitObj, planet);
+			// Only spawn miners on planets
+			if (orbitObj != this.gameObject) {
+				SpawnSpecificSat(mineSatPrefab, orbitObj, planet);
+			}
 			break;
 		}
 	}
@@ -354,6 +383,12 @@ public class Player : BaseShip {
 		GameObject orbitObj = this.gameObject;
 		CapturePoint planet = null;
 		GetOrbitObj(ref orbitObj, ref planet);
+
+		
+		if(planet != null && orbitObj == this.gameObject){
+			return;
+		}
+
 		if(orbitObj == this.gameObject){
 			// Limit the number of satellites we can make
 			if (ownSats.Count >= maxOwnSats) {
@@ -368,6 +403,7 @@ public class Player : BaseShip {
 		turret.GetComponent<SpriteRenderer>().sprite = autoTurretPrefab.GetComponent<SpriteRenderer>().sprite;
 		Vector3 temp = turret.transform.localScale * 2;
 		turret.transform.localScale = temp;
+		ghostSatellites.Add (turret);
 		
 		GameObject healer = new GameObject();
 		healer.transform.position = orbitObj.transform.position + Vector3.up * 7;
@@ -375,16 +411,23 @@ public class Player : BaseShip {
 		healer.GetComponent<SpriteRenderer>().sprite = healSatPrefab.GetComponent<SpriteRenderer>().sprite;
 		temp = healer.transform.localScale * 2;
 		healer.transform.localScale = temp;
-		
-		GameObject miner = new GameObject();
-		miner.transform.position = orbitObj.transform.position + Vector3.right * 7;
-		miner.AddComponent<SpriteRenderer>();
-		miner.GetComponent<SpriteRenderer>().sprite = mineSatPrefab.GetComponent<SpriteRenderer>().sprite;
-		temp = miner.transform.localScale * 2;
-		miner.transform.localScale = temp;
-		
-		ghostSatellites.Add (turret);
 		ghostSatellites.Add (healer);
-		ghostSatellites.Add (miner);
+
+
+		if(orbitObj != this.gameObject){
+			
+			GameObject miner = new GameObject();
+			miner.transform.position = orbitObj.transform.position + Vector3.right * 7;
+			miner.AddComponent<SpriteRenderer>();
+			miner.GetComponent<SpriteRenderer>().sprite = mineSatPrefab.GetComponent<SpriteRenderer>().sprite;
+			temp = miner.transform.localScale * 2;
+			miner.transform.localScale = temp;
+			ghostSatellites.Add (miner);
+		}
+
+
+
 	}
+
+
 }

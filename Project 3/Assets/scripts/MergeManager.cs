@@ -101,8 +101,8 @@ public class MergeManager : MonoBehaviour {
 				if(dist < mergeDistance){
 					Vector2 dir = posComp - posCurr;
 					//check if both are pressing the merge button, and are not merged with each other
-					//if((players[i].TryingToMerge || players[j].TryingToMerge) && (!currentlyMergedWith[i].Contains(players[j]))){
-					if(players[i].TryingToMerge && players[j].TryingToMerge && (!currentlyMergedWith[i].Contains(players[j])) && !(players[i].IsMerging || players[j].IsMerging)){
+					if((players[i].TryingToMerge || players[j].TryingToMerge) && (!currentlyMergedWith[i].Contains(players[j]))){
+					//if((players[i].TryingToMerge && players[j].TryingToMerge) && (!currentlyMergedWith[i].Contains(players[j])) && !(players[i].IsMerging || players[j].IsMerging)){
 						Debug.DrawRay(posCurr, dir, Color.green);
 						mergingAtNextUpdateWith[i] = j;
 						mergingAtNextUpdateWith[j] = i;
@@ -161,6 +161,8 @@ public class MergeManager : MonoBehaviour {
 			if(mergers[i] == -1) continue;			//If they aren't going to merge with someone
 			if(wantToSkip[i]) continue;				//Or they should be skip
 			if(wantToSkip[mergers[i]]) continue;	//Or their partner should be skipped, do not merge
+
+			wantToSkip[i] = true;
 
 			//Get the number of ships they are merged with
 			int numMergedFirst = currentlyMergedWith[i].Count;
@@ -281,6 +283,7 @@ public class MergeManager : MonoBehaviour {
 		GameObject merged = new GameObject();
 		Rigidbody2D mergedRB = merged.AddComponent<Rigidbody2D>();
 		MergedShip mergedShipScript = merged.AddComponent<MergedShip>();
+		mergedShipScript.mergedLine = mergeLine;
 
 		
 		for(int i = 0; i < 4; ++i){
@@ -324,6 +327,13 @@ public class MergeManager : MonoBehaviour {
 			//If merged, grab the first partner - used later to possibly destroy ship
 			mergePartner = currentlyMergedWith[index][0];
 		}
+		//If merging, let merging partner know it doesn't have to merge anymore
+		if(player.IsMerging){
+			foreach(Player p in currentlyMergedWith[index]){
+				p.IsMerging = false;
+			}
+		}
+
 		//Remove all partners
 		currentlyMergedWith[index].RemoveRange(0, currentlyMergedWith[index].Count);
 
@@ -351,6 +361,10 @@ public class MergeManager : MonoBehaviour {
 		//as NumberOfMergedShips, at that point, will be 0
 		if(mergedShipScript.NumberOfMergedShips == 1){
 			Unmerge (mergePartner);
+			foreach(GameObject go in mergedShipScript.lineList){
+				Destroy (go);
+			}
+			mergedShipScript.lineList.RemoveRange(0, mergedShipScript.lineList.Count);
 			Destroy(mergedShipScript.gameObject);
 		}
 

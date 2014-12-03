@@ -9,9 +9,11 @@ EditorBuildSettings:
     path: Assets/__Scenes/SplashScreen.unity
   - enabled: 1
     path: Assets/__Scenes/mainscene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/dom-dev-temp.unity
   - enabled: 1
     path: Assets/__Scenes/PlayerSelectionScreen.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/dom-dev.unity
+  - enabled: 1
+    path: Assets/__Scenes/WinScreen.unity

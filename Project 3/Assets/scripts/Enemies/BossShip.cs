@@ -18,6 +18,8 @@ public class BossShip : MonoBehaviour {
 	public float bulletVelocity = 2f;
 	public int degreesApart;
 
+	public float moveSpeed;
+
 
 	public static BossShip S;
 
@@ -60,11 +62,19 @@ public class BossShip : MonoBehaviour {
 		UnityEngine.UI.Text txt = GameObject.Find("scoreText").GetComponent < UnityEngine.UI.Text>();
 		BaseShip.score = BaseShip.score + 100;
 		txt.text = "Score: " + BaseShip.score;
+		GameManager.S.End();
+
 		Destroy (this.gameObject);
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		Vector3 pos = transform.position;
+		Vector3 camPos = CameraMove.S.transform.position;
+		Vector3 dir = (camPos - pos).normalized;
+
+		rigidbody2D.velocity = dir * moveSpeed;
+
 		waitTime += Time.deltaTime;
 		if (waitTime > timeBetweenVolleys) {
 			waitTime = 0;
@@ -90,6 +100,10 @@ public class BossShip : MonoBehaviour {
 		GameObject proj2 = (GameObject)Instantiate (projectile, transform.position, Quaternion.identity);
 		proj1.GetComponent<Bullet> ().setDefaults (angle, bulletVelocity);
 		proj2.GetComponent<Bullet> ().setDefaults (angle - 180f, bulletVelocity);
+
+		proj1.rigidbody2D.velocity += rigidbody2D.velocity;
+		proj2.rigidbody2D.velocity += rigidbody2D.velocity;
+
 		angle += degreesApart;
 	}
 
