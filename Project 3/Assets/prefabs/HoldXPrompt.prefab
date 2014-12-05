@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   m_Layer: 0
-  m_Name: PressX
+  m_Name: HoldXPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 732a96f74f940b54a9ee8a962ed12b37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02c7dd21fad9d3f449c5b1c1cd591b72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

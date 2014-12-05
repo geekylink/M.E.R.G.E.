@@ -167,11 +167,8 @@ public class CapturePoint : MonoBehaviour {
 
 
 		//Get the angle it will start at, and lerp it to that position
-		float startAngle = ((2 * Mathf.PI) / maxSatellites);
-		if (satsInOrbit.Count > 0) {
-			BaseSatellite lastSat = satsInOrbit[satsInOrbit.Count-1] as BaseSatellite;
-			startAngle += lastSat.orbitAngle;
-		}
+		float betweenAngle = ((2 * Mathf.PI) / maxSatellites);
+		float startAngle = betweenAngle;
 		
 		Vector3 moveToPos = transform.position;
 		moveToPos.x = transform.position.x + (Mathf.Cos (startAngle) * 10);
@@ -181,6 +178,10 @@ public class CapturePoint : MonoBehaviour {
 
 		t = 0;
 		while(t < 1){
+			if (satsInOrbit.Count > 0) {
+				BaseSatellite lastSat = satsInOrbit[satsInOrbit.Count-1] as BaseSatellite;
+				startAngle = lastSat.orbitAngle + betweenAngle;
+			}
 			moveToPos.x = transform.position.x + (Mathf.Cos (startAngle) * 10);
 			moveToPos.y = transform.position.y + (Mathf.Sin (startAngle) * 10);
 			t += Time.deltaTime * Time.timeScale / 2;

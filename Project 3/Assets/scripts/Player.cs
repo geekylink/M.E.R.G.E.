@@ -8,6 +8,7 @@ public class Player : BaseShip {
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 	public float gravityMult = 0.5f;
+	public float turnSpeed = 5;
 
 	public float bounciness = 0.5f;
 	public float camBuffer;
@@ -125,6 +126,10 @@ public class Player : BaseShip {
 		else {
 			fireRate = 0.125f;
 		}
+	}
+
+	public void UpdateTurnSpeed(float speedUp){
+		turnSpeed += speedUp;
 	}
 
 	
@@ -248,7 +253,7 @@ public class Player : BaseShip {
 
 		Vector3 turnVector = Vector3.zero;
 		turnVector.z = angle;
-		transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.Euler(turnVector), Time.deltaTime * 5);
+		transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.Euler(turnVector), Time.deltaTime * turnSpeed);
 
 	}
 

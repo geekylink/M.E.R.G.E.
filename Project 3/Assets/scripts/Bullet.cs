@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour {
 
     float lifeCounter = 0;
 
+	public float offscreenBuffer;
+
 	// Use this for initialization
 	void Start () {
 	    
@@ -43,6 +45,40 @@ public class Bullet : MonoBehaviour {
 		lifeCounter += Time.deltaTime;
 		if(lifeCounter > lifeTime){
 			Destroy(this.gameObject);
+		}
+		CheckIfOffscreen();
+	}
+
+	/// <summary>
+	/// Checks if offscreen. If it is, destroy it (with a bit of padding)
+	/// Otherwise, players can shoot far offscreen, and randomly destroy turrets
+	/// (same with enemies)
+	/// We don't really want that happening, so this will fix that
+	/// 
+	/// </summary>
+	void CheckIfOffscreen () {
+		if(Camera.main == null) return;
+		
+		float z = transform.position.z-Camera.main.transform.position.z;
+		
+		float topPosY = Camera.main.ViewportToWorldPoint(new Vector3(0,1,z)).y;
+		float bottomPosY = Camera.main.ViewportToWorldPoint(new Vector3(0,0,z)).y;
+		float leftPosX = Camera.main.ViewportToWorldPoint(new Vector3(0,0,z)).x;
+		float rightPosX = Camera.main.ViewportToWorldPoint(new Vector3(1,0,z)).x;
+
+		Vector3 pos = transform.position;
+		
+		if (pos.y>topPosY + offscreenBuffer) {
+			Destroy (this.gameObject);
+		} 
+		else if (pos.y < bottomPosY - offscreenBuffer) {
+			Destroy (this.gameObject);
+		}
+		else if (pos.x>rightPosX + offscreenBuffer) {
+			Destroy (this.gameObject);
+		} 
+		else if (pos.x<leftPosX - offscreenBuffer) {
+			Destroy (this.gameObject);
 		}
 	}
 

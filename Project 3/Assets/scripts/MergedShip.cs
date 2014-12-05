@@ -13,6 +13,7 @@ public class MergedShip : MonoBehaviour {
 
 	public GameObject mergedLine;
 	public List<GameObject> lineList = new List<GameObject>();
+	public float camBuffer;
 
 	float flyingSpeed = 0;
 	float highestFractionalSpeed = 0;
@@ -126,21 +127,21 @@ public class MergedShip : MonoBehaviour {
 		Vector2 vel = rigidbody2D.velocity;
 		Vector3 pos = transform.position;
 		
-		if (transform.position.y>topPosY) {
+		if (transform.position.y>topPosY - camBuffer) {
 			vel.y = -vel.y * bounciness;
-			pos.y = topPosY;
+			pos.y = topPosY - camBuffer;
 		} 
-		else if (transform.position.y < bottomPosY) {
+		else if (transform.position.y < bottomPosY + camBuffer) {
 			vel.y = -vel.y * bounciness;
-			pos.y = bottomPosY;
+			pos.y = bottomPosY + camBuffer;
 		}
-		else if (transform.position.x>rightPosX) {
+		else if (transform.position.x>rightPosX - camBuffer) {
 			vel.x = -vel.x * bounciness;
-			pos.x = rightPosX;
+			pos.x = rightPosX - camBuffer;
 		} 
-		else if (transform.position.x<leftPosX) {
+		else if (transform.position.x<leftPosX + camBuffer) {
 			vel.x = -vel.x * bounciness;
-			pos.x = leftPosX;
+			pos.x = leftPosX + camBuffer;
 		}
 		rigidbody2D.velocity = vel;
 		transform.position = pos;
@@ -214,6 +215,8 @@ public class MergedShip : MonoBehaviour {
 
 	//insert a player into the merged ship
 	public void AddShip(Player playerScript, int pNum){
+		camBuffer = playerScript.camBuffer;
+
 		players.Add (playerScript);
 
 		playerScript.IsCurrentlyMerged = true;
