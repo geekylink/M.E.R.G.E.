@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject[] players;
 
 	public float playerSpeed = 30;
+	public float captureDistance;
+	public float captureTime;
 
 	public GameObject playerPrefab;
 
@@ -16,6 +18,8 @@ public class PlayerManager : MonoBehaviour {
 
 	public List<Color> playerColors;
 	public List<UnityEngine.UI.Text> playerResourceTexts;
+
+	public GameObject capturePrompt;
 
 	// Use this for initialization
 	void Start () {
@@ -50,8 +54,11 @@ public class PlayerManager : MonoBehaviour {
 
 		CameraMove.S.MoveCamCenter(playerPlanetPos);
 
-		players = new GameObject[InputManager.Devices.Count];
-		for(int i = 0; i < InputManager.Devices.Count; ++i){
+		int numberOfPlayers;
+		numberOfPlayers = (InputManager.Devices.Count < 4) ? InputManager.Devices.Count : 4;
+
+		players = new GameObject[numberOfPlayers];
+		for(int i = 0; i < numberOfPlayers; ++i){
 			SpawnPlayer(i, playerColors[i], i, false);
 		}
 	}
@@ -81,8 +88,11 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject[] getPlayers() {
 		return players;
 	}
+	
 
 	private void UpdatePlayer(InputDevice device, Player player) {
+
+
 		float leftX = device.LeftStickX;
 		float leftY = device.LeftStickY;
 		float rightX = device.RightStickX;
@@ -99,23 +109,33 @@ public class PlayerManager : MonoBehaviour {
 		if(Mathf.Abs (rightY) < 0.3f && Mathf.Abs(rightX) < 0.3f){
 			rightAngle = 0;
 		}
-
+		
 		if(device.Action3){
-			player.ShowSats();
-			if (device.DPadDown.WasPressed) {
-				player.SpawnTurret(BaseSatellite.SatelliteType.TURRET);
-			}
-			
-			if (device.DPadUp.WasPressed) {
-				player.SpawnTurret(BaseSatellite.SatelliteType.HEALER);
-			}
-			
-			if (device.DPadRight.WasPressed) {
-				player.SpawnTurret(BaseSatellite.SatelliteType.MINER);
+
+			//if the player is holding 'X', and is near enough to a planet that is uncaptured,
+			//begin capturing
+			foreach(CapturePoint planet in GameManager.S.capturePoints){
+				if(planet.controlledBy != CapturePoint.ControlledBy.Neutral) continue;
+				if(planet.beingCaptured) continue;
+
+				if((planet.transform.position - player.transform.position).magnitude < captureDistance){
+					player.planetBeingCaptured = planet;
+					planet.Capture(captureTime, CapturePoint.ControlledBy.Player);
+				}
 			}
 		}
 		else{
-			player.UnshowSats();
+			//if the player was trying to capture a planet but let go of 'X', stop that capture
+			if(player.planetBeingCaptured){
+				player.planetBeingCaptured.StopCapture ();
+				player.planetBeingCaptured = null;
+			}
+		}
+		if(player.planetBeingCaptured){
+			if(player.planetBeingCaptured.controlledBy != CapturePoint.ControlledBy.Neutral){
+				player.planetBeingCaptured = null;
+			}
+
 		}
 
 

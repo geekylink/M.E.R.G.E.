@@ -4,6 +4,9 @@ using System.Collections;
 public class CameraMove : MonoBehaviour {
 	public static CameraMove S;
 
+	public bool restrictToFurthestOrbit;
+
+
 	public float camMoveSpeed;
 	public float camSizeSpeed;
 
@@ -77,6 +80,12 @@ public class CameraMove : MonoBehaviour {
 		//print (numPlayers);
 	}
 
+	/// <summary>
+	/// Basically, calculate where the camera should be,
+	/// and how large based on positions of the players
+	/// 
+	/// Restricts to furthest radius found in GameManager
+	/// </summary>
 	void CalculateCameraPosAndSize() { 
 		GameObject[] players = PlayerManager.S.players;
 
@@ -108,21 +117,12 @@ public class CameraMove : MonoBehaviour {
 
 		transform.position = Vector3.Lerp(transform.position, cameraCenter, camMoveSpeed * Time.deltaTime);
 
-
-		
-		//finalLookAt = Vector3.Lerp (finalLookAt, finalCameraCenter, camMoveSpeed * Time.deltaTime);
-		
-		//transform.LookAt(finalLookAt);
 		
 		//Size
 		float sizeX = maxX - minX + camBuffer.x;
 		float sizeY = maxY - minY + camBuffer.y;
 		
 		camSize = (sizeX > sizeY ? sizeX : sizeY);
-
-		/*camera.orthographicSize = camSize * 0.5f;
-		camera.orthographicSize = (camera.orthographicSize < minCameraSize ? minCameraSize : camera.orthographicSize);
-		camera.orthographicSize = (camera.orthographicSize > maxCameraSize ? maxCameraSize : camera.orthographicSize);*/
 
 		camSize = camSize * 0.5f;
 		camSize = (camSize < minCameraSize ? minCameraSize : camSize);
@@ -135,11 +135,23 @@ public class CameraMove : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.z = -10;
 		float width = camSize * camera.aspect;
-		if(Mathf.Abs (pos.x) > (GameManager.S.mapSize - width)	){
-			pos.x = (GameManager.S.mapSize - width) * Mathf.Abs (pos.x) / pos.x;
+
+		if(!restrictToFurthestOrbit){
+			//Just restrict to entire map
+			if(Mathf.Abs (pos.x) > (GameManager.S.mapSize - width)	){
+				pos.x = (GameManager.S.mapSize - width) * Mathf.Abs (pos.x) / pos.x;
+			}
+			if(Mathf.Abs (pos.y) > (GameManager.S.mapSize - camSize)){
+				pos.y = (GameManager.S.mapSize - camSize) * Mathf.Abs (pos.y) / pos.y;
+			}
 		}
-		if(Mathf.Abs (pos.y) > (GameManager.S.mapSize - camSize)){
-			pos.y = (GameManager.S.mapSize - camSize) * Mathf.Abs (pos.y) / pos.y;
+		else{
+			//restrict to radius of furthestAllowedRadius
+			float distFromCent = Mathf.Sqrt (pos.x * pos.x + pos.y * pos.y);
+			if(distFromCent > GameManager.S.furthestAllowedRadius){
+				pos = pos.normalized * GameManager.S.furthestAllowedRadius;
+				pos.z = -10;
+			}
 		}
 		transform.position = pos;
 		cameraCenter = pos;
