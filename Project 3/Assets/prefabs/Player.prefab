@@ -126,6 +126,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400014}
   - 61: {fileID: 6100000}
+  - 120: {fileID: 12000000}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -395,10 +396,13 @@ MonoBehaviour:
   velocityMult: 200
   bulletVelocity: 10
   gravityMult: .5
+  turnSpeed: 5
   bounciness: 0
   camBuffer: 10
   satSpawnRadius: 20
   maxOwnSats: 3
+  score: -1
+  scoreTimer: 5
   ammoPrefab: {fileID: 100000, guid: a984f3e529c19044ca71b665e4a6b83c, type: 2}
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   healSatPrefab: {fileID: 100000, guid: 79b62299d2a6f22428e6be4486506203, type: 2}
@@ -412,6 +416,40 @@ MonoBehaviour:
   rightEnginePiece: {fileID: 100006}
   leftEnginePiece: {fileID: 100010}
   playerManagerArrayPos: -1
+  planetBeingCaptured: {fileID: 0}
+--- !u!120 &12000000
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100034}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: 1
+    endWidth: 1
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

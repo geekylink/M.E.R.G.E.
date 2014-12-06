@@ -78,6 +78,8 @@ public class Player : BaseShip {
 
 	public CapturePoint planetBeingCaptured;
 
+    LineRenderer ld;
+    bool isLaserFiring = false;
 	// Use this for initialization
 	public override void Start () {
 		numResources = 0;
@@ -90,6 +92,7 @@ public class Player : BaseShip {
 		leftEnginePiece.particleSystem.enableEmission = true;
 		rightEnginePiece.particleSystem.enableEmission = true;
 
+        ld = this.GetComponent<LineRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -102,8 +105,19 @@ public class Player : BaseShip {
 		UpdateHUD ();
 		UpdateUpgrades ();
 		
-		lastRightFire -= Time.deltaTime;
+		if(lastRightFire > 0)
+            lastRightFire -= Time.deltaTime;
+
 		lastScore -= Time.deltaTime;
+
+        if (isLaserFiring)
+        {
+            ld.enabled = true;
+            isLaserFiring = false;
+        }
+        else
+            ld.enabled = false;
+        
 	}
 
 	// Handle the upgrades
@@ -199,6 +213,9 @@ public class Player : BaseShip {
 
 	// Fires from the right turret
 	public void FireRightTurret() {
+        //isLaserFiring = true;
+        //FireLaser(); return;
+
 		if (lastRightFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
@@ -241,6 +258,48 @@ public class Player : BaseShip {
 			}
 		}
 	}
+
+
+    public void FireLaser()
+    {
+        isLaserFiring = true;
+        int id = MergeManager.S.players.IndexOf(this);
+
+        Vector2 dir = Quaternion.AngleAxis(rightTurret.transform.eulerAngles.z, Vector3.forward) * Vector2.right;
+        Ray2D ray = new Ray2D(transform.position, dir);
+        RaycastHit2D hit;
+
+        ld.SetPosition(0, ray.origin);
+
+        hit = Physics2D.Raycast(ray.origin, dir, 20, 1 << 10);
+        if (hit)
+        {
+            ld.SetPosition(1, hit.point);
+
+            BaseSatellite sat = hit.collider.GetComponent<BaseSatellite>();
+            if (sat != null)
+            {
+                //TODO this is not scaling properly with time
+                sat.TakeDamage((1 + MergeManager.S.currentlyMergedWith[id].Count) * Time.deltaTime);
+                this.score += 3;
+            }
+
+            BaseShip bs = hit.collider.GetComponent<BaseShip>();
+            if (bs != null)
+            {
+                if (!bs.isInvulnerable)
+                {
+                    //TODO this is not scaling properly with time
+                    bs.TakeDamage((1 + MergeManager.S.currentlyMergedWith[id].Count) * Time.deltaTime);
+                    this.score += 2;
+                }
+            }
+        }
+        else
+        {
+            ld.SetPosition(1, ray.GetPoint(20));
+        }
+    }
 
 	public void Fly(float engineLength, float speed){
 		if(isMerging) return;
