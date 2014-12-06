@@ -87,6 +87,12 @@ public class Player : BaseShip {
 		minimapBlip.renderer.material.color = playerColor;
 		body.GetComponent<SpriteRenderer>().color = playerColor;
 
+        var engines = this.GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem ps in engines)
+        {
+            ps.startColor = playerColor;
+        }
+
 		ownSats = new ArrayList ();
 
 		leftEnginePiece.particleSystem.enableEmission = true;
@@ -389,6 +395,12 @@ public class Player : BaseShip {
 		gtRes.color = color;
 		minimapBlip.renderer.material.color = color;
 		playerColor = color;
+
+        var engines = this.GetComponentsInChildren<ParticleSystem>();
+        foreach(ParticleSystem ps in engines)
+        {
+            ps.startColor = color;
+        }
 	}
 	
 	public Color GetColor(){

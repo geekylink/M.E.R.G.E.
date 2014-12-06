@@ -111,6 +111,11 @@ MonoBehaviour:
   furthestPlanet: {fileID: 0}
   furthestAllowedRadius: 0
   capturePlanetSprite: {fileID: 0}
+  directionIndicators:
+  - {fileID: 100000, guid: 9c2b1e46a715f6648b1df3ae619c00b3, type: 2}
+  - {fileID: 100000, guid: ebb9191500607af408618c5d982966b6, type: 2}
+  - {fileID: 100000, guid: 0b39ee694730bb1489b1c7f590929ecd, type: 2}
+  - {fileID: 100000, guid: d79a3bf84dd594b41b1afb49f048060c, type: 2}
 --- !u!4 &16991587
 Transform:
   m_ObjectHideFlags: 0
@@ -2817,6 +2822,8 @@ MonoBehaviour:
   squads: []
   startingLocations: []
   mapsize: 0
+  lowLimit: 0
+  highLimit: 0
 --- !u!4 &1461437922
 Transform:
   m_ObjectHideFlags: 0
