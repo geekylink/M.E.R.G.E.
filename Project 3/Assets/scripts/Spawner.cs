@@ -80,8 +80,11 @@ public class Spawner : MonoBehaviour {
 			yield return 0;
 		}
 
+		print ("Squad spawned");
 		GameObject eSquadGO = squadPrefab;
 		EnemySquad eSquad = eSquadGO.GetComponent<EnemySquad>();
+
+		eSquad.target = getRandomPlayer ();
 
 		while(eSquad.target == null){
 			eSquad.target = getRandomPlayer();

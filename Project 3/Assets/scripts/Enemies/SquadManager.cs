@@ -9,6 +9,8 @@ public class SquadManager : MonoBehaviour {
 	public static SquadManager S { get; private set; }
 	public List<Vector2> startingLocations;
 	public float mapsize;
+	public float lowLimit;
+	public float highLimit;
 
 	// Use this for initialization
 	void Start () {
@@ -51,6 +53,9 @@ public class SquadManager : MonoBehaviour {
 	public void RemoveEnemy(EnemyBaseShip enemy, int id){
 		if(id != 0){
 			squads [id - 1].squadMembers.Remove (enemy);
+			if(squads[id - 1].squadMembers.Count == 0){
+				squads.RemoveAt(id - 1);
+			}
 		}
 	}
 
@@ -91,5 +96,18 @@ public class SquadManager : MonoBehaviour {
 		return squadLocs;
 	}
 
+	public GameObject GetRandomOnScreenEnemy(){
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+		int counter = 0;
+		while (counter++ < 20){
+			int idx = Random.Range (0, SquadManager.S.squads.Count);
+			EnemySquad tempSquad = SquadManager.S.squads[idx];
+			if(GeometryUtility.TestPlanesAABB(planes, tempSquad.squadMembers[0].collider2D.bounds)){
+				idx = Random.Range(0, tempSquad.squadMembers.Count);
+				return tempSquad.squadMembers[idx].gameObject;
+			}
+		}
+		return null;
+	}
 
 }

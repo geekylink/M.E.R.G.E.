@@ -23,7 +23,13 @@ public class Enemy : EnemyBaseShip {
             targetPos = currTarget.transform.position;
             var dir = targetPos - transform.position;
 			if(squadId != 0){
-				this.rigidbody2D.velocity = dir.normalized * moveSpeed ;//+ SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
+				rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)(SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId) * 
+					Time.deltaTime);
+				if(rigidbody2D.velocity.magnitude < SquadManager.S.lowLimit){
+					rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.lowLimit;
+				} else if (rigidbody2D.velocity.magnitude > SquadManager.S.highLimit){
+					rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.highLimit;
+				}
 			}
 			else{
 				this.rigidbody2D.velocity = dir.normalized * moveSpeed;
@@ -33,9 +39,7 @@ public class Enemy : EnemyBaseShip {
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 		else{
-			if(squadId == 0){
-				currTarget = getRandomPlayer();
-			}
+			currTarget = getRandomPlayer();
 		}
 
 	}

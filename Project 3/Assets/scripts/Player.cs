@@ -168,6 +168,24 @@ public class Player : BaseShip {
             b.SetColor(playerColor);
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
 			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
+
+			if(MergeManager.S.currentlyMergedWith[id].Count == 1){
+				GameObject bullet2GO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
+				GameObject bullet3GO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
+				Bullet b2 = bullet2GO.GetComponent("Bullet") as Bullet;
+				b2.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
+				b2.SetColor(playerColor);
+				b2.setDefaults(-rightTurret.transform.eulerAngles.z - 20f, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
+
+				Bullet b3 = bullet3GO.GetComponent("Bullet") as Bullet;
+				b3.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
+				b3.SetColor(playerColor);
+				b3.setDefaults(-rightTurret.transform.eulerAngles.z + 20f, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
+			}
+			if(MergeManager.S.currentlyMergedWith[id].Count == 1){
+				transform.root.GetComponent<MergedShip>().FireZeMissiles();
+			}
+
 			lastRightFire = fireRate;
 		}
 

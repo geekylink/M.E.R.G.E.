@@ -7,10 +7,10 @@ public class ShootingEnemy : EnemyBaseShip
     public GameObject projectile;
     public float moveSpeed = 2f;
     public float fireRate = 2f;
-    public float hoverDistance = 6;
+    public float hoverDistance = 0;
     public float projectileSpeed = 4;
     private float fireTimer = 0f;
-
+	public Vector2 velocity;
 	// Use this for initialization
 	public override void Start () {
 		sphere.renderer.material.color = Color.red;
@@ -26,11 +26,18 @@ public class ShootingEnemy : EnemyBaseShip
             var dist = targetPos - transform.position;
             if (dist.magnitude > hoverDistance){
 				if(squadId != 0){
-					rigidbody2D.velocity = dist.normalized * moveSpeed;// + SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId);
+					rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)(SquadManager.S.Boids(this.gameObject.GetComponent<EnemyBaseShip>(), squadId) * 
+						Time.deltaTime);
+					if(rigidbody2D.velocity.magnitude < SquadManager.S.lowLimit){
+						rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.lowLimit;
+					} else if (rigidbody2D.velocity.magnitude > SquadManager.S.highLimit){
+						rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.highLimit;
+					}
 				}
 				else{
 					rigidbody2D.velocity = dist.normalized * moveSpeed;
 				}
+				velocity = rigidbody2D.velocity;
 			}
             else
 				rigidbody2D.velocity = Vector3.zero;
@@ -49,10 +56,7 @@ public class ShootingEnemy : EnemyBaseShip
         }
 		
 		else{
-			
-			if(squadId == 0){
-				currTarget = getRandomPlayer();
-			}
+			currTarget = getRandomPlayer();
 		}
 	}
 

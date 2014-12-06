@@ -16,14 +16,13 @@ public class EnemySquad : MonoBehaviour {
 	public GameObject target;
 	public float vLimit;
 	// Use this for initialization
-	void Start () {
-		//squadMembers = new List<EnemyBaseShip> ();
+
+	Vector3 squadCenter;
+	public Vector3 SquadCenter{ 
+		get {return squadCenter;}
+		set {squadCenter = value; }
 	}
 
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	public Vector2 ApplyBoids(EnemyBaseShip enemy){
 		Vector2 v1, v2, v3, v4;
@@ -38,11 +37,8 @@ public class EnemySquad : MonoBehaviour {
 		if (avoidTarget) {
 			v4 *= -1f;
 		}
-		Vector2 velocity = v1 + v3 + v4;
-		if (velocity.magnitude > vLimit) {
-			return new Vector2(velocity.normalized.x / Mathf.Abs(velocity.normalized.x), velocity.normalized.y / Mathf.Abs(velocity.normalized.y)) * vLimit;
-		}
-			return v1 + v2 + v3 + v4;
+		Vector2 velocity = v1 + v3 + v4 * 8f;
+		return velocity;
 	}
 
 	Vector2 TowardCenter(EnemyBaseShip enemy){
@@ -55,8 +51,9 @@ public class EnemySquad : MonoBehaviour {
 			}
 		}
 		Vector2 center = positionSum / (float)(squadMembers.Count);
-		center.x = (center.x - enemy.transform.position.x) / towardCenterFactor;
-		center.y = (center.y - enemy.transform.position.y) / towardCenterFactor;
+		squadCenter = center;
+		center.x = (center.x - enemy.transform.position.x);// / towardCenterFactor;
+		center.y = (center.y - enemy.transform.position.y);// / towardCenterFactor;
 		return center;
 	}
 
@@ -82,10 +79,14 @@ public class EnemySquad : MonoBehaviour {
 			}
 		}
 		velocitySum = velocitySum / (float)(squadMembers.Count);
-		return (velocitySum - enemy.rigidbody2D.velocity) / velocityMatchFactor;
+		return (velocitySum - enemy.rigidbody2D.velocity);// / velocityMatchFactor;
 	}
 
 	Vector2 TendTowardTarget(EnemyBaseShip enemy){
-		return (target.transform.position - enemy.transform.position) / towardTargetFactor;
+		if (target) {
+			return (target.transform.position - enemy.transform.position);// / towardTargetFactor;
+		} else {
+			return Vector2.zero;
+		}
 	}
 }
