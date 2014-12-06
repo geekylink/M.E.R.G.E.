@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: cce6cef7a3e880e439aaf0b1aa17c6ab
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: arrows_0
+    21300002: arrows_1
+    21300004: arrows_2
+    21300006: arrows_3
+    21300008: arrows_4
+    21300010: arrows_5
+    21300012: arrows_6
+    21300014: arrows_7
+    21300016: arrows_8
+    21300018: arrows_9
+    21300020: arrows_10
+    21300022: arrows_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: arrows_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 957
+        width: 146
+        height: 448
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1064
+        width: 147
+        height: 341
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_2
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 1170
+        width: 146
+        height: 235
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_3
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 1277
+        width: 146
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 478
+        width: 146
+        height: 449
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 584
+        width: 146
+        height: 343
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_6
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 691
+        width: 147
+        height: 236
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_7
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 797
+        width: 146
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 145
+        height: 448
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_9
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 105
+        width: 147
+        height: 343
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_10
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 212
+        width: 147
+        height: 236
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrows_11
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 318
+        width: 146
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

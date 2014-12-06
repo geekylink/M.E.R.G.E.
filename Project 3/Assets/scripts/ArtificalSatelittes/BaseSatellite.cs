@@ -15,7 +15,7 @@ public class BaseSatellite : MonoBehaviour {
 	public OrbitingType orbiting;
 	public SatelliteTeam team;
 
-	public int health;
+	public float health;
 
 
 	public float orbitAngle = 0;
@@ -69,7 +69,7 @@ public class BaseSatellite : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
-	public void TakeDamage(int damage){
+	public void TakeDamage(float damage){
 		health -= damage;
 		if (health <= 0){
 			Die ();

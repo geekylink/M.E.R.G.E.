@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class BaseShip : MonoBehaviour {
 
-	public int maxHealth;
-	protected int health;
+    public float maxHealth;
+	protected float health;
     public GameObject explosion;
     public static int score;
 	public float maxRotSpeed;
@@ -24,7 +24,7 @@ public class BaseShip : MonoBehaviour {
 		health = maxHealth;
 	}
 
-	public void TakeDamage(int amount) {
+	public void TakeDamage(float amount) {
 		if(isInvulnerable) return;
 		if(shield){
 			RemoveShield();
