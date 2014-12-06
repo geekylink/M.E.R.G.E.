@@ -14,6 +14,7 @@ TagManager:
   - Bullet-Enemy
   - Planet
   - Satellite
+  - Missile
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

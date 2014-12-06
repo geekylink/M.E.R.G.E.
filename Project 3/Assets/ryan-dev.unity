@@ -102,10 +102,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ddf416694277564cb57a24905323020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getPlanetOnStart: 0
   mapSize: 240
   borderSprite: {fileID: 21300000, guid: 8edd75fee4fac1749a2c4fb993bdc94b, type: 3}
   playerColors: []
   capturePoints: []
+  directionIndicator: {fileID: 0}
+  furthestPlanet: {fileID: 0}
+  furthestAllowedRadius: 0
+  capturePlanetSprite: {fileID: 0}
 --- !u!4 &16991587
 Transform:
   m_ObjectHideFlags: 0
@@ -217,6 +222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   playerSpeed: 30
+  captureDistance: 0
+  captureTime: 0
   playerPrefab: {fileID: 100034, guid: ff17c3370b29b374483f487759e6fc2c, type: 2}
   respawnTime: 1
   respawnInvunerablityTime: 5
@@ -230,6 +237,7 @@ MonoBehaviour:
   - {fileID: 84885448}
   - {fileID: 326600195}
   - {fileID: 1401287588}
+  capturePrompt: {fileID: 0}
 --- !u!114 &22428385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419c3d2421451c64481b3372a18b609a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictToFurthestOrbit: 0
   camMoveSpeed: 20
   camSizeSpeed: 5
   minCameraSize: 20
@@ -1097,6 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 131866611}
   minimapBlip: {fileID: 1339723204}
   captureType: 0
@@ -1105,6 +1115,8 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: 180
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!1 &622140609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,6 +1677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 622140609}
   minimapBlip: {fileID: 720239580}
   captureType: 0
@@ -1673,6 +1686,8 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: 0
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!1 &1078075266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,6 +1752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 633683251}
   minimapBlip: {fileID: 1893834703}
   captureType: 0
@@ -1745,6 +1761,8 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: 140
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!1 &1080719113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 345238811}
   minimapBlip: {fileID: 169071906}
   captureType: 0
@@ -1796,6 +1815,8 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: 130
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1080719116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,6 +1998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 1220469773}
   minimapBlip: {fileID: 1271318582}
   captureType: 0
@@ -1985,6 +2007,8 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: -50
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1163401624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2613,6 +2637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 530072734}
   minimapBlip: {fileID: 1732270753}
   captureType: 0
@@ -2621,6 +2646,8 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: 45
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1479185292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2949,6 +2976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 938795807}
   minimapBlip: {fileID: 902917456}
   captureType: 0
@@ -2957,6 +2985,8 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: -100
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1802834125
 MonoBehaviour:
   m_ObjectHideFlags: 0
