@@ -368,15 +368,15 @@ public class Player : BaseShip {
 			vel.y = -vel.y * bounciness;
 			pos.y = topPosY - camBuffer;
 		} 
-		else if (transform.position.y < bottomPosY + camBuffer) {
+		if (transform.position.y < bottomPosY + camBuffer) {
 			vel.y = -vel.y * bounciness;
 			pos.y = bottomPosY + camBuffer;
 		}
-		else if (transform.position.x>rightPosX - camBuffer) {
+		if (transform.position.x>rightPosX - camBuffer) {
 			vel.x = -vel.x * bounciness;
 			pos.x = rightPosX - camBuffer;
 		} 
-		else if (transform.position.x<leftPosX + camBuffer) {
+		if (transform.position.x<leftPosX + camBuffer) {
 			vel.x = -vel.x * bounciness;
 			pos.x = leftPosX + camBuffer;
 		}
