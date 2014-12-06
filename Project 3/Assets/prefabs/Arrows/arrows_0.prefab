@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 114: {fileID: 11400000}
+  - 212: {fileID: 21200000}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: arrows_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,31 +28,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400000
-MonoBehaviour:
+--- !u!212 &21200000
+SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ddf416694277564cb57a24905323020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  getPlanetOnStart: 0
-  mapSize: 240
-  borderSprite: {fileID: 21300000, guid: 8edd75fee4fac1749a2c4fb993bdc94b, type: 3}
-  playerColors: []
-  capturePoints: []
-  directionIndicator: {fileID: 100000, guid: 887806cac5f4409458ece1f7dceea97f, type: 2}
-  furthestPlanet: {fileID: 0}
-  furthestAllowedRadius: 0
-  capturePlanetSprite: {fileID: 0}
-  directionIndicators:
-  - {fileID: 100000, guid: 9c2b1e46a715f6648b1df3ae619c00b3, type: 2}
-  - {fileID: 100000, guid: ebb9191500607af408618c5d982966b6, type: 2}
-  - {fileID: 100000, guid: 0b39ee694730bb1489b1c7f590929ecd, type: 2}
-  - {fileID: 100000, guid: d79a3bf84dd594b41b1afb49f048060c, type: 2}
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: cce6cef7a3e880e439aaf0b1aa17c6ab, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

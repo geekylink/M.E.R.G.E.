@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
 
 	public Sprite capturePlanetSprite;
 
+	public List<GameObject> directionIndicators;
+
 	// Use this for initialization
 	void Start () {
 		if(S == null)
@@ -173,37 +175,40 @@ public class GameManager : MonoBehaviour {
 			float newX, newY;
 			newX = x;
 			newY = y;
+
+			float edgePoint = .45f;
+
 			if(y > 0.5f){
-				newX = 0.5f / slope;
-				newY = 0.5f;
+				newX = edgePoint / slope;
+				newY = edgePoint;
 				if(newX > 0.5f){
-					newX = 0.5f;
-					newY = 0.5f * slope;
+					newX = edgePoint;
+					newY = edgePoint * slope;
 				}
 				if(newX < -0.5f){
-					newX = -0.5f;
-					newY = -0.5f * slope;
+					newX = -edgePoint;
+					newY = -edgePoint * slope;
 				}
 			}
 			else if(y < -0.5f){
-				newY = -0.5f;
-				newX = -0.5f / slope;
+				newY = -edgePoint;
+				newX = -edgePoint / slope;
 				if(newX > 0.5f){
-					newX = 0.5f;
-					newY = 0.5f * slope;
+					newX = edgePoint;
+					newY = edgePoint * slope;
 				}
 				if(newX < -0.5f){
-					newX = -0.5f;
-					newY = -0.5f * slope;
+					newX = -edgePoint;
+					newY = -edgePoint * slope;
 				}
 			}
 			else if(x > 0.5f){
-				newY = 0.5f * slope;
-				newX = 0.5f;
+				newY = edgePoint * slope;
+				newX = edgePoint;
 			}
 			else if(x < -0.5f){
-				newY = -0.5f * slope;
-				newX = -0.5f;
+				newY = -edgePoint * slope;
+				newX = -edgePoint;
 			}
 			newX += 0.5f;
 			newY += 0.5f;
@@ -211,23 +216,37 @@ public class GameManager : MonoBehaviour {
 			newPoint.x = newX;
 			newPoint.y = newY;
 
+
+			
+			float distanceFromPlayers = (cp.transform.position - Camera.main.transform.position).magnitude;
+			float mapIncrements = mapSize*2 / directionIndicators.Count;
+
+			GameObject indicatorToUse = directionIndicators[0];
+
+			for(int i = directionIndicators.Count; i > 0; --i){
+				if(distanceFromPlayers < mapIncrements * i){
+					indicatorToUse = directionIndicators[i-1];
+				}
+			}
+
 			//put a capture point indicator at the edge of the screen
 			//and color it based on how far/close it is
 			Vector3 newWorldPoint = Camera.main.ViewportToWorldPoint(newPoint);
-			GameObject dirIndicator = Instantiate(directionIndicator, newWorldPoint, Quaternion.identity) as GameObject;
+			newWorldPoint.z = 0;
+			GameObject dirIndicator = Instantiate(indicatorToUse, newWorldPoint, Quaternion.identity) as GameObject;
+			dirIndicator.transform.parent = Camera.main.transform;
+
+			Vector3 lookAtPoint = cp.transform.position;
+			lookAtPoint.z = 0;
+			Vector3 lookDir = lookAtPoint - newWorldPoint;
+			dirIndicator.transform.up = lookDir;
+
+
 			capturePointDirIndicators.Add (dirIndicator);
 
-			float distanceFromPlayers = (cp.transform.position - Camera.main.transform.position).magnitude;
-			float scale = (1 / distanceFromPlayers + .001f);
-			Vector3 newScale = dirIndicator.transform.localScale;
-			newScale.x = 5;
-			newScale.y = 5;
-			dirIndicator.transform.localScale = newScale;
-			
+		
 			Color color = cp.color;
-			color = color * scale * 200;
-			color.a = 1 * scale * 150;
-			dirIndicator.renderer.material.color = color;
+			dirIndicator.GetComponent<SpriteRenderer>().material.color = color;
 		}
 	}
 	

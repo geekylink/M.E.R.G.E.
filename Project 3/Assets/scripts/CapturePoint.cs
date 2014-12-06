@@ -105,7 +105,7 @@ public class CapturePoint : MonoBehaviour {
 		if(controlledBy == ControlledBy.Player){
 			sr.color = Color.blue;
 			minimapBlip.renderer.material.color = Color.blue;
-			color = Color.blue;
+			color = new Color(.2f, .2f, 1);
 
 		}
 		if(controlledBy == ControlledBy.Enemy){

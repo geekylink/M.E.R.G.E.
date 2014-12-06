@@ -472,10 +472,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ddf416694277564cb57a24905323020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getPlanetOnStart: 0
   mapSize: 240
   borderSprite: {fileID: 21300000, guid: 8edd75fee4fac1749a2c4fb993bdc94b, type: 3}
   playerColors: []
   capturePoints: []
+  directionIndicator: {fileID: 100000, guid: 887806cac5f4409458ece1f7dceea97f, type: 2}
+  furthestPlanet: {fileID: 0}
+  furthestAllowedRadius: 0
+  capturePlanetSprite: {fileID: 0}
+  directionIndicators:
+  - {fileID: 100000, guid: 9c2b1e46a715f6648b1df3ae619c00b3, type: 2}
+  - {fileID: 100000, guid: ebb9191500607af408618c5d982966b6, type: 2}
+  - {fileID: 100000, guid: 0b39ee694730bb1489b1c7f590929ecd, type: 2}
+  - {fileID: 100000, guid: d79a3bf84dd594b41b1afb49f048060c, type: 2}
 --- !u!1001 &1624792073
 Prefab:
   m_ObjectHideFlags: 0
@@ -514,10 +524,6 @@ Prefab:
     - target: {fileID: 400000, guid: 78dc65e4fc18d1345b36817f4eba19de, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 78dc65e4fc18d1345b36817f4eba19de, type: 2}
-      propertyPath: mapSize
-      value: 240
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78dc65e4fc18d1345b36817f4eba19de, type: 2}
