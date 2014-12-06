@@ -55,9 +55,6 @@ public class PlayerManager : MonoBehaviour {
 		CameraMove.S.MoveCamCenter(playerPlanetPos);
 
 		players = new GameObject[InputManager.Devices.Count];
-	
-		for(int i = 0; i < InputManager.Devices.Count; ++i){
-		
 		int numberOfPlayers;
 		numberOfPlayers = (InputManager.Devices.Count < 4) ? InputManager.Devices.Count : 4;
 
