@@ -102,6 +102,8 @@ MonoBehaviour:
   lifeTime: 16
   explosion: {fileID: 100000, guid: fe924960e65ff7b4bbe36bbd4d321070, type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
+  owner: {fileID: 0}
+  offscreenBuffer: 10
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

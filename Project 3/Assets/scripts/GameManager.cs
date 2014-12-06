@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 	
 	public static GameManager S;
+	public bool getPlanetOnStart = false;
 
 	public float mapSize;
 
@@ -12,6 +13,12 @@ public class GameManager : MonoBehaviour {
 
 	public List<Color> playerColors; 
 	public List<CapturePoint> capturePoints = new List<CapturePoint>();
+	public GameObject directionIndicator;
+	List<GameObject> capturePointDirIndicators = new List<GameObject>();
+	public BaseSatellite furthestPlanet;
+	public float furthestAllowedRadius;
+
+	public Sprite capturePlanetSprite;
 
 	// Use this for initialization
 	void Start () {
@@ -31,14 +38,54 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 
 		playerColors = new List<Color>();
-
 	}
 
+	/// <summary>
+	/// Acquires the captures.
+	/// This happens at the beginning of the game - not the menus
+	/// It will simply grab all objects with tag "Planet" and add them to the list
+	/// </summary>
 	public void AcquireCaptures(){
 		GameObject[] planets = GameObject.FindGameObjectsWithTag("Planet");
+
 		foreach(GameObject planet in planets){
-			capturePoints.Add (planet.GetComponent<CapturePoint>());
+			CapturePoint cp = planet.GetComponent<CapturePoint>();
+			capturePoints.Add (cp);
 		}
+
+		CheckFurthestPlanet();
+	}
+
+	/// <summary>
+	/// Checks the furthest planet.
+	/// This is used to limit player movement to the planet outside the furthest one they own
+	/// </summary>
+	public void CheckFurthestPlanet(){
+		//First find the planet owned by the player that is furthest out
+		float furthestRadius = 0;
+		foreach(CapturePoint cp in capturePoints){
+			
+			BaseSatellite bs = cp.GetComponent<BaseSatellite>();
+			if(bs.orbitRadius > furthestRadius && cp.controlledBy == CapturePoint.ControlledBy.Player){
+				furthestRadius = bs.orbitRadius;
+			}
+		}
+
+		//What I actually want is the radius of the planet that is next furthest out
+		float tempRadius = Mathf.Infinity;
+		foreach(CapturePoint cp in capturePoints){
+			BaseSatellite bs = cp.GetComponent<BaseSatellite>();
+			if(bs.orbitRadius > furthestRadius && bs.orbitRadius < tempRadius){
+				tempRadius = bs.orbitRadius;
+				furthestPlanet = bs;
+			}
+		}
+		if(tempRadius == Mathf.Infinity){
+			tempRadius = furthestRadius;
+		}
+
+		furthestAllowedRadius = tempRadius + 5;
+
 	}
 
 	public void CreateMapBoundaries(){
@@ -60,6 +107,10 @@ public class GameManager : MonoBehaviour {
 		edge.GetComponent<SpriteRenderer>().sprite = borderSprite;
 	}
 
+	/// <summary>
+	/// Checks for boss spawn.
+	/// When all the capture points are owned by the players, boss will spawn
+	/// </summary>
 	public void CheckForBossSpawn(){
 		bool bossShouldSpawn = true;
 
@@ -85,9 +136,103 @@ public class GameManager : MonoBehaviour {
 	public void End(){
 		StartCoroutine(EndGame());
 	}
+
+	/// <summary>
+	/// Shows the capture points on screen.
+	/// The capture points are indicated on screen by, currently, circles
+	/// at the edge of the screen. This could easily be changed, it's just a prefab
+	/// </summary>
+	public void ShowCapturePointsOnScreen(){
+		foreach(GameObject go in capturePointDirIndicators){
+			Destroy(go);
+		}
+		capturePointDirIndicators.RemoveRange(0, capturePointDirIndicators.Count);
+
+		foreach(CapturePoint cp in capturePoints){
+			BaseSatellite bs = cp.GetComponent<BaseSatellite>();
+			if(bs.orbitRadius > furthestAllowedRadius){
+				continue;
+			}
+
+			Vector3 viewportPoint = Camera.main.WorldToViewportPoint(cp.transform.position);
+			float x = viewportPoint.x;
+			float y = viewportPoint.y;
+
+			if(x >= 0 && x <= 1 && y >= 0 && y <= 1){
+				continue;
+			}
+
+			//A little bit of math to determine where the line between the
+			//center of the screen and the capture point falls on the edge of 
+			//the screen
+			x -= 0.5f;
+			y -= 0.5f;
+			float slope = y/x;
+
+			Vector3 newPoint = viewportPoint;
+			float newX, newY;
+			newX = x;
+			newY = y;
+			if(y > 0.5f){
+				newX = 0.5f / slope;
+				newY = 0.5f;
+				if(newX > 0.5f){
+					newX = 0.5f;
+					newY = 0.5f * slope;
+				}
+				if(newX < -0.5f){
+					newX = -0.5f;
+					newY = -0.5f * slope;
+				}
+			}
+			else if(y < -0.5f){
+				newY = -0.5f;
+				newX = -0.5f / slope;
+				if(newX > 0.5f){
+					newX = 0.5f;
+					newY = 0.5f * slope;
+				}
+				if(newX < -0.5f){
+					newX = -0.5f;
+					newY = -0.5f * slope;
+				}
+			}
+			else if(x > 0.5f){
+				newY = 0.5f * slope;
+				newX = 0.5f;
+			}
+			else if(x < -0.5f){
+				newY = -0.5f * slope;
+				newX = -0.5f;
+			}
+			newX += 0.5f;
+			newY += 0.5f;
+
+			newPoint.x = newX;
+			newPoint.y = newY;
+
+			//put a capture point indicator at the edge of the screen
+			//and color it based on how far/close it is
+			Vector3 newWorldPoint = Camera.main.ViewportToWorldPoint(newPoint);
+			GameObject dirIndicator = Instantiate(directionIndicator, newWorldPoint, Quaternion.identity) as GameObject;
+			capturePointDirIndicators.Add (dirIndicator);
+
+			float distanceFromPlayers = (cp.transform.position - Camera.main.transform.position).magnitude;
+			float scale = (1 / distanceFromPlayers + .001f);
+			Vector3 newScale = dirIndicator.transform.localScale;
+			newScale.x = 5;
+			newScale.y = 5;
+			dirIndicator.transform.localScale = newScale;
+			
+			Color color = cp.color;
+			color = color * scale * 200;
+			color.a = 1 * scale * 150;
+			dirIndicator.renderer.material.color = color;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		ShowCapturePointsOnScreen();
 	}
 }

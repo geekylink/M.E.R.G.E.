@@ -102,10 +102,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ddf416694277564cb57a24905323020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getPlanetOnStart: 0
   mapSize: 240
   borderSprite: {fileID: 21300000, guid: 8edd75fee4fac1749a2c4fb993bdc94b, type: 3}
   playerColors: []
   capturePoints: []
+  directionIndicator: {fileID: 100000, guid: 887806cac5f4409458ece1f7dceea97f, type: 2}
+  furthestPlanet: {fileID: 0}
+  furthestAllowedRadius: 0
+  capturePlanetSprite: {fileID: 0}
 --- !u!4 &16991587
 Transform:
   m_ObjectHideFlags: 0
@@ -217,6 +222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   playerSpeed: 30
+  captureDistance: 10
+  captureTime: 2
   playerPrefab: {fileID: 100034, guid: ff17c3370b29b374483f487759e6fc2c, type: 2}
   respawnTime: 1
   respawnInvunerablityTime: 5
@@ -230,6 +237,7 @@ MonoBehaviour:
   - {fileID: 84885448}
   - {fileID: 326600195}
   - {fileID: 1401287588}
+  capturePrompt: {fileID: 100000, guid: b2a8e110e97df6c4c9890f77045df8a2, type: 2}
 --- !u!114 &22428385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419c3d2421451c64481b3372a18b609a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictToFurthestOrbit: 1
   camMoveSpeed: 20
   camSizeSpeed: 5
   minCameraSize: 20
@@ -776,13 +785,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 126061217}
-  - {fileID: 1043585238}
-  - {fileID: 555395488}
   - {fileID: 1078075267}
   - {fileID: 1802834123}
   - {fileID: 1479185290}
-  - {fileID: 1163401622}
   - {fileID: 1080719114}
+  - {fileID: 1043585238}
+  - {fileID: 555395488}
+  - {fileID: 1163401622}
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!1 &345238811
@@ -1043,8 +1052,10 @@ GameObject:
   - 4: {fileID: 555395488}
   - 114: {fileID: 555395489}
   - 114: {fileID: 555395490}
+  - 114: {fileID: 555395492}
+  - 120: {fileID: 555395491}
   m_Layer: 0
-  m_Name: PlanetA
+  m_Name: Planet5
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1064,7 +1075,7 @@ Transform:
   - {fileID: 1339723205}
   - {fileID: 231852086}
   m_Father: {fileID: 334441415}
-  m_RootOrder: 2
+  m_RootOrder: 6
 --- !u!114 &555395489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01cc6169b1db594a84db950bd522588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitRadius: 180
+  orbitRadius: 182
   orbitSpeed: .00100000005
   orbitTarget: {fileID: 126061215}
   creatorObj: {fileID: 0}
@@ -1097,6 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 131866611}
   minimapBlip: {fileID: 1339723204}
   captureType: 0
@@ -1105,6 +1117,53 @@ MonoBehaviour:
   maxSatellites: 3
   satsInOrbit: []
   angle: 180
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
+--- !u!120 &555395491
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 555395487}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8188f21265ca54f46a4bd50064d6622e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!114 &555395492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 555395487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 200
 --- !u!1 &622140609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,8 +1670,10 @@ GameObject:
   - 4: {fileID: 1043585238}
   - 114: {fileID: 1043585239}
   - 114: {fileID: 1043585240}
+  - 114: {fileID: 1043585242}
+  - 120: {fileID: 1043585241}
   m_Layer: 0
-  m_Name: PlanetA
+  m_Name: Planet4
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,7 +1693,7 @@ Transform:
   - {fileID: 720239584}
   - {fileID: 1413186415}
   m_Father: {fileID: 334441415}
-  m_RootOrder: 1
+  m_RootOrder: 5
 --- !u!114 &1043585239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1665,14 +1726,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 622140609}
   minimapBlip: {fileID: 720239580}
   captureType: 0
-  controlledBy: 0
+  controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 0
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
+--- !u!120 &1043585241
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1043585237}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8188f21265ca54f46a4bd50064d6622e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!114 &1043585242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1043585237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 200
 --- !u!1 &1078075266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,8 +1792,10 @@ GameObject:
   - 4: {fileID: 1078075267}
   - 114: {fileID: 1078075268}
   - 114: {fileID: 1078075269}
+  - 114: {fileID: 1078075271}
+  - 120: {fileID: 1078075270}
   m_Layer: 0
-  m_Name: PlanetB
+  m_Name: StartingPlanet
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1704,7 +1815,7 @@ Transform:
   - {fileID: 1893834704}
   - {fileID: 1453609555}
   m_Father: {fileID: 334441415}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!114 &1078075268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,14 +1848,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 633683251}
   minimapBlip: {fileID: 1893834703}
   captureType: 0
-  controlledBy: 2
+  controlledBy: 0
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 140
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
+--- !u!120 &1078075270
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078075266}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8188f21265ca54f46a4bd50064d6622e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!114 &1078075271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078075266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 200
 --- !u!1 &1080719113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,8 +1914,11 @@ GameObject:
   - 4: {fileID: 1080719114}
   - 114: {fileID: 1080719116}
   - 114: {fileID: 1080719115}
+  - 114: {fileID: 1080719119}
+  - 114: {fileID: 1080719118}
+  - 120: {fileID: 1080719117}
   m_Layer: 0
-  m_Name: PlanetB
+  m_Name: Planet3
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1776,7 +1938,7 @@ Transform:
   - {fileID: 169071907}
   - {fileID: 1900725615}
   m_Father: {fileID: 334441415}
-  m_RootOrder: 7
+  m_RootOrder: 4
 --- !u!114 &1080719115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1788,14 +1950,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 345238811}
   minimapBlip: {fileID: 169071906}
   captureType: 0
-  controlledBy: 2
+  controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 130
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1080719116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,7 +1972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01cc6169b1db594a84db950bd522588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitRadius: 180
+  orbitRadius: 179
   orbitSpeed: .000500000024
   orbitTarget: {fileID: 126061215}
   creatorObj: {fileID: 0}
@@ -1817,6 +1982,63 @@ MonoBehaviour:
   health: 0
   orbitAngle: 45
   playerWhoSpawned: -1
+--- !u!120 &1080719117
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1080719113}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8188f21265ca54f46a4bd50064d6622e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!114 &1080719118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1080719113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 0
+--- !u!114 &1080719119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1080719113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 200
 --- !u!1 &1130763458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,8 +2166,10 @@ GameObject:
   - 4: {fileID: 1163401622}
   - 114: {fileID: 1163401624}
   - 114: {fileID: 1163401623}
+  - 114: {fileID: 1163401626}
+  - 120: {fileID: 1163401625}
   m_Layer: 0
-  m_Name: PlanetB
+  m_Name: EnemyPlanet
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1965,7 +2189,7 @@ Transform:
   - {fileID: 1271318583}
   - {fileID: 899165414}
   m_Father: {fileID: 334441415}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!114 &1163401623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,14 +2201,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 1220469773}
   minimapBlip: {fileID: 1271318582}
   captureType: 0
-  controlledBy: 2
+  controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: -50
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1163401624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,6 +2233,51 @@ MonoBehaviour:
   health: 0
   orbitAngle: 45
   playerWhoSpawned: -1
+--- !u!120 &1163401625
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1163401621}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8188f21265ca54f46a4bd50064d6622e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!114 &1163401626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1163401621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 200
 --- !u!1 &1220469773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,8 +2842,10 @@ GameObject:
   - 4: {fileID: 1479185290}
   - 114: {fileID: 1479185292}
   - 114: {fileID: 1479185291}
+  - 114: {fileID: 1479185294}
+  - 120: {fileID: 1479185293}
   m_Layer: 0
-  m_Name: PlanetB
+  m_Name: Planet2
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2591,7 +2865,7 @@ Transform:
   - {fileID: 1732270754}
   - {fileID: 873856225}
   m_Father: {fileID: 334441415}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!114 &1479185291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,14 +2877,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 530072734}
   minimapBlip: {fileID: 1732270753}
   captureType: 0
-  controlledBy: 2
+  controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 45
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1479185292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2632,6 +2909,51 @@ MonoBehaviour:
   health: 0
   orbitAngle: 45
   playerWhoSpawned: -1
+--- !u!120 &1479185293
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479185289}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8188f21265ca54f46a4bd50064d6622e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!114 &1479185294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479185289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 200
 --- !u!1001 &1495652597
 Prefab:
   m_ObjectHideFlags: 0
@@ -2906,8 +3228,10 @@ GameObject:
   - 4: {fileID: 1802834123}
   - 114: {fileID: 1802834125}
   - 114: {fileID: 1802834124}
+  - 114: {fileID: 1802834127}
+  - 120: {fileID: 1802834126}
   m_Layer: 0
-  m_Name: PlanetB
+  m_Name: Planet1
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2927,7 +3251,7 @@ Transform:
   - {fileID: 902917457}
   - {fileID: 1978847507}
   m_Father: {fileID: 334441415}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!114 &1802834124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2939,14 +3263,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8302a38981791034faf10f281b83e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   planetObj: {fileID: 938795807}
   minimapBlip: {fileID: 902917456}
   captureType: 0
-  controlledBy: 2
+  controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: -100
+  beingCaptured: 0
+  turretBeingBuilt: {fileID: 0}
 --- !u!114 &1802834125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,6 +3295,51 @@ MonoBehaviour:
   health: 0
   orbitAngle: -90
   playerWhoSpawned: -1
+--- !u!120 &1802834126
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802834122}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8188f21265ca54f46a4bd50064d6622e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .200000003
+    endWidth: .200000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!114 &1802834127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802834122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff830c203de549b4e83733ff32a36031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 200
 --- !u!1 &1853759786
 GameObject:
   m_ObjectHideFlags: 0
@@ -4542,6 +4914,10 @@ Prefab:
       propertyPath: mapSize
       value: 240
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 78dc65e4fc18d1345b36817f4eba19de, type: 2}
+      propertyPath: directionIndicator
+      value: 
+      objectReference: {fileID: 100000, guid: 887806cac5f4409458ece1f7dceea97f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78dc65e4fc18d1345b36817f4eba19de, type: 2}
   m_RootGameObject: {fileID: 16991585}

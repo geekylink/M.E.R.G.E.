@@ -1740,7 +1740,7 @@ MonoBehaviour:
   planetObj: {fileID: 633683251}
   minimapBlip: {fileID: 1893834703}
   captureType: 0
-  controlledBy: 1
+  controlledBy: 2
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
@@ -1791,7 +1791,7 @@ MonoBehaviour:
   planetObj: {fileID: 345238811}
   minimapBlip: {fileID: 169071906}
   captureType: 0
-  controlledBy: 1
+  controlledBy: 2
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
@@ -1980,7 +1980,7 @@ MonoBehaviour:
   planetObj: {fileID: 1220469773}
   minimapBlip: {fileID: 1271318582}
   captureType: 0
-  controlledBy: 1
+  controlledBy: 2
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
@@ -2606,7 +2606,7 @@ MonoBehaviour:
   planetObj: {fileID: 530072734}
   minimapBlip: {fileID: 1732270753}
   captureType: 0
-  controlledBy: 1
+  controlledBy: 2
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   planetObj: {fileID: 938795807}
   minimapBlip: {fileID: 902917456}
   captureType: 0
-  controlledBy: 1
+  controlledBy: 2
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   maxSatellites: 3
   satsInOrbit: []

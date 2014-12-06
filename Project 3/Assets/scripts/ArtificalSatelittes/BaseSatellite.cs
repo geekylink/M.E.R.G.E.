@@ -60,10 +60,6 @@ public class BaseSatellite : MonoBehaviour {
 			CapturePoint controller = orbitTarget.GetComponent<CapturePoint>();
 			controller.RemoveSat(this);
 		}
-		else{
-			Player controller = orbitTarget.GetComponent<Player>();
-			controller.RemoveSat(this);
-		}
 
 		if (explosion != null)
 		{

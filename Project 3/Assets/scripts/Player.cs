@@ -8,17 +8,22 @@ public class Player : BaseShip {
 	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 	public float gravityMult = 0.5f;
+	public float turnSpeed = 5;
 
 	public float bounciness = 0.5f;
+	public float camBuffer;
 	public float satSpawnRadius = 50;
 	public int maxOwnSats = 3;
+
+	public int score = -1;
+	public float scoreTimer = 5.0f;
 
 	public GameObject ammoPrefab;
 	public GameObject autoTurretPrefab;
 	public GameObject healSatPrefab;
 	public GameObject mineSatPrefab;
 
-    public float fireRate = 0.5f;
+    public float fireRate = 1.0f;
 	public UnityEngine.UI.Text gtRes;
 
 	//turrets should be assigned here in the inspector
@@ -26,6 +31,7 @@ public class Player : BaseShip {
 
 	// Used to prevent firing constantly
 	private float lastRightFire = 0;
+	private float lastScore = 0;
 
 	//lots of things to deal with merging
 	bool isMerging = false;
@@ -70,6 +76,8 @@ public class Player : BaseShip {
 	List<GameObject> ghostSatellites = new List<GameObject>();
 	public int playerManagerArrayPos = -1;
 
+	public CapturePoint planetBeingCaptured;
+
 	// Use this for initialization
 	public override void Start () {
 		numResources = 0;
@@ -92,14 +100,46 @@ public class Player : BaseShip {
 		//UpdateTurrets ();
 		UpdatePlayer ();
 		UpdateHUD ();
+		UpdateUpgrades ();
 		
 		lastRightFire -= Time.deltaTime;
+		lastScore -= Time.deltaTime;
+	}
+
+	// Handle the upgrades
+	public void UpdateUpgrades() {
+		if (lastScore <= 0) {
+			score++;
+			lastScore = scoreTimer;
+		}
+
+		// Halve fire rate every 15 points
+		if (score <= 15) {
+			fireRate = 1.0f;
+		}
+		else if (score <= 30) {
+			fireRate = 0.5f;
+		}
+		else if (score <= 45) {
+			fireRate = 0.25f;
+		}
+		else {
+			fireRate = 0.125f;
+		}
+	}
+
+	public void UpdateTurnSpeed(float speedUp){
+		turnSpeed += speedUp;
 	}
 
 	
 	public override void Die(){
 		//UpdateHUD();
-		UnshowSats();
+		//UnshowSats();
+		if(planetBeingCaptured){
+			planetBeingCaptured.StopCapture ();
+		}
+
 		if(isCurrentlyMerged){
 			MergeManager.S.Unmerge(this);
 		}
@@ -112,6 +152,7 @@ public class Player : BaseShip {
 		ownSats.Clear ();
 		PlayerManager.S.PlayerDied(this, playerManagerArrayPos);
 
+		score = 0;
 
 		base.Die();
 	}
@@ -136,7 +177,7 @@ public class Player : BaseShip {
 
 	private void UpdateHUD() {
 		//gtHealth.text = "Health: " + health;
-		gtRes.text = "Resources: " + numResources;
+		gtRes.text = "Score: " + score;
 	}
 	
 	// Updates angles for the left and right turrets
@@ -164,6 +205,7 @@ public class Player : BaseShip {
 
 			int id = MergeManager.S.players.IndexOf(this);
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
+			b.owner = this;
 
             b.SetColor(playerColor);
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
@@ -229,7 +271,7 @@ public class Player : BaseShip {
 
 		Vector3 turnVector = Vector3.zero;
 		turnVector.z = angle;
-		transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.Euler(turnVector), Time.deltaTime * 5);
+		transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.Euler(turnVector), Time.deltaTime * turnSpeed);
 
 	}
 
@@ -263,21 +305,21 @@ public class Player : BaseShip {
 		Vector2 vel = rigidbody2D.velocity;
 		Vector3 pos = transform.position;
 
-		if (transform.position.y>topPosY) {
+		if (transform.position.y>topPosY - camBuffer) {
 			vel.y = -vel.y * bounciness;
-			pos.y = topPosY;
+			pos.y = topPosY - camBuffer;
 		} 
-		else if (transform.position.y < bottomPosY) {
+		else if (transform.position.y < bottomPosY + camBuffer) {
 			vel.y = -vel.y * bounciness;
-			pos.y = bottomPosY;
+			pos.y = bottomPosY + camBuffer;
 		}
-		else if (transform.position.x>rightPosX) {
+		else if (transform.position.x>rightPosX - camBuffer) {
 			vel.x = -vel.x * bounciness;
-			pos.x = rightPosX;
+			pos.x = rightPosX - camBuffer;
 		} 
-		else if (transform.position.x<leftPosX) {
+		else if (transform.position.x<leftPosX + camBuffer) {
 			vel.x = -vel.x * bounciness;
-			pos.x = leftPosX;
+			pos.x = leftPosX + camBuffer;
 		}
 		rigidbody2D.velocity = vel;
 		transform.position = pos;
@@ -298,153 +340,6 @@ public class Player : BaseShip {
     
 	public void GetResources(int amount) {
 		numResources += amount;
-	}
-
-	public void RemoveSat(BaseSatellite sat){
-		ownSats.Remove (sat);
-	}
-
-	void SpawnSpecificSat(GameObject prefab, GameObject orbitObj, CapturePoint planet){
-		GameObject autoSat = Instantiate (prefab, orbitObj.transform.position, this.transform.rotation) as GameObject;
-		BaseSatellite satTurret = autoSat.GetComponent ("BaseSatellite") as BaseSatellite;
-		satTurret.orbitTarget = orbitObj;
-		satTurret.creatorObj = this.gameObject;
-		satTurret.playerWhoSpawned = playerManagerArrayPos;
-		if (orbitObj != this.gameObject) {
-			planet.AddSat (satTurret, CapturePoint.ControlledBy.Player);
-			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
-			
-			autoSat.layer = 8;
-		} else {
-			if (orbitObj == this.gameObject) {
-				// Position each satellite equal distance apart
-				float startAngle = ((2 * Mathf.PI) / maxOwnSats);
-				if (ownSats.Count > 0) {
-					BaseSatellite sat = ownSats[ownSats.Count-1] as BaseSatellite;
-					startAngle += sat.orbitAngle;
-				}
-				satTurret.SetStartAngle (startAngle);
-				ownSats.Add (satTurret);
-				satTurret.orbiting = BaseSatellite.OrbitingType.Player;
-
-			}
-			satTurret.team = BaseSatellite.SatelliteTeam.Player;
-			autoSat.layer = 8;
-		}
-	}
-
-	void GetOrbitObj(ref GameObject orbitObj, ref CapturePoint planet){
-		GameObject[] planetObjs = GameObject.FindGameObjectsWithTag ("Planet");
-		foreach (GameObject planetObj in planetObjs) {
-			Vector3 dist = planetObj.transform.position - this.transform.position;
-			if (dist.magnitude < satSpawnRadius) {
-				planet = planetObj.GetComponent<CapturePoint>();
-				if(!planet.CanAddSat(CapturePoint.ControlledBy.Player)) continue;
-				orbitObj = planetObj;
-				break;
-			}
-		}
-
-	}
-
-	// Spawns a turret
-	public void SpawnTurret(BaseSatellite.SatelliteType Type) {
-		GameObject orbitObj = this.gameObject;
-		CapturePoint planet = null;
-		GetOrbitObj(ref orbitObj, ref planet);
-
-		if(planet != null && orbitObj == this.gameObject){
-			return;
-		}
-
-		if(orbitObj == this.gameObject){
-			// Limit the number of satellites we can make
-			if (ownSats.Count >= maxOwnSats) {
-				return;
-			}
-		}
-
-		switch (Type) {
-		case BaseSatellite.SatelliteType.TURRET:
-			SpawnSpecificSat(autoTurretPrefab, orbitObj, planet);
-			if (orbitObj == this.gameObject) {
-				TurretSatellite ts = ownSats[ownSats.Count - 1] as TurretSatellite;
-				ts.shouldAutoFire = false;
-			}
-			break;
-		case BaseSatellite.SatelliteType.HEALER:
-			SpawnSpecificSat(healSatPrefab, orbitObj, planet);
-			AddShield();
-			break;
-		case BaseSatellite.SatelliteType.MINER:
-			// Only spawn miners on planets
-			if (orbitObj != this.gameObject) {
-				SpawnSpecificSat(mineSatPrefab, orbitObj, planet);
-			}
-			break;
-		}
-	}
-
-	
-	
-	public void UnshowSats(){
-		for(int i = 0; i < ghostSatellites.Count; ++i){
-			Destroy(ghostSatellites[i]);
-		}
-		ghostSatellites.RemoveRange(0, ghostSatellites.Count);
-	}
-	
-	public void ShowSats(){
-		UnshowSats();
-		
-		
-		GameObject orbitObj = this.gameObject;
-		CapturePoint planet = null;
-		GetOrbitObj(ref orbitObj, ref planet);
-
-		
-		if(planet != null && orbitObj == this.gameObject){
-			return;
-		}
-
-		if(orbitObj == this.gameObject){
-			// Limit the number of satellites we can make
-			if (ownSats.Count >= maxOwnSats) {
-				return;
-			}
-		}
-		
-		
-		GameObject turret = new GameObject();
-		turret.transform.position = orbitObj.transform.position + Vector3.down * 7;
-		turret.AddComponent<SpriteRenderer>();
-		turret.GetComponent<SpriteRenderer>().sprite = autoTurretPrefab.GetComponent<SpriteRenderer>().sprite;
-		Vector3 temp = turret.transform.localScale * 2;
-		turret.transform.localScale = temp;
-		ghostSatellites.Add (turret);
-		
-		GameObject healer = new GameObject();
-		healer.transform.position = orbitObj.transform.position + Vector3.up * 7;
-		healer.AddComponent<SpriteRenderer>();
-		healer.GetComponent<SpriteRenderer>().sprite = healSatPrefab.GetComponent<SpriteRenderer>().sprite;
-		temp = healer.transform.localScale * 2;
-		healer.transform.localScale = temp;
-		ghostSatellites.Add (healer);
-
-
-		if(orbitObj != this.gameObject){
-			
-			GameObject miner = new GameObject();
-			miner.transform.position = orbitObj.transform.position + Vector3.right * 7;
-			miner.AddComponent<SpriteRenderer>();
-			miner.GetComponent<SpriteRenderer>().sprite = mineSatPrefab.GetComponent<SpriteRenderer>().sprite;
-			temp = miner.transform.localScale * 2;
-			miner.transform.localScale = temp;
-			ghostSatellites.Add (miner);
-		}
-
-
-
 	}
 
 
