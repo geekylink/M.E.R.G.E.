@@ -24,6 +24,7 @@ public class CapturePoint : MonoBehaviour {
 	public ControlledBy controlledBy;
 
 	public GameObject autoTurretPrefab;
+	public GameObject enemyAutoTurret;
 /*
 	bool allDestroyed = false;
 	SubCapturePoint[] subPoints;*/
@@ -36,6 +37,7 @@ public class CapturePoint : MonoBehaviour {
 	public bool beingCaptured = false;
 	public GameObject turretBeingBuilt;
 	bool buildingTurrets = false;
+	bool secondTurretSpawnPhase = false;
 
 	bool promptSpawned = false;
 	GameObject prompt;
@@ -53,31 +55,20 @@ public class CapturePoint : MonoBehaviour {
 			TurretSatellite satTurret = autoSat.GetComponent ("TurretSatellite") as TurretSatellite;
 			satTurret.orbitTarget = this.gameObject;
 			satTurret.creatorObj = this.gameObject;
-			autoSat.layer = 8;
-			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
-			satTurret.team = BaseSatellite.SatelliteTeam.Player;
 
 			satsInOrbit.Add (satTurret);
-			object[] parms = new object[2]{10f, controlledBy};
-			StartCoroutine ("SpawnTurret", parms);
 			
 		}
 		if(controlledBy == ControlledBy.Enemy){
-			GameObject autoSat = Instantiate (autoTurretPrefab, this.transform.position, this.transform.rotation) as GameObject;
+			GameObject autoSat = Instantiate (enemyAutoTurret, this.transform.position, this.transform.rotation) as GameObject;
 			TurretSatellite satTurret = autoSat.GetComponent ("TurretSatellite") as TurretSatellite;
 			satTurret.orbitTarget = this.gameObject;
 			satTurret.creatorObj = this.gameObject;
-			autoSat.layer = 10;
-			satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
-			satTurret.team = BaseSatellite.SatelliteTeam.Enemy;
 			satsInOrbit.Add (satTurret);
-			object[] parms = new object[2]{10f, controlledBy};
-			StartCoroutine ("SpawnTurret", parms);
 		}
 
 		BaseSatellite bs = gameObject.GetComponent<BaseSatellite>();
 		bs.SetStartAngle(Mathf.Deg2Rad * angle);
-		//subPoints = GetComponentsInChildren<SubCapturePoint> ();
 	}
 
 	public bool CanAddSat(ControlledBy tryingToAdd){
@@ -141,7 +132,12 @@ public class CapturePoint : MonoBehaviour {
 		//then slowly increases its alpha as time goes on.
 		turretBeingBuilt = new GameObject();
 		turretBeingBuilt.AddComponent<SpriteRenderer>();
-		turretBeingBuilt.GetComponent<SpriteRenderer>().sprite = autoTurretPrefab.GetComponent<SpriteRenderer>().sprite;
+		if(controller == ControlledBy.Player){
+			turretBeingBuilt.GetComponent<SpriteRenderer>().sprite = autoTurretPrefab.GetComponent<SpriteRenderer>().sprite;
+		}
+		else{
+			turretBeingBuilt.GetComponent<SpriteRenderer>().sprite = enemyAutoTurret.GetComponent<SpriteRenderer>().sprite;
+		}
 		Vector3 temp = turretBeingBuilt.transform.localScale * 2;
 		turretBeingBuilt.transform.localScale = temp;
 		turretBeingBuilt.transform.position = transform.position;
@@ -165,58 +161,70 @@ public class CapturePoint : MonoBehaviour {
 		controlledBy = controller;
 		ChangeController();
 
-
+		secondTurretSpawnPhase = true;
 		//Get the angle it will start at, and lerp it to that position
 		float betweenAngle = ((2 * Mathf.PI) / maxSatellites);
-		float startAngle = betweenAngle;
-		
-		Vector3 moveToPos = transform.position;
-		moveToPos.x = transform.position.x + (Mathf.Cos (startAngle) * 10);
-		moveToPos.y = transform.position.y + (Mathf.Sin (startAngle) * 10);
+		float turretAngle = betweenAngle;
+
 
 		Vector3 startingPos = turretBeingBuilt.transform.position;
 
+		float lastSatAngle = 0;
+
+		List<float> usedAngles = new List<float>();
+		
+		Vector3 moveToPos = transform.position;
 		t = 0;
 		while(t < 1){
-			if (satsInOrbit.Count > 0) {
-				BaseSatellite lastSat = satsInOrbit[satsInOrbit.Count-1] as BaseSatellite;
-				startAngle = lastSat.orbitAngle + betweenAngle;
+			usedAngles.RemoveRange(0, usedAngles.Count);
+			if(satsInOrbit.Count > 0){
+				foreach(BaseSatellite sat in satsInOrbit){
+					usedAngles.Add (sat.orbitAngle);
+				}
 			}
-			moveToPos.x = transform.position.x + (Mathf.Cos (startAngle) * 10);
-			moveToPos.y = transform.position.y + (Mathf.Sin (startAngle) * 10);
+
+			foreach(float angle in usedAngles){
+				float possibleAngle = angle + betweenAngle;
+				bool isTheAngle = true;
+				foreach(float newAngle in usedAngles){
+					if(Mathf.Abs (possibleAngle - newAngle) * Mathf.Rad2Deg < 5){
+						isTheAngle = false;
+						break;
+					}
+				}
+				if(isTheAngle){
+					lastSatAngle = angle;
+					break;
+				}
+			}
+			turretAngle = lastSatAngle + betweenAngle;
+			moveToPos.x = transform.position.x + (Mathf.Cos (turretAngle) * 10);
+			moveToPos.y = transform.position.y + (Mathf.Sin (turretAngle) * 10);
 			t += Time.deltaTime * Time.timeScale / 2;
 			turretBeingBuilt.transform.position = Vector3.Lerp(startingPos, moveToPos, t);
 			yield return 0;
 		}
 		//Don't need that fake turret anymore, so destroy it. . .
 		Destroy(turretBeingBuilt);
+		secondTurretSpawnPhase = false;
+
 
 		//. . .and instantiate the actual turret
 		//Setup some initial variables, and spawn another turret, if possible
-		GameObject autoSat = Instantiate (autoTurretPrefab, moveToPos, this.transform.rotation) as GameObject;
+		GameObject autoSat;
+		if(controller == ControlledBy.Player){
+			autoSat = Instantiate (autoTurretPrefab, moveToPos, this.transform.rotation) as GameObject;
+		}
+		else{
+			autoSat = Instantiate (enemyAutoTurret, moveToPos, this.transform.rotation) as GameObject;
+		}
 		BaseSatellite satTurret = autoSat.GetComponent ("BaseSatellite") as BaseSatellite;
 		satTurret.orbitTarget = this.gameObject;
 		satTurret.creatorObj = this.gameObject;
-		satTurret.orbiting = BaseSatellite.OrbitingType.Planet;
 
-		if(controlledBy == ControlledBy.Player){
-			satTurret.team = BaseSatellite.SatelliteTeam.Player;
-			autoSat.layer = 8;
-		}
-		else{
-			satTurret.team = BaseSatellite.SatelliteTeam.Enemy;
-			autoSat.layer = 10;
-		}
-		satTurret.SetStartAngle (startAngle);
+		satTurret.SetStartAngle (turretAngle);
 		satsInOrbit.Add (satTurret);
-
-		if(satsInOrbit.Count >= maxSatellites) {
-			buildingTurrets = false;
-			return true;
-		}
-		
-		object[] newparms = new object[2]{time * 8, controller};
-		StartCoroutine ("SpawnTurret", newparms);
+		buildingTurrets = false;
 
 	}
 
@@ -241,7 +249,7 @@ public class CapturePoint : MonoBehaviour {
 		//Check to see if neutral
 		//If so, stop building turrets
 		if(controlledBy == ControlledBy.Neutral){
-			if(buildingTurrets && !beingCaptured){
+			if(buildingTurrets && !beingCaptured && !secondTurretSpawnPhase){
 				buildingTurrets = false;
 				
 				StopCoroutine("SpawnTurret");
@@ -252,7 +260,7 @@ public class CapturePoint : MonoBehaviour {
 		//Check to see if planet has less than max turrets
 		//and is not building any (can't be neutral obviously
 		if(satsInOrbit.Count < maxSatellites && controlledBy != ControlledBy.Neutral && !buildingTurrets){
-			object[] parms = new object[2]{10f * satsInOrbit.Count, controlledBy};
+			object[] parms = new object[2]{15f * satsInOrbit.Count, controlledBy};
 			StartCoroutine("SpawnTurret", parms);
 		}
 

@@ -30,8 +30,8 @@ TagManager:
   User Layer 11: Enemy Bullet
   User Layer 12: Minimap Rendering
   User Layer 13: Gravity
-  User Layer 14: 
-  User Layer 15: 
+  User Layer 14: SatellitePlayer
+  User Layer 15: SatelliteEnemy
   User Layer 16: 
   User Layer 17: 
   User Layer 18: 
