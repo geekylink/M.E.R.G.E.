@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	List<GameObject> capturePointDirIndicators = new List<GameObject>();
 	public BaseSatellite furthestPlanet;
 	public float furthestAllowedRadius;
+	public List<GameObject> enemyList;
 
 	public Sprite capturePlanetSprite;
 
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour {
 				Destroy(this.gameObject);
 		}
 		DontDestroyOnLoad(this.gameObject);
-
+		enemyList = new List<GameObject>();
 		playerColors = new List<Color>();
 	}
 

@@ -14,6 +14,7 @@ public class ShootingEnemy : EnemyBaseShip
 	// Use this for initialization
 	public override void Start () {
 		sphere.renderer.material.color = Color.red;
+		GameManager.S.enemyList.Add (this.gameObject);
 	}
 	
 	// Update is called once per frame

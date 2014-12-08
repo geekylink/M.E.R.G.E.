@@ -109,10 +109,11 @@ public class Spawner : MonoBehaviour {
 		foreach (Vector2 eLoc in enemyLocs) {
 			GameObject squadMemberGO = Instantiate(enemiesToSpawn[Random.Range(0,2)]) as GameObject;
 			EnemyBaseShip ship = squadMemberGO.GetComponent<EnemyBaseShip>();
-			eSquad.squadMembers.Add(ship);
 			ship.squadId = SquadManager.nextID;
 			squadMemberGO.transform.position = eLoc;
+			ship.transform.position = eLoc;
 			ship.currTarget = eSquad.target;
+			eSquad.squadMembers.Add(ship);
 		}
 		SquadManager.S.squads.Add (eSquad);
 		SquadManager.nextID++;

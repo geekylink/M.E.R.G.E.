@@ -9,11 +9,12 @@ public class EnemyBaseShip : BaseShip {
 	// Use this for initialization
 	public override void Start () {
 		squadId = 0;
-		base.Start();	
+		base.Start();
 	}
 	
 	public override void Die() {
 		SquadManager.S.RemoveEnemy (this, squadId);
+		GameManager.S.enemyList.Remove (this.gameObject);
 		base.Die();		
 	}
 }

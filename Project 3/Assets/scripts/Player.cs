@@ -78,6 +78,12 @@ public class Player : BaseShip {
 
 	public CapturePoint planetBeingCaptured;
 
+	public GameObject missilePrefab;
+	
+	float missileFireTime = 3f;
+	float missileWaitTime = 0f;
+
+
     LineRenderer ld;
     bool isLaserFiring = false;
 	// Use this for initialization
@@ -110,7 +116,8 @@ public class Player : BaseShip {
 		UpdatePlayer ();
 		UpdateHUD ();
 		UpdateUpgrades ();
-		
+
+		missileWaitTime += Time.deltaTime;
 		if(lastRightFire > 0)
             lastRightFire -= Time.deltaTime;
 
@@ -254,11 +261,13 @@ public class Player : BaseShip {
 				b3.setDefaults(-rightTurret.transform.eulerAngles.z + 20f, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
 			}
 			if(MergeManager.S.currentlyMergedWith[id].Count == 1){
-				transform.root.GetComponent<MergedShip>().FireZeMissiles();
+				FireZeMissiles(-rightTurret.transform.eulerAngles.z);
 			}
 
 			lastRightFire = fireRate;
 		}
+
+
 
 		foreach(var satVar in ownSats){
 			TurretSatellite ts = satVar as TurretSatellite;
@@ -269,6 +278,26 @@ public class Player : BaseShip {
 				ts.PlayerFire(vel);
 			}
 		}
+	}
+
+	public void FireZeMissiles(float angle){
+		if (missileWaitTime >= missileFireTime) {
+			ShootMissile(rightTurret.transform.eulerAngles.z);
+			ShootMissile(rightTurret.transform.eulerAngles.z - 20);
+			ShootMissile(rightTurret.transform.eulerAngles.z + 20);
+			
+			print ("FIRE ZE MISSILES");
+			missileWaitTime = 0;
+		}
+	}
+
+	public void ShootMissile(float angle){
+		GameObject missileGO = Instantiate(missilePrefab, transform.position, Quaternion.identity) as GameObject;
+		HomingMissile m1 = missileGO.GetComponent<HomingMissile>();
+		m1.setDefaults(angle, transform.root.rigidbody2D.velocity.magnitude);
+		m1.startVel = Mathf.Max (transform.root.rigidbody2D.velocity.magnitude, 5f);
+		m1.maxVel = m1.startVel * 2f;
+		m1.Velocity = Deg2Vec (angle).normalized * m1.startVel;
 	}
 
 
@@ -419,5 +448,35 @@ public class Player : BaseShip {
 		numResources += amount;
 	}
 
+	public float Vec2Deg (Vector3 vec)
+	{
+		Vector3 norm = vec.normalized;
+		float result;
+		if (norm.x >= 0 && norm.y >= 0) {
+			result = Mathf.Asin (norm.y);
+		} else if (norm.x <= 0 && norm.y >= 0) {
+			result = Mathf.Acos (norm.x);
+		} else if (norm.x <= 0 && norm.y >= 0) {
+			result = Mathf.Acos (norm.x);
+			result += 2f * Mathf.Abs(Mathf.PI - result);
+		} else {
+			result = Mathf.Acos (norm.x);
+			result = Mathf.PI * 2f - result;
+		}
+		
+		if (result > 2f * Mathf.PI) {
+			return Mathf.Rad2Deg * result - 360;
+		} else if (result < 0) {
+			return Mathf.Rad2Deg * result + 360;
+		} else {
+			return Mathf.Rad2Deg * result;
+		}
+	}
 
+	public Vector3 Deg2Vec (float degree)
+	{
+		float rad = degree * Mathf.Deg2Rad;
+		Vector3 vec = new Vector3 (Mathf.Cos (rad), Mathf.Sin (rad), 0);
+		return vec;
+	}
 }

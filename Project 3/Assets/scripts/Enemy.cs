@@ -15,6 +15,7 @@ public class Enemy : EnemyBaseShip {
 
 	void Awake(){
 		sphere.renderer.material.color = Color.red;
+		GameManager.S.enemyList.Add (this.gameObject);
 	}
 	
 	// Update is called once per frame

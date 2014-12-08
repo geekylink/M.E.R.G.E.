@@ -19,7 +19,8 @@ public class SquadManager : MonoBehaviour {
 		} else if (S != this) {
 			Destroy (this.gameObject);
 		}
-		mapsize = GameManager.S.mapSize;
+		//mapsize = GameManager.S.mapSize;
+		mapsize = 60;
 		nextID = 1;
 		squads = new List<EnemySquad>();
 		startingLocations = new List<Vector2> ();
@@ -95,19 +96,4 @@ public class SquadManager : MonoBehaviour {
 		squadLocs.Add (new Vector2 (loc.x + 6, loc.y - 3));
 		return squadLocs;
 	}
-
-	public GameObject GetRandomOnScreenEnemy(){
-		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
-		int counter = 0;
-		while (counter++ < 20){
-			int idx = Random.Range (0, SquadManager.S.squads.Count);
-			EnemySquad tempSquad = SquadManager.S.squads[idx];
-			if(GeometryUtility.TestPlanesAABB(planes, tempSquad.squadMembers[0].collider2D.bounds)){
-				idx = Random.Range(0, tempSquad.squadMembers.Count);
-				return tempSquad.squadMembers[idx].gameObject;
-			}
-		}
-		return null;
-	}
-
 }
