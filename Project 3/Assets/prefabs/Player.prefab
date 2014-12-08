@@ -263,7 +263,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -112.368256, y: -136.258606, z: 0}
+  m_LocalPosition: {x: -91.5439453, y: -88.3749847, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 400036}
@@ -450,7 +450,7 @@ LineRenderer:
     m_EndColor:
       serializedVersion: 2
       rgba: 4294967295
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
