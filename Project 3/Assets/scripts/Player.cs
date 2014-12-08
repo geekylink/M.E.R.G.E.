@@ -231,14 +231,18 @@ public class Player : BaseShip {
 
 	// Fires from the right turret
 	public void FireRightTurret() {
-        //isLaserFiring = true;
-        //FireLaser(); return;
+		
+		int id = MergeManager.S.players.IndexOf(this);
+		if(MergeManager.S.currentlyMergedWith[id].Count == 3){
+			isLaserFiring = true;
+			FireLaser(); 
+			return;
+		}
 
 		if (lastRightFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
 
-			int id = MergeManager.S.players.IndexOf(this);
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
 			b.owner = this;
 
@@ -259,7 +263,7 @@ public class Player : BaseShip {
 				b3.SetColor(playerColor);
 				b3.setDefaults(-rightTurret.transform.eulerAngles.z + 20f, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
 			}
-			if(MergeManager.S.currentlyMergedWith[id].Count == 1){
+			if(MergeManager.S.currentlyMergedWith[id].Count == 2){
 				FireZeMissiles(-rightTurret.transform.eulerAngles.z);
 			}
 
