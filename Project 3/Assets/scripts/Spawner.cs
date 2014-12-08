@@ -28,6 +28,8 @@ public class Spawner : MonoBehaviour {
 
 	public int minSquadSize;
 	public int maxSquadSize;
+
+	public GameObject bossOnScreen;
 	//public UnityEngine.UI.Text bossTimer;
 
 	void Start(){
@@ -198,8 +200,8 @@ public class Spawner : MonoBehaviour {
 	}
 
 	public void SpawnBoss(){
-		GameObject bossGO = Instantiate (boss) as GameObject;
-		bossGO.transform.position = bossSpawnLoc;
+		bossOnScreen = Instantiate (boss) as GameObject;
+		bossOnScreen.transform.position = bossSpawnLoc;
 	}
 
 	void Awake(){

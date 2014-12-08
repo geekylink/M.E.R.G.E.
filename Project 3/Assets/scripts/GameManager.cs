@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour {
 
 	public List<GameObject> directionIndicators;
 
+	bool bossHasSpawned = false;
+
 	float timer = 0;
 
 	// Use this for initialization
@@ -129,6 +131,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if(bossShouldSpawn && Spawner.S){
+			bossHasSpawned = true;
 			Spawner.S.SpawnBoss();
 		}
 
@@ -154,7 +157,106 @@ public class GameManager : MonoBehaviour {
 		}
 		capturePointDirIndicators.RemoveRange(0, capturePointDirIndicators.Count);
 
+		if(bossHasSpawned && Spawner.S.bossOnScreen){
+			Vector3 bossLoc = Spawner.S.bossOnScreen.transform.position;
+
+			Vector3 viewportPoint = Camera.main.WorldToViewportPoint(bossLoc);
+			float x = viewportPoint.x;
+			float y = viewportPoint.y;
+			
+			if(x >= 0 && x <= 1 && y >= 0 && y <= 1){
+				return;
+			}
+			
+			//A little bit of math to determine where the line between the
+			//center of the screen and the capture point falls on the edge of 
+			//the screen
+			x -= 0.5f;
+			y -= 0.5f;
+			float slope = y/x;
+			
+			Vector3 newPoint = viewportPoint;
+			float newX, newY;
+			newX = x;
+			newY = y;
+			
+			float edgePoint = .45f;
+			
+			if(y > 0.5f){
+				newX = edgePoint / slope;
+				newY = edgePoint;
+				if(newX > 0.5f){
+					newX = edgePoint;
+					newY = edgePoint * slope;
+				}
+				if(newX < -0.5f){
+					newX = -edgePoint;
+					newY = -edgePoint * slope;
+				}
+			}
+			else if(y < -0.5f){
+				newY = -edgePoint;
+				newX = -edgePoint / slope;
+				if(newX > 0.5f){
+					newX = edgePoint;
+					newY = edgePoint * slope;
+				}
+				if(newX < -0.5f){
+					newX = -edgePoint;
+					newY = -edgePoint * slope;
+				}
+			}
+			else if(x > 0.5f){
+				newY = edgePoint * slope;
+				newX = edgePoint;
+			}
+			else if(x < -0.5f){
+				newY = -edgePoint * slope;
+				newX = -edgePoint;
+			}
+			newX += 0.5f;
+			newY += 0.5f;
+			
+			newPoint.x = newX;
+			newPoint.y = newY;
+			
+			
+			
+			float distanceFromPlayers = (bossLoc - Camera.main.transform.position).magnitude;
+			float mapIncrements = mapSize*2 / directionIndicators.Count;
+			
+			GameObject indicatorToUse = directionIndicators[0];
+			
+			for(int i = directionIndicators.Count; i > 0; --i){
+				if(distanceFromPlayers < mapIncrements * i){
+					indicatorToUse = directionIndicators[i-1];
+				}
+			}
+			
+			//put a capture point indicator at the edge of the screen
+			//and color it based on how far/close it is
+			Vector3 newWorldPoint = Camera.main.ViewportToWorldPoint(newPoint);
+			newWorldPoint.z = 0;
+			GameObject dirIndicator = Instantiate(indicatorToUse, newWorldPoint, Quaternion.identity) as GameObject;
+			dirIndicator.transform.parent = Camera.main.transform;
+			
+			Vector3 lookAtPoint = bossLoc;
+			lookAtPoint.z = 0;
+			Vector3 lookDir = lookAtPoint - newWorldPoint;
+			dirIndicator.transform.up = lookDir;
+			
+			
+			capturePointDirIndicators.Add (dirIndicator);
+			
+			
+			Color color = Color.red;
+			dirIndicator.GetComponent<SpriteRenderer>().material.color = color;
+			return;
+		}
+
+
 		foreach(CapturePoint cp in capturePoints){
+			if(!cp) continue;
 			BaseSatellite bs = cp.GetComponent<BaseSatellite>();
 			if(bs.orbitRadius > furthestAllowedRadius){
 				continue;

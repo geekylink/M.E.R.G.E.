@@ -44,9 +44,12 @@ public class MergedShip : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		RestrictToMap();
 		ClampObjectIntoView();
 		StartCoroutine(FlyAtEndOfFrame());
+
+		rigidbody2D.angularVelocity = 0;
 		//ShowMergedLine();
 	}
 

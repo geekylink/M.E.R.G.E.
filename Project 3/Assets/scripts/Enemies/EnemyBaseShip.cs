@@ -98,7 +98,7 @@ public class EnemyBaseShip : BaseShip {
 					transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 				}
 				else{
-					if(squadId > 0 && SquadManager.S.squads.Count > 0){
+					if(squadId > 0 && SquadManager.S.squads.Count >= squadId){
 						if(SquadManager.S.squads[squadId-1].targetIsPlanet){
 							CapturePoint cp = SquadManager.S.squads[squadId-1].target.GetComponent<CapturePoint>();
 							if(cp.satsInOrbit.Count > 0){

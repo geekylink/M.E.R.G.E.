@@ -34,7 +34,7 @@ public class SelectionScreen : MonoBehaviour {
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
 			PlayerSelection temp = new PlayerSelection();
 			GameObject tempObj = Instantiate(playerSprite) as GameObject;
-			tempObj.transform.position = new Vector2(-5, 0) + new Vector2(2.5f * i, 0);
+			tempObj.transform.position = new Vector2(-7, 0) + new Vector2(5f * i, 0);
 			
 			temp.playerObj = tempObj;
 			temp.playerBody = tempObj.transform.FindChild("body").GetComponent<SpriteRenderer>();
@@ -103,7 +103,6 @@ public class SelectionScreen : MonoBehaviour {
 			float leftY = InputManager.Devices[i].LeftStickY;
 
 			float angleFloat = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
-			angleFloat = Mathf.Atan2 (leftX, leftY)*Mathf.Rad2Deg;
 			if(angleFloat < 0) angleFloat += 360;
 
 			Vector2 angleVec = new Vector2(rightX, rightY);

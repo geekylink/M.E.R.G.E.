@@ -483,6 +483,7 @@ MonoBehaviour:
   directionIndicator: {fileID: 100000, guid: 887806cac5f4409458ece1f7dceea97f, type: 2}
   furthestPlanet: {fileID: 0}
   furthestAllowedRadius: 0
+  enemyList: []
   capturePlanetSprite: {fileID: 0}
   directionIndicators:
   - {fileID: 100000, guid: 9c2b1e46a715f6648b1df3ae619c00b3, type: 2}

@@ -83,7 +83,12 @@ public class CapturePoint : MonoBehaviour {
 		satsInOrbit.Remove(sat);
 
 		if(satsInOrbit.Count == 0 && !secondTurretSpawnPhase){
-			controlledBy = ControlledBy.Neutral;
+			if(controlledBy == ControlledBy.Player){
+				controlledBy = ControlledBy.Enemy;
+			}
+			else{
+				controlledBy = ControlledBy.Neutral;
+			}
 			ChangeController();
 		}
 

@@ -23,7 +23,7 @@ public class Player : BaseShip {
 	public GameObject healSatPrefab;
 	public GameObject mineSatPrefab;
 
-    public float fireRate = 1.0f;
+    public float fireRate = .5f;
 	public UnityEngine.UI.Text gtRes;
 
 	//turrets should be assigned here in the inspector
@@ -136,6 +136,7 @@ public class Player : BaseShip {
 
 	// Handle the upgrades
 	public void UpdateUpgrades() {
+		return;
 		if (lastScore <= 0) {
 			score++;
 			lastScore = scoreTimer;

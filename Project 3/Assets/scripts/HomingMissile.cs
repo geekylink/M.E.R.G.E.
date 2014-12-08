@@ -68,6 +68,7 @@ public class HomingMissile : Bullet {
 		if (GameManager.S.enemyList.Count != 0) {
 			while(counter++ < 50){
 				int idx = Random.Range(0, GameManager.S.enemyList.Count);
+				if(!GameManager.S.enemyList[idx]) continue;
 				if(GeometryUtility.TestPlanesAABB(planes, GameManager.S.enemyList[idx].collider2D.bounds)){
 					if(GameManager.S.enemyList[idx].layer != LayerMask.NameToLayer("SatellitePlayer")){
 						return GameManager.S.enemyList[idx];
