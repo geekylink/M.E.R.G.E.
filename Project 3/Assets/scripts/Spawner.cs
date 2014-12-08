@@ -94,7 +94,7 @@ public class Spawner : MonoBehaviour {
 		GameObject eSquadGO = Instantiate (squadPrefab) as GameObject;
 		EnemySquad eSquad = eSquadGO.GetComponent<EnemySquad>();
 
-		int ranValue = Random.Range (0, 2);
+		int ranValue = Random.Range (0, 5);
 		if(ranValue == 0){
 			eSquad.targetIsPlanet = true;
 

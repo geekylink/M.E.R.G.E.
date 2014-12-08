@@ -59,7 +59,7 @@ MonoBehaviour:
   explosion: {fileID: 100000, guid: fe924960e65ff7b4bbe36bbd4d321070, type: 2}
   orbiting: 1
   team: 0
-  health: 10
+  health: 5
   orbitAngle: 0
   playerWhoSpawned: -1
   fireRate: .5

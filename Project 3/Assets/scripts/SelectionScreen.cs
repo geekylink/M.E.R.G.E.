@@ -70,7 +70,7 @@ public class SelectionScreen : MonoBehaviour {
 		}
 
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
-			if (InputManager.Devices[i].DPadRight.WasPressed) {
+			/*if (InputManager.Devices[i].DPadRight.WasPressed) {
 				ChangeColor(i, 1);
 			}
 			else if (InputManager.Devices[i].DPadLeft.WasPressed) {
@@ -92,14 +92,18 @@ public class SelectionScreen : MonoBehaviour {
 			}
 			else{
 				selectionTimer = 0;
-			}
+			}*/
 
 			//move the selection thing
 			if(selectionCircles.Count == 0) continue;
 			float rightX = InputManager.Devices[i].RightStickX;
 			float rightY = InputManager.Devices[i].RightStickY;
+			
+			float leftX = InputManager.Devices[i].LeftStickX;
+			float leftY = InputManager.Devices[i].LeftStickY;
 
 			float angleFloat = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
+			angleFloat = Mathf.Atan2 (leftX, leftY)*Mathf.Rad2Deg;
 			if(angleFloat < 0) angleFloat += 360;
 
 			Vector2 angleVec = new Vector2(rightX, rightY);
