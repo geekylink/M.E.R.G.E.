@@ -233,6 +233,8 @@ public class Player : BaseShip {
 
 	// Fires from the right turret
 	public void FireRightTurret() {
+        //FireLaser(); return;
+
 		int id = MergeManager.S.players.IndexOf(this);
 		if(MergeManager.S.currentlyMergedWith[id].Count == 3){
 			FireLaser(); 
@@ -327,8 +329,7 @@ public class Player : BaseShip {
             if (sat != null)
             {
                 //TODO this is not scaling properly with time
-                sat.TakeDamage((1 + MergeManager.S.currentlyMergedWith[id].Count) * Time.deltaTime);
-                this.score += 3;
+                sat.TakeDamage(4 * Time.deltaTime);
             }
 
             BaseShip bs = hit.collider.GetComponent<BaseShip>();
@@ -337,8 +338,7 @@ public class Player : BaseShip {
                 if (!bs.isInvulnerable)
                 {
                     //TODO this is not scaling properly with time
-                    bs.TakeDamage((1 + MergeManager.S.currentlyMergedWith[id].Count) * Time.deltaTime);
-                    this.score += 2;
+                    bs.TakeDamage(4  * Time.deltaTime);
                 }
             }
         }
