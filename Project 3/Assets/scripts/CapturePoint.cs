@@ -41,6 +41,8 @@ public class CapturePoint : MonoBehaviour {
 
 	GameObject prompt;
 
+	public float attackingSquadDistance;
+
 	// Use this for initialization
 	void Start () {
 		sr = planetObj.GetComponent<SpriteRenderer>();
@@ -80,7 +82,7 @@ public class CapturePoint : MonoBehaviour {
 	public void RemoveSat(BaseSatellite sat){
 		satsInOrbit.Remove(sat);
 
-		if(satsInOrbit.Count == 0){
+		if(satsInOrbit.Count == 0 && !secondTurretSpawnPhase){
 			controlledBy = ControlledBy.Neutral;
 			ChangeController();
 		}
@@ -267,6 +269,7 @@ public class CapturePoint : MonoBehaviour {
 		//Check to see if any players are close enough to capture the planet (if neutral)
 		//and show the capture prompt
 		if(PlayerManager.S.players == null) return;
+
 
 		bool shouldNotHavePrompt = true;
 

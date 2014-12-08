@@ -41,7 +41,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   squads: []
   startingLocations: []
-  mapsize: 120
+  mapsize: 0
+  lowLimit: 0
+  highLimit: 10
+  randomness: 100
+  followWeight: 30
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
