@@ -92,6 +92,9 @@ public class Player : BaseShip {
 		minimapBlip.renderer.material.color = playerColor;
 		body.GetComponent<SpriteRenderer>().color = playerColor;
 
+        ld = this.GetComponentInChildren<LineRenderer>();
+        ld.SetColors(playerColor, playerColor);
+
         var engines = this.GetComponentsInChildren<ParticleSystem>();
         foreach (ParticleSystem ps in engines)
         {
@@ -103,7 +106,6 @@ public class Player : BaseShip {
 		leftEnginePiece.particleSystem.enableEmission = true;
 		rightEnginePiece.particleSystem.enableEmission = true;
 
-        ld = this.GetComponent<LineRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -231,10 +233,8 @@ public class Player : BaseShip {
 
 	// Fires from the right turret
 	public void FireRightTurret() {
-		
 		int id = MergeManager.S.players.IndexOf(this);
 		if(MergeManager.S.currentlyMergedWith[id].Count == 3){
-			isLaserFiring = true;
 			FireLaser(); 
 			return;
 		}
@@ -308,18 +308,21 @@ public class Player : BaseShip {
     {
         isLaserFiring = true;
         int id = MergeManager.S.players.IndexOf(this);
+        int laserDist = 60;
 
-        Vector2 dir = Quaternion.AngleAxis(rightTurret.transform.eulerAngles.z, Vector3.forward) * Vector2.right;
+        Vector2 dir2 = Quaternion.AngleAxis(0, Vector3.forward) * Vector2.right;
+        Vector2 dir = Quaternion.AngleAxis(rightTurret.transform.rotation.eulerAngles.z, Vector3.forward) * Vector2.right;
+
         Ray2D ray = new Ray2D(transform.position, dir);
         RaycastHit2D hit;
 
         ld.SetPosition(0, ray.origin);
 
-        hit = Physics2D.Raycast(ray.origin, dir, 20, 1 << 10);
+        hit = Physics2D.Raycast(ray.origin, dir, laserDist, 1 << 15 | 1 << 10);
         if (hit)
         {
             ld.SetPosition(1, hit.point);
-
+            print("Hit laser");
             BaseSatellite sat = hit.collider.GetComponent<BaseSatellite>();
             if (sat != null)
             {
@@ -341,7 +344,7 @@ public class Player : BaseShip {
         }
         else
         {
-            ld.SetPosition(1, ray.GetPoint(20));
+            ld.SetPosition(1, ray.GetPoint(laserDist));
         }
     }
 
@@ -439,6 +442,7 @@ public class Player : BaseShip {
         {
             ps.startColor = color;
         }
+        this.GetComponentInChildren<LineRenderer>().SetColors(playerColor, playerColor);
 	}
 	
 	public Color GetColor(){

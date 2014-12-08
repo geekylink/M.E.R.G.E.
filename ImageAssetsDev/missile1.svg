@@ -14,7 +14,7 @@
    id="svg4070"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="New document 12">
+   sodipodi:docname="missile1.svg">
   <defs
      id="defs4072" />
   <sodipodi:namedview
@@ -24,17 +24,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="375"
-     inkscape:cy="520"
+     inkscape:zoom="1.979899"
+     inkscape:cx="311.00164"
+     inkscape:cy="818.26279"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="463"
-     inkscape:window-height="453"
-     inkscape:window-x="208"
-     inkscape:window-y="208"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1440"
+     inkscape:window-height="900"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata4075">
     <rdf:RDF>
@@ -52,12 +52,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:#ff3c3c;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 310.53404,188.95153 -5.65217,5.65217 0,12.47826 5.65217,5.65218 76.52174,0 0,-23.78261 z"
        id="path4269"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\missile1.png"
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298" />
     <rect
@@ -67,59 +67,26 @@
        height="21.190454"
        x="-391.35196"
        y="-211.48727"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="scale(-1,-1)" />
-    <rect
-       style="fill:#575757;fill-opacity:1;stroke:#000000;stroke-width:0.9611997;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect3808-9-7-5-3-6-9-1"
-       width="2.6938934"
-       height="15.367031"
-       x="-382.60565"
-       y="-208.50504"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="scale(-1,-1)" />
-    <rect
-       style="fill:#575757;fill-opacity:1;stroke:#000000;stroke-width:0.9611997;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect3808-9-7-5-3-6-9-1-5"
-       width="2.6938934"
-       height="15.4933"
-       x="-375.55704"
-       y="-208.59167"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
-       inkscape:export-xdpi="159.72298"
-       inkscape:export-ydpi="159.72298"
-       transform="scale(-1,-1)" />
-    <rect
-       style="fill:#575757;fill-opacity:1;stroke:#000000;stroke-width:0.9611997;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect3808-9-7-5-3-6-9-1-0"
-       width="2.6938934"
-       height="15.367031"
-       x="-368.59274"
-       y="-208.50238"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\missile1.png"
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298"
        transform="scale(-1,-1)" />
     <path
-       style="fill:#ff4848;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 362.14455,188.95967 5.3033,-5.3033 24.36993,-0.12627 -4.92449,5.42957 z"
        id="path4350"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\missile1.png"
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298" />
     <path
-       style="fill:#ff4848;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 392.26098,218.33713 -5.3033,-5.3033 -24.36994,-0.12628 4.9245,5.42958 z"
        id="path4350-3"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc"
-       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\missile1.png"
        inkscape:export-xdpi="159.72298"
        inkscape:export-ydpi="159.72298" />
   </g>
