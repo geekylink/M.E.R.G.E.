@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 114: {fileID: 11400000}
+  - 212: {fileID: 21200000}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: SelectionScreen_colorwheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,34 +28,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400000
-MonoBehaviour:
+--- !u!212 &21200000
+SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71800f41a97214a4ba155a0851de1846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesToSpawn:
-  - {fileID: 100000, guid: 7c7f18c910a154f4c900d847be71d8e0, type: 2}
-  - {fileID: 100006, guid: 2a75ca4f6d04b334e96f0dc4ea70f192, type: 2}
-  squadPrefab: {fileID: 100000, guid: 06afbea6c23e3924ab0d29368f18f662, type: 2}
-  spawnTimer: 20
-  spawnLocs: []
-  mapSize: 120
-  boss: {fileID: 100008, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
-  bossSpawnTimer: 5000
-  bossSpawnLoc: {x: 0, y: 0, z: 0}
-  distanceLimit: 10
-  velocityMatchFactor: 1
-  towardTargetFactor: 5
-  towardCenterFactor: 100
-  separationFactor: 1
-  minSquadSize: 10
-  maxSquadSize: 40
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 9b9f6677afe30544b986826d5b95f5f9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

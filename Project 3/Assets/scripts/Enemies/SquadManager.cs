@@ -11,6 +11,8 @@ public class SquadManager : MonoBehaviour {
 	public float mapsize;
 	public float lowLimit;
 	public float highLimit;
+	public float randomness;
+	public float followWeight;
 
 	// Use this for initialization
 	void Start () {
@@ -41,9 +43,7 @@ public class SquadManager : MonoBehaviour {
 		startingLocations.Add(new Vector2(-mapsize / 2, -mapsize + 6));
 	}
 
-	public Vector3 Boids(EnemyBaseShip enemy, int squadId){
-		return squads [squadId - 1].ApplyBoids (enemy);
-	}
+
 
 	EnemySquad getRandomSquad(){
 		int id = Random.Range (0, squads.Count);

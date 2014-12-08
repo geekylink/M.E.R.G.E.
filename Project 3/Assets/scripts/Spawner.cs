@@ -17,6 +17,17 @@ public class Spawner : MonoBehaviour {
 	public GameObject boss;
 	public float bossSpawnTimer;
 	public Vector3 bossSpawnLoc;
+
+	
+	public float distanceLimit;
+	public float velocityMatchFactor;
+	public float towardTargetFactor;
+	public float towardCenterFactor;
+	public float separationFactor;
+
+
+	public int minSquadSize;
+	public int maxSquadSize;
 	//public UnityEngine.UI.Text bossTimer;
 
 	void Start(){
@@ -75,23 +86,42 @@ public class Spawner : MonoBehaviour {
 	IEnumerator SpawnSquad(){
 		float timer = 0;
 		
-		while(timer < 7){
+		while(timer < 1){
 			timer += Time.deltaTime * Time.timeScale / spawnTimer;
 			yield return 0;
 		}
 
-		print ("Squad spawned");
-		GameObject eSquadGO = squadPrefab;
+		GameObject eSquadGO = Instantiate (squadPrefab) as GameObject;
 		EnemySquad eSquad = eSquadGO.GetComponent<EnemySquad>();
 
-		eSquad.target = getRandomPlayer ();
+		int ranValue = Random.Range (0, 2);
+		if(ranValue == 0){
+			eSquad.targetIsPlanet = true;
 
-		while(eSquad.target == null){
-			eSquad.target = getRandomPlayer();
-			yield return 0;
+			CapturePoint furthestPlayerPlanet = null;
+			float furthestRadius = 0;
+			foreach(CapturePoint cp in GameManager.S.capturePoints){
+				
+				BaseSatellite bs = cp.GetComponent<BaseSatellite>();
+				if(bs.orbitRadius > furthestRadius && cp.controlledBy == CapturePoint.ControlledBy.Player){
+					furthestRadius = bs.orbitRadius;
+					furthestPlayerPlanet = cp;
+				}
+			}
+
+			if(furthestPlayerPlanet == null){
+				ranValue = 1;
+			}
+			else{
+				eSquad.target = furthestPlayerPlanet.gameObject;
+			}
+		}
+		if(ranValue > 0){
+			eSquad.targetIsPlanet = false;
+			eSquad.target = Camera.main.gameObject;
 		}
 
-		int i = Random.Range (0, 4);
+		/*int i = Random.Range (0, 4);
 		Vector2 loc = SquadManager.S.startingLocations [Random.Range (0, SquadManager.S.startingLocations.Count)];
 		List<Vector2> enemyLocs = new List<Vector2>();
 		if (i == 0) {
@@ -102,20 +132,56 @@ public class Spawner : MonoBehaviour {
 			enemyLocs = SquadManager.S.FiveSquad (loc);
 		} else {
 			enemyLocs = SquadManager.S.SevenSquad (loc);
-		}
+		}*/
+
+		int squadSize = Random.Range(minSquadSize, maxSquadSize);
+		if(eSquad.targetIsPlanet) squadSize *= 2;
 
 		eSquad.squadMembers = new List<EnemyBaseShip> ();
+		Vector2 planetSpawnPos = Vector2.zero;
+		List<CapturePoint> cPoints = GameManager.S.capturePoints;
+		int ranNum = Random.Range (0, cPoints.Count);
+		for(int i = 0; i < cPoints.Count; ++i){
+			ranNum = ranNum % cPoints.Count;
 
-		foreach (Vector2 eLoc in enemyLocs) {
-			GameObject squadMemberGO = Instantiate(enemiesToSpawn[Random.Range(0,2)]) as GameObject;
-			EnemyBaseShip ship = squadMemberGO.GetComponent<EnemyBaseShip>();
-			eSquad.squadMembers.Add(ship);
-			ship.squadId = SquadManager.nextID;
-			squadMemberGO.transform.position = eLoc;
-			ship.currTarget = eSquad.target;
+			if(cPoints[ranNum].controlledBy == CapturePoint.ControlledBy.Enemy){
+				planetSpawnPos = cPoints[ranNum].transform.position;
+				break;
+			}
+
+			ranNum++;
 		}
-		SquadManager.S.squads.Add (eSquad);
-		SquadManager.nextID++;
+		if(planetSpawnPos != Vector2.zero){
+
+			for (int i = 0; i < squadSize; ++i) {
+				GameObject squadMemberGO = Instantiate(enemiesToSpawn[Random.Range(0,enemiesToSpawn.Count)]) as GameObject;
+				EnemyBaseShip ship = squadMemberGO.GetComponent<EnemyBaseShip>();
+				ship.boidInit = true;
+				eSquad.squadMembers.Add(ship);
+				ship.squadId = SquadManager.nextID;
+
+				float randomX = Random.Range (-10.0f, 10.0f);
+				float randomY = Random.Range (-10.0f, 10.0f);
+				Vector3 pos = new Vector3(randomX, randomY, 0);
+
+				squadMemberGO.transform.position = pos + (Vector3)planetSpawnPos;
+
+				if(eSquad.targetIsPlanet){
+					CapturePoint cp = eSquad.target.GetComponent<CapturePoint>();
+					if(cp.satsInOrbit.Count > 0){
+						int randomSat = Random.Range (0, cp.satsInOrbit.Count);
+						ship.currTarget = cp.satsInOrbit[randomSat].gameObject;
+					}
+				}
+				else{
+					ship.currTarget = ship.getRandomPlayer();
+				}
+
+				ship.StartRoutines();
+			}
+			SquadManager.S.squads.Add (eSquad);
+			SquadManager.nextID++;
+		}
 		StartCoroutine (SpawnSquad ());
 	}
 
@@ -142,7 +208,7 @@ public class Spawner : MonoBehaviour {
 		StartCoroutine (SpawnSquad ());
 	}
 
-	public GameObject getRandomPlayer() {
+	/*public GameObject getRandomPlayer() {
 		GameObject cam = GameObject.Find ("Main Camera");
 		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;
 		GameObject[] players = pm.getPlayers ();
@@ -163,6 +229,6 @@ public class Spawner : MonoBehaviour {
 		}
 		return null;
 			
-	}
+	}*/
 
 }

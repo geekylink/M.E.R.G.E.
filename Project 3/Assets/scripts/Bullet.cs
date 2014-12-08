@@ -36,6 +36,7 @@ public class Bullet : MonoBehaviour {
 	}
 
 	public void setDefaults(Vector2 velocity) {
+		if(float.IsNaN(velocity.x) || float.IsNaN(velocity.y)) return;
 		this.rigidbody2D.velocity = velocity;
 	}
 	

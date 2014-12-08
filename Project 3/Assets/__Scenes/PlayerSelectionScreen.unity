@@ -310,6 +310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 100016, guid: b773bcb899f06c747b5739a3943c41b0, type: 2}
+  colorWheelSprite: {fileID: 100000, guid: 856cf40a632f3ce44a22a9ce5ba89611, type: 2}
+  selectionTimeToSwitch: 1
+  selectCirclePrefab: {fileID: 100000, guid: d21aaa7845dcb5647a92f52b88cc3c3e, type: 2}
   possibleColorSelections:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: .83448267, b: 1, a: 1}

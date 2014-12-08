@@ -174,13 +174,16 @@ MonoBehaviour:
   explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
   maxRotSpeed: 20
   drop: {fileID: 0}
+  isInvulnerable: 0
+  shieldPrefab: {fileID: 0}
   squadId: 0
   currTarget: {fileID: 0}
-  sphere: {fileID: 100004}
-  projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
   moveSpeed: 2
   targetPos: {x: 0, y: 0, z: 0}
-  waitTime: 2
+  boidInit: 0
+  closeFollowWeight: 1.5
+  sphere: {fileID: 100004}
+  projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

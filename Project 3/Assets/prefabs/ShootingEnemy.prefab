@@ -9,9 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 50: {fileID: 5000000}
-  - 114: {fileID: 11400000}
-  - 61: {fileID: 6100000}
   m_Layer: 10
   m_Name: ShootingEnemy
   m_TagString: Untagged
@@ -55,19 +52,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400006}
+  - 50: {fileID: 5000000}
+  - 114: {fileID: 11400000}
+  - 61: {fileID: 6100000}
+  m_Layer: 10
+  m_Name: ShootingEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.0292397, y: -13.7031145, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -.70710665, w: .707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400002}
-  - {fileID: 400004}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 400006}
   m_RootOrder: 0
 --- !u!4 &400002
 Transform:
@@ -79,20 +92,35 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 7.40594816, y: 7.40592766, z: 7.40592766}
   m_Children: []
-  m_Father: {fileID: 400000}
-  m_RootOrder: 0
+  m_Father: {fileID: 400006}
+  m_RootOrder: 1
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: -.707106829, y: 2.24010674e-15, z: 2.24010674e-15, w: .707106829}
-  m_LocalPosition: {x: .00641980022, y: .740570009, z: 1}
+  m_LocalRotation: {x: -.500000179, y: .499999881, z: -.49999997, w: .500000119}
+  m_LocalPosition: {x: .492929995, y: .0213830005, z: 1}
   m_LocalScale: {x: .200000003, y: 1, z: .75}
   m_Children: []
-  m_Father: {fileID: 400000}
-  m_RootOrder: 1
+  m_Father: {fileID: 400006}
+  m_RootOrder: 2
+--- !u!4 &400006
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.0292397, y: -13.7031145, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 400000}
+  - {fileID: 400002}
+  - {fileID: 400004}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -125,7 +153,7 @@ Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100006}
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
@@ -140,7 +168,7 @@ BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -151,7 +179,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0264991b020252b4dbd5918dce196349, type: 3}
@@ -161,14 +189,20 @@ MonoBehaviour:
   explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
   maxRotSpeed: 0
   drop: {fileID: 0}
+  isInvulnerable: 0
+  shieldPrefab: {fileID: 0}
   squadId: 0
   currTarget: {fileID: 0}
+  moveSpeed: 2
+  targetPos: {x: 0, y: 0, z: 0}
+  boidInit: 0
+  closeFollowWeight: 0
   sphere: {fileID: 100002}
   projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
-  moveSpeed: 2
-  fireRate: 2
+  fireRate: 5
   hoverDistance: 6
-  projectileSpeed: 4
+  projectileSpeed: 30
+  velocity: {x: 0, y: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1309,6 +1343,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100000}
+  m_RootGameObject: {fileID: 100006}
   m_IsPrefabParent: 1
   m_IsExploded: 1

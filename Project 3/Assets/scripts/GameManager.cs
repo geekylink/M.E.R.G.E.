@@ -15,12 +15,15 @@ public class GameManager : MonoBehaviour {
 	public List<CapturePoint> capturePoints = new List<CapturePoint>();
 	public GameObject directionIndicator;
 	List<GameObject> capturePointDirIndicators = new List<GameObject>();
+
 	public BaseSatellite furthestPlanet;
 	public float furthestAllowedRadius;
 
 	public Sprite capturePlanetSprite;
 
 	public List<GameObject> directionIndicators;
+
+	float timer = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -247,11 +250,40 @@ public class GameManager : MonoBehaviour {
 		
 			Color color = cp.color;
 			dirIndicator.GetComponent<SpriteRenderer>().material.color = color;
+
+			float closestSquad = Mathf.Infinity;
+			foreach(EnemySquad squad in SquadManager.S.squads){
+				if(squad.squadMembers.Count > 0){
+					if(squad.targetIsPlanet){
+						if(squad.target.GetComponent<CapturePoint>() == cp){
+							if((squad.squadCenter - cp.transform.position).magnitude < closestSquad){
+								closestSquad = (squad.squadCenter - cp.transform.position).magnitude;
+							}
+						}
+					}
+				}
+			}
+
+			if(closestSquad < 10){
+				closestSquad = 10;
+			}
+			if(closestSquad < Mathf.Infinity){
+				float indicatorFlicker = closestSquad / GameManager.S.mapSize * 10f;
+				if(timer % indicatorFlicker < indicatorFlicker / 2){
+					dirIndicator.GetComponent<SpriteRenderer>().material.color = Color.white;
+				}
+			}
+
+
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		timer += Time.deltaTime;
+		if(timer > 60){
+			timer = 0;
+		}
 		ShowCapturePointsOnScreen();
 	}
 }
