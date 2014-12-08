@@ -87,12 +87,12 @@ public class EnemyBaseShip : BaseShip {
 		flockVelocity = flockVelocity - (Vector3)rigidbody2D.velocity;
 		follow = follow - transform.position;
 
-		/*float followWeight = SquadManager.S.followWeight;
-		if(follow.magnitude < 30f){
+		float followWeight = SquadManager.S.followWeight;
+		if(follow.magnitude < closeFollowRange){
 			followWeight *= closeFollowWeight;
-		}*/
+		}
 		
-		return (flockCenter + flockVelocity + follow + randomize * SquadManager.S.randomness);
+		return (flockCenter + flockVelocity + follow * followWeight + randomize * SquadManager.S.randomness);
 	}
 
 	public IEnumerator EnemyTurning(){

@@ -407,7 +407,7 @@ MonoBehaviour:
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   healSatPrefab: {fileID: 100000, guid: 79b62299d2a6f22428e6be4486506203, type: 2}
   mineSatPrefab: {fileID: 100000, guid: c0dd304f350b34e45b141ca786c2b2fd, type: 2}
-  fireRate: .100000001
+  fireRate: .5
   gtRes: {fileID: 0}
   rightTurret: {fileID: 100016}
   minimapBlip: {fileID: 100036}

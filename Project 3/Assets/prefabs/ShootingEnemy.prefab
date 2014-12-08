@@ -196,9 +196,9 @@ MonoBehaviour:
   moveSpeed: 2
   targetPos: {x: 0, y: 0, z: 0}
   boidInit: 0
-  closeFollowWeight: 0
+  closeFollowWeight: -1
   closeFollowRange: 10
-  closeFollowSpeed: -1
+  closeFollowSpeed: 10
   sphere: {fileID: 100002}
   projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
   fireRate: 5

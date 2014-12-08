@@ -136,7 +136,6 @@ public class Player : BaseShip {
 
 	// Handle the upgrades
 	public void UpdateUpgrades() {
-		return;
 		if (lastScore <= 0) {
 			score++;
 			lastScore = scoreTimer;
@@ -144,16 +143,16 @@ public class Player : BaseShip {
 
 		// Halve fire rate every 15 points
 		if (score <= 15) {
-			fireRate = 1.0f;
-		}
-		else if (score <= 30) {
 			fireRate = 0.5f;
 		}
-		else if (score <= 45) {
+		else if (score <= 30) {
 			fireRate = 0.25f;
 		}
-		else {
+		else if (score <= 45) {
 			fireRate = 0.125f;
+		}
+		else {
+			fireRate = 0.1f;
 		}
 	}
 
@@ -291,8 +290,7 @@ public class Player : BaseShip {
 			ShootMissile(rightTurret.transform.eulerAngles.z);
 			ShootMissile(rightTurret.transform.eulerAngles.z - 20);
 			ShootMissile(rightTurret.transform.eulerAngles.z + 20);
-			
-			print ("FIRE ZE MISSILES");
+
 			missileWaitTime = 0;
 		}
 	}
@@ -311,7 +309,7 @@ public class Player : BaseShip {
     {
         isLaserFiring = true;
         int id = MergeManager.S.players.IndexOf(this);
-        int laserDist = 60;
+        int laserDist = 47;
 
         //Vector2 dir2 = Quaternion.AngleAxis(0, Vector3.forward) * Vector2.right;
         Vector2 dir = Quaternion.AngleAxis(rightTurret.transform.rotation.eulerAngles.z, Vector3.forward) * Vector2.right;
@@ -325,7 +323,6 @@ public class Player : BaseShip {
         if (hit)
         {
             ld.SetPosition(1, hit.point);
-            print("Hit laser");
             BaseSatellite sat = hit.collider.GetComponent<BaseSatellite>();
             if (sat != null)
             {
@@ -342,6 +339,11 @@ public class Player : BaseShip {
                     bs.TakeDamage(4  * Time.deltaTime);
                 }
             }
+
+			BossWeakPoint wp = hit.collider.GetComponent<BossWeakPoint>();
+			if(wp != null){
+				wp.TakeDamage(4 * Time.deltaTime);
+			}
         }
         else
         {

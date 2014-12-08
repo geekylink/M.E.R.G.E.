@@ -107,6 +107,12 @@ public class Bullet : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 
+		if(col.gameObject.tag == "WeakPoint"){
+			BossWeakPoint wp = col.collider.GetComponent<BossWeakPoint>();
+			wp.TakeDamage(damageDealt);
+			Destroy (this.gameObject);
+		}
+
         BaseShip bs = col.collider.GetComponent<BaseShip>();
         if(bs != null)
         { 
