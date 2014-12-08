@@ -26,8 +26,8 @@ public class BaseSatellite : MonoBehaviour {
 	void Start () {
 
 		//This puts the satellite at the angle that is set in the inspector (for planets and such that are already spawned)
-		float angle = Vector3.Angle(transform.position - orbitTarget.transform.position, Vector3.right);
-		float sign = Mathf.Sign(Vector3.Dot(transform.position - orbitTarget.transform.position, Vector3.right));
+		//float angle = Vector3.Angle(transform.position - orbitTarget.transform.position, Vector3.right);
+		//float sign = Mathf.Sign(Vector3.Dot(transform.position - orbitTarget.transform.position, Vector3.right));
 		//orbitAngle = Mathf.Deg2Rad * sign * angle;
 		//print ("why angle: " + orbitAngle);
 	}
@@ -65,7 +65,7 @@ public class BaseSatellite : MonoBehaviour {
 		{
 			Instantiate(explosion, this.transform.position, Quaternion.identity);
 		}
-
+		GameManager.S.enemyList.Remove (this.gameObject);
 		Destroy(this.gameObject);
 	}
 

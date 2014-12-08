@@ -20,6 +20,7 @@ public class HomingMissile : Bullet {
 	void Start(){
 		currTarget = GetRandomEnemyOnScreen();
 		damageDealt = 2;
+		//remove this line
 	}
 
 	void Update(){
@@ -51,6 +52,13 @@ public class HomingMissile : Bullet {
 				this.rigidbody2D.velocity = vel.normalized 
 					* (startVel + (maxVel - startVel) * timeSinceLaunch * timeSinceLaunch);
 			}
+			else{
+				this.rigidbody2D.velocity = this.rigidbody2D.velocity;
+			}
+		}
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
+		if(!GeometryUtility.TestPlanesAABB(planes, this.gameObject.collider2D.bounds)){
+			Destroy(this.gameObject);
 		}
 	}
 
@@ -61,7 +69,9 @@ public class HomingMissile : Bullet {
 			while(counter++ < 50){
 				int idx = Random.Range(0, GameManager.S.enemyList.Count);
 				if(GeometryUtility.TestPlanesAABB(planes, GameManager.S.enemyList[idx].collider2D.bounds)){
-					return GameManager.S.enemyList[idx];
+					if(GameManager.S.enemyList[idx].layer != LayerMask.NameToLayer("SatellitePlayer")){
+						return GameManager.S.enemyList[idx];
+					}
 				}
 			}
 		}

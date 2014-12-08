@@ -39,7 +39,6 @@ public class CapturePoint : MonoBehaviour {
 	bool buildingTurrets = false;
 	bool secondTurretSpawnPhase = false;
 
-	bool promptSpawned = false;
 	GameObject prompt;
 
 	// Use this for initialization

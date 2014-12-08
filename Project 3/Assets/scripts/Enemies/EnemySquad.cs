@@ -25,9 +25,9 @@ public class EnemySquad : MonoBehaviour {
 
 
 	public Vector2 ApplyBoids(EnemyBaseShip enemy){
-		Vector2 v1, v2, v3, v4;
+		Vector2 v1, v3, v4;
 		v1 = TowardCenter (enemy);
-		v2 = Separation (enemy);
+		//v2 = Separation (enemy);
 		v3 = MatchVelocity (enemy);
 		v4 = TendTowardTarget (enemy);
 

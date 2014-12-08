@@ -73,7 +73,6 @@ public class Player : BaseShip {
 	private int numResources;
 
 	private ArrayList ownSats;
-	List<GameObject> ghostSatellites = new List<GameObject>();
 	public int playerManagerArrayPos = -1;
 
 	public CapturePoint planetBeingCaptured;

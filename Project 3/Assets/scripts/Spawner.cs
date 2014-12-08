@@ -125,7 +125,7 @@ public class Spawner : MonoBehaviour {
 		
 		while(timer < bossSpawnTimer){
 			timer += Time.deltaTime * Time.timeScale;
-			int timeUntilSpawn = Mathf.RoundToInt(bossSpawnTimer - timer);
+			//int timeUntilSpawn = Mathf.RoundToInt(bossSpawnTimer - timer);
 			//bossTimer.text = "Time Until Boss Spawn: " + timeUntilSpawn;
 			yield return 0;
 		}

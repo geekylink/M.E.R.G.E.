@@ -110,7 +110,13 @@ MonoBehaviour:
   directionIndicator: {fileID: 100000, guid: 887806cac5f4409458ece1f7dceea97f, type: 2}
   furthestPlanet: {fileID: 0}
   furthestAllowedRadius: 0
+  enemyList: []
   capturePlanetSprite: {fileID: 0}
+  directionIndicators:
+  - {fileID: 100000, guid: 9c2b1e46a715f6648b1df3ae619c00b3, type: 2}
+  - {fileID: 100000, guid: ebb9191500607af408618c5d982966b6, type: 2}
+  - {fileID: 100000, guid: 0b39ee694730bb1489b1c7f590929ecd, type: 2}
+  - {fileID: 100000, guid: d79a3bf84dd594b41b1afb49f048060c, type: 2}
 --- !u!4 &16991587
 Transform:
   m_ObjectHideFlags: 0
@@ -1114,6 +1120,7 @@ MonoBehaviour:
   captureType: 0
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  enemyAutoTurret: {fileID: 0}
   maxSatellites: 3
   satsInOrbit: []
   angle: 180
@@ -1732,6 +1739,7 @@ MonoBehaviour:
   captureType: 0
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  enemyAutoTurret: {fileID: 0}
   maxSatellites: 3
   satsInOrbit: []
   angle: 0
@@ -1854,6 +1862,7 @@ MonoBehaviour:
   captureType: 0
   controlledBy: 0
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  enemyAutoTurret: {fileID: 0}
   maxSatellites: 3
   satsInOrbit: []
   angle: 140
@@ -1956,6 +1965,7 @@ MonoBehaviour:
   captureType: 0
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  enemyAutoTurret: {fileID: 0}
   maxSatellites: 3
   satsInOrbit: []
   angle: 130
@@ -2207,6 +2217,7 @@ MonoBehaviour:
   captureType: 0
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  enemyAutoTurret: {fileID: 0}
   maxSatellites: 3
   satsInOrbit: []
   angle: -50
@@ -2885,6 +2896,7 @@ MonoBehaviour:
   captureType: 0
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  enemyAutoTurret: {fileID: 0}
   maxSatellites: 3
   satsInOrbit: []
   angle: 45
@@ -3271,6 +3283,7 @@ MonoBehaviour:
   captureType: 0
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
+  enemyAutoTurret: {fileID: 0}
   maxSatellites: 3
   satsInOrbit: []
   angle: -100
