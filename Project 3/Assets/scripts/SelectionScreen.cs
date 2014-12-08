@@ -15,7 +15,7 @@ public class SelectionScreen : MonoBehaviour {
 	public GameObject colorWheelSprite;
 
 	public float selectionTimeToSwitch;
-	float selectionTimer = 0;
+	//float selectionTimer = 0;
 	List<PlayerSelection> players = new List<PlayerSelection>();
 	List<GameObject> colorWheels = new List<GameObject>();
 

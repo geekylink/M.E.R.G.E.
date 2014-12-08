@@ -55,13 +55,17 @@ public class HomingMissile : Bullet {
 			else{
 				this.rigidbody2D.velocity = this.rigidbody2D.velocity;
 			}
+			var angle = Mathf.Atan2(this.rigidbody2D.velocity.y, this.rigidbody2D.velocity.x) * Mathf.Rad2Deg - 180;
+			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		}
+
+		this.rigidbody2D.angularVelocity = 0;
 		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
 		if(!GeometryUtility.TestPlanesAABB(planes, this.gameObject.collider2D.bounds)){
 			Destroy(this.gameObject);
 		}
 	}
-
+	
 	GameObject GetRandomEnemyOnScreen(){
 		int counter = 0;
 		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);

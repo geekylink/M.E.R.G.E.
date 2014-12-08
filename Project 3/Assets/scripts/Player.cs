@@ -313,7 +313,7 @@ public class Player : BaseShip {
         int id = MergeManager.S.players.IndexOf(this);
         int laserDist = 60;
 
-        Vector2 dir2 = Quaternion.AngleAxis(0, Vector3.forward) * Vector2.right;
+        //Vector2 dir2 = Quaternion.AngleAxis(0, Vector3.forward) * Vector2.right;
         Vector2 dir = Quaternion.AngleAxis(rightTurret.transform.rotation.eulerAngles.z, Vector3.forward) * Vector2.right;
 
         Ray2D ray = new Ray2D(transform.position, dir);

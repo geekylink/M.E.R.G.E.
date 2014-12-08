@@ -103,6 +103,10 @@ public class Bullet : MonoBehaviour {
 
 		}
 
+		if (col.gameObject.tag == "Boss") {
+			Destroy(this.gameObject);
+		}
+
         BaseShip bs = col.collider.GetComponent<BaseShip>();
         if(bs != null)
         { 
