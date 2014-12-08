@@ -154,6 +154,12 @@ public class Player : BaseShip {
 
 	
 	public override void Die(){
+		SFXManager man = SFXManager.getManager ();
+		man.playSound ("grenade");
+		//man.playSFX = true;
+		//SFXManager.playSound (Resources.Load("sfx/UFO.mp3") as AudioClip);
+
+
 		//UpdateHUD();
 		//UnshowSats();
 		if(planetBeingCaptured){
