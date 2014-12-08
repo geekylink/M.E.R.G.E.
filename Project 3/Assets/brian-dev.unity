@@ -3010,6 +3010,7 @@ MonoBehaviour:
   separationFactor: 1
   minSquadSize: 10
   maxSquadSize: 40
+  bossOnScreen: {fileID: 0}
 --- !u!4 &1453428123
 Transform:
   m_ObjectHideFlags: 0

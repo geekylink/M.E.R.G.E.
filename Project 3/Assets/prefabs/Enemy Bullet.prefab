@@ -278,10 +278,10 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4278190335
+        rgba: 4283256319
       minMaxState: 0
     startSize:
-      scalar: .300000012
+      scalar: .319999993
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -416,13 +416,13 @@ ParticleSystem:
         m_Curve:
         - time: 0
           value: 1
-          inSlope: -2
-          outSlope: -2
+          inSlope: -.422145933
+          outSlope: -.422145933
           tangentMode: 0
         - time: 1
           value: 0
-          inSlope: 0
-          outSlope: 0
+          inSlope: -1.13312685
+          outSlope: -1.13312685
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
