@@ -417,6 +417,7 @@ MonoBehaviour:
   leftEnginePiece: {fileID: 100010}
   playerManagerArrayPos: -1
   planetBeingCaptured: {fileID: 0}
+  missilePrefab: {fileID: 100000, guid: 3359f65bd24aec54092ccb4633747fff, type: 2}
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -1,26 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HomingMissile : MonoBehaviour {
+public class HomingMissile : Bullet {
 
 	public GameObject currTarget;
-	public GameObject explosion;
 	public float startVel;
 	public float maxVel;
-	public int damageDealt = 2;
 	bool init = true;
+	bool targetAcquired = false;
 	float timeSinceLaunch = 1f;
 
+	Vector3 vel;
+	public Vector3 Velocity {
+		get{ return vel;}
+		set{ vel = value;}
+	}
+
+
 	void Start(){
-		currTarget = SquadManager.S.GetRandomOnScreenEnemy ();
+		currTarget = GetRandomEnemyOnScreen();
+		damageDealt = 2;
+		//remove this line
 	}
 
 	void Update(){
 		timeSinceLaunch += Time.deltaTime;
 		if (currTarget != null) {
+			targetAcquired = true;
 			Vector3 targetPos = currTarget.transform.position;
 			var dir = targetPos - transform.position;
 			if(init){
+				if(startVel < 10f){
+					startVel = 10f;
+				}
 				this.rigidbody2D.velocity = dir.normalized * startVel;
 				init = false;
 			} 
@@ -35,37 +47,34 @@ public class HomingMissile : MonoBehaviour {
 			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		}
 		else{
-			currTarget = SquadManager.S.GetRandomOnScreenEnemy();
+			if(!targetAcquired){
+				currTarget = GetRandomEnemyOnScreen();
+				this.rigidbody2D.velocity = vel.normalized 
+					* (startVel + (maxVel - startVel) * timeSinceLaunch * timeSinceLaunch);
+			}
+			else{
+				this.rigidbody2D.velocity = this.rigidbody2D.velocity;
+			}
+		}
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
+		if(!GeometryUtility.TestPlanesAABB(planes, this.gameObject.collider2D.bounds)){
+			Destroy(this.gameObject);
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D col)
-	{
-		if(col.gameObject.tag == "Satellite"){
-			BaseSatellite sat = col.collider.GetComponent<BaseSatellite>();
-			sat.TakeDamage(damageDealt);
-			if (explosion != null)
-			{
-				Instantiate(explosion, this.transform.position, Quaternion.identity);
-			}
-			Destroy(this.gameObject);
-			
-			return;
-		}
-		
-		BaseShip bs = col.collider.GetComponent<BaseShip>();
-		if(bs != null)
-		{ 
-			if(!bs.isInvulnerable){
-				
-				bs.TakeDamage(damageDealt);
-				if (explosion != null)
-				{
-					Instantiate(explosion, this.transform.position, Quaternion.identity);
+	GameObject GetRandomEnemyOnScreen(){
+		int counter = 0;
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
+		if (GameManager.S.enemyList.Count != 0) {
+			while(counter++ < 50){
+				int idx = Random.Range(0, GameManager.S.enemyList.Count);
+				if(GeometryUtility.TestPlanesAABB(planes, GameManager.S.enemyList[idx].collider2D.bounds)){
+					if(GameManager.S.enemyList[idx].layer != LayerMask.NameToLayer("SatellitePlayer")){
+						return GameManager.S.enemyList[idx];
+					}
 				}
-				Destroy(this.gameObject);
 			}
 		}
+		return null;
 	}
-	
 }

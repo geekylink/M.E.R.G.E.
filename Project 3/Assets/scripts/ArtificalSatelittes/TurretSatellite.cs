@@ -22,6 +22,7 @@ public class TurretSatellite : BaseSatellite {
 	// Use this for initialization
 	void Start () {
 		hasTarget = false;
+		GameManager.S.enemyList.Add (this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -111,7 +112,6 @@ public class TurretSatellite : BaseSatellite {
 
 				//Get bullet velocity, and estimated target enemy velocity
 				Vector2 aimVec = Vector2.zero;
-				float bulletVelPerFrame = 1 / ammoVelocity;
 				Vector2 targetVelPerFrame = (pos - targetPrevPos) / Time.deltaTime;
 				
 				//Going to use a quadratic equation to figure out where to aim to lead the target

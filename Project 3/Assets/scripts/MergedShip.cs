@@ -15,10 +15,6 @@ public class MergedShip : MonoBehaviour {
 	public List<GameObject> lineList = new List<GameObject>();
 	public float camBuffer;
 
-	public GameObject missilePrefab;
-
-	float missileFireTime = 3f;
-	float missileWaitTime = 0f;
 	float flyingSpeed = 0;
 	float highestFractionalSpeed = 0;
 
@@ -51,7 +47,6 @@ public class MergedShip : MonoBehaviour {
 		RestrictToMap();
 		ClampObjectIntoView();
 		StartCoroutine(FlyAtEndOfFrame());
-		missileWaitTime += Time.deltaTime;
 		//ShowMergedLine();
 	}
 
@@ -74,8 +69,6 @@ public class MergedShip : MonoBehaviour {
 			mRender1.SetColors(lineColor, lineColor);
 			lineList.Add(mLine1);
 		}
-
-
 	}
 
 	public void RestrictToMap(){
@@ -113,28 +106,6 @@ public class MergedShip : MonoBehaviour {
 			highestFractionalSpeed = speed;
 		}
 		flyingSpeed = actualSpeed;
-	}
-
-	public void FireZeMissiles(){
-		if (missileWaitTime >= missileFireTime) {
-			GameObject missileGO = Instantiate(missilePrefab, transform.position, Quaternion.identity) as GameObject;
-			HomingMissile m1 = missileGO.GetComponent<HomingMissile>();
-			m1.startVel = this.rigidbody2D.velocity.magnitude;
-			m1.maxVel = m1.startVel + 10f;
-
-			GameObject missile2GO = Instantiate(missilePrefab, transform.position, Quaternion.identity) as GameObject;
-			HomingMissile m2 = missile2GO.GetComponent<HomingMissile>();
-			m2.startVel = this.rigidbody2D.velocity.magnitude;
-			m2.maxVel = m2.startVel + 10f;
-
-			GameObject missile3GO = Instantiate(missilePrefab, transform.position, Quaternion.identity) as GameObject;
-			HomingMissile m3 = missile3GO.GetComponent<HomingMissile>();
-			m3.startVel = this.rigidbody2D.velocity.magnitude;
-			m3.maxVel = m3.startVel + 10f;
-
-			print ("FIRE ZE MISSILES");
-			missileWaitTime = 0;
-		}
 	}
 
 	//clamp object into view - same as in Player.cs
@@ -278,4 +249,6 @@ public class MergedShip : MonoBehaviour {
 		leftEngine.transform.localRotation = Quaternion.Euler(leftRot);
 		rightEngine.transform.localRotation = Quaternion.Euler(rightRot);*/
 	}
+
+
 }

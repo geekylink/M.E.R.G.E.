@@ -17,6 +17,9 @@ public class ParticleLayers : MonoBehaviour {
         {
             this.renderer.sortingLayerName = sortingLayer;
             this.renderer.sortingOrder = sortingOrder;
+			if(e.Message != null){
+				//get rid of warning
+			}
         }
 	}
 	

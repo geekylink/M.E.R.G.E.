@@ -121,14 +121,14 @@ public class BossShip : MonoBehaviour {
 		}
 	}
 
-	Vector3 Deg2Vec (float degree)
+	public Vector3 Deg2Vec (float degree)
 	{
 		float rad = degree * Mathf.Deg2Rad;
 		Vector3 vec = new Vector3 (Mathf.Cos (rad), Mathf.Sin (rad), 0);
 		return vec;
 	}
 	
-	float Vec2Deg (Vector3 vec)
+	public float Vec2Deg (Vector3 vec)
 	{
 		Vector3 norm = vec.normalized;
 		float result;

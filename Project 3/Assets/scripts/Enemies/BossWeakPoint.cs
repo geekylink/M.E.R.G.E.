@@ -22,6 +22,7 @@ public class BossWeakPoint : MonoBehaviour {
 		} else {
 			sr.sprite = null;
 		}
+		GameManager.S.enemyList.Add (this.gameObject);
 	}
 
 	void Update(){

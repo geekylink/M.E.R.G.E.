@@ -14,13 +14,13 @@ public class EnemyBaseShip : BaseShip {
 	// Use this for initialization
 	public override void Start () {
 		squadId = 0;
-		StartCoroutine(EnemySteering());
 		base.Start();	
 	}
 	
 	public override void Die() {
 		StopAllCoroutines();
 		SquadManager.S.RemoveEnemy (this, squadId);
+		GameManager.S.enemyList.Remove (this.gameObject);
 		base.Die();		
 	}
 
