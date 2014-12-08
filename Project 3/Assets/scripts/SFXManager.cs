@@ -10,6 +10,9 @@ public class SFXManager : MonoBehaviour {
 	public List<string> playList;
 
 	private AudioSource src;
+	private AudioSource[] sources;
+
+	private static int numChannels = 10;
 
 	static public SFXManager getManager() {
 		GameObject obj = GameObject.Find ("SFXManager");
@@ -23,11 +26,22 @@ public class SFXManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		src = this.GetComponent ("AudioSource") as AudioSource;
-	//	src.clip = soundEffect;
+		sources = new AudioSource[numChannels];
+
+		for (int i = 0; i < numChannels; i++) {
+			sources[i] = this.gameObject.AddComponent ("AudioSource") as AudioSource;
+			sources[i].volume = 1;
+		}
 
 		//AddSound ("explosion", "takeoff");
 		AddSound ("grenade", "grenade");
+		AddSound ("EndFX", "EndFX");
+		/*sources [0].clip = sounds [0].clip;
+		sources [1].clip = sounds [1].clip;
+		sources [0].Play ();
+		sources [1].Play ();*/
+		//playSound ("grenade");
+		//playSound ("EndFX");
 	}
 
 	//Sound sfx;
@@ -44,8 +58,15 @@ public class SFXManager : MonoBehaviour {
 		while (playList.Count > 0) {
 			foreach (Sound snd in sounds) {
 				if (snd.soundName == playList[0]) {
-					src.clip = snd.clip;
-					src.Play ();
+
+					for (int i = 0; i < numChannels; i++) {
+						if (!sources[i].isPlaying) {
+							sources[i].clip = snd.clip;
+							sources[i].Play();
+						}
+					}
+					//src.clip = snd.clip;
+					//src.Play ();
 					playList.RemoveAt(0);
 					break;
 				}
