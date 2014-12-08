@@ -10,6 +10,8 @@ public class EnemyBaseShip : BaseShip {
 
 	public bool boidInit = false;
 	public float closeFollowWeight;
+	public float closeFollowRange;
+	public float closeFollowSpeed;
 	
 	// Use this for initialization
 	public override void Start () {
@@ -40,9 +42,16 @@ public class EnemyBaseShip : BaseShip {
 					rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)Boids(squadId) * Time.deltaTime;
 					// enforce minimum and maximum speeds for the boids
 					float speed = rigidbody2D.velocity.magnitude;
-					if (speed > SquadManager.S.highLimit && dir.magnitude > 20f)
+					if (speed > SquadManager.S.highLimit)
 					{
-						rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.highLimit;
+						if(dir.magnitude > closeFollowRange){
+							rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.highLimit;
+						}
+						else{
+							if(speed > closeFollowSpeed){
+								rigidbody2D.velocity = rigidbody2D.velocity.normalized * closeFollowSpeed;
+							}
+						}
 					}
 					else if (speed < SquadManager.S.lowLimit)
 					{
@@ -78,12 +87,12 @@ public class EnemyBaseShip : BaseShip {
 		flockVelocity = flockVelocity - (Vector3)rigidbody2D.velocity;
 		follow = follow - transform.position;
 
-		float followWeight = SquadManager.S.followWeight;
+		/*float followWeight = SquadManager.S.followWeight;
 		if(follow.magnitude < 30f){
 			followWeight *= closeFollowWeight;
-		}
+		}*/
 		
-		return (flockCenter + flockVelocity + follow * followWeight + randomize * SquadManager.S.randomness);
+		return (flockCenter + flockVelocity + follow + randomize * SquadManager.S.randomness);
 	}
 
 	public IEnumerator EnemyTurning(){

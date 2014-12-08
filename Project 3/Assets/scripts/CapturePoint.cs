@@ -85,6 +85,11 @@ public class CapturePoint : MonoBehaviour {
 		if(satsInOrbit.Count == 0 && !secondTurretSpawnPhase){
 			if(controlledBy == ControlledBy.Player){
 				controlledBy = ControlledBy.Enemy;
+				GameObject autoSat = Instantiate (enemyAutoTurret, this.transform.position, this.transform.rotation) as GameObject;
+				TurretSatellite satTurret = autoSat.GetComponent ("TurretSatellite") as TurretSatellite;
+				satTurret.orbitTarget = this.gameObject;
+				satTurret.creatorObj = this.gameObject;
+				satsInOrbit.Add (satTurret);
 			}
 			else{
 				controlledBy = ControlledBy.Neutral;
