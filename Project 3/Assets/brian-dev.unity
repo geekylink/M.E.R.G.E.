@@ -376,6 +376,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52579121}
+  m_HideIfInvisible: 0
 --- !u!1 &54597922
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +513,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84885446}
+  m_HideIfInvisible: 0
 --- !u!1 &126061215
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +592,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77cabd16fa3f0c46886cd82959f914c, type: 3}
   m_Color: {r: 0, g: 1, b: .0896551609, a: 1}
 --- !u!1 &156490190
 GameObject:
@@ -907,6 +909,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326600193}
+  m_HideIfInvisible: 0
 --- !u!1 &334441414
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +993,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77cabd16fa3f0c46886cd82959f914c, type: 3}
   m_Color: {r: 0, g: .0482757092, b: 1, a: 1}
 --- !u!1 &434131998
 GameObject:
@@ -1062,7 +1065,6 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1 &453793547
@@ -1163,7 +1165,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77cabd16fa3f0c46886cd82959f914c, type: 3}
   m_Color: {r: 0, g: .0482757092, b: 1, a: 1}
 --- !u!1 &553607979
 GameObject:
@@ -1457,7 +1459,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77cabd16fa3f0c46886cd82959f914c, type: 3}
   m_Color: {r: 0, g: 1, b: .0896551609, a: 1}
 --- !u!1 &632040535
 GameObject:
@@ -1507,7 +1509,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73711afa80f586143a9298fcf3ac693e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &633683251
 GameObject:
@@ -1557,7 +1559,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77cabd16fa3f0c46886cd82959f914c, type: 3}
   m_Color: {r: 0, g: .0482757092, b: 1, a: 1}
 --- !u!1 &720239580
 GameObject:
@@ -1903,7 +1905,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77cabd16fa3f0c46886cd82959f914c, type: 3}
   m_Color: {r: 0, g: .0482757092, b: 1, a: 1}
 --- !u!1 &1043585237
 GameObject:
@@ -2629,7 +2631,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1311673341
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 3a3d047844493fd49b1c89235912739d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77cabd16fa3f0c46886cd82959f914c, type: 3}
   m_Color: {r: 0, g: .0482757092, b: 1, a: 1}
 --- !u!1001 &1248588467
 Prefab:
@@ -2872,6 +2874,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401287587}
+  m_HideIfInvisible: 0
 --- !u!224 &1401287590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3719,6 +3722,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1853759786}
+  m_HideIfInvisible: 0
 --- !u!1 &1893834703
 GameObject:
   m_ObjectHideFlags: 0
@@ -5248,7 +5252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
-  m_DragThreshold: 5
 --- !u!4 &2141242599
 Transform:
   m_ObjectHideFlags: 0
