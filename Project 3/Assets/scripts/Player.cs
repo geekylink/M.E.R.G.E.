@@ -302,6 +302,7 @@ public class Player : BaseShip {
 		m1.startVel = Mathf.Max (transform.root.rigidbody2D.velocity.magnitude, 5f);
 		m1.maxVel = m1.startVel * 2f;
 		m1.Velocity = Deg2Vec (angle).normalized * m1.startVel;
+        m1.SetColor(playerColor);
 	}
 
 

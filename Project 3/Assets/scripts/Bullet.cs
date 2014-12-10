@@ -22,9 +22,14 @@ public class Bullet : MonoBehaviour {
 
     public void SetColor(Color color)
     {
+        this.color = color;
         this.GetComponent<SpriteRenderer>().color = color;
+
         ParticleSystem sys = this.GetComponentInChildren<ParticleSystem>();
         sys.startColor = color;
+
+        explosion.GetComponent<ParticleSystem>().startColor = color;
+
     }
 
 	public void setDefaults(float angle, float velocity) {
