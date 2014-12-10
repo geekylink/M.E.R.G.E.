@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restrictToFurthestOrbit: 1
-  camMoveSpeed: 20
+  camMoveSpeed: 10
   camSizeSpeed: 5
   minCameraSize: 20
   maxCameraSize: 30
@@ -310,6 +310,7 @@ MonoBehaviour:
   maxX: 0
   minY: 0
   maxY: 0
+  distToMoveToPlanet: 50
 --- !u!1 &52579121
 GameObject:
   m_ObjectHideFlags: 0

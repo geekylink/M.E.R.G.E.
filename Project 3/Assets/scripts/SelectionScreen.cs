@@ -23,9 +23,14 @@ public class SelectionScreen : MonoBehaviour {
 	public GameObject selectCirclePrefab;
 
 	public List<Color> possibleColorSelections;
+	public UnityEngine.UI.Text topText;
+	List<bool> hasPushedA = new List<bool>();
+
+	public UnityEngine.UI.Text readyPrefab;
+	List<UnityEngine.UI.Text> readyTexts = new List<UnityEngine.UI.Text>();
 	// Use this for initialization
 	void Start () {
-
+		topText.text = "Press A to Confirm";
 	}
 
 	IEnumerator WaitTillEndOfFrame(){
@@ -52,6 +57,11 @@ public class SelectionScreen : MonoBehaviour {
 
 			temp.playerBody.color = Color.red;
 			GameManager.S.playerColors[i] = Color.red;
+
+			bool tempBool = false;
+			hasPushedA.Add (tempBool);
+
+			UnityEngine.UI.Text readyText = 
 		}
 	}
 
@@ -69,30 +79,17 @@ public class SelectionScreen : MonoBehaviour {
 			Continue ();
 		}
 
+		bool allHavePushedA = true;
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
-			/*if (InputManager.Devices[i].DPadRight.WasPressed) {
-				ChangeColor(i, 1);
+			if(InputManager.Devices[i].Action1.WasReleased && i < hasPushedA.Count){
+				hasPushedA[i] = !hasPushedA[i];
 			}
-			else if (InputManager.Devices[i].DPadLeft.WasPressed) {
-				ChangeColor(i, -1);
+
+			if(i < hasPushedA.Count){
+				if(!hasPushedA[i])
+					allHavePushedA = false;
 			}
-			else if(InputManager.Devices[i].LeftStickX < -0.3f){
-				if(selectionTimer <= 0){
-					ChangeColor(i, -1);
-					selectionTimer = selectionTimeToSwitch;
-				}
-				selectionTimer -= Time.deltaTime;
-			}
-			else if(InputManager.Devices[i].LeftStickX > 0.3f){
-				if(selectionTimer <= 0){
-					ChangeColor(i, 1);
-					selectionTimer = selectionTimeToSwitch;
-				}
-				selectionTimer -= Time.deltaTime;
-			}
-			else{
-				selectionTimer = 0;
-			}*/
+
 
 			//move the selection thing
 			if(selectionCircles.Count == 0) continue;
@@ -103,12 +100,15 @@ public class SelectionScreen : MonoBehaviour {
 			float leftY = InputManager.Devices[i].LeftStickY;
 
 			float angleFloat = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
-			if(angleFloat < 0) angleFloat += 360;
+			if(angleFloat < 0) angleFloat += 360;/*
+			if(angleFloat >= 30 && angleFloat < 150) angleFloat = 90;
+			if(angleFloat < 30 || angleFloat >= 270) angleFloat = 330;
+			if(angleFloat >= 150 && angleFloat < 270) angleFloat = 210;*/
+			angleFloat = Mathf.Round(angleFloat / 30) * 30;
 
 			Vector2 angleVec = new Vector2(rightX, rightY);
 			if(angleVec.magnitude < .9f) continue;
-
-			angleVec = angleVec.normalized;
+			angleVec = (Vector2)(Quaternion.AngleAxis(angleFloat, Vector3.forward) * Vector2.right);
 
 			Vector3 pos = colorWheels[i].transform.position + (Vector3)angleVec * 2.08f;
 			selectionCircles[i].transform.position = pos;
@@ -143,6 +143,15 @@ public class SelectionScreen : MonoBehaviour {
 			GameManager.S.playerColors[i] = color;
 
 
+		}
+
+		if(allHavePushedA){
+			topText.text = "Press Start to Continue";
+			topText.color = Color.red;
+		}
+		else{
+			topText.text = "Press A to Confirm";
+			topText.color = Color.white;
 		}
 	}
 

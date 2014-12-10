@@ -200,7 +200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press Start To Continue
+  m_Text: Press A to Confirm
 --- !u!222 &275724676
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -389,6 +389,7 @@ MonoBehaviour:
   - {r: .737930775, g: 0, b: 1, a: 1}
   - {r: .0367646813, g: .242697686, b: 1, a: 1}
   - {r: 0, g: 1, b: .00689649582, a: 1}
+  topText: {fileID: 275724675}
 --- !u!1 &910456176
 GameObject:
   m_ObjectHideFlags: 0

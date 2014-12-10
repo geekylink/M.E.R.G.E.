@@ -157,7 +157,8 @@ public class GameManager : MonoBehaviour {
 		}
 		capturePointDirIndicators.RemoveRange(0, capturePointDirIndicators.Count);
 
-		if(bossHasSpawned && Spawner.S.bossOnScreen){
+		if(bossHasSpawned){
+			if(Spawner.S.bossOnScreen == null) return;
 			Vector3 bossLoc = Spawner.S.bossOnScreen.transform.position;
 
 			Vector3 viewportPoint = Camera.main.WorldToViewportPoint(bossLoc);

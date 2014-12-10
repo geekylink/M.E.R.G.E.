@@ -81,8 +81,13 @@ public class CapturePoint : MonoBehaviour {
 
 	public void RemoveSat(BaseSatellite sat){
 		satsInOrbit.Remove(sat);
-
 		if(satsInOrbit.Count == 0 && !secondTurretSpawnPhase){
+			if(buildingTurrets && !beingCaptured){
+				buildingTurrets = false;
+				
+				StopCoroutine("SpawnTurret");
+				if(turretBeingBuilt) Destroy (turretBeingBuilt);
+			}
 			if(controlledBy == ControlledBy.Player){
 				controlledBy = ControlledBy.Enemy;
 				GameObject autoSat = Instantiate (enemyAutoTurret, this.transform.position, this.transform.rotation) as GameObject;

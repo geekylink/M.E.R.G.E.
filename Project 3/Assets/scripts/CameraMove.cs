@@ -25,6 +25,8 @@ public class CameraMove : MonoBehaviour {
 
 	bool allPlayersDead = false;
 
+	public float distToMoveToPlanet;
+
 	void Start(){
 		if(S == null)
 		{
@@ -115,6 +117,41 @@ public class CameraMove : MonoBehaviour {
 			cameraCenter = previousCamCenter;
 		}
 
+		float closestObjDist = Mathf.Infinity;
+		EnemySquad closestSquad = null;
+		foreach(EnemySquad es in SquadManager.S.squads){
+			if(Vector3.Distance(cameraCenter, es.squadCenter) < closestObjDist){
+				closestObjDist = Vector3.Distance (cameraCenter, es.squadCenter);
+				closestSquad = es;
+			}
+		}
+		
+		bool centeredOnObject = false;
+		Vector3 oldCamCenter = cameraCenter;
+		if(closestObjDist < distToMoveToPlanet){
+			float lerpVar = 1 - closestObjDist/distToMoveToPlanet;
+			cameraCenter = Vector3.Lerp(cameraCenter, closestSquad.squadCenter, lerpVar);
+			centeredOnObject = true;
+		}
+
+
+		float closestPlanetDist = Mathf.Infinity;
+		CapturePoint closestPlanet = null;
+		foreach(CapturePoint cp in GameManager.S.capturePoints){
+			if(Vector3.Distance(cameraCenter, cp.transform.position) < closestPlanetDist){
+				closestPlanetDist = Vector3.Distance (cameraCenter, cp.transform.position);
+				closestPlanet = cp;
+			}
+		}
+
+		if(closestPlanetDist < distToMoveToPlanet){
+			float lerpVar = 1 - closestPlanetDist/distToMoveToPlanet;
+			cameraCenter = Vector3.Lerp(oldCamCenter, closestPlanet.transform.position, lerpVar);
+			centeredOnObject = true;
+			closestObjDist = closestPlanetDist;
+		}
+
+
 		transform.position = Vector3.Lerp(transform.position, cameraCenter, camMoveSpeed * Time.deltaTime);
 
 		
@@ -127,6 +164,12 @@ public class CameraMove : MonoBehaviour {
 		camSize = camSize * 0.5f;
 		camSize = (camSize < minCameraSize ? minCameraSize : camSize);
 		camSize = (camSize > maxCameraSize ? maxCameraSize : camSize);
+
+		if(centeredOnObject) {
+			float lerpVar = 1 - closestObjDist/distToMoveToPlanet;
+			camSize = Mathf.Lerp(camSize, maxCameraSize, lerpVar);
+		}
+
 
 		camSize = Mathf.Lerp(previousCamSize, camSize, camSizeSpeed * Time.deltaTime);
 
