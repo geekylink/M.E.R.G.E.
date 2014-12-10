@@ -60,8 +60,8 @@ public class SelectionScreen : MonoBehaviour {
 
 			bool tempBool = false;
 			hasPushedA.Add (tempBool);
-
-			UnityEngine.UI.Text readyText = 
+/*
+			UnityEngine.UI.Text readyText = */
 		}
 	}
 
