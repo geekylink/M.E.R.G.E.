@@ -82,4 +82,9 @@ public class HomingMissile : Bullet {
 		}
 		return null;
 	}
+
+    public void SetColor(Color color)
+    {
+        this.GetComponent<SpriteRenderer>().color = color;
+    }
 }

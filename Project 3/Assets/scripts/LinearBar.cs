@@ -7,12 +7,7 @@ public class LinearBar : MonoBehaviour {
     public Vector3 offset;
     public GameObject bar;
 	void Start () {
-
-        Transform sp = bar.transform;
-        Vector3 scale = sp.localScale;
-        scale.x *= percent;
-        sp.localScale = scale;
-
+        Rescale();
 	}
 	
 	// Update is called once per frame
@@ -24,8 +19,17 @@ public class LinearBar : MonoBehaviour {
     public void SetPercent(float percent)
     {
         this.percent = percent;
+
+        Rescale();
     }
 
+    void Rescale()
+    {
+        Transform sp = bar.transform;
+        Vector3 scale = sp.localScale;
+        scale.x *= percent;
+        sp.localScale = scale;
+    }
     void OnDrawGizmosSelected ()
     {
         //Gizmos.DrawLine(transform.position + offset, transform.position + offset + new Vector3(width, 0));

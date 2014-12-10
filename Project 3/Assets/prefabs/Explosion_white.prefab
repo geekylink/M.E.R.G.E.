@@ -12,7 +12,7 @@ GameObject:
   - 199: {fileID: 19900000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: Explosion_white
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +205,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 0
+        rgba: 4294967295
       minMaxState: 0
     startSize:
       scalar: .300000012
@@ -405,15 +405,15 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4278190335
+          rgba: 4278253823
         key1:
           serializedVersion: 2
-          rgba: 4278256127
+          rgba: 4278253823
         key2:
           serializedVersion: 2
           rgba: 0
