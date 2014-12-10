@@ -17,7 +17,6 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	    
 	}
 
     public void SetColor(Color color)
@@ -28,7 +27,6 @@ public class Bullet : MonoBehaviour {
         ParticleSystem sys = this.GetComponentInChildren<ParticleSystem>();
         sys.startColor = color;
 
-        explosion.GetComponent<ParticleSystem>().startColor = color;
 
     }
 
@@ -95,7 +93,9 @@ public class Bullet : MonoBehaviour {
 			sat.TakeDamage(damageDealt);
 			if (explosion != null)
 			{
-				Instantiate(explosion, this.transform.position, Quaternion.identity);
+				GameObject exp = Instantiate(explosion, this.transform.position, Quaternion.identity) as GameObject;
+                exp.GetComponent<ParticleSystem>().startColor = color;
+
 			}
 
 			if (owner != null) {
