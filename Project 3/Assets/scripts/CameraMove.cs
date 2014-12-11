@@ -138,6 +138,7 @@ public class CameraMove : MonoBehaviour {
 		float closestPlanetDist = Mathf.Infinity;
 		CapturePoint closestPlanet = null;
 		foreach(CapturePoint cp in GameManager.S.capturePoints){
+			if(cp.controlledBy != CapturePoint.ControlledBy.Enemy) continue;
 			if(Vector3.Distance(cameraCenter, cp.transform.position) < closestPlanetDist){
 				closestPlanetDist = Vector3.Distance (cameraCenter, cp.transform.position);
 				closestPlanet = cp;
@@ -149,6 +150,16 @@ public class CameraMove : MonoBehaviour {
 			cameraCenter = Vector3.Lerp(oldCamCenter, closestPlanet.transform.position, lerpVar);
 			centeredOnObject = true;
 			closestObjDist = closestPlanetDist;
+		}
+
+		if(Spawner.S.bossOnScreen != null){
+			Vector3 bossPos = Spawner.S.bossOnScreen.transform.position;
+			if(Vector3.Distance(cameraCenter, bossPos) < distToMoveToPlanet){
+				float lerpVar = 1 - Vector3.Distance(cameraCenter, bossPos)/distToMoveToPlanet;
+				cameraCenter = Vector3.Lerp(oldCamCenter, bossPos, lerpVar);
+				centeredOnObject = true;
+				closestObjDist = Vector3.Distance(cameraCenter, bossPos);
+			}
 		}
 
 

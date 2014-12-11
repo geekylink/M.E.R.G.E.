@@ -27,7 +27,7 @@ public class LinearBar : MonoBehaviour {
     {
         Transform sp = bar.transform;
         Vector3 scale = sp.localScale;
-        scale.x *= percent;
+        scale.x = percent;
         sp.localScale = scale;
     }
     void OnDrawGizmosSelected ()

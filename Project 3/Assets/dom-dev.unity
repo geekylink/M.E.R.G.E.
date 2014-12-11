@@ -823,6 +823,7 @@ MonoBehaviour:
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   enemyAutoTurret: {fileID: 100000, guid: 8c33c050763631d41bac23dc509cc68a, type: 2}
+  linearBarPrefab: {fileID: 100000, guid: f618dcfc8bfb1d443851b21e1a09fa4e, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 130
@@ -1100,6 +1101,7 @@ MonoBehaviour:
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   enemyAutoTurret: {fileID: 100000, guid: 8c33c050763631d41bac23dc509cc68a, type: 2}
+  linearBarPrefab: {fileID: 100000, guid: f618dcfc8bfb1d443851b21e1a09fa4e, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: -50
@@ -1516,6 +1518,7 @@ MonoBehaviour:
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   enemyAutoTurret: {fileID: 100000, guid: 8c33c050763631d41bac23dc509cc68a, type: 2}
+  linearBarPrefab: {fileID: 100000, guid: f618dcfc8bfb1d443851b21e1a09fa4e, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 180
@@ -2235,6 +2238,7 @@ MonoBehaviour:
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   enemyAutoTurret: {fileID: 100000, guid: 8c33c050763631d41bac23dc509cc68a, type: 2}
+  linearBarPrefab: {fileID: 100000, guid: f618dcfc8bfb1d443851b21e1a09fa4e, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 0
@@ -2668,6 +2672,7 @@ MonoBehaviour:
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   enemyAutoTurret: {fileID: 100000, guid: 8c33c050763631d41bac23dc509cc68a, type: 2}
+  linearBarPrefab: {fileID: 100000, guid: f618dcfc8bfb1d443851b21e1a09fa4e, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: -100
@@ -2792,6 +2797,7 @@ MonoBehaviour:
   controlledBy: 1
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   enemyAutoTurret: {fileID: 100000, guid: 8c33c050763631d41bac23dc509cc68a, type: 2}
+  linearBarPrefab: {fileID: 100000, guid: f618dcfc8bfb1d443851b21e1a09fa4e, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 45
@@ -4871,6 +4877,7 @@ MonoBehaviour:
   controlledBy: 0
   autoTurretPrefab: {fileID: 100000, guid: 88890c1996868df4f93f475c93b026ee, type: 2}
   enemyAutoTurret: {fileID: 100000, guid: 8c33c050763631d41bac23dc509cc68a, type: 2}
+  linearBarPrefab: {fileID: 100000, guid: f618dcfc8bfb1d443851b21e1a09fa4e, type: 2}
   maxSatellites: 3
   satsInOrbit: []
   angle: 140
