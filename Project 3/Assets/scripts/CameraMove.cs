@@ -176,13 +176,16 @@ public class CameraMove : MonoBehaviour {
 		camSize = (camSize < minCameraSize ? minCameraSize : camSize);
 		camSize = (camSize > maxCameraSize ? maxCameraSize : camSize);
 
+
+		float possibleCamSize = camSize;
+
 		if(centeredOnObject) {
 			float lerpVar = 1 - closestObjDist/distToMoveToPlanet;
-			camSize = Mathf.Lerp(camSize, maxCameraSize, lerpVar);
+			possibleCamSize = Mathf.Lerp(camSize, maxCameraSize, lerpVar);
 		}
 
 
-		camSize = Mathf.Lerp(previousCamSize, camSize, camSizeSpeed * Time.deltaTime);
+		camSize = Mathf.Lerp(previousCamSize, possibleCamSize, camSizeSpeed * Time.deltaTime);
 
 		camera.orthographicSize = camSize;
 

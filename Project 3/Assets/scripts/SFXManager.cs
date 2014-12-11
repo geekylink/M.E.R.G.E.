@@ -13,9 +13,11 @@ public class SFXManager : MonoBehaviour {
 	private AudioSource[] sources;
 
 	private static int numChannels = 10;
+	public bool mute = false;
 
 	// Use this for initialization
 	void Start () {
+		if(mute) return;
 		sources = new AudioSource[numChannels];
 
 		for (int i = 0; i < numChannels; i++) {
@@ -53,6 +55,7 @@ public class SFXManager : MonoBehaviour {
 
 	// Plays sound "name"
 	public void playSound(string name) {
+		if(mute) return;
 		playList.Add (name);
 	}
 
@@ -66,6 +69,7 @@ public class SFXManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(mute) return;
 		while (playList.Count > 0) { // Play all sounds in the playList
 			foreach (Sound snd in sounds) { // Finds the right AudioClip to load
 				if (snd.soundName == playList[0]) {

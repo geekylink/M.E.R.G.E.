@@ -44,7 +44,8 @@ MonoBehaviour:
   mapsize: 0
   lowLimit: 0
   highLimit: 10
-  randomness: 100
+  randomness: 40
+  separationWeight: 10
   followWeight: 30
 --- !u!1001 &100100000
 Prefab:
