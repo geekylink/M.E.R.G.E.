@@ -41,6 +41,14 @@ public class Player : BaseShip {
 		get{return velocityMult;}
 		set{velocityMult = value;}
 	}
+	float numBurstFire = 0;
+	public float NumBurstFire{
+		get{return numBurstFire;}
+		set{numBurstFire = value;}
+	}
+	float burstFireTime = 0;
+	float burstsShot = 0;
+	bool firedInitialShot = false;
 
 	public UnityEngine.UI.Text gtRes;
 
@@ -174,11 +182,6 @@ public class Player : BaseShip {
 			fireRate = 0.1f;
 		}
 	}
-
-	public void UpdateTurnSpeed(float speedUp){
-		turnSpeed += speedUp;
-	}
-
 	
 	public override void Die(){
 		UpgradeSystem.S.Die(playerManagerArrayPos);
@@ -254,8 +257,6 @@ public class Player : BaseShip {
 
 	// Fires from the right turret
 	public void FireRightTurret() {
-        //FireLaser(); return;
-
 		int id = MergeManager.S.players.IndexOf(this);
 		if(MergeManager.S.currentlyMergedWith[id].Count == 3){
 			FireLaser(); 
@@ -263,6 +264,34 @@ public class Player : BaseShip {
 		}
 
 		if (lastRightFire <= 0) {
+			if(firedInitialShot){
+				if(burstsShot < numBurstFire){
+					if(burstFireTime < 1){
+						burstFireTime += Time.deltaTime * Time.timeScale / 0.05f;
+					}
+					else{
+						burstFireTime = 0;
+						burstsShot++;
+						GameObject burstGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
+						Vector3 burstSize = burstGO.transform.localScale;
+						burstSize *= bulletSize;
+						burstGO.transform.localScale = burstSize;
+						Bullet burstBullet = burstGO.GetComponent("Bullet") as Bullet;
+						
+						burstBullet.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
+						burstBullet.owner = this;
+						
+						burstBullet.SetColor(playerColor);
+						burstBullet.setDefaults(-rightTurret.transform.eulerAngles.z + Random.value * 10 - 5, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
+					}
+				}
+				else{
+					burstsShot = 0;
+					firedInitialShot = false;
+					lastRightFire = fireRate;
+				}
+				return;
+			}
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 			Vector3 size = bulletGO.transform.localScale;
 			size *= bulletSize;
@@ -294,19 +323,7 @@ public class Player : BaseShip {
 				FireZeMissiles(-rightTurret.transform.eulerAngles.z);
 			}
 
-			lastRightFire = fireRate;
-		}
-
-
-
-		foreach(var satVar in ownSats){
-			TurretSatellite ts = satVar as TurretSatellite;
-			if(ts){
-				Vector2 vel = Vector2.zero;
-				vel.y = -Mathf.Sin (-rightTurret.transform.eulerAngles.z*Mathf.Deg2Rad);
-				vel.x = Mathf.Cos (-rightTurret.transform.eulerAngles.z*Mathf.Deg2Rad);
-				ts.PlayerFire(vel);
-			}
+			firedInitialShot = true;
 		}
 	}
 

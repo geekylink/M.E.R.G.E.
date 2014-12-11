@@ -116,7 +116,9 @@ public class Bullet : MonoBehaviour {
 		if(col.gameObject.tag == "WeakPoint"){
 			BossWeakPoint wp = col.collider.GetComponent<BossWeakPoint>();
 			wp.TakeDamage(damageDealt);
-			owner.KillSomething(0.05f);
+			if(owner != null){
+				owner.KillSomething(0.05f);
+			}
 			Destroy (this.gameObject);
 		}
 

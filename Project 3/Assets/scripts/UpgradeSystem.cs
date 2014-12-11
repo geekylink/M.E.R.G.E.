@@ -14,6 +14,8 @@ public class UpgradeSystem : MonoBehaviour {
 	List<bool> isDead = new List<bool>();
 
 	bool firstTimeSetup = false;
+
+	public float showLevelTextTime;
 	// Use this for initialization
 	void Start () {
 		if(S == null)
@@ -42,30 +44,91 @@ public class UpgradeSystem : MonoBehaviour {
 		levels[playerNum].text = "LEVEL: " + levelNums[playerNum];
 	}
 
+	IEnumerator ShowLevelUpText(string levelUpText, int pNum){
+		Text upgradeText = Instantiate(levelTextPrefab) as Text;
+		upgradeText.transform.SetParent(canvas.transform, false);
+		
+		upgradeText.text = levelUpText;
+
+		
+		
+		Vector2 textPos = linearBars[pNum].GetComponent<RectTransform>().anchoredPosition;
+		float startingY = textPos.y;
+		float endingY = startingY + Screen.height / 16;
+
+		Color color = PlayerManager.S.playerColors[pNum];
+		float startingAlpha = 0;
+		float endingAlpha = color.a;
+
+
+		float t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / 0.2f;
+
+			textPos.y = Mathf.Lerp (startingY, endingY, t);
+			upgradeText.rectTransform.anchoredPosition = textPos;
+
+			color.a = Mathf.Lerp (startingAlpha, endingAlpha, t);
+			upgradeText.color = color;
+			yield return 0;
+		}
+
+		t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / showLevelTextTime;
+			yield return 0;
+		}
+		Destroy(upgradeText);
+
+	}
 
 
 	void IncreaseFireRate(float amtToIncrease, int playerNum){
+		StartCoroutine(ShowLevelUpText("Fire Rate Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate -= amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate <= 0.1f){
+			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate = 0.1f;
 		}
 	}
 	void IncreaseBulletSize(float amtToIncrease, int playerNum){
+		StartCoroutine(ShowLevelUpText("Bullet Size Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize >= 2.5f){
+			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize = 2.5f;
 		}
 	}
 	void IncreaseTurnSpeed(float amtToIncrease, int playerNum){
-		PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed -= amtToIncrease;
-		if(PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed <= 0.1f){
-			PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed = 0.1f;
+		StartCoroutine(ShowLevelUpText("Turn Speed Up!", playerNum));
+		PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed += amtToIncrease;
+		if(PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed >= 30){
+			print ("AT MAX");
+			PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed = 30;
 		}
 	}
 	void IncreaseFlySpeed(float amtToIncrease, int playerNum){
+		StartCoroutine(ShowLevelUpText("Fly Speed Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult >= 2){
+			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult = 2;
+		}
+	}
+	void IncreaseBulletSpeed(float amtToIncrease, int playerNum){
+		StartCoroutine(ShowLevelUpText("Bullet Speed Up!", playerNum));
+		PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity += amtToIncrease;
+		if(PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity >= 30){
+			print ("AT MAX");
+			PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity = 30;
+		}
+	}
+	void IncreaseBurst(int playerNum){
+		StartCoroutine(ShowLevelUpText("Burst Fire Up!", playerNum));
+		PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire += 1;
+		if(PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire >= 5){
+			print ("AT MAX");
+			PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire = 5;
 		}
 	}
 
@@ -74,6 +137,27 @@ public class UpgradeSystem : MonoBehaviour {
 	void LevelUp(int playerNum){
 		levelNums[playerNum]++;
 		levels[playerNum].text = "LEVEL: " + levelNums[playerNum];
+
+		int ran = Random.Range (0, 21);
+		if(ran <= 3){
+			IncreaseFireRate(0.05f, playerNum);
+		}
+		else if(ran <= 7){
+			IncreaseBulletSize(0.1f, playerNum);
+		}
+		else if(ran <= 11){
+			IncreaseTurnSpeed(0.5f, playerNum);
+		}
+		else if(ran <= 15){
+			IncreaseFlySpeed(0.05f, playerNum);
+		}
+		else if(ran <= 19){
+			IncreaseBulletSpeed(0.5f, playerNum);
+		}
+		else if(ran == 20){
+			IncreaseBurst(playerNum);
+		}
+
 	}
 
 	public void AddScore(float scoreToAdd, int playerNum){

@@ -326,6 +326,7 @@ MonoBehaviour:
   canvas: {fileID: 434132001}
   linearBarPrefab: {fileID: 11445870, guid: 51548d05fb297c74da4a803146b74708, type: 2}
   levelTextPrefab: {fileID: 11415706, guid: 2f6dd86d68b96ce4a93a4bcacd83e42a, type: 2}
+  showLevelTextTime: 2
 --- !u!1 &37497375
 GameObject:
   m_ObjectHideFlags: 0
