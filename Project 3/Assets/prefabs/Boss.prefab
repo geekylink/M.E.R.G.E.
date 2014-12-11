@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400008}
-  - 50: {fileID: 5000008}
   - 61: {fileID: 6100006}
+  - 50: {fileID: 5064958}
   m_Layer: 10
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -29,8 +29,8 @@ GameObject:
   - 4: {fileID: 400002}
   - 212: {fileID: 21200002}
   - 114: {fileID: 11400006}
-  - 50: {fileID: 5000006}
   - 61: {fileID: 6100004}
+  - 50: {fileID: 5064960}
   m_Layer: 10
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -48,8 +48,8 @@ GameObject:
   - 4: {fileID: 400004}
   - 212: {fileID: 21200004}
   - 114: {fileID: 11400002}
-  - 50: {fileID: 5000004}
   - 61: {fileID: 6100002}
+  - 50: {fileID: 5064956}
   m_Layer: 10
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -67,8 +67,8 @@ GameObject:
   - 4: {fileID: 400006}
   - 212: {fileID: 21200006}
   - 114: {fileID: 11400000}
-  - 50: {fileID: 5000002}
   - 61: {fileID: 6100000}
+  - 50: {fileID: 5064962}
   m_Layer: 10
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -90,7 +90,7 @@ GameObject:
   - 50: {fileID: 5000000}
   m_Layer: 10
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +223,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_Mass: 1
+  m_Mass: 200
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
@@ -232,22 +232,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!50 &5000002
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_FixedAngle: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!50 &5000004
+--- !u!50 &5064956
 Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -262,7 +247,22 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!50 &5000006
+--- !u!50 &5064958
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!50 &5064960
 Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -277,12 +277,12 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!50 &5000008
+--- !u!50 &5064962
 Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100006}
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
@@ -300,7 +300,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Size: {x: 1.14285719, y: 1.71428573}
   m_Center: {x: 0, y: 0}
 --- !u!61 &6100002
@@ -311,7 +311,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Size: {x: 1.14285719, y: 1.71428573}
   m_Center: {x: 0, y: 0}
 --- !u!61 &6100004
@@ -322,7 +322,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Size: {x: 1.14285719, y: 1.71428573}
   m_Center: {x: 0, y: 0}
 --- !u!61 &6100006
@@ -333,7 +333,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Size: {x: 1.14285719, y: 1.71428573}
   m_Center: {x: 0, y: 0}
 --- !u!61 &6100008
@@ -364,6 +364,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 1
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!114 &11400002
 MonoBehaviour:
@@ -382,6 +383,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 0
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!114 &11400004
 MonoBehaviour:
@@ -425,6 +427,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 0
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!114 &11400008
 MonoBehaviour:
@@ -443,6 +446,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 0
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!135 &13500000
 SphereCollider:

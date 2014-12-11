@@ -38,7 +38,12 @@ public class SelectionScreen : MonoBehaviour {
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
 			PlayerSelection temp = new PlayerSelection();
 			GameObject tempObj = Instantiate(playerSprite) as GameObject;
-			tempObj.transform.position = new Vector2(-7, 0) + new Vector2(5f * i, 0);
+
+			//Vector3 pos = new Vector2(-7, 0) + new Vector2(5f * i, 0);
+			Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 8 + Screen.width / 4 * i, Screen.height / 2));
+			pos.z = 0;
+
+			tempObj.transform.position = pos;
 			
 			temp.playerObj = tempObj;
 			temp.playerBody = tempObj.transform.FindChild("body").GetComponent<SpriteRenderer>();
@@ -61,8 +66,8 @@ public class SelectionScreen : MonoBehaviour {
 			hasPushedA.Add (tempBool);
 
 			Vector2 oldPos = readyTexts[i].rectTransform.anchoredPosition;
-			oldPos.x = -2*Screen.width / 6 + Screen.width/6 * i;
-			oldPos.y = Screen.height / 8;
+			oldPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
+			oldPos.y = Screen.height / 6;
 			readyTexts[i].rectTransform.anchoredPosition = oldPos;
 		}
 	}
@@ -77,9 +82,6 @@ public class SelectionScreen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(InputManager.ActiveDevice.MenuWasPressed){
-			Continue ();
-		}
 
 		bool allHavePushedA = true;
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
@@ -92,6 +94,8 @@ public class SelectionScreen : MonoBehaviour {
 			if(i < hasPushedA.Count){
 				if(!hasPushedA[i])
 					allHavePushedA = false;
+				else
+					continue;
 			}
 
 
@@ -151,7 +155,11 @@ public class SelectionScreen : MonoBehaviour {
 
 		if(allHavePushedA){
 			topText.text = "Press Start to Continue";
-			topText.color = Color.red;
+			topText.color = Color.green;
+			
+			if(InputManager.ActiveDevice.MenuWasPressed){
+				Continue ();
+			}
 		}
 		else{
 			topText.text = "Press A to Confirm";

@@ -529,7 +529,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52579121}
-  m_HideIfInvisible: 0
 --- !u!1 &54597922
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +638,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
+      propertyPath: bossSpawnTimer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
   m_RootGameObject: {fileID: 1453428121}
@@ -710,7 +713,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84885446}
-  m_HideIfInvisible: 0
 --- !u!1 &92754695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,7 +1419,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326600193}
-  m_HideIfInvisible: 0
 --- !u!1 &368911694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1593,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -1612,6 +1612,7 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1 &447239441
@@ -2917,7 +2918,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401287587}
-  m_HideIfInvisible: 0
 --- !u!224 &1401287590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3001,7 +3001,7 @@ MonoBehaviour:
   spawnLocs: []
   mapSize: 120
   boss: {fileID: 100008, guid: af3e879ba80b6034caf0e0b33b903486, type: 2}
-  bossSpawnTimer: 5000
+  bossSpawnTimer: 1
   bossSpawnLoc: {x: 0, y: 0, z: 0}
   distanceLimit: 10
   velocityMatchFactor: 1
@@ -3022,7 +3022,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &1461437920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,7 +3649,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1853759786}
-  m_HideIfInvisible: 0
 --- !u!1 &2003232933
 GameObject:
   m_ObjectHideFlags: 0
@@ -4774,7 +4773,7 @@ Transform:
   m_LocalScale: {x: 500, y: 500, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &2073337998
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,6 +5002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
+  m_DragThreshold: 5
 --- !u!4 &2141242599
 Transform:
   m_ObjectHideFlags: 0

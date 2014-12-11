@@ -115,10 +115,10 @@ public class BossShip : MonoBehaviour {
 				player.TakeDamage(1);
 			}
 		}
-
+/*
 		if(col.gameObject.tag == "Bullet"){
 			Destroy(col.gameObject);
-		}
+		}*/
 	}
 
 	public Vector3 Deg2Vec (float degree)

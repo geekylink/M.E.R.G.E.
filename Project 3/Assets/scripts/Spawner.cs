@@ -46,6 +46,7 @@ public class Spawner : MonoBehaviour {
 			if(this != S)
 				Destroy(this.gameObject);
 		}
+		StartCoroutine(SpawnBossCo());
 	}
 
 	IEnumerator SpawnCoroutine(){
