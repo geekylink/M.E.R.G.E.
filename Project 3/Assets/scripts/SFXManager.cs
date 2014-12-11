@@ -12,22 +12,36 @@ public class SFXManager : MonoBehaviour {
 	private AudioSource src;
 	private AudioSource[] sources;
 
-	private bool[] activeSrc;
 	private static int numChannels = 10;
 
 	// Use this for initialization
 	void Start () {
 		sources = new AudioSource[numChannels];
-		activeSrc = new bool[numChannels];
-		
+
 		for (int i = 0; i < numChannels; i++) {
 			sources[i] = this.gameObject.AddComponent ("AudioSource") as AudioSource;
 			sources[i].volume = 1;
-			activeSrc[i] = false;
+			sources[i].bypassEffects = true;
+			sources[i].bypassListenerEffects = true;
+			sources[i].bypassReverbZones = true;
+			sources[i].pitch = 1;
+			sources[i].rolloffMode = AudioRolloffMode.Linear;
+			sources[i].pan = 0;
 		}
 		
 		AddSound ("grenade", "grenade");
-		AddSound ("EndFX", "EndFX");
+		AddSound ("Laser1", "Laser1");
+		AddSound ("Laser2", "Laser2");
+
+		
+		
+		AddSound ("EndCredits", "EndCredits");
+		AddSound ("Warning", "Warning");
+		AddSound ("Capture", "Capture");
+		AddSound ("Boss", "Boss");
+		AddSound ("Title", "Title");
+
+		playSound ("Boss");
 	}
 
 	// Gets an instance of the sound manager

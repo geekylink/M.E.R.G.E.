@@ -276,6 +276,7 @@ public class Player : BaseShip {
 			b.setDefaults(-rightTurret.transform.eulerAngles.z, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
 			//b.rigidbody2D.velocity += transform.root.rigidbody2D.velocity;
 
+
 			if(MergeManager.S.currentlyMergedWith[id].Count == 1){
 				GameObject bullet2GO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
 				GameObject bullet3GO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;

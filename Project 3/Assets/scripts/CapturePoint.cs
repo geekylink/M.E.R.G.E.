@@ -181,6 +181,7 @@ public class CapturePoint : MonoBehaviour {
 			lb.SetPercent(t);
 			yield return 0;
 		}
+
 		//This part really only matters if it were the first turret being built
 		//on the planet, but it can't really hurt either way
 
@@ -242,6 +243,11 @@ public class CapturePoint : MonoBehaviour {
 		GameObject autoSat;
 		if(controller == ControlledBy.Player){
 			autoSat = Instantiate (autoTurretPrefab, moveToPos, this.transform.rotation) as GameObject;
+
+			if (satsInOrbit.Count == 0) {
+				SFXManager man = SFXManager.getManager ();
+				man.playSound ("Capture");
+			}
 		}
 		else{
 			autoSat = Instantiate (enemyAutoTurret, moveToPos, this.transform.rotation) as GameObject;
