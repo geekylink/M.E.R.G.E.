@@ -26,8 +26,7 @@ public class SelectionScreen : MonoBehaviour {
 	public UnityEngine.UI.Text topText;
 	List<bool> hasPushedA = new List<bool>();
 
-	public UnityEngine.UI.Text readyPrefab;
-	List<UnityEngine.UI.Text> readyTexts = new List<UnityEngine.UI.Text>();
+	public List<UnityEngine.UI.Text> readyTexts = new List<UnityEngine.UI.Text>();
 	// Use this for initialization
 	void Start () {
 		topText.text = "Press A to Confirm";
@@ -60,8 +59,11 @@ public class SelectionScreen : MonoBehaviour {
 
 			bool tempBool = false;
 			hasPushedA.Add (tempBool);
-/*
-			UnityEngine.UI.Text readyText = */
+
+			Vector2 oldPos = readyTexts[i].rectTransform.anchoredPosition;
+			oldPos.x = -2*Screen.width / 6 + Screen.width/6 * i;
+			oldPos.y = Screen.height / 8;
+			readyTexts[i].rectTransform.anchoredPosition = oldPos;
 		}
 	}
 
@@ -83,6 +85,8 @@ public class SelectionScreen : MonoBehaviour {
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
 			if(InputManager.Devices[i].Action1.WasReleased && i < hasPushedA.Count){
 				hasPushedA[i] = !hasPushedA[i];
+				if(hasPushedA[i]) readyTexts[i].text = "READY";
+				else readyTexts[i].text = "";
 			}
 
 			if(i < hasPushedA.Count){
