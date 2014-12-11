@@ -187,6 +187,7 @@ GameObject:
   - 81: {fileID: 22428379}
   - 114: {fileID: 22428384}
   - 114: {fileID: 22428385}
+  - 114: {fileID: 22428386}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -311,6 +312,20 @@ MonoBehaviour:
   minY: 0
   maxY: 0
   distToMoveToPlanet: 50
+--- !u!114 &22428386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22428378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae9b36569ec0ef479f82c0efea4019b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 434132001}
+  linearBarPrefab: {fileID: 11445870, guid: 51548d05fb297c74da4a803146b74708, type: 2}
+  levelTextPrefab: {fileID: 11415706, guid: 2f6dd86d68b96ce4a93a4bcacd83e42a, type: 2}
 --- !u!1 &37497375
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +518,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52579121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -636,7 +651,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
       propertyPath: bossSpawnTimer
@@ -687,7 +702,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84885446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -1395,7 +1410,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326600193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -2898,7 +2913,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401287587}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 

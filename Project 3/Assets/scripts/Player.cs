@@ -5,10 +5,8 @@ using System.Collections.Generic;
 public class Player : BaseShip {
 	
 	//easily editable variables in the inspector
-	public float velocityMult = 1;
 	public float bulletVelocity = 1;
 	public float gravityMult = 0.5f;
-	public float turnSpeed = 5;
 
 	public float bounciness = 0.5f;
 	public float camBuffer;
@@ -23,7 +21,27 @@ public class Player : BaseShip {
 	public GameObject healSatPrefab;
 	public GameObject mineSatPrefab;
 
-    public float fireRate = .5f;
+    float fireRate = .5f;
+	public float FireRate{
+		get{return fireRate;}
+		set{fireRate = value;}
+	}
+	float bulletSize = 1;
+	public float BulletSize{
+		get{return bulletSize;}
+		set{bulletSize = value;}
+	}
+	float turnSpeed = 5;
+	public float TurnSpeed{
+		get{return turnSpeed;}
+		set{turnSpeed = value;}
+	}
+	float velocityMult = 1;
+	public float VelocityMult{
+		get{return velocityMult;}
+		set{velocityMult = value;}
+	}
+
 	public UnityEngine.UI.Text gtRes;
 
 	//turrets should be assigned here in the inspector
@@ -110,13 +128,14 @@ public class Player : BaseShip {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if(rigidbody2D){
 			RestrictToMap();
 		}
 		//UpdateTurrets ();
 		UpdatePlayer ();
 		UpdateHUD ();
-		UpdateUpgrades ();
+		//UpdateUpgrades ();
 
 		missileWaitTime += Time.deltaTime;
 		if(lastRightFire > 0)
@@ -162,6 +181,8 @@ public class Player : BaseShip {
 
 	
 	public override void Die(){
+		UpgradeSystem.S.Die(playerManagerArrayPos);
+
 		SFXManager man = SFXManager.getManager ();
 		man.playSound ("grenade");
 		//man.playSFX = true;
@@ -243,6 +264,9 @@ public class Player : BaseShip {
 
 		if (lastRightFire <= 0) {
 			GameObject bulletGO = Instantiate(ammoPrefab, rightTurret.transform.position, rightTurret.transform.rotation) as GameObject;
+			Vector3 size = bulletGO.transform.localScale;
+			size *= bulletSize;
+			bulletGO.transform.localScale = size;
 			Bullet b = bulletGO.GetComponent("Bullet") as Bullet;
 
 			b.damageDealt = 1 + MergeManager.S.currentlyMergedWith[id].Count;
@@ -355,7 +379,7 @@ public class Player : BaseShip {
 	public void Fly(float engineLength, float speed){
 		if(isMerging) return;
 		
-		Vector2 finalSpeed = ((Vector2)transform.right * engineLength * speed + (Vector2)gravVector);
+		Vector2 finalSpeed = ((Vector2)transform.right * engineLength * speed * velocityMult + (Vector2)gravVector);
 		
 		transform.root.rigidbody2D.velocity = Vector2.Lerp(transform.root.rigidbody2D.velocity, finalSpeed, Time.deltaTime * 2);
 		
@@ -489,5 +513,9 @@ public class Player : BaseShip {
 		float rad = degree * Mathf.Deg2Rad;
 		Vector3 vec = new Vector3 (Mathf.Cos (rad), Mathf.Sin (rad), 0);
 		return vec;
+	}
+
+	public void KillSomething(float xp){
+		UpgradeSystem.S.AddScore(xp, playerManagerArrayPos);
 	}
 }
