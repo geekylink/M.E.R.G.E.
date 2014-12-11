@@ -101,7 +101,7 @@ MonoBehaviour:
   damageDealt: 1
   lifeTime: 16
   explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 0}
   owner: {fileID: 0}
   offscreenBuffer: 10
 --- !u!198 &19800000
