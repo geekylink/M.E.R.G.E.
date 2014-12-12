@@ -39,7 +39,7 @@ public class SquadManager : MonoBehaviour {
 			if(squads.Count < id) return;
 			squads [id - 1].squadMembers.Remove (enemy);
 			if(squads[id - 1].squadMembers.Count == 0){
-				squads.RemoveAt(id - 1);
+				//squads.RemoveAt(id - 1);
 			}
 		}
 	}

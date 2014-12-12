@@ -138,6 +138,7 @@ public class Player : BaseShip {
 	void Update () {
 
 		if(rigidbody2D){
+			rigidbody2D.angularVelocity = 0;
 			RestrictToMap();
 		}
 		//UpdateTurrets ();
@@ -184,6 +185,12 @@ public class Player : BaseShip {
 	}
 	
 	public override void Die(){
+		if(planetBeingCaptured){
+			planetBeingCaptured.StopCapture ();
+		}
+		UpgradeSystem.S.LoseLevels(playerManagerArrayPos, 1);
+		return;
+
 		UpgradeSystem.S.Die(playerManagerArrayPos);
 
 		SFXManager man = SFXManager.getManager ();
@@ -194,9 +201,7 @@ public class Player : BaseShip {
 
 		//UpdateHUD();
 		//UnshowSats();
-		if(planetBeingCaptured){
-			planetBeingCaptured.StopCapture ();
-		}
+
 
 		if(isCurrentlyMerged){
 			MergeManager.S.Unmerge(this);
@@ -535,5 +540,6 @@ public class Player : BaseShip {
 
 	public void KillSomething(float xp){
 		UpgradeSystem.S.AddScore(xp, playerManagerArrayPos);
+		GameManager.S.IncreaseKillsTracking (playerManagerArrayPos);
 	}
 }

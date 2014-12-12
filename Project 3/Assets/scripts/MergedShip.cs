@@ -228,6 +228,17 @@ public class MergedShip : MonoBehaviour {
 
 		StartCoroutine(MoveAndRotatePlayerShip(playerScript, index));
 		numberOfMergedShips++;
+
+
+
+		foreach(Player p in players){
+			List<int> mergedWith = new List<int>();
+			foreach(Player q in players){
+				if(p == q) continue;
+				mergedWith.Add (q.playerManagerArrayPos);
+			}
+			GameManager.S.UpdateMergedTracking(p.playerManagerArrayPos, mergedWith);
+		}
 	}
 
 	//remove a player from the merged ship
@@ -240,6 +251,17 @@ public class MergedShip : MonoBehaviour {
 		pNumAtPosition[index] = -1;
 		
 		numberOfMergedShips--;
+
+		
+		
+		foreach(Player p in players){
+			List<int> mergedWith = new List<int>();
+			foreach(Player q in players){
+				if(p == q) continue;
+				mergedWith.Add (q.playerManagerArrayPos);
+			}
+			GameManager.S.UpdateMergedTracking(p.playerManagerArrayPos, mergedWith);
+		}
 
 		/*GameObject leftEngine = playerScript.leftEnginePiece;
 		GameObject rightEngine = playerScript.rightEnginePiece;

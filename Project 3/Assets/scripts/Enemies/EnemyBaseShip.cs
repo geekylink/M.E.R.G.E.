@@ -156,6 +156,8 @@ public class EnemyBaseShip : BaseShip {
 	public IEnumerator EnemyTurning(){
 		while (true)
 		{
+			
+			rigidbody2D.angularVelocity = 0;
 			if(boidInit){
 				if(currTarget != null){
 					targetPos = currTarget.transform.position;

@@ -31,6 +31,18 @@ public class GameManager : MonoBehaviour {
 	private float lastWarning = 0;
 	private float maxWarning = 15;
 
+
+	float startTime;
+	float endTime;
+
+	public struct TrackingStruct{
+		public int level;
+		public int kills;
+		public List<int> shipsMergedWith;
+		public float time;
+	}
+	List<List<TrackingStruct>> playerTracker = new List<List<TrackingStruct>>();
+
 	// Use this for initialization
 	void Start () {
 		if(S == null)
@@ -51,12 +63,47 @@ public class GameManager : MonoBehaviour {
 		playerColors = new List<Color>();
 	}
 
+	public void UpdateLevelTracking(int level, int pNum){
+		TrackingStruct ts = playerTracker[pNum][playerTracker[pNum].Count - 1];
+		ts.level = level;
+		ts.time = Time.time;
+		playerTracker[pNum].Add (ts);
+	}
+
+	public void IncreaseKillsTracking(int pNum){
+		TrackingStruct ts = playerTracker[pNum][playerTracker[pNum].Count - 1];
+		ts.kills++;
+		ts.time = Time.time;
+		playerTracker[pNum].Add (ts);
+	}
+	
+	public void UpdateMergedTracking(int pNum, List<int> mergedWith){
+		TrackingStruct ts = playerTracker[pNum][playerTracker[pNum].Count - 1];
+		ts.shipsMergedWith = mergedWith;
+		ts.time = Time.time;
+		playerTracker[pNum].Add (ts);
+	}
+
+
 	/// <summary>
 	/// Acquires the captures.
 	/// This happens at the beginning of the game - not the menus
 	/// It will simply grab all objects with tag "Planet" and add them to the list
 	/// </summary>
 	public void AcquireCaptures(){
+		startTime = Time.time;
+
+		foreach(GameObject go in PlayerManager.S.players){
+			List<TrackingStruct> tsList = new List<TrackingStruct>();
+			TrackingStruct ts;
+			ts.level = 1;
+			ts.kills = 0;
+			ts.shipsMergedWith = new List<int>();
+			ts.time = startTime;
+			tsList.Add (ts);
+		}
+
+
 		GameObject[] planets = GameObject.FindGameObjectsWithTag("Planet");
 
 		foreach(GameObject planet in planets){
@@ -146,6 +193,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void End(){
+		endTime = Time.time;
 		StartCoroutine(EndGame());
 	}
 
@@ -243,6 +291,9 @@ public class GameManager : MonoBehaviour {
 			newWorldPoint.z = 0;
 			GameObject dirIndicator = Instantiate(indicatorToUse, newWorldPoint, Quaternion.identity) as GameObject;
 			dirIndicator.transform.parent = Camera.main.transform;
+			Vector3 scale = dirIndicator.transform.localScale;
+			scale *= 3;
+			dirIndicator.transform.localScale = scale;
 			
 			Vector3 lookAtPoint = bossLoc;
 			lookAtPoint.z = 0;
@@ -394,6 +445,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		timer += Time.deltaTime;
 		if(timer > 60){
 			timer = 0;

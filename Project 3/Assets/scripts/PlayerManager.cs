@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour {
 	public List<UnityEngine.UI.Text> playerResourceTexts;
 
 	public GameObject capturePrompt;
+	public GameObject pingCircle;
 
 	// Use this for initialization
 	void Start () {
@@ -90,8 +91,43 @@ public class PlayerManager : MonoBehaviour {
 		return players;
 	}
 	
+	IEnumerator PingPlayer(Player player){
+		GameObject pingGO = Instantiate(pingCircle) as GameObject;
+		pingGO.transform.position = player.transform.position;
+		pingGO.transform.parent = player.transform;
+
+		Color color = player.playerColor;
+		float alpha = color.a;
+		color.a = 0;
+
+		float t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / 0.2f;
+
+			float scale = Mathf.Lerp(0, 1, t);
+			Vector3 scaleVec = Vector3.one * scale;
+			pingGO.transform.localScale = scaleVec;
+
+			color.a = Mathf.Lerp (0, alpha, t);
+			pingGO.GetComponent<SpriteRenderer>().color = color;
+
+			yield return 0;
+		}
+
+		t = 0;
+		while (t < 1){
+			t += Time.deltaTime * Time.timeScale / 0.2f;
+			yield return 0;
+		}
+
+		Destroy(pingGO);
+	}
 
 	private void UpdatePlayer(InputDevice device, Player player) {
+
+		if(device.LeftBumper.WasPressed){
+			StartCoroutine(PingPlayer(player));
+		}
 
 
 		float leftX = device.LeftStickX;

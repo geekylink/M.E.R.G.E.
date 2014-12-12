@@ -16,6 +16,17 @@ public class UpgradeSystem : MonoBehaviour {
 	bool firstTimeSetup = false;
 
 	public float showLevelTextTime;
+
+	public struct LevelValues{
+		public float fireRate;
+		public float bulletSize;
+		public float turnSpeed;
+		public float flySpeed;
+		public float bulletSpeed;
+		public float burst;
+	}
+
+	List<List<LevelValues>> levelValuesList = new List<List<LevelValues>>();
 	// Use this for initialization
 	void Start () {
 		if(S == null)
@@ -32,6 +43,7 @@ public class UpgradeSystem : MonoBehaviour {
 				Destroy(this.gameObject);
 		}
 	}
+
 
 	public void Respawn(int playerNum){
 		isDead[playerNum] = false;
@@ -72,7 +84,7 @@ public class UpgradeSystem : MonoBehaviour {
 
 		float t = 0;
 		while(t < 1){
-			t += Time.deltaTime * Time.timeScale / 0.2f;
+			t += Time.deltaTime * Time.timeScale / 0.15f;
 
 			levelPos.y = Mathf.Lerp(levelStart, levelEnd, t);
 			levels[pNum].rectTransform.anchoredPosition = levelPos;
@@ -88,15 +100,20 @@ public class UpgradeSystem : MonoBehaviour {
 			yield return 0;
 		}
 
+		float timer = showLevelTextTime;
+
+		if(timer + 0.3f > Mathf.Sqrt (levelNums[pNum])){
+			timer = Mathf.Sqrt (levelNums[pNum]) - 0.5f;
+		}
 		t = 0;
 		while(t < 1){
-			t += Time.deltaTime * Time.timeScale / showLevelTextTime;
+			t += Time.deltaTime * Time.timeScale / timer;
 			yield return 0;
 		}
 
 		t = 0;
 		while(t < 1){
-			t += Time.deltaTime * Time.timeScale / 0.2f;
+			t += Time.deltaTime * Time.timeScale / 0.15f;
 			
 			levelPos.y = Mathf.Lerp(linearBars[pNum].GetComponent<RectTransform>().anchoredPosition.y, levelStart, t);
 			levels[pNum].rectTransform.anchoredPosition = levelPos;
@@ -111,88 +128,138 @@ public class UpgradeSystem : MonoBehaviour {
 			upgradeText.color = color;
 			yield return 0;
 		}
-		Destroy(upgradeText);
+		Destroy(upgradeText.gameObject);
 		/*c.a = oldAlpha;
 		levels[pNum].color = c;*/
 
 	}
 
 
-	void IncreaseFireRate(float amtToIncrease, int playerNum){
+	void IncreaseFireRate(float amtToIncrease, int playerNum, int level){
 		StartCoroutine(ShowLevelUpText("Fire Rate Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate -= amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate <= 0.1f){
 			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate = 0.1f;
 		}
+
+		LevelValues lv = levelValuesList[playerNum][level - 2];
+		lv.fireRate = PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate;
+		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseBulletSize(float amtToIncrease, int playerNum){
+	void IncreaseBulletSize(float amtToIncrease, int playerNum, int level){
 		StartCoroutine(ShowLevelUpText("Bullet Size Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize >= 2.5f){
 			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize = 2.5f;
 		}
+		
+		LevelValues lv = levelValuesList[playerNum][level - 2];
+		lv.bulletSize = PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize;
+		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseTurnSpeed(float amtToIncrease, int playerNum){
+	void IncreaseTurnSpeed(float amtToIncrease, int playerNum, int level){
 		StartCoroutine(ShowLevelUpText("Turn Speed Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed >= 30){
 			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed = 30;
 		}
+		
+		LevelValues lv = levelValuesList[playerNum][level - 2];
+		lv.turnSpeed = PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed;
+		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseFlySpeed(float amtToIncrease, int playerNum){
+	void IncreaseFlySpeed(float amtToIncrease, int playerNum, int level){
 		StartCoroutine(ShowLevelUpText("Fly Speed Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult >= 2){
 			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult = 2;
 		}
+		
+		LevelValues lv = levelValuesList[playerNum][level - 2];
+		lv.flySpeed = PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult;
+		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseBulletSpeed(float amtToIncrease, int playerNum){
+	void IncreaseBulletSpeed(float amtToIncrease, int playerNum, int level){
 		StartCoroutine(ShowLevelUpText("Bullet Speed Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity >= 30){
 			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity = 30;
 		}
+		
+		LevelValues lv = levelValuesList[playerNum][level - 2];
+		lv.bulletSpeed = PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity;
+		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseBurst(int playerNum){
+	void IncreaseBurst(int playerNum, int level){
 		StartCoroutine(ShowLevelUpText("Burst Fire Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire += 1;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire >= 5){
 			print ("AT MAX");
 			PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire = 5;
 		}
+		
+		LevelValues lv = levelValuesList[playerNum][level - 2];
+		lv.burst = PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire;
+		levelValuesList[playerNum].Add (lv);
 	}
 
 
 
 	void LevelUp(int playerNum){
 		levelNums[playerNum]++;
+		GameManager.S.UpdateLevelTracking(levelNums[playerNum], playerNum);
+
+
 		levels[playerNum].text = "LEVEL: " + levelNums[playerNum];
+
+		linearBars[playerNum].maxValue = Mathf.Sqrt (levelNums[playerNum]);
 
 		int ran = Random.Range (0, 21);
 		if(ran <= 3){
-			IncreaseFireRate(0.05f, playerNum);
+			IncreaseFireRate(0.05f, playerNum, levelNums[playerNum]);
 		}
 		else if(ran <= 7){
-			IncreaseBulletSize(0.1f, playerNum);
+			IncreaseBulletSize(0.1f, playerNum, levelNums[playerNum]);
 		}
 		else if(ran <= 11){
-			IncreaseTurnSpeed(0.5f, playerNum);
+			IncreaseTurnSpeed(0.5f, playerNum, levelNums[playerNum]);
 		}
 		else if(ran <= 15){
-			IncreaseFlySpeed(0.05f, playerNum);
+			IncreaseFlySpeed(0.05f, playerNum, levelNums[playerNum]);
 		}
 		else if(ran <= 19){
-			IncreaseBulletSpeed(0.5f, playerNum);
+			IncreaseBulletSpeed(0.5f, playerNum, levelNums[playerNum]);
 		}
 		else if(ran == 20){
-			IncreaseBurst(playerNum);
+			IncreaseBurst(playerNum, levelNums[playerNum]);
 		}
 
+	}
+
+	public void LoseLevels(int playerNum, int levelsLost){
+		levelNums[playerNum]-= levelsLost;
+		if(levelNums[playerNum] < 1) levelNums[playerNum] = 1;
+
+		levels[playerNum].text = "LEVEL: " + levelNums[playerNum];
+		
+		linearBars[playerNum].maxValue = Mathf.Sqrt (levelNums[playerNum]);
+		linearBars[playerNum].value = linearBars[playerNum].minValue;
+
+
+		LevelValues lv = levelValuesList[playerNum][levelNums[playerNum] - 1];
+		levelValuesList[playerNum].RemoveRange(levelNums[playerNum], levelValuesList[playerNum].Count - levelNums[playerNum]);
+
+		PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate = lv.fireRate;
+		PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize = lv.bulletSize;
+		PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity = lv.bulletSpeed;
+		PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire = lv.burst;
+		PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed = lv.turnSpeed;
+		PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult = lv.flySpeed;
 	}
 
 	public void AddScore(float scoreToAdd, int playerNum){
@@ -244,6 +311,22 @@ public class UpgradeSystem : MonoBehaviour {
 							levelText.color = PlayerManager.S.playerColors[i];
 							levels.Add (levelText);
 							levelNums.Add (1);
+							linearBars[i].maxValue = Mathf.Sqrt (levelNums[i]);
+
+							LevelValues lv;
+
+							Player p = PlayerManager.S.players[i].GetComponent<Player>();
+
+							lv.fireRate = p.FireRate;
+							lv.bulletSize = p.BulletSize;
+							lv.bulletSpeed = p.bulletVelocity;
+							lv.burst = p.NumBurstFire;
+							lv.flySpeed = p.VelocityMult;
+							lv.turnSpeed = p.TurnSpeed;
+
+							List<LevelValues> newList = new List<LevelValues>();
+							newList.Add (lv);
+							levelValuesList.Add (newList);
 						}
 					}
 				}

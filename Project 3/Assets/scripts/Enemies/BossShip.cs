@@ -98,12 +98,8 @@ public class BossShip : MonoBehaviour {
 	void Fire(){
 		GameObject proj1 = (GameObject)Instantiate (projectile, transform.position, Quaternion.identity);
 		GameObject proj2 = (GameObject)Instantiate (projectile, transform.position, Quaternion.identity);
-		proj1.GetComponent<Bullet> ().setDefaults (angle, bulletVelocity);
-		proj2.GetComponent<Bullet> ().setDefaults (angle - 180f, bulletVelocity);
-
-		proj1.rigidbody2D.velocity += rigidbody2D.velocity;
-		proj2.rigidbody2D.velocity += rigidbody2D.velocity;
-
+		proj1.GetComponent<Bullet> ().setDefaults (angle, bulletVelocity + rigidbody2D.velocity.magnitude);
+		proj2.GetComponent<Bullet> ().setDefaults (angle - 180f, bulletVelocity + rigidbody2D.velocity.magnitude);
 		angle += degreesApart;
 	}
 
