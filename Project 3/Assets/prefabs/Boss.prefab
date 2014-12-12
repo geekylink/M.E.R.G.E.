@@ -407,7 +407,7 @@ MonoBehaviour:
   timeBetweenShots: .330000013
   projectile: {fileID: 100000, guid: e3eed2f1d31adad4280afa3c1bfbf9d2, type: 2}
   angle: 180
-  bulletVelocity: 2
+  bulletVelocity: 8
   degreesApart: 20
   moveSpeed: 5
 --- !u!114 &11400006

@@ -15,7 +15,7 @@ public class MergeManager : MonoBehaviour {
 	//time it takes for players to merge into the ship.
 
 	public float rotMergeTime;
-	public float rumbleDuration = .5f;
+	public float rumbleDuration = .25f;
 
 	public List<Player> players = new List<Player>();
 
@@ -68,12 +68,13 @@ public class MergeManager : MonoBehaviour {
 	IEnumerator Rumble(InputDevice device){
 		InputManager.EnableXInput = true;
 		float rumbleTime = 0f;
-		device.Vibrate (10, 10);
+		device.Vibrate (3, 3);
 		print ("RumbleStart");
 		while (rumbleTime < rumbleDuration) {
 			rumbleTime += Time.deltaTime;
 			yield return 0;
 		}
+		device.Vibrate(0, 0);
 		print ("RumbleStop");
 	}
 
@@ -144,12 +145,12 @@ public class MergeManager : MonoBehaviour {
                                 if(players[i].TryingToMerge)
                                 {
                                     mRender1.SetColors(Color.green, new Color(0,200,0,166));
-									StartCoroutine("Rumble", InputManager.Devices[i]);
+									StartCoroutine("Rumble", InputManager.Devices[j]);
                                 }
                                 if (players[j].TryingToMerge)
                                 {
                                     mRender2.SetColors(Color.green, new Color(0, 200, 0, 166));
-									StartCoroutine("Rumble", InputManager.Devices[j]);
+									StartCoroutine("Rumble", InputManager.Devices[i]);
 								}
                                 mergeVisualCues.Add(mLine1);
                                 mergeVisualCues.Add(mLine2);
