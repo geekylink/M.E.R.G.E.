@@ -6,8 +6,12 @@ public class EndScreen : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(InputManager.ActiveDevice.MenuWasPressed || InputManager.ActiveDevice.Action1){
+		if(InputManager.ActiveDevice.MenuWasPressed){
 			Application.LoadLevel("SplashScreen");
+		}
+
+		if(InputManager.ActiveDevice.Action1){
+			Application.LoadLevel("Credits");
 		}
 	}
 }

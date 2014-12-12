@@ -16,7 +16,8 @@ public class GraphManager : MonoBehaviour {
 	List<LineRenderer> graphBars = new List<LineRenderer>();
 
 	public Text headerText;
-	int graphToShow = 0;
+	public Text winOrLoseText;
+	int graphToShow = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -29,11 +30,39 @@ public class GraphManager : MonoBehaviour {
 
 	IEnumerator WaitForEndOfFrameToShow(){
 		yield return new WaitForEndOfFrame();
-		DrawGraphLines();
-		ShowLevelGraph();
+		ShowWinOrLose();
+	}
+
+	void ShowWinOrLose(){
+		headerText.text = "";
+
+
+		foreach(LineRenderer lr in graphBars){
+			Destroy(lr);
+		}
+		graphBars.RemoveRange (0, graphBars.Count);
+
+		foreach(LineRenderer lr in renderList){
+			Destroy(lr.gameObject);
+		}
+		
+		renderList.RemoveRange(0, renderList.Count);
+
+
+		if(GameManager.S.playersWin){
+			winOrLoseText.text = "WIN";
+			winOrLoseText.color = Color.blue;
+		}
+		else{
+			winOrLoseText.text = "LOSE";
+			winOrLoseText.color = Color.red;
+
+		}
+
 	}
 
 	void DrawGraphLines(){
+		winOrLoseText.text = "";
 		GameObject temp = Instantiate(linePrefab) as GameObject;
 		LineRenderer lr = temp.GetComponent<LineRenderer>();
 		lr.SetVertexCount(2);
@@ -66,6 +95,7 @@ public class GraphManager : MonoBehaviour {
 	}
 
 	void ShowLevelGraph(){
+		DrawGraphLines();
 		headerText.text = "Player Levels";
 
 		float highestLevel = 0;
@@ -114,6 +144,7 @@ public class GraphManager : MonoBehaviour {
 	}
 
 	void ShowKillGraph(){
+		DrawGraphLines();
 		headerText.text = "Player Kills";
 
 		float highestKills = 0;
@@ -219,8 +250,8 @@ public class GraphManager : MonoBehaviour {
 
 	void SwitchGraphs(int dir){
 		graphToShow += dir;
-		if(graphToShow < 0) graphToShow = 1;
-		if(graphToShow > 1) graphToShow = 0;
+		if(graphToShow < 0) graphToShow = 2;
+		if(graphToShow > 2) graphToShow = 0;
 
 		if(graphToShow == 0){
 			ShowLevelGraph();
@@ -229,6 +260,9 @@ public class GraphManager : MonoBehaviour {
 			ShowKillGraph();
 		}
 		if(graphToShow == 2){
+			ShowWinOrLose();
+		}
+		if(graphToShow == 3){
 			ShowMergeGraph();
 		}
 	}
