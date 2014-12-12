@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class SFXManager : MonoBehaviour {
 
-	public static SFXManager S = null;
+	public static SFXManager S;
 
 	public List<Sound> sounds;
 
@@ -17,8 +17,7 @@ public class SFXManager : MonoBehaviour {
 	private static int numChannels = 10;
 	private int currMusicID = -1;
 
-	// Use this for initialization
-	void Start () {
+	void Awake() {
 		if(S == null)
 		{
 			S = this;
@@ -26,17 +25,22 @@ public class SFXManager : MonoBehaviour {
 		else
 		{
 			//Application.loadedLevelName;
-			//if(this != S)
-			//	Destroy(this.gameObject);
-
+			
 			GameObject camObj = GameObject.Find("Main Camera");
 			Camera cam = camObj.GetComponent("Camera") as Camera;
 			S.transform.parent = cam.gameObject.transform;
 
+			if(this != S)
+				Destroy(this.gameObject);
+
 			return;
 		}
+		
 		DontDestroyOnLoad(this.gameObject);
+	}
 
+	// Use this for initialization
+	void Start () {
 		S.sources = new AudioSource[numChannels];
 
 		for (int i = 0; i < numChannels; i++) {
