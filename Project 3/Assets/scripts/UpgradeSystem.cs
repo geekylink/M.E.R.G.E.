@@ -9,13 +9,18 @@ public class UpgradeSystem : MonoBehaviour {
 	public Slider linearBarPrefab;
 	List<Slider> linearBars = new List<Slider>();
 	public Text levelTextPrefab;
-	List<Text> levels = new List<Text>();
+	public Text hitTextPrefab;
+	List<Text> levelsNumbersText = new List<Text>();
+	List<Text> levelsJustText = new List<Text>();
 	List<int> levelNums = new List<int>();
 	List<bool> isDead = new List<bool>();
 
 	bool firstTimeSetup = false;
 
 	public float showLevelTextTime;
+	List<Text> upgradeTexts = new List<Text>();
+	List<Text> gotHitTexts = new List<Text>();
+	List<bool> showingHit = new List<bool>();
 
 	public struct LevelValues{
 		public float fireRate;
@@ -53,27 +58,81 @@ public class UpgradeSystem : MonoBehaviour {
 		isDead[playerNum] = true;
 		linearBars[playerNum].value = linearBars[playerNum].minValue;
 		levelNums[playerNum] = 1;
-		levels[playerNum].text = "LEVEL: " + levelNums[playerNum];
+		levelsNumbersText[playerNum].text = "" + levelNums[playerNum];
+	}
+
+	IEnumerator GotHit(int pNum){
+		
+		Text hitText = Instantiate(hitTextPrefab) as Text;
+		gotHitTexts[pNum] = hitText;
+		hitText.transform.SetParent(canvas.transform, false);
+		
+		hitText.text = "-1";
+		hitText.alignment = TextAnchor.MiddleRight;
+		hitText.fontSize = 45;
+		
+		
+		
+		Vector2 textPos = levelsNumbersText[pNum].rectTransform.anchoredPosition;
+		float startingX = textPos.x;
+		float endingX = startingX + Screen.width / 32;
+		
+		//Color color = PlayerManager.S.players[pNum].GetComponent<Player>().playerColor;
+		Color color = Color.red;
+		float origAlpha = color.a;
+		color.a = 0;
+
+		
+		float t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / 0.15f;
+			
+			textPos.x = Mathf.Lerp (startingX, endingX, t);
+			hitText.rectTransform.anchoredPosition = textPos;
+			
+			color.a = Mathf.Lerp (0, origAlpha, t);
+			hitText.color = color;
+
+			yield return 0;
+		}
+		
+		float timer = showLevelTextTime;
+		
+		if(timer + 0.3f > Mathf.Sqrt (levelNums[pNum])){
+			timer = Mathf.Sqrt (levelNums[pNum]) - 0.5f;
+		}
+		t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / (timer / 2);
+			yield return 0;
+		}
+		
+		t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / 0.15f;
+			
+			//textPos.y = Mathf.Lerp (endingY, startingY, t);
+			//upgradeText.rectTransform.anchoredPosition = textPos;
+
+			color.a = Mathf.Lerp (origAlpha, 0, t);
+			hitText.color = color;
+			yield return 0;
+		}
+		Destroy(hitText.gameObject);
 	}
 
 	IEnumerator ShowLevelUpText(string levelUpText, int pNum){
-		Color c = levels[pNum].color;
-		float oldAlpha = c.a;
-
-		Vector2 levelPos = levels[pNum].rectTransform.anchoredPosition;
-		float levelStart = levelPos.y;
-		float levelEnd = levelStart + Screen.height / 32;
-
-		levels[pNum].color = c;
+		if(upgradeTexts[pNum] != null) Destroy (upgradeTexts[pNum].gameObject);
 
 		Text upgradeText = Instantiate(levelTextPrefab) as Text;
+		upgradeTexts[pNum] = upgradeText;
 		upgradeText.transform.SetParent(canvas.transform, false);
 		
 		upgradeText.text = levelUpText;
 
 		
 		
-		Vector2 textPos = linearBars[pNum].GetComponent<RectTransform>().anchoredPosition;
+		Vector2 textPos = levelsNumbersText[pNum].rectTransform.anchoredPosition;
 		float startingY = textPos.y;
 		float endingY = startingY + Screen.height / 32;
 
@@ -85,18 +144,14 @@ public class UpgradeSystem : MonoBehaviour {
 		float t = 0;
 		while(t < 1){
 			t += Time.deltaTime * Time.timeScale / 0.15f;
+			if(upgradeText != null){
+				textPos.y = Mathf.Lerp (startingY, endingY, t);
+				upgradeText.rectTransform.anchoredPosition = textPos;
+				
+				color.a = Mathf.Lerp (startingAlpha, endingAlpha, t);
+				upgradeText.color = color;
 
-			levelPos.y = Mathf.Lerp(levelStart, levelEnd, t);
-			levels[pNum].rectTransform.anchoredPosition = levelPos;
-
-			c.a = Mathf.Lerp (oldAlpha, 0, t);
-			levels[pNum].color = c;
-
-			textPos.y = Mathf.Lerp (startingY, endingY, t);
-			upgradeText.rectTransform.anchoredPosition = textPos;
-
-			color.a = Mathf.Lerp (startingAlpha, endingAlpha, t);
-			upgradeText.color = color;
+			}
 			yield return 0;
 		}
 
@@ -115,20 +170,19 @@ public class UpgradeSystem : MonoBehaviour {
 		while(t < 1){
 			t += Time.deltaTime * Time.timeScale / 0.15f;
 			
-			levelPos.y = Mathf.Lerp(linearBars[pNum].GetComponent<RectTransform>().anchoredPosition.y, levelStart, t);
-			levels[pNum].rectTransform.anchoredPosition = levelPos;
-			
-			c.a = Mathf.Lerp (0, oldAlpha, t);
-			levels[pNum].color = c;
-			
-			textPos.y = Mathf.Lerp (endingY, endingY + Screen.height / 32, t);
-			upgradeText.rectTransform.anchoredPosition = textPos;
-			
-			color.a = Mathf.Lerp (endingAlpha, startingAlpha, t);
-			upgradeText.color = color;
+			//textPos.y = Mathf.Lerp (endingY, startingY, t);
+			//upgradeText.rectTransform.anchoredPosition = textPos;
+			if(upgradeText != null){
+				color.a = Mathf.Lerp (endingAlpha, startingAlpha, t);
+				upgradeText.color = color;
+
+			}
 			yield return 0;
 		}
-		Destroy(upgradeText.gameObject);
+		if(upgradeText != null){
+			Destroy(upgradeText.gameObject);
+
+		}
 		/*c.a = oldAlpha;
 		levels[pNum].color = c;*/
 
@@ -215,7 +269,8 @@ public class UpgradeSystem : MonoBehaviour {
 		GameManager.S.UpdateLevelTracking(levelNums[playerNum], playerNum);
 
 
-		levels[playerNum].text = "LEVEL: " + levelNums[playerNum];
+		levelsNumbersText[playerNum].text = "" + levelNums[playerNum];
+		levelsNumbersText[playerNum].fontSize = (int)(levelNums[playerNum]*2 + 20);
 
 		linearBars[playerNum].maxValue = Mathf.Sqrt (levelNums[playerNum]);
 
@@ -242,10 +297,17 @@ public class UpgradeSystem : MonoBehaviour {
 	}
 
 	public void LoseLevels(int playerNum, int levelsLost){
+		if(upgradeTexts[playerNum] != null) Destroy(upgradeTexts[playerNum].gameObject);
+		//if(gotHitTexts[playerNum] != null) Destroy(gotHitTexts[playerNum].gameObject);
+
+		//StopAllCoroutines();
+		levelsNumbersText[playerNum].fontSize = (int)(levelNums[playerNum]*1.5 + 20);
+
+		StartCoroutine(GotHit(playerNum));
 		levelNums[playerNum]-= levelsLost;
 		if(levelNums[playerNum] < 1) levelNums[playerNum] = 1;
 
-		levels[playerNum].text = "LEVEL: " + levelNums[playerNum];
+		levelsNumbersText[playerNum].text = "" + levelNums[playerNum];
 		
 		linearBars[playerNum].maxValue = Mathf.Sqrt (levelNums[playerNum]);
 		linearBars[playerNum].value = linearBars[playerNum].minValue;
@@ -269,6 +331,82 @@ public class UpgradeSystem : MonoBehaviour {
 			linearBars[playerNum].value = linearBars[playerNum].minValue;
 		}
 	}
+
+	void FirstTimeSetup(){
+		for(int i = 0; i < PlayerManager.S.players.Length; ++i){
+			Slider temp = Instantiate(linearBarPrefab) as Slider;
+			temp.transform.SetParent(canvas.transform, false);
+			
+			Vector2 oldPos = temp.GetComponent<RectTransform>().anchoredPosition;
+			oldPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
+			oldPos.y = -Screen.height / 2 + Screen.height / 8;
+			temp.GetComponent<RectTransform>().anchoredPosition = oldPos;
+			
+			
+			Vector3 oldScale = temp.GetComponent<RectTransform>().localScale;
+			oldScale *= 2;
+			temp.GetComponent<RectTransform>().localScale = oldScale;
+			
+			temp.transform.FindChild("Fill Area").FindChild("Fill").gameObject.GetComponent<Image>().color = PlayerManager.S.playerColors[i];
+			temp.value = 0;
+			linearBars.Add (temp);
+			
+			bool tempBool = false;
+			isDead.Add (tempBool);
+			
+			
+			Text levelText = Instantiate(levelTextPrefab) as Text;
+			levelText.transform.SetParent(canvas.transform, false);
+			
+			Vector2 textPos = levelText.rectTransform.anchoredPosition;
+			textPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
+
+			textPos.y = -Screen.height / 2 + 5*Screen.height / 32;
+			levelText.rectTransform.anchoredPosition = textPos;
+			
+			levelText.text = "LEVEL: ";
+			levelText.alignment = TextAnchor.MiddleLeft;
+			levelText.color = PlayerManager.S.playerColors[i];
+			levelsJustText.Add (levelText);
+
+
+			Text levelTextNum = Instantiate(levelTextPrefab) as Text;
+			levelTextNum.transform.SetParent(canvas.transform, false);
+			
+			textPos = levelTextNum.rectTransform.anchoredPosition;
+			textPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
+			
+			textPos.y = -Screen.height / 2 + 5*Screen.height / 32;
+			levelTextNum.rectTransform.anchoredPosition = textPos;
+			levelTextNum.text = "1";
+			levelTextNum.alignment = TextAnchor.MiddleRight;
+			levelTextNum.color = PlayerManager.S.playerColors[i];
+			levelTextNum.fontSize = (int)(22);
+			levelsNumbersText.Add (levelTextNum);
+
+			levelNums.Add (1);
+			linearBars[i].maxValue = Mathf.Sqrt (levelNums[i]);
+			
+			LevelValues lv;
+			
+			Player p = PlayerManager.S.players[i].GetComponent<Player>();
+			
+			lv.fireRate = p.FireRate;
+			lv.bulletSize = p.BulletSize;
+			lv.bulletSpeed = p.bulletVelocity;
+			lv.burst = p.NumBurstFire;
+			lv.flySpeed = p.VelocityMult;
+			lv.turnSpeed = p.TurnSpeed;
+			
+			List<LevelValues> newList = new List<LevelValues>();
+			newList.Add (lv);
+			levelValuesList.Add (newList);
+			
+			upgradeTexts.Add (null);
+			gotHitTexts.Add (null);
+			showingHit.Add (false);
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -277,57 +415,7 @@ public class UpgradeSystem : MonoBehaviour {
 				if(PlayerManager.S.players != null){
 					if(PlayerManager.S.players.Length > 0){
 						firstTimeSetup = true;
-						for(int i = 0; i < PlayerManager.S.players.Length; ++i){
-							Slider temp = Instantiate(linearBarPrefab) as Slider;
-							temp.transform.SetParent(canvas.transform, false);
-
-							Vector2 oldPos = temp.GetComponent<RectTransform>().anchoredPosition;
-							oldPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
-							oldPos.y = -Screen.height / 2 + Screen.height / 8;
-							temp.GetComponent<RectTransform>().anchoredPosition = oldPos;
-
-							
-							Vector3 oldScale = temp.GetComponent<RectTransform>().localScale;
-							oldScale *= 2;
-							temp.GetComponent<RectTransform>().localScale = oldScale;
-
-							temp.transform.FindChild("Fill Area").FindChild("Fill").gameObject.GetComponent<Image>().color = PlayerManager.S.playerColors[i];
-							temp.value = 0;
-							linearBars.Add (temp);
-
-							bool tempBool = false;
-							isDead.Add (tempBool);
-
-
-							Text levelText = Instantiate(levelTextPrefab) as Text;
-							levelText.transform.SetParent(canvas.transform, false);
-
-							Vector2 textPos = levelText.rectTransform.anchoredPosition;
-							textPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
-							textPos.y = -Screen.height / 2 + 5*Screen.height / 32;
-							levelText.rectTransform.anchoredPosition = textPos;
-
-							levelText.text = "LEVEL: 1";
-							levelText.color = PlayerManager.S.playerColors[i];
-							levels.Add (levelText);
-							levelNums.Add (1);
-							linearBars[i].maxValue = Mathf.Sqrt (levelNums[i]);
-
-							LevelValues lv;
-
-							Player p = PlayerManager.S.players[i].GetComponent<Player>();
-
-							lv.fireRate = p.FireRate;
-							lv.bulletSize = p.BulletSize;
-							lv.bulletSpeed = p.bulletVelocity;
-							lv.burst = p.NumBurstFire;
-							lv.flySpeed = p.VelocityMult;
-							lv.turnSpeed = p.TurnSpeed;
-
-							List<LevelValues> newList = new List<LevelValues>();
-							newList.Add (lv);
-							levelValuesList.Add (newList);
-						}
+						FirstTimeSetup();
 					}
 				}
 			}

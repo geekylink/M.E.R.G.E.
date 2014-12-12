@@ -284,6 +284,7 @@ MonoBehaviour:
   canvas: {fileID: 434132001}
   linearBarPrefab: {fileID: 11445870, guid: 51548d05fb297c74da4a803146b74708, type: 2}
   levelTextPrefab: {fileID: 11415706, guid: 2f6dd86d68b96ce4a93a4bcacd83e42a, type: 2}
+  hitTextPrefab: {fileID: 11400000, guid: f2f7683081ca6b34589dbdd8089e3f04, type: 2}
   showLevelTextTime: 2
 --- !u!1 &37497375
 GameObject:
@@ -503,6 +504,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52579121}
+  m_HideIfInvisible: 0
 --- !u!1 &54597922
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +737,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84885446}
+  m_HideIfInvisible: 0
 --- !u!1 &92754695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,6 +1447,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326600193}
+  m_HideIfInvisible: 0
 --- !u!1 &368911694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1623,7 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -1638,7 +1643,6 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1 &447239441
@@ -2963,6 +2967,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401287587}
+  m_HideIfInvisible: 0
 --- !u!224 &1401287590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3696,6 +3701,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1853759786}
+  m_HideIfInvisible: 0
 --- !u!1 &2003232933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5051,7 +5057,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
-  m_DragThreshold: 5
 --- !u!4 &2141242599
 Transform:
   m_ObjectHideFlags: 0
