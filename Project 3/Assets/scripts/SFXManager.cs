@@ -15,7 +15,6 @@ public class SFXManager : MonoBehaviour {
 	private static int numChannels = 256;
 	private int currTrack = -1;
 	private string nextTrack = "";
-	private int currSrcID = -1; 
 
 	void Awake() {
 
@@ -78,6 +77,9 @@ public class SFXManager : MonoBehaviour {
 		else if (Application.loadedLevelName == "dom-dev 1") {
 			playSound ("Theme");
 		}
+		else if (Application.loadedLevelName == "WinScreen") {
+			playSound ("EndCredits");
+		}
 	}
 
 	// Gets an instance of the sound manager
@@ -93,7 +95,11 @@ public class SFXManager : MonoBehaviour {
 	}
 
 	public void StopMusic() {
-		sources [currSrcID].Stop ();
+		for (int i = 0; i < numChannels; i++) {
+			if (sources[i].loop) {
+				sources[i].Stop();
+			}
+		}
 	}
 
 	// Adds a sound that can then be played with playSound("name");
@@ -109,6 +115,9 @@ public class SFXManager : MonoBehaviour {
 	// Finds first available channel
 	private void playOnFirstSource(Sound snd) {
 		for (int i = 0; i < numChannels; i++) {
+
+			if (currTrack == i) continue;
+
 			if (!sources[i].isPlaying) {
 				sources[i].clip = snd.clip;
 				sources[i].Play();
@@ -120,10 +129,6 @@ public class SFXManager : MonoBehaviour {
 				}
 				else {
 					currTrack = -1;
-				}
-
-				if (snd.loop) {
-					currSrcID = i;
 				}
 
 				break;

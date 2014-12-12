@@ -148,6 +148,10 @@ public class PlayerManager : MonoBehaviour {
 			rightAngle = 0;
 		}
 
+		if (device.DPadDown) {
+			SFXManager.getManager().StopMusic();
+				}
+
 		if(device.Action3){
 
 			//if the player is holding 'X', and is near enough to a planet that is uncaptured,
