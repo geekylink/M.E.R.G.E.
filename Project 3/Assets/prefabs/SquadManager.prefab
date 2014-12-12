@@ -45,7 +45,7 @@ MonoBehaviour:
   lowLimit: 0
   highLimit: 10
   randomness: 60
-  separationWeight: 10
+  separationWeight: 50
   followWeight: 30
 --- !u!1001 &100100000
 Prefab:
