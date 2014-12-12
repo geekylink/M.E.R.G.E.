@@ -25,7 +25,7 @@ public class BaseShip : MonoBehaviour {
 		health = maxHealth;
 	}
 
-	public void TakeDamage(float amount) {
+	public void TakeDamage(float amount, Player pKilled = null) {
 		bool applyDamage = true;
 		if(isInvulnerable) return;
 		if(shield){
@@ -46,6 +46,10 @@ public class BaseShip : MonoBehaviour {
 		}
 		if (health <= 0) {
 			health = 0;
+			if(pKilled != null){
+				pKilled.GiveXP(0.5f);
+				pKilled.KillSomething();
+			}
 			Die();
 		}
 

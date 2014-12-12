@@ -69,9 +69,14 @@ public class BaseSatellite : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
-	public void TakeDamage(float damage){
+	public void TakeDamage(float damage, Player pKilled = null){
 		health -= damage;
 		if (health <= 0){
+			
+			if(pKilled != null){
+				pKilled.GiveXP(1);
+				pKilled.KillSomething();
+			}
 			Die ();
 		}
 	}

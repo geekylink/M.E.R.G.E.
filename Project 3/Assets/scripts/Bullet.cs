@@ -90,7 +90,7 @@ public class Bullet : MonoBehaviour {
     {
 		if(col.gameObject.tag == "Satellite"){
 			BaseSatellite sat = col.collider.GetComponent<BaseSatellite>();
-			sat.TakeDamage(damageDealt);
+			sat.TakeDamage(damageDealt, owner);
 			if (explosion != null)
 			{
 				GameObject exp = Instantiate(explosion, this.transform.position, Quaternion.identity) as GameObject;
@@ -99,9 +99,11 @@ public class Bullet : MonoBehaviour {
 			}
 
 			if (owner != null) {
+
 				//owner.score+= 3;
-				owner.KillSomething(0.5f);
+				owner.GiveXP(0.5f);
 			}
+
 
 			Destroy(this.gameObject);
 
@@ -115,10 +117,7 @@ public class Bullet : MonoBehaviour {
 
 		if(col.gameObject.tag == "WeakPoint"){
 			BossWeakPoint wp = col.collider.GetComponent<BossWeakPoint>();
-			wp.TakeDamage(damageDealt);
-			if(owner != null){
-				owner.KillSomething(0.05f);
-			}
+			wp.TakeDamage(damageDealt, owner);
 			Destroy (this.gameObject);
 		}
 
@@ -127,7 +126,7 @@ public class Bullet : MonoBehaviour {
         { 
 			if(!bs.isInvulnerable){
 				
-				bs.TakeDamage(damageDealt);
+				bs.TakeDamage(damageDealt, owner);
 				if (explosion != null)
 				{
 					Instantiate(explosion, this.transform.position, Quaternion.identity);
@@ -135,7 +134,7 @@ public class Bullet : MonoBehaviour {
 
 				if (owner != null) {
 					//owner.score+= 2;
-					owner.KillSomething(0.1f);
+					owner.GiveXP(0.1f);
 				}
 
 				Destroy(this.gameObject);

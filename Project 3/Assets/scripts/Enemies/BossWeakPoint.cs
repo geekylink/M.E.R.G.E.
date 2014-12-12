@@ -42,18 +42,28 @@ public class BossWeakPoint : MonoBehaviour {
 		}
 	}
 
-	public void TakeDamage(float damage){
+	public void TakeDamage(float damage, Player pKilled = null){
 		if (activePoint) {
 			if(shielded){
 				if (damage > 1){
+					if(pKilled != null){
+						pKilled.GiveXP(0.1f);
+					}
 					health -= (damage - 1);
 					flashing = true;
 				}
 			} else {
+				if(pKilled != null){
+					pKilled.GiveXP(0.1f);
+				}
 				health -= damage;
 				flashing = true;
 			}
 			if (health < 0) {
+				if(pKilled != null){
+					pKilled.GiveXP(3f);
+					pKilled.KillSomething();
+				}
 				Destroy (this.gameObject);
 				BossShip.S.NextStage ();
 			} 

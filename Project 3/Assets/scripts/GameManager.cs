@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour {
 	private float maxWarning = 15;
 
 
-	float startTime;
-	float endTime;
+	public float startTime;
+	public float endTime;
 
 	public struct TrackingStruct{
 		public int level;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
 		public List<int> shipsMergedWith;
 		public float time;
 	}
-	List<List<TrackingStruct>> playerTracker = new List<List<TrackingStruct>>();
+	public List<List<TrackingStruct>> playerTracker = new List<List<TrackingStruct>>();
 
 	// Use this for initialization
 	void Start () {
@@ -96,6 +96,10 @@ public class GameManager : MonoBehaviour {
 			tsList.Add (ts);
 			
 			playerTracker.Add (tsList);
+		}
+
+		for(int i = 0; i < PlayerManager.S.playerColors.Count; ++i){
+			playerColors.Add (PlayerManager.S.playerColors[i]);
 		}
 
 
@@ -192,7 +196,7 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator EndGame(){
 		yield return new WaitForSeconds(3);
-		Application.LoadLevel("WinScreen");
+		Application.LoadLevel("GraphScreen");
 	}
 
 	public void End(){

@@ -538,8 +538,12 @@ public class Player : BaseShip {
 		return vec;
 	}
 
-	public void KillSomething(float xp){
-		UpgradeSystem.S.AddScore(xp, playerManagerArrayPos);
+	public void KillSomething(){
 		GameManager.S.IncreaseKillsTracking (playerManagerArrayPos);
+	}
+
+	public void GiveXP(float xp){
+		UpgradeSystem.S.AddScore(xp, playerManagerArrayPos);
+
 	}
 }

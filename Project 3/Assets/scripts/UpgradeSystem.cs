@@ -189,8 +189,9 @@ public class UpgradeSystem : MonoBehaviour {
 	}
 
 
-	void IncreaseFireRate(float amtToIncrease, int playerNum, int level){
-		StartCoroutine(ShowLevelUpText("Fire Rate Up!", playerNum));
+	void IncreaseFireRate(float amtToIncrease, int playerNum, int level, bool showroutine = true){
+		if(showroutine)
+			StartCoroutine(ShowLevelUpText("Fire Rate Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate -= amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate <= 0.1f){
 			print ("AT MAX");
@@ -201,8 +202,9 @@ public class UpgradeSystem : MonoBehaviour {
 		lv.fireRate = PlayerManager.S.players[playerNum].GetComponent<Player>().FireRate;
 		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseBulletSize(float amtToIncrease, int playerNum, int level){
-		StartCoroutine(ShowLevelUpText("Bullet Size Up!", playerNum));
+	void IncreaseBulletSize(float amtToIncrease, int playerNum, int level, bool showroutine = true){
+		if(showroutine)
+			StartCoroutine(ShowLevelUpText("Bullet Size Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize >= 2.5f){
 			print ("AT MAX");
@@ -213,8 +215,9 @@ public class UpgradeSystem : MonoBehaviour {
 		lv.bulletSize = PlayerManager.S.players[playerNum].GetComponent<Player>().BulletSize;
 		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseTurnSpeed(float amtToIncrease, int playerNum, int level){
-		StartCoroutine(ShowLevelUpText("Turn Speed Up!", playerNum));
+	void IncreaseTurnSpeed(float amtToIncrease, int playerNum, int level, bool showroutine = true){
+		if(showroutine)
+			StartCoroutine(ShowLevelUpText("Turn Speed Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed >= 30){
 			print ("AT MAX");
@@ -225,8 +228,9 @@ public class UpgradeSystem : MonoBehaviour {
 		lv.turnSpeed = PlayerManager.S.players[playerNum].GetComponent<Player>().TurnSpeed;
 		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseFlySpeed(float amtToIncrease, int playerNum, int level){
-		StartCoroutine(ShowLevelUpText("Fly Speed Up!", playerNum));
+	void IncreaseFlySpeed(float amtToIncrease, int playerNum, int level, bool showroutine = true){
+		if(showroutine)
+			StartCoroutine(ShowLevelUpText("Fly Speed Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult >= 2){
 			print ("AT MAX");
@@ -237,8 +241,9 @@ public class UpgradeSystem : MonoBehaviour {
 		lv.flySpeed = PlayerManager.S.players[playerNum].GetComponent<Player>().VelocityMult;
 		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseBulletSpeed(float amtToIncrease, int playerNum, int level){
-		StartCoroutine(ShowLevelUpText("Bullet Speed Up!", playerNum));
+	void IncreaseBulletSpeed(float amtToIncrease, int playerNum, int level, bool showroutine = true){
+		if(showroutine)
+			StartCoroutine(ShowLevelUpText("Bullet Speed Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity += amtToIncrease;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity >= 30){
 			print ("AT MAX");
@@ -249,8 +254,9 @@ public class UpgradeSystem : MonoBehaviour {
 		lv.bulletSpeed = PlayerManager.S.players[playerNum].GetComponent<Player>().bulletVelocity;
 		levelValuesList[playerNum].Add (lv);
 	}
-	void IncreaseBurst(int playerNum, int level){
-		StartCoroutine(ShowLevelUpText("Burst Fire Up!", playerNum));
+	void IncreaseBurst(int playerNum, int level, bool showroutine = true){
+		if(showroutine)
+			StartCoroutine(ShowLevelUpText("Burst Fire Up!", playerNum));
 		PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire += 1;
 		if(PlayerManager.S.players[playerNum].GetComponent<Player>().NumBurstFire >= 5){
 			print ("AT MAX");
