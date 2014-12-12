@@ -84,15 +84,8 @@ public class GameManager : MonoBehaviour {
 		playerTracker[pNum].Add (ts);
 	}
 
-
-	/// <summary>
-	/// Acquires the captures.
-	/// This happens at the beginning of the game - not the menus
-	/// It will simply grab all objects with tag "Planet" and add them to the list
-	/// </summary>
-	public void AcquireCaptures(){
+	public void SetupTracking(){
 		startTime = Time.time;
-
 		for(int i = 0; i < PlayerManager.S.players.Length; ++i){
 			List<TrackingStruct> tsList = new List<TrackingStruct>();
 			TrackingStruct ts;
@@ -101,10 +94,18 @@ public class GameManager : MonoBehaviour {
 			ts.shipsMergedWith = new List<int>();
 			ts.time = startTime;
 			tsList.Add (ts);
-
+			
 			playerTracker.Add (tsList);
 		}
 
+
+	}
+	/// <summary>
+	/// Acquires the captures.
+	/// This happens at the beginning of the game - not the menus
+	/// It will simply grab all objects with tag "Planet" and add them to the list
+	/// </summary>
+	public void AcquireCaptures(){
 
 		GameObject[] planets = GameObject.FindGameObjectsWithTag("Planet");
 

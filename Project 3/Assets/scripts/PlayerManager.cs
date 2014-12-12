@@ -63,6 +63,7 @@ public class PlayerManager : MonoBehaviour {
 		for(int i = 0; i < numberOfPlayers; ++i){
 			SpawnPlayer(i, playerColors[i], i, false);
 		}
+		GameManager.S.SetupTracking();
 	}
 
 	IEnumerator SpawnAtEndOfFrame(){
