@@ -59,7 +59,7 @@ public class SelectionScreen : MonoBehaviour {
 			temp.playerBody = tempObj.transform.FindChild("body").GetComponent<SpriteRenderer>();
 			
 			players.Add (temp);
-			GameManager.S.playerColors.Add (Color.white);
+			GameManager.S.playerColors.Add (Color.red);
 
 			GameObject cw = Instantiate(colorWheelSprite) as GameObject;
 			cw.transform.position = tempObj.transform.position;
@@ -70,7 +70,7 @@ public class SelectionScreen : MonoBehaviour {
 			sc.transform.position = cw.transform.position + Vector3.up * 2.08f;
 
 			temp.playerBody.color = Color.red;
-			GameManager.S.playerColors[i] = Color.red;
+			GameManager.S.playerColors[i] = Color.red * 2;
 
 			bool tempBool = false;
 			hasPushedA.Add (tempBool);
@@ -97,7 +97,21 @@ public class SelectionScreen : MonoBehaviour {
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
 			if(InputManager.Devices[i].Action1.WasPressed && i < hasPushedA.Count){
 				hasPushedA[i] = !hasPushedA[i];
-				if(hasPushedA[i]) readyTexts[i].text = "READY";
+				if(hasPushedA[i]) {
+					bool shouldBeReady = true;
+					for(int j = 0; j < InputManager.Devices.Count; ++j){
+						if(i == j) continue;
+						if(GameManager.S.playerColors[i] == GameManager.S.playerColors[j] && hasPushedA[j]) {
+							shouldBeReady = false;
+						}
+					}
+					if(shouldBeReady){
+						readyTexts[i].text = "READY";
+					}
+					else{
+						hasPushedA[i] = false;
+					}
+				}
 				else readyTexts[i].text = "";
 			}
 
@@ -122,6 +136,7 @@ public class SelectionScreen : MonoBehaviour {
 			angleFloat = Mathf.Round(angleFloat / 30) * 30;
 
 			Vector2 angleVec = new Vector2(rightX, rightY);
+
 			if(angleVec.magnitude < .9f) continue;
 			angleVec = (Vector2)(Quaternion.AngleAxis(angleFloat, Vector3.forward) * Vector2.right);
 
@@ -151,7 +166,9 @@ public class SelectionScreen : MonoBehaviour {
 			bool shouldContinue = false;
 			for(int j = 0; j < InputManager.Devices.Count; ++j){
 				if(i == j) continue;
-				if(color == GameManager.S.playerColors[j] && hasPushedA[j]) shouldContinue = true;
+				if(color == GameManager.S.playerColors[j] && hasPushedA[j]){
+					shouldContinue = true;
+				}
 			}
 			if(shouldContinue) continue;
 			

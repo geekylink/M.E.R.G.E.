@@ -250,6 +250,7 @@ MonoBehaviour:
   - {fileID: 1401287588}
   capturePrompt: {fileID: 100000, guid: b2a8e110e97df6c4c9890f77045df8a2, type: 2}
   pingCircle: {fileID: 128886, guid: 800db57618104594da9162fe5291c635, type: 2}
+  startingPlanet: {fileID: 2073337998}
 --- !u!114 &22428385
 MonoBehaviour:
   m_ObjectHideFlags: 0

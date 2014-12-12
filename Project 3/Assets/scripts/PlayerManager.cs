@@ -22,6 +22,8 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject capturePrompt;
 	public GameObject pingCircle;
 
+	public GameObject startingPlanet;
+
 	// Use this for initialization
 	void Start () {
 		if(S == null)
@@ -46,12 +48,7 @@ public class PlayerManager : MonoBehaviour {
 	void InitialSpawn(){
 		GameManager.S.AcquireCaptures();
 
-		Vector2 playerPlanetPos = Vector2.zero;
-		foreach(CapturePoint cp in GameManager.S.capturePoints){
-			if(cp.controlledBy == CapturePoint.ControlledBy.Player){
-				playerPlanetPos = cp.transform.position;
-			}
-		}
+		Vector2 playerPlanetPos = startingPlanet.transform.position;
 
 		CameraMove.S.MoveCamCenter(playerPlanetPos);
 

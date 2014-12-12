@@ -303,6 +303,7 @@ public class CapturePoint : MonoBehaviour {
 
 		//Check to see if any players are close enough to capture the planet (if neutral)
 		//and show the capture prompt
+		if(PlayerManager.S == null) return;
 		if(PlayerManager.S.players == null) return;
 
 
