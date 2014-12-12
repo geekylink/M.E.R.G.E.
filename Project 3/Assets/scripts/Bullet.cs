@@ -34,12 +34,13 @@ public class Bullet : MonoBehaviour {
 		Vector3 vel = Vector3.zero;
 		vel.y = -Mathf.Sin (angle*Mathf.Deg2Rad);
 		vel.x = Mathf.Cos (angle*Mathf.Deg2Rad);
-		
 		this.rigidbody2D.velocity = vel.normalized * velocity;
 	}
 
 	public void setDefaults(Vector2 velocity) {
 		if(float.IsNaN(velocity.x) || float.IsNaN(velocity.y)) return;
+
+
 		this.rigidbody2D.velocity = velocity;
 	}
 	

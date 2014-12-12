@@ -910,7 +910,7 @@ MonoBehaviour:
   sounds: []
   soundEffect: {fileID: 8300000, guid: 4e66de690d9870d489011eb01236a103, type: 3}
   playList: []
-  mute: 0
+  mute: 1
 --- !u!82 &170738678
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2613,7 +2613,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 630d52c3b0f65a342b94a686bf3b6e56, type: 2}
       propertyPath: mute
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 630d52c3b0f65a342b94a686bf3b6e56, type: 2}

@@ -162,7 +162,16 @@ public class TurretSatellite : BaseSatellite {
 
 
 				bull.damageDealt = 1;
-				bull.setDefaults (aimVec.normalized * ammoVelocity);
+
+				Vector2 shootVel = aimVec.normalized * ammoVelocity;
+				
+				if(float.IsNaN(shootVel.x) || float.IsNaN(shootVel.y)){
+					targetPrevPos = pos;
+					Destroy(bulletGO);
+					return;
+				}
+
+				bull.setDefaults (shootVel);
 				lastFire = fireRate;
 				float littleBitOfRand = Random.Range(-0.2f, 0.2f);
 				lastFire += littleBitOfRand;

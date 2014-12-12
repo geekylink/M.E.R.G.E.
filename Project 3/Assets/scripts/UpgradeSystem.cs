@@ -276,7 +276,7 @@ public class UpgradeSystem : MonoBehaviour {
 
 
 		levelsNumbersText[playerNum].text = "" + levelNums[playerNum];
-		levelsNumbersText[playerNum].fontSize = (int)(levelNums[playerNum]*2 + 20);
+		levelsNumbersText[playerNum].fontSize = Mathf.FloorToInt(levelNums[playerNum]*1.5f + 20);
 
 		linearBars[playerNum].maxValue = Mathf.Sqrt (levelNums[playerNum]);
 
@@ -307,7 +307,7 @@ public class UpgradeSystem : MonoBehaviour {
 		//if(gotHitTexts[playerNum] != null) Destroy(gotHitTexts[playerNum].gameObject);
 
 		//StopAllCoroutines();
-		levelsNumbersText[playerNum].fontSize = (int)(levelNums[playerNum]*1.5 + 20);
+		levelsNumbersText[playerNum].fontSize = Mathf.FloorToInt(levelNums[playerNum]*1.5f + 20);
 
 		StartCoroutine(GotHit(playerNum));
 		levelNums[playerNum]-= levelsLost;
