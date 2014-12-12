@@ -142,7 +142,13 @@ public class EnemyBaseShip : BaseShip {
 			followWeight *= closeFollowWeight;
 		}
 		
-		return (flockCenter + flockVelocity + follow * followWeight + randomize * SquadManager.S.randomness + separation * SquadManager.S.separationWeight);
+		float flockCenterWeight = flockCenter.magnitude;
+		flockCenter = flockCenter.normalized;
+		if(flockCenterWeight > 0 && follow.magnitude > closeFollowRange){
+			flockCenterWeight = flockCenterWeight *  flockCenterWeight * Random.value;
+		}
+
+		return (flockCenter * flockCenterWeight + flockVelocity + follow * followWeight + randomize * SquadManager.S.randomness + separation * SquadManager.S.separationWeight);
 	}
 
 	public IEnumerator EnemyTurning(){
@@ -154,12 +160,10 @@ public class EnemyBaseShip : BaseShip {
 					var dir = targetPos - transform.position;
 
 					var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 180;
-					float oldAngle = 0;
-					Vector3 axis = Vector3.zero;
-					transform.rotation.ToAngleAxis(out oldAngle, out axis);
-					angle = Mathf.LerpAngle(-oldAngle, angle, Time.deltaTime * 5);
 
-					transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+					Quaternion newRot = Quaternion.AngleAxis(angle, Vector3.forward);
+					Quaternion oldRot = transform.rotation;
+					transform.rotation = Quaternion.Lerp (oldRot, newRot, Time.deltaTime * 20);
 
 				}
 				else{

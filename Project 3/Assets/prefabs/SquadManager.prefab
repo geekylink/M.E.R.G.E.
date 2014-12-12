@@ -44,7 +44,7 @@ MonoBehaviour:
   mapsize: 0
   lowLimit: 0
   highLimit: 10
-  randomness: 40
+  randomness: 60
   separationWeight: 10
   followWeight: 30
 --- !u!1001 &100100000
