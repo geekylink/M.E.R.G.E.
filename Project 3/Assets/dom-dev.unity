@@ -128,7 +128,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1001 &17330938
 Prefab:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0125dbae6091ca640b5e1ff935782f33, type: 2}
@@ -991,7 +991,7 @@ Transform:
   - {fileID: 555395488}
   - {fileID: 1163401622}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &345238811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,7 +2300,7 @@ GameObject:
   - 114: {fileID: 1130763459}
   m_Layer: 0
   m_Name: InControl
-  m_TagString: Untagged
+  m_TagString: InControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2942,6 +2942,7 @@ MonoBehaviour:
   enemiesToSpawn:
   - {fileID: 100000, guid: 7c7f18c910a154f4c900d847be71d8e0, type: 2}
   - {fileID: 100006, guid: 2a75ca4f6d04b334e96f0dc4ea70f192, type: 2}
+  - {fileID: 100000, guid: 882d176dc7635ba4c8dbccaa3e796f13, type: 2}
   squadPrefab: {fileID: 100000, guid: 06afbea6c23e3924ab0d29368f18f662, type: 2}
   spawnTimer: 20
   spawnLocs: []
@@ -2968,7 +2969,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &1453609554
 GameObject:
   m_ObjectHideFlags: 0
@@ -4822,7 +4823,7 @@ Transform:
   m_LocalScale: {x: 500, y: 500, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &2089038393
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,6 +4931,7 @@ MonoBehaviour:
   mergeLine: {fileID: 100000, guid: 21d74fa1b7cc76d4b96b1d3b673635e4, type: 2}
   mergeDistance: 10
   rotMergeTime: 1
+  rumbleDuration: .5
   players: []
 --- !u!4 &2112666404
 Transform:

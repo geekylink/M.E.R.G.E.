@@ -61,8 +61,4 @@ public class BossWeakPoint : MonoBehaviour {
 	}
 
 	void Fire(){}
-
-	void OnTriggerEnter2D(Collider2D col){
-
-	}
 }

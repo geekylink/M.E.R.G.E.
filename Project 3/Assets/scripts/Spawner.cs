@@ -56,7 +56,15 @@ public class Spawner : MonoBehaviour {
 			yield return 0;
 		}
 		
-		int randomEnemy = Random.Range (0, enemiesToSpawn.Count);
+		int temp = Random.Range (0, 100);
+		int randomEnemy = 0;
+		if (temp < 48) {
+			randomEnemy = 0;
+		} else if (temp < 95) {
+			randomEnemy = 1;
+		} else {
+			randomEnemy = 2;
+		}
 		int side = Random.Range (0, 4);
 		
 		Vector2 posToSpawn = Vector2.zero;
@@ -123,19 +131,6 @@ public class Spawner : MonoBehaviour {
 			eSquad.target = Camera.main.gameObject;
 		}
 
-		/*int i = Random.Range (0, 4);
-		Vector2 loc = SquadManager.S.startingLocations [Random.Range (0, SquadManager.S.startingLocations.Count)];
-		List<Vector2> enemyLocs = new List<Vector2>();
-		if (i == 0) {
-			enemyLocs = SquadManager.S.ThreeSquad (loc);
-		} else if (i == 1) {
-			enemyLocs = SquadManager.S.FourSquad (loc);
-		} else if (i == 2) {
-			enemyLocs = SquadManager.S.FiveSquad (loc);
-		} else {
-			enemyLocs = SquadManager.S.SevenSquad (loc);
-		}*/
-
 		int squadSize = Random.Range(minSquadSize, maxSquadSize);
 		if(eSquad.targetIsPlanet) squadSize *= 2;
 
@@ -155,7 +150,17 @@ public class Spawner : MonoBehaviour {
 		if(planetSpawnPos != Vector2.zero){
 
 			for (int i = 0; i < squadSize; ++i) {
-				GameObject squadMemberGO = Instantiate(enemiesToSpawn[Random.Range(0,enemiesToSpawn.Count)]) as GameObject;
+				int weight = Random.Range(0, 100);
+				int enemyIdx;
+				if(weight < 48){
+					enemyIdx = 0;
+				} else if (weight < 96){
+					enemyIdx = 1;
+				} else {
+					enemyIdx = 2;
+				}
+
+				GameObject squadMemberGO = Instantiate(enemiesToSpawn[enemyIdx]) as GameObject;
 				EnemyBaseShip ship = squadMemberGO.GetComponent<EnemyBaseShip>();
 				ship.boidInit = true;
 				eSquad.squadMembers.Add(ship);

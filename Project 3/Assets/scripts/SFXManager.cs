@@ -28,6 +28,7 @@ public class SFXManager : MonoBehaviour {
 		
 		AddSound ("grenade", "grenade");
 		AddSound ("EndFX", "EndFX");
+		AddSound ("NoDamage", "LOZ_Shield"); 
 	}
 
 	// Gets an instance of the sound manager

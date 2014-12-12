@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using InControl;
 
 public class MergeManager : MonoBehaviour {
 	public static MergeManager S;
@@ -14,6 +15,7 @@ public class MergeManager : MonoBehaviour {
 	//time it takes for players to merge into the ship.
 
 	public float rotMergeTime;
+	public float rumbleDuration = .5f;
 
 	public List<Player> players = new List<Player>();
 
@@ -41,7 +43,7 @@ public class MergeManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-
+		GameObject.FindGameObjectWithTag ("InControl").GetComponent<InControlManager> ().enableXInput = true;
 	}
 
 	public void AddPlayer(Player player, int index){
@@ -62,6 +64,18 @@ public class MergeManager : MonoBehaviour {
 		MergeSetup(mergers);
 	}
 
+
+	IEnumerator Rumble(InputDevice device){
+		InputManager.EnableXInput = true;
+		float rumbleTime = 0f;
+		device.Vibrate (10, 10);
+		print ("RumbleStart");
+		while (rumbleTime < rumbleDuration) {
+			rumbleTime += Time.deltaTime;
+			yield return 0;
+		}
+		print ("RumbleStop");
+	}
 
 	int[] MergeChecker(){
 		//Destroy all visual cues currently in the scene
@@ -130,11 +144,13 @@ public class MergeManager : MonoBehaviour {
                                 if(players[i].TryingToMerge)
                                 {
                                     mRender1.SetColors(Color.green, new Color(0,200,0,166));
+									StartCoroutine("Rumble", InputManager.Devices[i]);
                                 }
                                 if (players[j].TryingToMerge)
                                 {
                                     mRender2.SetColors(Color.green, new Color(0, 200, 0, 166));
-                                }
+									StartCoroutine("Rumble", InputManager.Devices[j]);
+								}
                                 mergeVisualCues.Add(mLine1);
                                 mergeVisualCues.Add(mLine2);
 

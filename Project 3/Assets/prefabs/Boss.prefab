@@ -90,7 +90,7 @@ GameObject:
   - 50: {fileID: 5000000}
   m_Layer: 10
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,6 +364,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 1
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!114 &11400002
 MonoBehaviour:
@@ -382,6 +383,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 0
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!114 &11400004
 MonoBehaviour:
@@ -425,6 +427,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 0
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!114 &11400008
 MonoBehaviour:
@@ -443,6 +446,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   activePoint: 0
   shielded: 0
+  flashing: 0
   flashTime: .5
 --- !u!135 &13500000
 SphereCollider:
