@@ -91,7 +91,7 @@ public class GraphManager : MonoBehaviour {
 			
 			renderList[i].SetVertexCount(GameManager.S.playerTracker[i].Count + 1);
 			renderList[i].SetColors(GameManager.S.playerColors[i], GameManager.S.playerColors[i]);
-			renderList[i].SetWidth(0.1f, 0.1f);
+			renderList[i].SetWidth(0.05f, 0.05f);
 			Vector3 pos = Vector3.zero;
 
 			for(int j = 0; j < GameManager.S.playerTracker[i].Count; ++j){
@@ -136,7 +136,7 @@ public class GraphManager : MonoBehaviour {
 			
 			renderList[i].SetVertexCount(GameManager.S.playerTracker[i].Count + 1);
 			renderList[i].SetColors(GameManager.S.playerColors[i], GameManager.S.playerColors[i]);
-			renderList[i].SetWidth(0.1f, 0.1f);
+			renderList[i].SetWidth(0.05f, 0.05f);
 			Vector3 pos = Vector3.zero;
 			
 			for(int j = 0; j < GameManager.S.playerTracker[i].Count; ++j){
@@ -173,7 +173,7 @@ public class GraphManager : MonoBehaviour {
 			
 			renderList[i].SetVertexCount(GameManager.S.playerTracker[i].Count + 1);
 			renderList[i].SetColors(GameManager.S.playerColors[i], GameManager.S.playerColors[i]);
-			renderList[i].SetWidth(0.05f, 0.05f);
+			renderList[i].SetWidth(0.01f, 0.01f);
 			Vector3 pos = Vector3.zero;
 
 			for(int j = 0; j < GameManager.S.playerTracker[i].Count; ++j){
@@ -219,8 +219,8 @@ public class GraphManager : MonoBehaviour {
 
 	void SwitchGraphs(int dir){
 		graphToShow += dir;
-		if(graphToShow < 0) graphToShow = 2;
-		if(graphToShow > 2) graphToShow = 0;
+		if(graphToShow < 0) graphToShow = 1;
+		if(graphToShow > 1) graphToShow = 0;
 
 		if(graphToShow == 0){
 			ShowLevelGraph();

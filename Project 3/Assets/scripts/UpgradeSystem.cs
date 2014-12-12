@@ -61,13 +61,13 @@ public class UpgradeSystem : MonoBehaviour {
 		levelsNumbersText[playerNum].text = "" + levelNums[playerNum];
 	}
 
-	IEnumerator GotHit(int pNum){
+	IEnumerator GotHit(int pNum, int levelsLost){
 		
 		Text hitText = Instantiate(hitTextPrefab) as Text;
 		gotHitTexts[pNum] = hitText;
 		hitText.transform.SetParent(canvas.transform, false);
 		
-		hitText.text = "-1";
+		hitText.text = "-" + levelsLost;
 		hitText.alignment = TextAnchor.MiddleRight;
 		hitText.fontSize = 45;
 		
@@ -271,14 +271,16 @@ public class UpgradeSystem : MonoBehaviour {
 
 
 	void LevelUp(int playerNum){
+		int prevLevel = levelNums[playerNum];
 		levelNums[playerNum]++;
+		//GameManager.S.UpdateLevelTracking(prevLevel, playerNum);
 		GameManager.S.UpdateLevelTracking(levelNums[playerNum], playerNum);
 
 
 		levelsNumbersText[playerNum].text = "" + levelNums[playerNum];
 		levelsNumbersText[playerNum].fontSize = Mathf.FloorToInt(levelNums[playerNum]*1.5f + 20);
 
-		linearBars[playerNum].maxValue = Mathf.Sqrt (levelNums[playerNum]);
+		linearBars[playerNum].maxValue = 5 + levelNums[playerNum] * 0.5f;
 
 		int ran = Random.Range (0, 21);
 		if(ran <= 3){
@@ -308,14 +310,22 @@ public class UpgradeSystem : MonoBehaviour {
 
 		//StopAllCoroutines();
 		levelsNumbersText[playerNum].fontSize = Mathf.FloorToInt(levelNums[playerNum]*1.5f + 20);
+		
+		int prevLevel = levelNums[playerNum];
+		int newLevel = Mathf.FloorToInt(prevLevel / 2.0f);
+		int diff = prevLevel - newLevel;
 
-		StartCoroutine(GotHit(playerNum));
-		levelNums[playerNum]-= levelsLost;
+
+		StartCoroutine(GotHit(playerNum, diff));
+
+		levelNums[playerNum] = newLevel;
 		if(levelNums[playerNum] < 1) levelNums[playerNum] = 1;
+		//GameManager.S.UpdateLevelTracking(prevLevel, playerNum);
+		GameManager.S.UpdateLevelTracking(levelNums[playerNum], playerNum);
 
 		levelsNumbersText[playerNum].text = "" + levelNums[playerNum];
 		
-		linearBars[playerNum].maxValue = Mathf.Sqrt (levelNums[playerNum]);
+		linearBars[playerNum].maxValue = 3 + levelNums[playerNum] * 0.5f;
 		linearBars[playerNum].value = linearBars[playerNum].minValue;
 
 
@@ -391,7 +401,7 @@ public class UpgradeSystem : MonoBehaviour {
 			levelsNumbersText.Add (levelTextNum);
 
 			levelNums.Add (1);
-			linearBars[i].maxValue = Mathf.Sqrt (levelNums[i]);
+			linearBars[i].maxValue = 5 + levelNums[i] * 0.5f;
 			
 			LevelValues lv;
 			

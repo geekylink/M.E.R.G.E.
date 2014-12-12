@@ -138,12 +138,14 @@ public class Spawner : MonoBehaviour {
 		eSquad.squadMembers = new List<EnemyBaseShip> ();
 		Vector2 planetSpawnPos = Vector2.zero;
 		List<CapturePoint> cPoints = GameManager.S.capturePoints;
+		CapturePoint cpToSpawn = null;
 		int ranNum = Random.Range (0, cPoints.Count);
 		for(int i = 0; i < cPoints.Count; ++i){
 			ranNum = ranNum % cPoints.Count;
 
 			if(cPoints[ranNum].controlledBy == CapturePoint.ControlledBy.Enemy){
 				planetSpawnPos = cPoints[ranNum].transform.position;
+				cpToSpawn = cPoints[ranNum];
 				break;
 			}
 			ranNum++;
@@ -152,6 +154,10 @@ public class Spawner : MonoBehaviour {
 			
 			SquadManager.S.squads.Add (eSquad);
 			for (int i = 0; i < squadSize; ++i) {
+				if(cpToSpawn.controlledBy != CapturePoint.ControlledBy.Enemy){
+					break;
+				}
+
 				int weight = Random.Range(0, 100);
 				int enemyIdx;
 				if(weight < 48){

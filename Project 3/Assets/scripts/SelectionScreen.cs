@@ -77,7 +77,7 @@ public class SelectionScreen : MonoBehaviour {
 	}
 
 	void Continue(){
-		Application.LoadLevel("dom-dev");
+		Application.LoadLevel("dom-dev 1");
 	}
 	
 	// Update is called once per frame
@@ -108,15 +108,45 @@ public class SelectionScreen : MonoBehaviour {
 			float leftY = InputManager.Devices[i].LeftStickY;
 
 			float angleFloat = Mathf.Atan2 (rightY, rightX)*Mathf.Rad2Deg;
-			if(angleFloat < 0) angleFloat += 360;/*
-			if(angleFloat >= 30 && angleFloat < 150) angleFloat = 90;
-			if(angleFloat < 30 || angleFloat >= 270) angleFloat = 330;
-			if(angleFloat >= 150 && angleFloat < 270) angleFloat = 210;*/
+			if(angleFloat < 0) angleFloat += 360;
 			angleFloat = Mathf.Round(angleFloat / 30) * 30;
 
 			Vector2 angleVec = new Vector2(rightX, rightY);
 			if(angleVec.magnitude < .9f) continue;
 			angleVec = (Vector2)(Quaternion.AngleAxis(angleFloat, Vector3.forward) * Vector2.right);
+
+			Color color;
+			float r, g, b;
+			
+			//super awesome maths to choose the color based on angle
+			angleFloat -= 90;
+			if(angleFloat > 180) angleFloat -= 360;
+			r = 1 - (Mathf.Abs (angleFloat) / 120);
+			if(r < 0) r = 0;
+			
+			angleFloat += 120;
+			if(angleFloat > 180) angleFloat -= 360;
+			g = 1 - (Mathf.Abs (angleFloat) / 120);
+			if(g < 0) g = 0;
+			
+			angleFloat += 120;
+			if(angleFloat > 180) angleFloat -= 360;
+			b = 1 - (Mathf.Abs (angleFloat) / 120);
+			if(b < 0) b = 0;
+			
+			
+			color = new Color(r, g, b);
+			color = color * 2;
+
+			bool shouldContinue = false;
+			for(int j = 0; j < InputManager.Devices.Count; ++j){
+				if(i == j) continue;
+				if(color == GameManager.S.playerColors[j] && hasPushedA[j]) shouldContinue = true;
+			}
+			if(shouldContinue) continue;
+			
+			players[i].playerBody.color = color;
+			GameManager.S.playerColors[i] = color;
 
 			Vector3 pos = colorWheels[i].transform.position + (Vector3)angleVec * 2.08f;
 			selectionCircles[i].transform.position = pos;
@@ -124,31 +154,7 @@ public class SelectionScreen : MonoBehaviour {
 			Vector3 dir = pos - colorWheels[i].transform.position;
 			selectionCircles[i].transform.up = dir;
 
-			Color color;
-			float r, g, b;
 
-			//super awesome maths to choose the color based on angle
-			angleFloat -= 90;
-			if(angleFloat > 180) angleFloat -= 360;
-			r = 1 - (Mathf.Abs (angleFloat) / 120);
-			if(r < 0) r = 0;
-
-			angleFloat += 120;
-			if(angleFloat > 180) angleFloat -= 360;
-			g = 1 - (Mathf.Abs (angleFloat) / 120);
-			if(g < 0) g = 0;
-
-			angleFloat += 120;
-			if(angleFloat > 180) angleFloat -= 360;
-			b = 1 - (Mathf.Abs (angleFloat) / 120);
-			if(b < 0) b = 0;
-
-
-			color = new Color(r, g, b);
-			color = color * 2;
-			
-			players[i].playerBody.color = color;
-			GameManager.S.playerColors[i] = color;
 
 
 		}

@@ -78,7 +78,11 @@ public class EnemyBaseShip : BaseShip {
 				if(currTarget != null){
 					targetPos = currTarget.transform.position;
 					var dir = targetPos - transform.position;
-					rigidbody2D.velocity = Vector2.Lerp(rigidbody2D.velocity, (Vector2)Boids(squadId), Time.deltaTime * 3);
+					Vector2 newVel = Vector2.Lerp (rigidbody2D.velocity, (Vector2)Boids(squadId), Time.deltaTime * 3);
+
+					if(float.IsNaN(newVel.x) || float.IsNaN(newVel.y)) newVel = SquadManager.S.squads [squadId - 1].squadVelocity;
+
+					rigidbody2D.velocity = newVel;
 					//rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)Boids(squadId) * Time.deltaTime;
 					// enforce minimum and maximum speeds for the boids
 					float speed = rigidbody2D.velocity.magnitude;
@@ -150,7 +154,12 @@ public class EnemyBaseShip : BaseShip {
 			flockCenterWeight = flockCenterWeight *  flockCenterWeight * Random.value;
 		}
 
-		return (flockCenter * flockCenterWeight + flockVelocity + follow * followWeight + randomize * SquadManager.S.randomness + separation * SquadManager.S.separationWeight);
+		float randomness = SquadManager.S.randomness;
+		if(follow.magnitude < closeFollowRange){
+			randomness = randomness / 4;
+		}
+
+		return (flockCenter * flockCenterWeight + flockVelocity + follow * followWeight + randomize * randomness + separation * SquadManager.S.separationWeight);
 	}
 
 	public IEnumerator EnemyTurning(){
