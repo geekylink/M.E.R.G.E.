@@ -7,7 +7,7 @@ public class Sound : MonoBehaviour {
 	public AudioClip clip;
 
 	public bool loop = false;
-	public int nextMusicID = -1;
+	public string nextMusic;
 
 	// Use this for initialization
 	void Start () {
