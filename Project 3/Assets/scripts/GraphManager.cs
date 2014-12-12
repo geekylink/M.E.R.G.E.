@@ -23,14 +23,12 @@ public class GraphManager : MonoBehaviour {
 	void Start () {
 		startTime = GameManager.S.startTime;
 		elapsedTime = GameManager.S.endTime - startTime;
-
-		StartCoroutine (WaitForEndOfFrameToShow());
+		ShowWinOrLose();
 
 	}
 
 	IEnumerator WaitForEndOfFrameToShow(){
 		yield return new WaitForEndOfFrame();
-		ShowWinOrLose();
 	}
 
 	void ShowWinOrLose(){
@@ -266,17 +264,22 @@ public class GraphManager : MonoBehaviour {
 			ShowMergeGraph();
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if(InputManager.ActiveDevice.MenuWasPressed){
-			Application.LoadLevel("WinScreen");
+
+		for(int i = 0; i < InputManager.Devices.Count; ++i){
+			if(InputManager.Devices[i].MenuWasPressed){
+				Application.LoadLevel("WinScreen");
+			}
+			if(InputManager.Devices[i].RightBumper.WasPressed){
+				SwitchGraphs(1);
+			}
+			if(InputManager.Devices[i].LeftBumper.WasPressed){
+				SwitchGraphs(-1);
+			}
 		}
-		if(InputManager.ActiveDevice.RightBumper.WasPressed){
-			SwitchGraphs(1);
-		}
-		if(InputManager.ActiveDevice.LeftBumper.WasPressed){
-			SwitchGraphs(-1);
-		}
+
+
 	}
 }

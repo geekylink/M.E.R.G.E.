@@ -167,13 +167,7 @@ public class MergeManager : MonoBehaviour {
 								}
 								if(!players[i].TryingToMerge && !players[j].TryingToMerge){
 									iSignalJ[i*j] = false;
-									StartCoroutine("Rumble", InputManager.Devices[j]);
                                 }
-                                if (players[j].TryingToMerge)
-                                {
-                                    mRender2.SetColors(Color.green, new Color(0, 200, 0, 166));
-									StartCoroutine("Rumble", InputManager.Devices[i]);
-								}
                                 mergeVisualCues.Add(mLine1);
                                 mergeVisualCues.Add(mLine2);
 

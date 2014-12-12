@@ -211,6 +211,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void End(){
+		Destroy(GameObject.Find ("InControl").gameObject);
 		endTime = Time.time;
 		StartCoroutine(EndGame());
 	}

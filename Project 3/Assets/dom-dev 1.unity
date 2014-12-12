@@ -2547,7 +2547,7 @@ MonoBehaviour:
   invertYAxis: 0
   enableXInput: 1
   useFixedUpdate: 0
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   customProfiles: []
 --- !u!4 &1130763460
 Transform:

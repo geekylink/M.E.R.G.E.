@@ -52,7 +52,15 @@ public class Spawner : MonoBehaviour {
 	IEnumerator SpawnSquad(){
 		float timer = 0;
 
-		spawnTimer = Random.Range(10, 20);
+		float spawnMin = 10;
+		float spawnMax = 20;
+
+		if(bossOnScreen){
+			spawnMin = 5;
+			spawnMax = 10;
+		}
+
+		spawnTimer = Random.Range(spawnMin, spawnMax);
 		while(timer < 1){
 			timer += Time.deltaTime * Time.timeScale / spawnTimer;
 			yield return 0;
@@ -110,12 +118,22 @@ public class Spawner : MonoBehaviour {
 			}
 			ranNum++;
 		}
+
+		if(bossOnScreen){
+			eSquad.targetIsPlanet = false;
+			eSquad.target = Camera.main.gameObject;
+
+			planetSpawnPos = bossOnScreen.transform.position;
+		}
+
 		if(planetSpawnPos != Vector2.zero){
 			
 			SquadManager.S.squads.Add (eSquad);
 			for (int i = 0; i < squadSize; ++i) {
-				if(cpToSpawn.controlledBy != CapturePoint.ControlledBy.Enemy){
-					break;
+				if(!bossOnScreen){
+					if(cpToSpawn.controlledBy != CapturePoint.ControlledBy.Enemy){
+						break;
+					}
 				}
 
 				int weight = Random.Range(0, 100);

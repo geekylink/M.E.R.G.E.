@@ -122,8 +122,8 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	private void UpdatePlayer(InputDevice device, Player player) {
-		if(device.RightBumper.WasPressed){
-			//GameManager.S.End();
+		if(device.Action4){
+			GameManager.S.End();
 		}
 
 		if(device.LeftBumper.WasPressed){

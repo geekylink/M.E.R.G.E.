@@ -324,7 +324,7 @@ public class Player : BaseShip {
 				b3.SetColor(playerColor);
 				b3.setDefaults(-rightTurret.transform.eulerAngles.z + 20f, bulletVelocity + transform.root.rigidbody2D.velocity.magnitude);
 			}
-			if(MergeManager.S.currentlyMergedWith[id].Count == 1){
+			if(MergeManager.S.currentlyMergedWith[id].Count == 2){
 				FireZeMissiles(-rightTurret.transform.eulerAngles.z);
 			}
 
