@@ -45,6 +45,15 @@ public class UpgradeSystem : MonoBehaviour {
 	}
 
 	IEnumerator ShowLevelUpText(string levelUpText, int pNum){
+		Color c = levels[pNum].color;
+		float oldAlpha = c.a;
+
+		Vector2 levelPos = levels[pNum].rectTransform.anchoredPosition;
+		float levelStart = levelPos.y;
+		float levelEnd = levelStart + Screen.height / 32;
+
+		levels[pNum].color = c;
+
 		Text upgradeText = Instantiate(levelTextPrefab) as Text;
 		upgradeText.transform.SetParent(canvas.transform, false);
 		
@@ -54,7 +63,7 @@ public class UpgradeSystem : MonoBehaviour {
 		
 		Vector2 textPos = linearBars[pNum].GetComponent<RectTransform>().anchoredPosition;
 		float startingY = textPos.y;
-		float endingY = startingY + Screen.height / 16;
+		float endingY = startingY + Screen.height / 32;
 
 		Color color = PlayerManager.S.playerColors[pNum];
 		float startingAlpha = 0;
@@ -64,6 +73,12 @@ public class UpgradeSystem : MonoBehaviour {
 		float t = 0;
 		while(t < 1){
 			t += Time.deltaTime * Time.timeScale / 0.2f;
+
+			levelPos.y = Mathf.Lerp(levelStart, levelEnd, t);
+			levels[pNum].rectTransform.anchoredPosition = levelPos;
+
+			c.a = Mathf.Lerp (oldAlpha, 0, t);
+			levels[pNum].color = c;
 
 			textPos.y = Mathf.Lerp (startingY, endingY, t);
 			upgradeText.rectTransform.anchoredPosition = textPos;
@@ -78,7 +93,27 @@ public class UpgradeSystem : MonoBehaviour {
 			t += Time.deltaTime * Time.timeScale / showLevelTextTime;
 			yield return 0;
 		}
+
+		t = 0;
+		while(t < 1){
+			t += Time.deltaTime * Time.timeScale / 0.2f;
+			
+			levelPos.y = Mathf.Lerp(linearBars[pNum].GetComponent<RectTransform>().anchoredPosition.y, levelStart, t);
+			levels[pNum].rectTransform.anchoredPosition = levelPos;
+			
+			c.a = Mathf.Lerp (0, oldAlpha, t);
+			levels[pNum].color = c;
+			
+			textPos.y = Mathf.Lerp (endingY, endingY + Screen.height / 32, t);
+			upgradeText.rectTransform.anchoredPosition = textPos;
+			
+			color.a = Mathf.Lerp (endingAlpha, startingAlpha, t);
+			upgradeText.color = color;
+			yield return 0;
+		}
 		Destroy(upgradeText);
+		/*c.a = oldAlpha;
+		levels[pNum].color = c;*/
 
 	}
 
@@ -181,7 +216,7 @@ public class UpgradeSystem : MonoBehaviour {
 
 							Vector2 oldPos = temp.GetComponent<RectTransform>().anchoredPosition;
 							oldPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
-							oldPos.y = -Screen.height / 2 + Screen.height / 16;
+							oldPos.y = -Screen.height / 2 + Screen.height / 8;
 							temp.GetComponent<RectTransform>().anchoredPosition = oldPos;
 
 							
@@ -202,7 +237,7 @@ public class UpgradeSystem : MonoBehaviour {
 
 							Vector2 textPos = levelText.rectTransform.anchoredPosition;
 							textPos.x = -Screen.width / 2 + Screen.width / 8 + Screen.width/4 * i;
-							textPos.y = -Screen.height / 2 + Screen.height / 32;
+							textPos.y = -Screen.height / 2 + 5*Screen.height / 32;
 							levelText.rectTransform.anchoredPosition = textPos;
 
 							levelText.text = "LEVEL: 1";

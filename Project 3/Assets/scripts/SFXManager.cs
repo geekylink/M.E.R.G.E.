@@ -32,11 +32,10 @@ public class SFXManager : MonoBehaviour {
 		}
 		
 		AddSound ("grenade", "grenade");
+		AddSound ("EndFX", "EndFX");
+		AddSound ("NoDamage", "LOZ_Shield"); 
 		AddSound ("Laser1", "Laser1");
-		AddSound ("Laser2", "Laser2");
-
-		
-		
+		AddSound ("Laser2", "Laser2");	
 		AddSound ("EndCredits", "EndCredits");
 		AddSound ("Warning", "Warning");
 		AddSound ("Capture", "Capture");

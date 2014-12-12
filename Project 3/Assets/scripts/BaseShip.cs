@@ -13,6 +13,7 @@ public class BaseShip : MonoBehaviour {
     public GameObject drop;
 
 	public bool isInvulnerable = false;
+	public bool spawner = false;
 
 	
 	
@@ -25,17 +26,29 @@ public class BaseShip : MonoBehaviour {
 	}
 
 	public void TakeDamage(float amount) {
+		bool applyDamage = true;
 		if(isInvulnerable) return;
 		if(shield){
 			RemoveShield();
 			return;
 		}
-
-		health -= amount;
+		if (spawner) {
+			if(amount > 1){
+				amount -= 1;
+			}
+			else{
+				SFXManager.getManager().playSound("NoDamage");
+				applyDamage = false;
+			}
+		}
+		if (applyDamage) {
+			health -= amount;
+		}
 		if (health <= 0) {
 			health = 0;
 			Die();
 		}
+
 	}
 
 	public void Heal(int amount) {

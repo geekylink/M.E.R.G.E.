@@ -42,6 +42,7 @@ MonoBehaviour:
   enemiesToSpawn:
   - {fileID: 100000, guid: 7c7f18c910a154f4c900d847be71d8e0, type: 2}
   - {fileID: 100006, guid: 2a75ca4f6d04b334e96f0dc4ea70f192, type: 2}
+  - {fileID: 100000, guid: 882d176dc7635ba4c8dbccaa3e796f13, type: 2}
   squadPrefab: {fileID: 100000, guid: 06afbea6c23e3924ab0d29368f18f662, type: 2}
   spawnTimer: 20
   spawnLocs: []
@@ -56,6 +57,7 @@ MonoBehaviour:
   separationFactor: 1
   minSquadSize: 10
   maxSquadSize: 40
+  bossOnScreen: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

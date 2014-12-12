@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
+  - 61: {fileID: 6100000}
   m_Layer: 10
   m_Name: SpawningEnemy
   m_TagString: Untagged
@@ -103,6 +104,17 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!61 &6100000
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 1, y: 1}
+  m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,18 +126,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f1438e4aca4f64b9807efcfdbc8587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  explosion: {fileID: 0}
+  maxHealth: 3
+  explosion: {fileID: 100000, guid: f11bbd50b5c4df94c99ed5e48b8673aa, type: 2}
   maxRotSpeed: 0
-  enginesTurnRight: []
-  enginesTurnLeft: []
-  enginesStraight: []
-  sphere: {fileID: 100002}
-  projectile: {fileID: 100000, guid: 2a75ca4f6d04b334e96f0dc4ea70f192, type: 2}
+  drop: {fileID: 0}
+  isInvulnerable: 0
+  spawner: 1
+  shieldPrefab: {fileID: 0}
+  squadId: 0
+  currTarget: {fileID: 0}
   moveSpeed: 2
+  targetPos: {x: 0, y: 0, z: 0}
+  boidInit: 0
+  closeFollowWeight: -1
+  closeFollowRange: 10
+  closeFollowSpeed: 10
+  sphere: {fileID: 100002}
+  projectile: {fileID: 100000, guid: a7e76326b93b9bb469f2f6b82ffe3ceb, type: 2}
   fireRate: 2
   hoverDistance: 6
-  projectileSpeed: 4
+  projectileSpeed: 30
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

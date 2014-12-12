@@ -48,6 +48,51 @@ public class Spawner : MonoBehaviour {
 		}
 	}
 
+	IEnumerator SpawnCoroutine(){
+		float timer = 0;
+		
+		while(timer < 1){
+			timer += Time.deltaTime * Time.timeScale / spawnTimer;
+			yield return 0;
+		}
+		
+		int temp = Random.Range (0, 100);
+		int randomEnemy = 0;
+		if (temp < 48) {
+			randomEnemy = 0;
+		} else if (temp < 95) {
+			randomEnemy = 1;
+		} else {
+			randomEnemy = 2;
+		}
+		int side = Random.Range (0, 4);
+		
+		Vector2 posToSpawn = Vector2.zero;
+		if(side == 0){
+			posToSpawn.y = mapSize; 
+			posToSpawn.x = (Random.value - 0.5f) * 2 * mapSize;
+		}
+		else if(side == 1){
+			posToSpawn.y = -mapSize;
+			posToSpawn.x = (Random.value - 0.5f) * 2 * mapSize;
+		}
+		else if(side == 2){
+			posToSpawn.x = mapSize;
+			posToSpawn.y = (Random.value - 0.5f) * 2 * mapSize;
+		}
+		else{
+			posToSpawn.x = -mapSize;
+			posToSpawn.y = (Random.value - 0.5f) * 2 * mapSize;
+		}
+		//posToSpawn = minimapCam.ViewportToWorldPoint(posToSpawn);
+		
+		GameObject enemyGO = Instantiate (enemiesToSpawn[randomEnemy]) as GameObject;
+		enemyGO.transform.position = posToSpawn;
+		enemyGO.transform.right = posToSpawn;
+		
+		StartCoroutine(SpawnCoroutine());
+	}
+
 	IEnumerator SpawnSquad(){
 		float timer = 0;
 
@@ -87,19 +132,6 @@ public class Spawner : MonoBehaviour {
 			eSquad.target = Camera.main.gameObject;
 		}
 
-		/*int i = Random.Range (0, 4);
-		Vector2 loc = SquadManager.S.startingLocations [Random.Range (0, SquadManager.S.startingLocations.Count)];
-		List<Vector2> enemyLocs = new List<Vector2>();
-		if (i == 0) {
-			enemyLocs = SquadManager.S.ThreeSquad (loc);
-		} else if (i == 1) {
-			enemyLocs = SquadManager.S.FourSquad (loc);
-		} else if (i == 2) {
-			enemyLocs = SquadManager.S.FiveSquad (loc);
-		} else {
-			enemyLocs = SquadManager.S.SevenSquad (loc);
-		}*/
-
 		int squadSize = Random.Range(minSquadSize, maxSquadSize);
 		if(eSquad.targetIsPlanet) squadSize *= 2;
 
@@ -120,7 +152,17 @@ public class Spawner : MonoBehaviour {
 			
 			SquadManager.S.squads.Add (eSquad);
 			for (int i = 0; i < squadSize; ++i) {
-				GameObject squadMemberGO = Instantiate(enemiesToSpawn[Random.Range(0,enemiesToSpawn.Count)]) as GameObject;
+				int weight = Random.Range(0, 100);
+				int enemyIdx;
+				if(weight < 48){
+					enemyIdx = 0;
+				} else if (weight < 96){
+					enemyIdx = 1;
+				} else {
+					enemyIdx = 2;
+				}
+
+				GameObject squadMemberGO = Instantiate(enemiesToSpawn[enemyIdx]) as GameObject;
 				EnemyBaseShip ship = squadMemberGO.GetComponent<EnemyBaseShip>();
 				ship.boidInit = true;
 				eSquad.squadMembers.Add(ship);

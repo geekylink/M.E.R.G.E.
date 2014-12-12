@@ -48,7 +48,7 @@ public class HomingMissile : Bullet {
 		}
 		else{
 			if(!targetAcquired){
-				currTarget = GetRandomEnemyOnScreen();
+				//currTarget = GetRandomEnemyOnScreen();
 				this.rigidbody2D.velocity = vel.normalized 
 					* (startVel + (maxVel - startVel) * timeSinceLaunch * timeSinceLaunch);
 			}
