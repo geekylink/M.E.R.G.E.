@@ -20,6 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/__Scenes/controls.unity
   - enabled: 1
+    path: Assets/__Scenes/InfoScreen.unity
+  - enabled: 1
     path: Assets/__Scenes/GraphScreen.unity
   - enabled: 1
     path: Assets/dom-dev 1.unity

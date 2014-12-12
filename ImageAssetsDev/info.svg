@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1920"
+   height="1080"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="info.svg.2014_12_12_12_58_34.0.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="1090.6536"
+     inkscape:cy="520.21584"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="900"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showborder="true"
+     inkscape:showpageshadow="false"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="0,1"
+       position="489,1086"
+       id="guide4228" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="rect4074"
+       width="1400"
+       height="948"
+       x="254.85715"
+       y="62.857143" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,27.637817)"
+     style="display:inline">
+    <g
+       id="g4097"
+       transform="translate(20.142136,-15.101526)">
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-195.43335"
+         x="-739.5"
+         height="20"
+         width="5"
+         id="rect3808-9-7-5-3-6-4"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         sodipodi:nodetypes="ccccccccccccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path2985"
+         d="m 579.50001,160.43336 0,40 10,10 30,0 10,-10 0,-20 20,0 35,0 0,20 9,10 32,0 10,-10 0,-40 -10,-10 -34,0 -7,-10 -25,0 -25,0 -11,10 -34,0 z"
+         style="fill:#ff3c3c;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <rect
+         transform="matrix(0,-1,1,0,0,0)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="699.5"
+         x="-215.43335"
+         height="20"
+         width="5"
+         id="rect3808-9-7-5"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032"
+         d="m 589.50001,165.43336 0,35 10,0 0,-35 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1.08012342px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path4034"
+         d="m 639.50001,145.43336 -10,10 0,10 10,10 35,0 10,-10 0,-10 -10,-10 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032-3"
+         d="m 609.50001,160.43336 0,40 10,0 0,-40 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1.15470052px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032-3-2"
+         d="m 694.50001,160.43336 0,40 10,0 0,-40 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1.15470052px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032-3-8"
+         d="m 714.50001,165.43336 0,35 10,0 0,-35 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1.08012342px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4079"
+         d="m 629.50001,190.43336 10,-10 -10,0 z"
+         style="fill:#5c5c5c;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4081"
+         d="m 684.50001,190.43336 -10,-10 10,0 z"
+         style="fill:#5c5c5c;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <rect
+         transform="matrix(0,-1,1,0,0,0)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="594.5"
+         x="-215.43335"
+         height="20"
+         width="5"
+         id="rect3808-9-7-5-3"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-195.43335"
+         x="-579.5"
+         height="20"
+         width="5"
+         id="rect3808-9-7-5-3-6"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <g
+       id="g4111"
+       transform="translate(87.588844,-15.101526)">
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4085-2-5"
+         d="m 798.79938,167.64589 0,24.1464 13.43953,0 0,-24.1464 z"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1.13932669px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <rect
+         transform="matrix(0,-1,1,0,0,0)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="793.07141"
+         x="-147.57623"
+         height="25"
+         width="5"
+         id="rect3808-9-7"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1.11803401;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         sodipodi:nodetypes="ccccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path4083"
+         d="m 778.07144,157.57622 0,45 10,10 0,-30 10,-10 15,0 10,10 0,30 10,-10 0,-45 -10,-10 -35,0 z"
+         style="fill:#ff3c3c;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-182.57622"
+         x="-838.07141"
+         height="20"
+         width="5"
+         id="rect3808-9-7-5-3-6-1"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032-8"
+         d="m 788.07144,157.57622 0,10 5,0 0,-10 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032-8-6"
+         d="m 798.07144,157.57622 0,10 5,0 0,-10 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032-8-2"
+         d="m 808.07144,157.57622 0,10 5,0 0,-10 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         inkscape:connector-curvature="0"
+         id="path4032-8-1"
+         d="m 818.07144,157.57622 0,10 5,0 0,-10 z"
+         style="fill:#6b6b6b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-182.57622"
+         x="-778.07141"
+         height="20"
+         width="5"
+         id="rect3808-9-7-5-3-6-1-6"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <g
+       id="g4122"
+       transform="translate(136.07617,-15.101526)">
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path4269"
+         d="m 883.48703,164.38527 -5.89577,5.42919 0,11.98601 5.89577,5.4292 79.81985,0 0,-22.8444 z"
+         style="fill:#ff3c3c;fill-opacity:1;stroke:#000000;stroke-width:1.00097501;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-186.03198"
+         x="-967.78827"
+         height="20.354511"
+         width="4.1056347"
+         id="rect3808-9-7-5-3-6-2"
+         style="fill:#c2c2c2;fill-opacity:1;stroke:#000000;stroke-width:1.19355917;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-183.16739"
+         x="-958.66498"
+         height="14.760817"
+         width="2.8100009"
+         id="rect3808-9-7-5-3-6-9-1"
+         style="fill:#575757;fill-opacity:1;stroke:#000000;stroke-width:0.96213686;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-183.25061"
+         x="-951.31256"
+         height="14.882105"
+         width="2.8100009"
+         id="rect3808-9-7-5-3-6-9-1-5"
+         style="fill:#575757;fill-opacity:1;stroke:#000000;stroke-width:0.96213686;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         transform="scale(-1,-1)"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         y="-183.16486"
+         x="-944.0481"
+         height="14.760817"
+         width="2.8100009"
+         id="rect3808-9-7-5-3-6-9-1-0"
+         style="fill:#575757;fill-opacity:1;stroke:#000000;stroke-width:0.96213686;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path4350"
+         d="m 937.32197,164.39308 5.53187,-5.09409 25.42028,-0.12128 -5.13674,5.21537 z"
+         style="fill:#ff4848;fill-opacity:1;stroke:#000000;stroke-width:1.00097501px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\enemies.png"
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path4350-3"
+         d="m 968.73643,192.61163 -5.53187,-5.09409 -25.4203,-0.1213 5.13675,5.21539 z"
+         style="fill:#ff4848;fill-opacity:1;stroke:#000000;stroke-width:1.00097501px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       transform="translate(-163.40994,51.893424)"
+       id="g4230">
+      <rect
+         style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3808-9-5-9"
+         width="20.000015"
+         height="19.999847"
+         x="-865.14801"
+         y="213.8967"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+      <rect
+         style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3808-9-4"
+         width="20.000015"
+         height="19.999847"
+         x="-893.43237"
+         y="242.18105"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#0000ff;fill-opacity:1"
+         id="path3009-8"
+         sodipodi:cx="485"
+         sodipodi:cy="327.36218"
+         sodipodi:rx="15"
+         sodipodi:ry="15"
+         d="m 500,327.36218 c 0,0.008 -10e-6,0.0153 -2e-5,0.023 L 485,327.36218 z"
+         sodipodi:start="0"
+         sodipodi:end="0.0015306072"
+         transform="translate(252.64458,136.07109)"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <path
+         style="fill:#00bbff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 775.57347,393.07792 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
+         id="path2985-6-8"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:0.95576316;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3857-3"
+         width="58.071442"
+         height="10"
+         x="-445.39789"
+         y="778.46429"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(0,-1,1,0,0,0)" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.81009251;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3785-0-7-2"
+         sodipodi:cx="552.5"
+         sodipodi:cy="272.36218"
+         sodipodi:rx="17.5"
+         sodipodi:ry="15"
+         d="m 570,272.36218 c 0,8.28427 -7.83502,15 -17.5,15 -9.66498,0 -17.5,-6.71573 -17.5,-15 0,-8.28427 7.83502,-15 17.5,-15 9.66498,0 17.5,6.71573 17.5,15 z"
+         transform="matrix(0.80812236,0.80812236,-0.94280881,0.94280881,592.94239,-274.83988)"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png" />
+    </g>
+    <g
+       id="layer2-1"
+       inkscape:label="Layer"
+       style="display:none"
+       transform="translate(-86.57238,-173)">
+      <rect
+         style="fill:#e5e5e5;fill-opacity:1;stroke:#000000;stroke-width:1.01400006;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3852"
+         width="10"
+         height="60"
+         x="500"
+         y="222.36218" />
+    </g>
+    <flowRoot
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4238"
+       xml:space="preserve"
+       transform="translate(-86.57238,-173)"><flowRegion
+         id="flowRegion4240"><rect
+           y="392"
+           x="721"
+           height="47"
+           width="149"
+           id="rect4242" /></flowRegion><flowPara
+         id="flowPara4244" /></flowRoot>    <flowRoot
+       transform="translate(-4.5656652,-154.08669)"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4246"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4248"><rect
+           y="385"
+           x="700"
+           height="59"
+           width="563"
+           id="rect4250" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara4252">ENEMIES (DESTROY THEM)</flowPara></flowRoot>    <flowRoot
+       transform="translate(-21.231217,371.60773)"
+       style="font-size:40px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       id="flowRoot4246-6"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4248-3"><rect
+           y="385"
+           x="700"
+           height="199.3423"
+           width="545.93616"
+           id="rect4250-3"
+           style="text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara4252-5">YOU AND FRIEND</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara3671">TO MERGED TOGETHER</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara3706">(BOTH PRESS A)</flowPara></flowRoot>    <path
+       inkscape:export-ydpi="159.72298"
+       inkscape:export-xdpi="159.72298"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+       transform="translate(311.26272,194.77844)"
+       sodipodi:end="0.0015306072"
+       sodipodi:start="0"
+       d="m 500,327.36218 a 15,15 0 0 1 -2e-5,0.023 L 485,327.36218 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="327.36218"
+       sodipodi:cx="485"
+       id="path3009-8-8"
+       style="fill:#0000ff;fill-opacity:1"
+       sodipodi:type="arc" />
+    <g
+       transform="translate(59.117993,-83.514833)"
+       id="g4323">
+      <rect
+         style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3808-9-5-9-3"
+         width="20.000015"
+         height="19.999847"
+         x="-1018.7979"
+         y="168.43436"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+      <rect
+         style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3808-9-4-2"
+         width="20.000015"
+         height="19.999847"
+         x="-1047.0823"
+         y="196.7187"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+      <path
+         style="fill:#5cff3e;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 852.07362,533.87153 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
+         id="path2985-6-8-2"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:0.95576316;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3857-3-5"
+         width="58.071442"
+         height="10"
+         x="-586.19153"
+         y="854.96442"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(0,-1,1,0,0,0)" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.81009251;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3785-0-7-2-3"
+         sodipodi:cx="552.5"
+         sodipodi:cy="272.36218"
+         sodipodi:rx="17.5"
+         sodipodi:ry="15"
+         d="m 570,272.36218 c 0,8.28427 -7.83502,15 -17.5,15 -9.66498,0 -17.5,-6.71573 -17.5,-15 0,-8.28427 7.83502,-15 17.5,-15 9.66498,0 17.5,6.71573 17.5,15 z"
+         transform="matrix(0.80812236,0.80812236,-0.94280881,0.94280881,669.44254,-134.04627)"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png" />
+    </g>
+    <flowRoot
+       transform="translate(126.60779,140.322)"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       id="flowRoot4246-6-6"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4248-3-1"><rect
+           y="385"
+           x="700"
+           height="44"
+           width="194"
+           id="rect4250-3-8" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara4252-5-6">A FRIEND</flowPara></flowRoot>    <g
+       id="g3625"
+       transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,957.92649,-175.77011)">
+      <g
+         style="display:inline"
+         id="g4323-8"
+         transform="translate(-238.46517,25.539661)">
+        <rect
+           transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           y="168.43436"
+           x="-1018.7979"
+           height="19.999847"
+           width="20.000015"
+           id="rect3808-9-5-9-3-2"
+           style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <rect
+           transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           y="196.7187"
+           x="-1047.0823"
+           height="19.999847"
+           width="20.000015"
+           id="rect3808-9-4-2-4"
+           style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <path
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           sodipodi:nodetypes="ccccccccc"
+           inkscape:connector-curvature="0"
+           id="path2985-6-8-2-5"
+           d="m 852.07362,533.87153 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
+           style="fill:#5cff3e;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <rect
+           transform="matrix(0,-1,1,0,0,0)"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           y="854.96442"
+           x="-586.19153"
+           height="10"
+           width="58.071442"
+           id="rect3857-3-5-5"
+           style="fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:0.95576316;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <path
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           transform="matrix(0.80812236,0.80812236,-0.94280881,0.94280881,669.44254,-134.04627)"
+           d="m 570,272.36218 c 0,8.28427 -7.83502,15 -17.5,15 -9.66498,0 -17.5,-6.71573 -17.5,-15 0,-8.28427 7.83502,-15 17.5,-15 9.66498,0 17.5,6.71573 17.5,15 z"
+           sodipodi:ry="15"
+           sodipodi:rx="17.5"
+           sodipodi:cy="272.36218"
+           sodipodi:cx="552.5"
+           id="path3785-0-7-2-3-1"
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.81009251;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           sodipodi:type="arc" />
+      </g>
+      <g
+         style="display:inline"
+         id="g4230-1"
+         transform="translate(-204.17945,210.11109)">
+        <rect
+           transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           y="213.8967"
+           x="-865.14801"
+           height="19.999847"
+           width="20.000015"
+           id="rect3808-9-5-9-7"
+           style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <rect
+           transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           y="242.18105"
+           x="-893.43237"
+           height="19.999847"
+           width="20.000015"
+           id="rect3808-9-4-4"
+           style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <path
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           transform="translate(252.64458,136.07109)"
+           sodipodi:end="0.0015306072"
+           sodipodi:start="0"
+           d="m 500,327.36218 c 0,0.008 -10e-6,0.0153 -2e-5,0.023 L 485,327.36218 z"
+           sodipodi:ry="15"
+           sodipodi:rx="15"
+           sodipodi:cy="327.36218"
+           sodipodi:cx="485"
+           id="path3009-8-0"
+           style="fill:#0000ff;fill-opacity:1"
+           sodipodi:type="arc" />
+        <path
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           sodipodi:nodetypes="ccccccccc"
+           inkscape:connector-curvature="0"
+           id="path2985-6-8-9"
+           d="m 775.57347,393.07792 -28.28426,28.28426 0,14.14212 28.28426,28.28428 14.14214,0 28.28427,-28.28428 0,-14.14212 -28.28427,-28.28427 z"
+           style="fill:#00bbff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <rect
+           transform="matrix(0,-1,1,0,0,0)"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           y="778.46429"
+           x="-445.39789"
+           height="10"
+           width="58.071442"
+           id="rect3857-3-4"
+           style="fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:0.95576316;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <path
+           inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-b.png"
+           inkscape:export-ydpi="159.72298"
+           inkscape:export-xdpi="159.72298"
+           transform="matrix(0.80812236,0.80812236,-0.94280881,0.94280881,592.94239,-274.83988)"
+           d="m 570,272.36218 c 0,8.28427 -7.83502,15 -17.5,15 -9.66498,0 -17.5,-6.71573 -17.5,-15 0,-8.28427 7.83502,-15 17.5,-15 9.66498,0 17.5,6.71573 17.5,15 z"
+           sodipodi:ry="15"
+           sodipodi:rx="17.5"
+           sodipodi:cy="272.36218"
+           sodipodi:cx="552.5"
+           id="path3785-0-7-2-8"
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.81009251;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           sodipodi:type="arc" />
+      </g>
+    </g>
+    <g
+       id="g3609"
+       transform="translate(-151.57937,145.79118)">
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 1405.7152,303.76037 -28.2842,28.28426 0,14.14212 28.2842,28.28428 14.1422,0 28.2842,-28.28428 0,-14.14212 -28.2842,-28.28427 z"
+         id="path2985-6-8-6-4-1"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#e1e1e1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3808-9-7-0-92"
+         width="35.780903"
+         height="35.780602"
+         x="-1256.5701"
+         y="741.16846"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.63680267;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3785-0-7-1-95"
+         sodipodi:cx="552.5"
+         sodipodi:cy="272.36218"
+         sodipodi:rx="17.5"
+         sodipodi:ry="15"
+         d="m 570,272.36218 c 0,8.28427 -7.83502,15 -17.5,15 -9.66498,0 -17.5,-6.71573 -17.5,-15 0,-8.28427 7.83502,-15 17.5,-15 9.66498,0 17.5,6.71573 17.5,15 z"
+         transform="matrix(0.39995896,0.39995896,-0.46661849,0.46661849,1318.8449,-8.622843)"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite.png" />
+    </g>
+    <path
+       inkscape:export-ydpi="159.72298"
+       inkscape:export-xdpi="159.72298"
+       inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\newship-w.png"
+       transform="translate(1110.8524,145.18058)"
+       sodipodi:end="0.0015306072"
+       sodipodi:start="0"
+       d="m 500,327.36218 a 15,15 0 0 1 -2e-5,0.023 L 485,327.36218 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="327.36218"
+       sodipodi:cx="485"
+       id="path3009-8-0-3"
+       style="fill:#0000ff;fill-opacity:1"
+       sodipodi:type="arc" />
+    <g
+       id="g3598"
+       transform="matrix(1.2407463,0,0,1.2407463,-212.99944,-467.67891)">
+      <path
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 1180.6962,467.10926 -28.2843,28.28426 0,14.14212 28.2843,28.28428 14.1421,0 28.2843,-28.28428 0,-14.14212 -28.2843,-28.28427 z"
+         id="path2985-6-8-6-4-0"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#b4b4b4;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3808-9-7-0-0"
+         width="35.780903"
+         height="35.780602"
+         x="-1212.9626"
+         y="466.55084"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#828282;fill-opacity:1;stroke:#000000;stroke-width:1.63680267;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3785-0-7-1-8"
+         sodipodi:cx="552.5"
+         sodipodi:cy="272.36218"
+         sodipodi:rx="17.5"
+         sodipodi:ry="15"
+         d="m 570,272.36218 c 0,8.28427 -7.83502,15 -17.5,15 -9.66498,0 -17.5,-6.71573 -17.5,-15 0,-8.28427 7.83502,-15 17.5,-15 9.66498,0 17.5,6.71573 17.5,15 z"
+         transform="matrix(0.39995896,0.39995896,-0.46661849,0.46661849,1093.8259,154.72605)"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png" />
+      <rect
+         style="fill:#828282;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect5351"
+         width="3.2829957"
+         height="3.2829957"
+         x="1160.9004"
+         y="492.14783"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#828282;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect5351-7"
+         width="3.2829957"
+         height="3.2829957"
+         x="1169.6129"
+         y="484.19284"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#828282;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect5351-8"
+         width="3.2829957"
+         height="3.2829957"
+         x="1177.6942"
+         y="476.36417"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#828282;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect5351-9"
+         width="3.2829957"
+         height="3.2829957"
+         x="1194.046"
+         y="525.9248"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#828282;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect5351-7-4"
+         width="3.2829957"
+         height="3.2829957"
+         x="1202.7585"
+         y="517.96979"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+      <rect
+         style="fill:#828282;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect5351-8-1"
+         width="3.2829957"
+         height="3.2829957"
+         x="1210.8398"
+         y="510.14117"
+         inkscape:export-filename="C:\Users\brian\OneDrive\school\Fall 2014\eecs 494\eecs494proj\Project 3\Assets\graphics\satellite-enemy.png"
+         inkscape:export-xdpi="159.72298"
+         inkscape:export-ydpi="159.72298" />
+    </g>
+    <g
+       id="layer2-12"
+       inkscape:label="Layer"
+       style="display:none"
+       transform="translate(907.63656,-105.41782)">
+      <rect
+         style="fill:#e5e5e5;fill-opacity:1;stroke:#000000;stroke-width:1.01400006;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3852-3"
+         width="10"
+         height="60"
+         x="500"
+         y="222.36218" />
+    </g>
+    <flowRoot
+       transform="translate(-123.063,140.01598)"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       id="flowRoot4246-6-3"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4248-3-4"><rect
+           y="385"
+           x="700"
+           height="47"
+           width="94"
+           id="rect4250-3-1" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara4252-5-1">YOU</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="1056.8413"
+       y="774.01117"
+       id="text3667"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3669"
+         x="1056.8413"
+         y="774.01117"> </tspan></text>
+    <flowRoot
+       transform="translate(408.1286,143.7002)"
+       style="font-size:40px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       id="flowRoot4246-6-6-3"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4248-3-1-8"><rect
+           y="385"
+           x="700"
+           height="104"
+           width="299.71429"
+           id="rect4250-3-8-7"
+           style="text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara4252-5-6-4">A FRIENDLY SATELLITE</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="1154.2856"
+       y="528.57141"
+       id="text3700"
+       sodipodi:linespacing="125%"
+       transform="translate(0,-27.637817)"><tspan
+         sodipodi:role="line"
+         id="tspan3702"></tspan></text>
+    <flowRoot
+       transform="translate(-247.6378,-97.15139)"
+       style="font-size:40px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff5252;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       id="flowRoot4246-2"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4248-7"><rect
+           y="385"
+           x="700"
+           height="97.385796"
+           width="435.72076"
+           id="rect4250-7"
+           style="text-align:center;text-anchor:middle;fill:#ff5252;fill-opacity:1" /></flowRegion><flowPara
+         style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ff5252;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+         id="flowPara4252-9">ONLY DESTROYABLE IF MERGED</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#ff4848;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 654.57885,313.36601 -0.71429,-82.2618"
+       id="path4505"
+       inkscape:connector-curvature="0"
+       transform="translate(0,-27.637817)"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#ff3a3a;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 641.78572,241.07143 12.14285,-10 12.5,9.64285"
+       id="path5335"
+       inkscape:connector-curvature="0"
+       transform="translate(0,-27.637817)" />
+  </g>
+</svg>
