@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour {
 	public void AcquireCaptures(){
 		startTime = Time.time;
 
-		foreach(GameObject go in PlayerManager.S.players){
+		for(int i = 0; i < PlayerManager.S.players.Length; ++i){
 			List<TrackingStruct> tsList = new List<TrackingStruct>();
 			TrackingStruct ts;
 			ts.level = 1;
@@ -101,6 +101,8 @@ public class GameManager : MonoBehaviour {
 			ts.shipsMergedWith = new List<int>();
 			ts.time = startTime;
 			tsList.Add (ts);
+
+			playerTracker.Add (tsList);
 		}
 
 
