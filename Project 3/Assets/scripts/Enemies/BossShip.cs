@@ -100,6 +100,10 @@ public class BossShip : MonoBehaviour {
 		GameObject proj2 = (GameObject)Instantiate (projectile, transform.position, Quaternion.identity);
 		proj1.GetComponent<Bullet> ().setDefaults (angle, bulletVelocity + rigidbody2D.velocity.magnitude);
 		proj2.GetComponent<Bullet> ().setDefaults (angle - 180f, bulletVelocity + rigidbody2D.velocity.magnitude);
+		Vector3 newScale = proj1.transform.localScale;
+		newScale *= 2;
+		proj1.transform.localScale = newScale;
+		proj2.transform.localScale = newScale;
 		angle += degreesApart;
 	}
 
