@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class CreditScroll : MonoBehaviour {
 
@@ -16,6 +17,10 @@ public class CreditScroll : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(InputManager.ActiveDevice.Action1){
+			Application.LoadLevel("WinScreen");
+		}
+
 		if(timePassed > waitTime && atEnd == false){
 			Vector3 pos = Camera.main.transform.position + Vector3.down * scrollSpeed * Time.deltaTime;
 			if(pos.y < stopHeight){

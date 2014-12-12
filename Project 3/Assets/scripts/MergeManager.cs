@@ -18,7 +18,6 @@ public class MergeManager : MonoBehaviour {
 	public float rotMergeTime;
 	public float rumbleDuration = .25f;
 
-
 	public List<Player> players = new List<Player>();
 
 	//list of images telling players they can merge
@@ -82,7 +81,7 @@ public class MergeManager : MonoBehaviour {
 			rumbleTime += Time.deltaTime;
 			yield return 0;
 		}
-		device.Vibrate (0, 0);
+		device.Vibrate(0, 0);
 		print ("RumbleStop");
 	}
 
@@ -168,6 +167,12 @@ public class MergeManager : MonoBehaviour {
 								}
 								if(!players[i].TryingToMerge && !players[j].TryingToMerge){
 									iSignalJ[i*j] = false;
+									StartCoroutine("Rumble", InputManager.Devices[j]);
+                                }
+                                if (players[j].TryingToMerge)
+                                {
+                                    mRender2.SetColors(Color.green, new Color(0, 200, 0, 166));
+									StartCoroutine("Rumble", InputManager.Devices[i]);
 								}
                                 mergeVisualCues.Add(mLine1);
                                 mergeVisualCues.Add(mLine2);

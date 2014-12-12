@@ -126,7 +126,7 @@ public class PlayerManager : MonoBehaviour {
 
 	private void UpdatePlayer(InputDevice device, Player player) {
 		if(device.RightBumper.WasPressed){
-			GameManager.S.End();
+			//GameManager.S.End();
 		}
 
 		if(device.LeftBumper.WasPressed){
@@ -150,7 +150,7 @@ public class PlayerManager : MonoBehaviour {
 		if(Mathf.Abs (rightY) < 0.3f && Mathf.Abs(rightX) < 0.3f){
 			rightAngle = 0;
 		}
-		
+
 		if(device.Action3){
 
 			//if the player is holding 'X', and is near enough to a planet that is uncaptured,

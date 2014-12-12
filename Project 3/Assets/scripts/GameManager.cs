@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> directionIndicators;
 
 	bool bossHasSpawned = false;
+	public bool playersWin = true;
 
 	float timer = 0;
 
@@ -131,7 +132,7 @@ public class GameManager : MonoBehaviour {
 		foreach(CapturePoint cp in capturePoints){
 			
 			BaseSatellite bs = cp.GetComponent<BaseSatellite>();
-			if(bs.orbitRadius > furthestRadius && cp.controlledBy == CapturePoint.ControlledBy.Player){
+			if(bs.orbitRadius > furthestRadius && cp.controlledBy != CapturePoint.ControlledBy.Enemy){
 				furthestRadius = bs.orbitRadius;
 			}
 		}
@@ -178,6 +179,7 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	public void CheckForBossSpawn(){
 		bool bossShouldSpawn = true;
+		bool playersLost = true;
 
 		if(capturePoints.Count == 0) return;
 
@@ -185,9 +187,18 @@ public class GameManager : MonoBehaviour {
 			if(cp.controlledBy != CapturePoint.ControlledBy.Player){
 				bossShouldSpawn = false;
 			}
+			if(cp.controlledBy != CapturePoint.ControlledBy.Enemy){
+				playersLost = false;
+			}
+		}
+
+		if(playersLost){
+			playersWin = false;
+			End ();
 		}
 
 		if(bossShouldSpawn && Spawner.S){
+			playersWin = true;
 			bossHasSpawned = true;
 			Spawner.S.SpawnBoss();
 		}

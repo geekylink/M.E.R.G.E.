@@ -117,6 +117,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: ebb9191500607af408618c5d982966b6, type: 2}
   - {fileID: 100000, guid: 0b39ee694730bb1489b1c7f590929ecd, type: 2}
   - {fileID: 100000, guid: d79a3bf84dd594b41b1afb49f048060c, type: 2}
+  playersWin: 1
   startTime: 0
   endTime: 0
 --- !u!4 &16991587
@@ -910,7 +911,6 @@ MonoBehaviour:
   sounds: []
   soundEffect: {fileID: 8300000, guid: 4e66de690d9870d489011eb01236a103, type: 3}
   playList: []
-  mute: 1
 --- !u!82 &170738678
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logDebugInfo: 0
   invertYAxis: 0
-  enableXInput: 0
+  enableXInput: 1
   useFixedUpdate: 0
   dontDestroyOnLoad: 0
   customProfiles: []

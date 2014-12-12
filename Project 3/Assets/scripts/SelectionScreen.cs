@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using InControl;
 
 public class SelectionScreen : MonoBehaviour {
+	public static SelectionScreen S;
+
 	struct PlayerSelection{
 		public GameObject playerObj;
 		public SpriteRenderer playerBody;
@@ -27,9 +29,17 @@ public class SelectionScreen : MonoBehaviour {
 	List<bool> hasPushedA = new List<bool>();
 
 	public List<UnityEngine.UI.Text> readyTexts = new List<UnityEngine.UI.Text>();
+
+	bool canDoStuff = false;
 	// Use this for initialization
 	void Start () {
+		S = this;
+	}
+
+	public void StartSelection(){
+		if(canDoStuff) return;
 		topText.text = "Press A to Confirm";
+		StartCoroutine(WaitTillEndOfFrame());
 	}
 
 	IEnumerator WaitTillEndOfFrame(){
@@ -70,10 +80,10 @@ public class SelectionScreen : MonoBehaviour {
 			oldPos.y = Screen.height / 6;
 			readyTexts[i].rectTransform.anchoredPosition = oldPos;
 		}
+		canDoStuff = true;
 	}
 
 	void Awake(){
-		StartCoroutine(WaitTillEndOfFrame());
 	}
 
 	void Continue(){
@@ -82,10 +92,10 @@ public class SelectionScreen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if(!canDoStuff) return;
 		bool allHavePushedA = true;
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
-			if(InputManager.Devices[i].Action1.WasReleased && i < hasPushedA.Count){
+			if(InputManager.Devices[i].Action1.WasPressed && i < hasPushedA.Count){
 				hasPushedA[i] = !hasPushedA[i];
 				if(hasPushedA[i]) readyTexts[i].text = "READY";
 				else readyTexts[i].text = "";

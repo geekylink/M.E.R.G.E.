@@ -48,50 +48,6 @@ public class Spawner : MonoBehaviour {
 		}
 	}
 
-	IEnumerator SpawnCoroutine(){
-		float timer = 0;
-		
-		while(timer < 1){
-			timer += Time.deltaTime * Time.timeScale / spawnTimer;
-			yield return 0;
-		}
-		
-		int temp = Random.Range (0, 100);
-		int randomEnemy = 0;
-		if (temp < 48) {
-			randomEnemy = 0;
-		} else if (temp < 95) {
-			randomEnemy = 1;
-		} else {
-			randomEnemy = 2;
-		}
-		int side = Random.Range (0, 4);
-		
-		Vector2 posToSpawn = Vector2.zero;
-		if(side == 0){
-			posToSpawn.y = mapSize; 
-			posToSpawn.x = (Random.value - 0.5f) * 2 * mapSize;
-		}
-		else if(side == 1){
-			posToSpawn.y = -mapSize;
-			posToSpawn.x = (Random.value - 0.5f) * 2 * mapSize;
-		}
-		else if(side == 2){
-			posToSpawn.x = mapSize;
-			posToSpawn.y = (Random.value - 0.5f) * 2 * mapSize;
-		}
-		else{
-			posToSpawn.x = -mapSize;
-			posToSpawn.y = (Random.value - 0.5f) * 2 * mapSize;
-		}
-		//posToSpawn = minimapCam.ViewportToWorldPoint(posToSpawn);
-		
-		GameObject enemyGO = Instantiate (enemiesToSpawn[randomEnemy]) as GameObject;
-		enemyGO.transform.position = posToSpawn;
-		enemyGO.transform.right = posToSpawn;
-		
-		StartCoroutine(SpawnCoroutine());
-	}
 
 	IEnumerator SpawnSquad(){
 		float timer = 0;
@@ -134,6 +90,10 @@ public class Spawner : MonoBehaviour {
 
 		int squadSize = Random.Range(minSquadSize, maxSquadSize);
 		if(eSquad.targetIsPlanet) squadSize *= 2;
+		else{
+			int playerCount = PlayerManager.S.players.Length;
+			squadSize = Mathf.FloorToInt(squadSize * (playerCount / 2.0f));
+		}
 
 		eSquad.squadMembers = new List<EnemyBaseShip> ();
 		Vector2 planetSpawnPos = Vector2.zero;
