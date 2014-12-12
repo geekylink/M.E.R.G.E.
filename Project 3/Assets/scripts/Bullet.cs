@@ -86,17 +86,20 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
+    void explodeParticles()
+    {
+        if (explosion != null)
+        {
+            GameObject exp = Instantiate(explosion, this.transform.position, Quaternion.identity) as GameObject;
+            exp.GetComponent<ParticleSystem>().startColor = color;
+        }
+    }
     void OnCollisionEnter2D(Collision2D col)
     {
 		if(col.gameObject.tag == "Satellite"){
 			BaseSatellite sat = col.collider.GetComponent<BaseSatellite>();
 			sat.TakeDamage(damageDealt, owner);
-			if (explosion != null)
-			{
-				GameObject exp = Instantiate(explosion, this.transform.position, Quaternion.identity) as GameObject;
-                exp.GetComponent<ParticleSystem>().startColor = color;
-
-			}
+            explodeParticles();
 
 			if (owner != null) {
 
@@ -112,12 +115,14 @@ public class Bullet : MonoBehaviour {
 		}
 
 		if (col.gameObject.tag == "Boss") {
+            explodeParticles();
 			Destroy(this.gameObject);
 		}
 
 		if(col.gameObject.tag == "WeakPoint"){
 			BossWeakPoint wp = col.collider.GetComponent<BossWeakPoint>();
 			wp.TakeDamage(damageDealt, owner);
+            explodeParticles();
 			Destroy (this.gameObject);
 		}
 
@@ -127,10 +132,8 @@ public class Bullet : MonoBehaviour {
 			if(!bs.isInvulnerable){
 				
 				bs.TakeDamage(damageDealt, owner);
-				if (explosion != null)
-				{
-					Instantiate(explosion, this.transform.position, Quaternion.identity);
-				}
+                explodeParticles();
+
 
 				if (owner != null) {
 					//owner.score+= 2;

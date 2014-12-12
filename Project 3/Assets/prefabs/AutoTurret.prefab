@@ -56,7 +56,7 @@ MonoBehaviour:
   orbitSpeed: .00999999978
   orbitTarget: {fileID: 0}
   creatorObj: {fileID: 0}
-  explosion: {fileID: 100000, guid: fe924960e65ff7b4bbe36bbd4d321070, type: 2}
+  explosion: {fileID: 100000, guid: e836f838f68d0ae47b3469d2b56c3f46, type: 2}
   orbiting: 1
   team: 0
   health: 5
