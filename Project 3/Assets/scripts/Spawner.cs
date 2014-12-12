@@ -193,7 +193,7 @@ public class Spawner : MonoBehaviour {
 
 	public void SpawnBoss(){
 		SFXManager.getManager ().StopMusic ();
-		SFXManager.getManager().playSound("Boss1");
+		SFXManager.getManager().playSound("Boss2");
 		bossOnScreen = Instantiate (boss) as GameObject;
 		bossOnScreen.transform.position = bossSpawnLoc;
 	}

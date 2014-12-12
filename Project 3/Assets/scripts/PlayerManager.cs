@@ -144,13 +144,9 @@ public class PlayerManager : MonoBehaviour {
 			leftX = leftY = 0;
 			leftAngle = 0;
 		}
-		if(Mathf.Abs (rightY) < 0.3f && Mathf.Abs(rightX) < 0.3f){
-			rightAngle = 0;
+		if (Mathf.Abs (rightY) < 0.3f && Mathf.Abs (rightX) < 0.3f) {
+						rightAngle = 0;
 		}
-
-		if (device.DPadDown) {
-			SFXManager.getManager().StopMusic();
-				}
 
 		if(device.Action3){
 
@@ -335,3 +331,4 @@ public class PlayerManager : MonoBehaviour {
 
 	}
 }
+
