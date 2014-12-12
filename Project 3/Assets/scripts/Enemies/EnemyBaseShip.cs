@@ -13,6 +13,8 @@ public class EnemyBaseShip : BaseShip {
 	public float closeFollowRange;
 	public float closeFollowSpeed;
 
+	public float highSpeedMult = 1;
+
 	bool hasChosenClosePlayer = false;
 	
 	// Use this for initialization
@@ -80,10 +82,10 @@ public class EnemyBaseShip : BaseShip {
 					//rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)Boids(squadId) * Time.deltaTime;
 					// enforce minimum and maximum speeds for the boids
 					float speed = rigidbody2D.velocity.magnitude;
-					if (speed > SquadManager.S.highLimit)
+					if (speed > SquadManager.S.highLimit * highSpeedMult)
 					{
 						if(dir.magnitude > closeFollowRange){
-							rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.highLimit;
+							rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.highLimit * highSpeedMult;
 						}
 						else{
 							if(speed > closeFollowSpeed){

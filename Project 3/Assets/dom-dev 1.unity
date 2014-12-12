@@ -2518,7 +2518,7 @@ GameObject:
   - 114: {fileID: 1130763459}
   m_Layer: 0
   m_Name: InControl
-  m_TagString: Untagged
+  m_TagString: InControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3039,6 +3039,7 @@ MonoBehaviour:
   enemiesToSpawn:
   - {fileID: 100000, guid: 7c7f18c910a154f4c900d847be71d8e0, type: 2}
   - {fileID: 100006, guid: 2a75ca4f6d04b334e96f0dc4ea70f192, type: 2}
+  - {fileID: 100000, guid: 882d176dc7635ba4c8dbccaa3e796f13, type: 2}
   squadPrefab: {fileID: 100000, guid: 06afbea6c23e3924ab0d29368f18f662, type: 2}
   spawnTimer: 20
   spawnLocs: []
@@ -4974,6 +4975,7 @@ MonoBehaviour:
   mergeLine: {fileID: 100000, guid: 21d74fa1b7cc76d4b96b1d3b673635e4, type: 2}
   mergeDistance: 10
   rotMergeTime: 1
+  rumbleDuration: .5
   players: []
 --- !u!4 &2112666404
 Transform:

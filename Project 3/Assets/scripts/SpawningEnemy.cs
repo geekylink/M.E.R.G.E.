@@ -11,10 +11,11 @@ public class SpawningEnemy : EnemyBaseShip
     public float projectileSpeed = 4;
     private float fireTimer = 0f;
 
+	public float distanceToSpawn;
+
 	// Use this for initialization
 	public override void Start () {
 		sphere.renderer.material.color = Color.red;
-        currTarget = getRandomPlayer();
 		spawner = true;
 		health = maxHealth;
 	}
@@ -23,34 +24,27 @@ public class SpawningEnemy : EnemyBaseShip
 	void Update () {
         if (currTarget != null)
         {
-            Vector3 targetPos = currTarget.transform.position;
-            var dist = targetPos - transform.position;
-            if (dist.magnitude > hoverDistance)
-                this.rigidbody2D.velocity = dist.normalized * moveSpeed;
-            else
-                this.rigidbody2D.velocity = Vector3.zero;
-
-            var angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
-
-            if (fireTimer > fireRate)
-            {
-                fireTimer = 0;
-                FireShip(transform.rotation);
-            }
-            else
-            {
-                fireTimer += Time.deltaTime;
-            }
+			if(Vector3.Distance(transform.position, Camera.main.transform.position) < distanceToSpawn){
+				if (fireTimer > fireRate)
+				{
+					fireTimer = 0;
+					FireShip(transform.rotation);
+				}
+				else
+				{
+					fireTimer += Time.deltaTime;
+				}
+			}
+            
         }
 	}
 
     void FireShip(Quaternion angle)
     {
-        GameObject enemyGO = Instantiate(projectile, this.transform.position + Quaternion.Euler(-angle.eulerAngles.z +90,0,0) * (new Vector3( -1, 0, 0)), this.transform.rotation) as GameObject;
+        GameObject enemyGO = Instantiate(Spawner.S.enemiesToSpawn[Random.Range (0, 2)], this.transform.position + Quaternion.Euler(-angle.eulerAngles.z +90,0,0) * (new Vector3( -1, 0, 0)), this.transform.rotation) as GameObject;
 		EnemyBaseShip enemy = enemyGO.GetComponent<EnemyBaseShip> ();
 		enemy.squadId = squadId;
-		SquadManager.S.squads [squadId].squadMembers.Add (enemy);
+		SquadManager.S.squads [squadId - 1].squadMembers.Add (enemy);
 		GameManager.S.enemyList.Add (enemyGO);
 		enemy.currTarget = currTarget;
 		enemy.boidInit = true;
