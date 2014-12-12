@@ -25,6 +25,7 @@ public class CapturePoint : MonoBehaviour {
 
 	public GameObject autoTurretPrefab;
 	public GameObject enemyAutoTurret;
+	public GameObject linearBarPrefab;
 /*
 	bool allDestroyed = false;
 	SubCapturePoint[] subPoints;*/
@@ -36,6 +37,7 @@ public class CapturePoint : MonoBehaviour {
 
 	public bool beingCaptured = false;
 	public GameObject turretBeingBuilt;
+	GameObject linearBar;
 	bool buildingTurrets = false;
 	bool secondTurretSpawnPhase = false;
 
@@ -87,6 +89,7 @@ public class CapturePoint : MonoBehaviour {
 				
 				StopCoroutine("SpawnTurret");
 				if(turretBeingBuilt) Destroy (turretBeingBuilt);
+				if(linearBar) Destroy(linearBar);
 			}
 			if(controlledBy == ControlledBy.Player){
 				controlledBy = ControlledBy.Enemy;
@@ -159,8 +162,13 @@ public class CapturePoint : MonoBehaviour {
 		turretBeingBuilt.transform.position = transform.position;
 		turretBeingBuilt.transform.parent = gameObject.transform;
 
-
 		SpriteRenderer ts = turretBeingBuilt.GetComponent<SpriteRenderer>();
+
+		if(linearBar != null) Destroy(linearBar);
+		linearBar = Instantiate(linearBarPrefab) as GameObject;
+		linearBar.transform.position = transform.position - Vector3.up * 4;
+		linearBar.transform.parent = gameObject.transform;
+		LinearBar lb = linearBar.GetComponent<LinearBar>();
 
 		//increase alpha as time goes on
 		float t = 0;
@@ -169,10 +177,15 @@ public class CapturePoint : MonoBehaviour {
 			Color c = ts.material.color;
 			c.a = t;
 			ts.material.color = c;
+
+			lb.SetPercent(t);
 			yield return 0;
 		}
+
 		//This part really only matters if it were the first turret being built
 		//on the planet, but it can't really hurt either way
+
+		Destroy (linearBar);
 		beingCaptured = false;
 		controlledBy = controller;
 		ChangeController();
@@ -230,6 +243,11 @@ public class CapturePoint : MonoBehaviour {
 		GameObject autoSat;
 		if(controller == ControlledBy.Player){
 			autoSat = Instantiate (autoTurretPrefab, moveToPos, this.transform.rotation) as GameObject;
+
+			if (satsInOrbit.Count == 0) {
+				SFXManager man = SFXManager.getManager ();
+				man.playSound ("Capture");
+			}
 		}
 		else{
 			autoSat = Instantiate (enemyAutoTurret, moveToPos, this.transform.rotation) as GameObject;
@@ -257,6 +275,7 @@ public class CapturePoint : MonoBehaviour {
 		beingCaptured = false;
 		StopCoroutine("SpawnTurret");
 		if(turretBeingBuilt) Destroy (turretBeingBuilt);
+		if(linearBar) Destroy(linearBar);
 	}
 
 	
@@ -270,6 +289,7 @@ public class CapturePoint : MonoBehaviour {
 				
 				StopCoroutine("SpawnTurret");
 				if(turretBeingBuilt) Destroy (turretBeingBuilt);
+				if(linearBar) Destroy(linearBar);
 			}
 		}
 

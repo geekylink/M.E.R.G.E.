@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour {
 
 	float timer = 0;
 
+	private float lastWarning = 0;
+	private float maxWarning = 15;
+
 	// Use this for initialization
 	void Start () {
 		if(S == null)
@@ -375,6 +378,13 @@ public class GameManager : MonoBehaviour {
 				float indicatorFlicker = closestSquad / GameManager.S.mapSize * 10f;
 				if(timer % indicatorFlicker < indicatorFlicker / 2){
 					dirIndicator.GetComponent<SpriteRenderer>().material.color = Color.white;
+
+					// Plays a warning to the players when their planet is being captured
+					if (lastWarning <= 0) {
+						SFXManager man = SFXManager.getManager ();
+						man.playSound ("Warning");
+						lastWarning = maxWarning;
+					}
 				}
 			}
 
@@ -388,6 +398,12 @@ public class GameManager : MonoBehaviour {
 		if(timer > 60){
 			timer = 0;
 		}
+
+		lastWarning -= Time.deltaTime;
+		if (lastWarning <= 0) {
+			lastWarning = 0;
+		}
+
 		ShowCapturePointsOnScreen();
 	}
 }

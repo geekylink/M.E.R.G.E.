@@ -95,7 +95,8 @@ public class Spawner : MonoBehaviour {
 
 	IEnumerator SpawnSquad(){
 		float timer = 0;
-		
+
+		spawnTimer = Random.Range(10, 20);
 		while(timer < 1){
 			timer += Time.deltaTime * Time.timeScale / spawnTimer;
 			yield return 0;
@@ -148,7 +149,8 @@ public class Spawner : MonoBehaviour {
 			ranNum++;
 		}
 		if(planetSpawnPos != Vector2.zero){
-
+			
+			SquadManager.S.squads.Add (eSquad);
 			for (int i = 0; i < squadSize; ++i) {
 				int weight = Random.Range(0, 100);
 				int enemyIdx;
@@ -184,8 +186,9 @@ public class Spawner : MonoBehaviour {
 				}
 
 				ship.StartRoutines();
+
+				yield return new WaitForSeconds(Random.Range(0.1f, 0.4f));
 			}
-			SquadManager.S.squads.Add (eSquad);
 			SquadManager.nextID++;
 		}
 		StartCoroutine (SpawnSquad ());

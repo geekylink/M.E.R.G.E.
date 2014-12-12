@@ -79,6 +79,7 @@ public class BaseShip : MonoBehaviour {
 	}
 
 	public void RestrictToMap(){
+		if(CameraMove.S.restrictToFurthestOrbit) return;
 		Vector2 pos = transform.position;
 		if(Mathf.Abs (pos.x) > GameManager.S.mapSize	){
 			pos.x = GameManager.S.mapSize * Mathf.Abs (pos.x) / pos.x;

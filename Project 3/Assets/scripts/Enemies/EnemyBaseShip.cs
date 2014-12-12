@@ -12,6 +12,8 @@ public class EnemyBaseShip : BaseShip {
 	public float closeFollowWeight;
 	public float closeFollowRange;
 	public float closeFollowSpeed;
+
+	bool hasChosenClosePlayer = false;
 	
 	// Use this for initialization
 	public override void Start () {
@@ -27,11 +29,46 @@ public class EnemyBaseShip : BaseShip {
 	}
 
 	public void StartRoutines(){
-		StartCoroutine(EnemySteering());
+		StartCoroutine(EnemyFlying());
 		StartCoroutine(EnemyTurning());
+		StartCoroutine(AttackPlayersOnWayToPlanet());
 	}
 
-	public IEnumerator EnemySteering ()
+	IEnumerator AttackPlayersOnWayToPlanet(){
+
+		while(true){
+			if(squadId > 0 && SquadManager.S.squads.Count >= squadId){
+				if(SquadManager.S.squads[squadId - 1].targetIsPlanet){
+					if(!hasChosenClosePlayer){
+						float distance = Vector3.Distance(Camera.main.transform.position, transform.position);
+						int ran = Random.Range(0, 100);
+						
+						if(distance < 30 && ran < 50){
+							currTarget = getRandomPlayer();
+							hasChosenClosePlayer = true;
+						}
+					}
+					else{
+						
+						int ran = Random.Range(0, 100);
+						if(ran < 50)
+						{
+							CapturePoint cp = SquadManager.S.squads[squadId-1].target.GetComponent<CapturePoint>();
+							if(cp.satsInOrbit.Count > 0){
+								int randomSat = Random.Range (0, cp.satsInOrbit.Count);
+								currTarget = cp.satsInOrbit[randomSat].gameObject;
+							}
+							hasChosenClosePlayer = false;
+						}
+					}
+				}
+			}
+			
+			yield return new WaitForSeconds(Random.Range (2.0f, 6.0f));
+		}
+	}
+
+	public IEnumerator EnemyFlying ()
 	{
 		while (true)
 		{
@@ -39,7 +76,8 @@ public class EnemyBaseShip : BaseShip {
 				if(currTarget != null){
 					targetPos = currTarget.transform.position;
 					var dir = targetPos - transform.position;
-					rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)Boids(squadId) * Time.deltaTime;
+					rigidbody2D.velocity = Vector2.Lerp(rigidbody2D.velocity, (Vector2)Boids(squadId), Time.deltaTime * 3);
+					//rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)Boids(squadId) * Time.deltaTime;
 					// enforce minimum and maximum speeds for the boids
 					float speed = rigidbody2D.velocity.magnitude;
 					if (speed > SquadManager.S.highLimit)
@@ -58,22 +96,17 @@ public class EnemyBaseShip : BaseShip {
 						rigidbody2D.velocity = rigidbody2D.velocity.normalized * SquadManager.S.lowLimit;
 					}
 
-					
-					var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 180;
-					transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 				}
 			}
-			
-			
-			float waitTime = Random.Range(0.3f, 0.5f);
-			yield return new WaitForSeconds (waitTime);
+
+			yield return new WaitForSeconds ( Random.Range(0, 0.5f));
 		}
 	}
 
 	public Vector3 Boids(int squadId){
 		List<EnemySquad> squads = SquadManager.S.squads;
-		//return squads [squadId - 1].ApplyBoids (enemy);
-		if(squadId > squads.Count) return Vector3.zero;
+		if(squadId > squads.Count && currTarget) return currTarget.transform.localPosition - transform.position;
+		if(squadId > squads.Count && !currTarget) return Vector3.zero;
 		
 		Vector3 randomize = new Vector3 ((Random.value *2) -1, (Random.value * 2) -1, 0);
 		
@@ -82,17 +115,40 @@ public class EnemyBaseShip : BaseShip {
 		Vector3 flockCenter = squads [squadId - 1].squadCenter;
 		Vector3 flockVelocity = squads [squadId - 1].squadVelocity;
 		Vector3 follow = currTarget.transform.localPosition;
+		Vector3 separation = Vector3.zero;
 		
 		flockCenter = flockCenter - transform.position;
 		flockVelocity = flockVelocity - (Vector3)rigidbody2D.velocity;
 		follow = follow - transform.position;
+
+		int numShips = 0;
+	
+
+		foreach(EnemyBaseShip bs in squads[squadId - 1].squadMembers){
+			if(!bs) continue;
+			if(bs == this) continue;
+			Vector3 bsPos = bs.transform.position;
+			Vector3 pos = transform.position;
+			if(Vector3.Distance(bsPos, pos) < 10){
+				separation += pos - bsPos;
+			}
+		}
+		if(numShips > 0){
+			separation = separation / numShips;
+		}
 
 		float followWeight = SquadManager.S.followWeight;
 		if(follow.magnitude < closeFollowRange){
 			followWeight *= closeFollowWeight;
 		}
 		
-		return (flockCenter + flockVelocity + follow * followWeight + randomize * SquadManager.S.randomness);
+		float flockCenterWeight = flockCenter.magnitude;
+		flockCenter = flockCenter.normalized;
+		if(flockCenterWeight > 0 && follow.magnitude > closeFollowRange){
+			flockCenterWeight = flockCenterWeight *  flockCenterWeight * Random.value;
+		}
+
+		return (flockCenter * flockCenterWeight + flockVelocity + follow * followWeight + randomize * SquadManager.S.randomness + separation * SquadManager.S.separationWeight);
 	}
 
 	public IEnumerator EnemyTurning(){
@@ -104,7 +160,11 @@ public class EnemyBaseShip : BaseShip {
 					var dir = targetPos - transform.position;
 
 					var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 180;
-					transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+					Quaternion newRot = Quaternion.AngleAxis(angle, Vector3.forward);
+					Quaternion oldRot = transform.rotation;
+					transform.rotation = Quaternion.Lerp (oldRot, newRot, Time.deltaTime * 20);
+
 				}
 				else{
 					if(squadId > 0 && SquadManager.S.squads.Count >= squadId){
@@ -122,6 +182,8 @@ public class EnemyBaseShip : BaseShip {
 
 				}
 			}
+
+
 
 			yield return 0;
 		}

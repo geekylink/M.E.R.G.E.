@@ -99,7 +99,8 @@ public class Bullet : MonoBehaviour {
 			}
 
 			if (owner != null) {
-				owner.score+= 3;
+				//owner.score+= 3;
+				owner.KillSomething(0.5f);
 			}
 
 			Destroy(this.gameObject);
@@ -115,6 +116,9 @@ public class Bullet : MonoBehaviour {
 		if(col.gameObject.tag == "WeakPoint"){
 			BossWeakPoint wp = col.collider.GetComponent<BossWeakPoint>();
 			wp.TakeDamage(damageDealt);
+			if(owner != null){
+				owner.KillSomething(0.05f);
+			}
 			Destroy (this.gameObject);
 		}
 
@@ -130,7 +134,8 @@ public class Bullet : MonoBehaviour {
 				}
 
 				if (owner != null) {
-					owner.score+= 2;
+					//owner.score+= 2;
+					owner.KillSomething(0.1f);
 				}
 
 				Destroy(this.gameObject);

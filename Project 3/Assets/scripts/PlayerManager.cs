@@ -230,6 +230,7 @@ public class PlayerManager : MonoBehaviour {
 
 		if(isInvulnerable){
 			StartCoroutine(RespawnInvulnerability(playerGO));
+			UpgradeSystem.S.Respawn(arrayPos);
 		}
 
 	}

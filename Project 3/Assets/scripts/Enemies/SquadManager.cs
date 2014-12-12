@@ -12,6 +12,7 @@ public class SquadManager : MonoBehaviour {
 	public float lowLimit;
 	public float highLimit;
 	public float randomness;
+	public float separationWeight;
 	public float followWeight;
 
 	// Use this for initialization
