@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class SFXManager : MonoBehaviour {
 
+	public static SFXManager S = null;
+
 	public List<Sound> sounds;
 
 	public AudioClip soundEffect;
@@ -13,22 +15,39 @@ public class SFXManager : MonoBehaviour {
 	private AudioSource[] sources;
 
 	private static int numChannels = 10;
-	public bool mute = false;
+	private int currMusicID = -1;
 
 	// Use this for initialization
 	void Start () {
-		if(mute) return;
-		sources = new AudioSource[numChannels];
+		if(S == null)
+		{
+			S = this;
+		}
+		else
+		{
+			//Application.loadedLevelName;
+			//if(this != S)
+			//	Destroy(this.gameObject);
+
+			GameObject camObj = GameObject.Find("Main Camera");
+			Camera cam = camObj.GetComponent("Camera") as Camera;
+			S.transform.parent = cam.gameObject.transform;
+
+			return;
+		}
+		DontDestroyOnLoad(this.gameObject);
+
+		S.sources = new AudioSource[numChannels];
 
 		for (int i = 0; i < numChannels; i++) {
-			sources[i] = this.gameObject.AddComponent ("AudioSource") as AudioSource;
-			sources[i].volume = 1;
-			sources[i].bypassEffects = true;
-			sources[i].bypassListenerEffects = true;
-			sources[i].bypassReverbZones = true;
-			sources[i].pitch = 1;
-			sources[i].rolloffMode = AudioRolloffMode.Linear;
-			sources[i].pan = 0;
+			S.sources[i] = this.gameObject.AddComponent ("AudioSource") as AudioSource;
+			S.sources[i].volume = 1;
+			S.sources[i].bypassEffects = true;
+			S.sources[i].bypassListenerEffects = true;
+			S.sources[i].bypassReverbZones = true;
+			S.sources[i].pitch = 1;
+			S.sources[i].rolloffMode = AudioRolloffMode.Linear;
+			S.sources[i].pan = 0;
 		}
 		
 		AddSound ("grenade", "grenade");
@@ -40,9 +59,10 @@ public class SFXManager : MonoBehaviour {
 		AddSound ("Warning", "Warning");
 		AddSound ("Capture", "Capture");
 		AddSound ("Boss", "Boss");
-		AddSound ("Title", "Title");
+		AddSound ("Title", "Title", true);
+		AddSound ("Theme", "Theme", true);
 
-		playSound ("Boss");
+		playSound ("Theme");
 	}
 
 	// Gets an instance of the sound manager
@@ -54,35 +74,49 @@ public class SFXManager : MonoBehaviour {
 
 	// Plays sound "name"
 	public void playSound(string name) {
-		if(mute) return;
-		playList.Add (name);
+		S.playList.Add (name);
 	}
 
 	// Adds a sound that can then be played with playSound("name");
-	private void AddSound(string name, string resource) {
+	private void AddSound(string name, string resource, bool loop = false, int nextMusic = -1) {
 		Sound sfx = new Sound ();
 		sfx.soundName = name;
 		sfx.clip = Resources.Load (resource) as AudioClip;
-		sounds.Add (sfx);
+		sfx.loop = loop;
+		S.sounds.Add (sfx);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(mute) return;
-		while (playList.Count > 0) { // Play all sounds in the playList
+		while (S.playList.Count > 0) { // Play all sounds in the playList
 			foreach (Sound snd in sounds) { // Finds the right AudioClip to load
-				if (snd.soundName == playList[0]) {
+				if (snd.soundName == S.playList[0]) {
 
 					// Finds first available channel
 					for (int i = 0; i < numChannels; i++) {
+						if (!S.sources[i].isPlaying) {
+							S.sources[i].clip = snd.clip;
+							S.sources[i].Play();
+							S.sources[i].loop = snd.loop;
+							
+							if (snd.loop) {
+								S.currMusicID = i;
+							}
+							
+							break;
+						}
+					}
+
+					// Finds first available channel
+					/*for (int i = 0; i < numChannels; i++) {
 						if (!sources[i].isPlaying) {
 							sources[i].clip = snd.clip;
 							sources[i].Play();
 							break;
 						}
-					}
+					}*/
 
-					playList.RemoveAt(0);
+					S.playList.RemoveAt(0);
 					break;
 				}
 			}

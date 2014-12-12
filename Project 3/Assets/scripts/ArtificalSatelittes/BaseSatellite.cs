@@ -63,6 +63,7 @@ public class BaseSatellite : MonoBehaviour {
 
 		if (explosion != null)
 		{
+			SFXManager.getManager().playSound("grenade");
 			Instantiate(explosion, this.transform.position, Quaternion.identity);
 		}
 		GameManager.S.enemyList.Remove (this.gameObject);
