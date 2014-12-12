@@ -80,7 +80,7 @@ public class EnemyBaseShip : BaseShip {
 					var dir = targetPos - transform.position;
 					Vector2 newVel = Vector2.Lerp (rigidbody2D.velocity, (Vector2)Boids(squadId), Time.deltaTime * 3);
 
-					if(float.IsNaN(newVel.x) || float.IsNaN(newVel.y)) newVel = SquadManager.S.squads [squadId - 1].squadVelocity;
+					if(float.IsNaN(newVel.x) || float.IsNaN(newVel.y)) continue;
 
 					rigidbody2D.velocity = newVel;
 					//rigidbody2D.velocity = rigidbody2D.velocity + (Vector2)Boids(squadId) * Time.deltaTime;
@@ -111,7 +111,7 @@ public class EnemyBaseShip : BaseShip {
 
 	public Vector3 Boids(int squadId){
 		List<EnemySquad> squads = SquadManager.S.squads;
-		if(squadId > squads.Count && currTarget) return currTarget.transform.localPosition - transform.position;
+		if(squadId > squads.Count && currTarget) return currTarget.transform.position - transform.position;
 		if(squadId > squads.Count && !currTarget) return Vector3.zero;
 		
 		Vector3 randomize = new Vector3 ((Random.value *2) -1, (Random.value * 2) -1, 0);
@@ -120,7 +120,7 @@ public class EnemyBaseShip : BaseShip {
 		
 		Vector3 flockCenter = squads [squadId - 1].squadCenter;
 		Vector3 flockVelocity = squads [squadId - 1].squadVelocity;
-		Vector3 follow = currTarget.transform.localPosition;
+		Vector3 follow = currTarget.transform.position;
 		Vector3 separation = Vector3.zero;
 		
 		flockCenter = flockCenter - transform.position;

@@ -106,7 +106,7 @@ public class BaseShip : MonoBehaviour {
 	public GameObject getRandomPlayer() {
 		GameObject cam = GameObject.Find ("Main Camera");
 		PlayerManager pm = cam.GetComponent ("PlayerManager") as PlayerManager;
-		GameObject[] players = pm.getPlayers ();
+		GameObject[] players = PlayerManager.S.players;
 
 		if(players == null || players.Length == 0){
 			return null;

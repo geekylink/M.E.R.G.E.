@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour {
 
 	private void UpdatePlayer(InputDevice device, Player player) {
 		if(device.Action4){
-			GameManager.S.End();
+			//GameManager.S.End();
 		}
 
 		if(device.LeftBumper.WasPressed){

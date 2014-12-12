@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour {
 	}
 	public List<List<TrackingStruct>> playerTracker = new List<List<TrackingStruct>>();
 
+	bool endGame = false;
+
 	// Use this for initialization
 	void Start () {
 		if(S == null)
@@ -207,11 +209,12 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator EndGame(){
 		yield return new WaitForSeconds(3);
+		Destroy(GameObject.Find ("InControl").gameObject);
+		endGame = true;
 		Application.LoadLevel("GraphScreen");
 	}
 
 	public void End(){
-		Destroy(GameObject.Find ("InControl").gameObject);
 		endTime = Time.time;
 		StartCoroutine(EndGame());
 	}
@@ -464,7 +467,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if(endGame) return;
 		timer += Time.deltaTime;
 		if(timer > 60){
 			timer = 0;

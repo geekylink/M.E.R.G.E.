@@ -1,0 +1,36 @@
+Initialize engine version: 4.6.0b20 (a3ecf55f1347)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     32 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+- Completed reload, in  0.167 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\DomenicKelly\Documents\GitHub\eecs494proj\gold_Data\Managed\System.dll (this message is harmless)
+lv: SplashScreen
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 12.326723 ms
+lv: dom-dev 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 908.
+Total: 16.314177 ms (FindLiveObjects: 0.113833 ms CreateObjectMapping: 0.046186 ms MarkObjects: 1.322153 ms  DeleteObjects: 13.139423 ms)
+

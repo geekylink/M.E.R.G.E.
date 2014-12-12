@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -185,7 +186,6 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1 &512043664
@@ -327,13 +327,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press Start To Return To Main Menu
+  m_Text: Press A To Return To Main Menu
 --- !u!222 &1233319054
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1233319052}
+  m_HideIfInvisible: 0
 --- !u!224 &1233319055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -348,7 +349,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
-  m_AnchoredPosition: {x: -82.9589996, y: 58.710022}
+  m_AnchoredPosition: {x: -91.9219971, y: 58.7099991}
   m_SizeDelta: {x: 270, y: 60.7999992}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1430395027
@@ -411,7 +412,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
-  m_DragThreshold: 5
 --- !u!4 &1430395031
 Transform:
   m_ObjectHideFlags: 0
@@ -518,6 +518,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1722169836}
+  m_HideIfInvisible: 0
 --- !u!224 &1722169839
 RectTransform:
   m_ObjectHideFlags: 0
@@ -697,10 +698,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press A To View Credits
+  m_Text: Press B To View Credits
 --- !u!222 &2067508158
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2067508155}
+  m_HideIfInvisible: 0

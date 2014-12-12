@@ -19,6 +19,9 @@ public class GraphManager : MonoBehaviour {
 	public Text winOrLoseText;
 	int graphToShow = 2;
 
+	bool changedGraph = false;
+	float graphChangeTime = 0;
+
 	// Use this for initialization
 	void Start () {
 		startTime = GameManager.S.startTime;
@@ -247,6 +250,7 @@ public class GraphManager : MonoBehaviour {
 	}
 
 	void SwitchGraphs(int dir){
+		changedGraph = true;
 		graphToShow += dir;
 		if(graphToShow < 0) graphToShow = 2;
 		if(graphToShow > 2) graphToShow = 0;
@@ -267,15 +271,19 @@ public class GraphManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		if(changedGraph){
+			graphChangeTime += Time.deltaTime;
+			if(graphChangeTime > 1) {changedGraph = false; graphChangeTime = 0;}
+			return;
+		}
 		for(int i = 0; i < InputManager.Devices.Count; ++i){
-			if(InputManager.Devices[i].MenuWasPressed){
+			if(InputManager.Devices[i].Action1){
 				Application.LoadLevel("WinScreen");
 			}
-			if(InputManager.Devices[i].RightBumper.WasPressed){
+			if(InputManager.Devices[i].Action2){
 				SwitchGraphs(1);
 			}
-			if(InputManager.Devices[i].LeftBumper.WasPressed){
+			if(InputManager.Devices[i].Action3){
 				SwitchGraphs(-1);
 			}
 		}
