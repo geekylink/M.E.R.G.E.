@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using InControl;
 
 public class MergeManager : MonoBehaviour {
+
 	public static MergeManager S;
 
 	//Image used to indicate players can merge, e.g., an Xbox 'A'
@@ -15,12 +16,14 @@ public class MergeManager : MonoBehaviour {
 	//time it takes for players to merge into the ship.
 
 	public float rotMergeTime;
-	public float rumbleDuration = .5f;
+	public float rumbleDuration = .25f;
+
 
 	public List<Player> players = new List<Player>();
 
 	//list of images telling players they can merge
 	List<GameObject> mergeVisualCues = new List<GameObject>();
+	List<bool> iSignalJ = new List<bool> ();
 
 	//Who each player is merged with
 	public List<List<Player>> currentlyMergedWith = new List<List<Player>>();
@@ -44,6 +47,11 @@ public class MergeManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		GameObject.FindGameObjectWithTag ("InControl").GetComponent<InControlManager> ().enableXInput = true;
+		for (int i = 0; i < InputManager.Devices.Count; i++) {
+			for (int j = 0; j < InputManager.Devices.Count; j++) {
+				iSignalJ.Add (false);
+			}
+		}
 	}
 
 	public void AddPlayer(Player player, int index){
@@ -68,12 +76,13 @@ public class MergeManager : MonoBehaviour {
 	IEnumerator Rumble(InputDevice device){
 		InputManager.EnableXInput = true;
 		float rumbleTime = 0f;
-		device.Vibrate (10, 10);
+		device.Vibrate (3, 3);
 		print ("RumbleStart");
 		while (rumbleTime < rumbleDuration) {
 			rumbleTime += Time.deltaTime;
 			yield return 0;
 		}
+		device.Vibrate (0, 0);
 		print ("RumbleStop");
 	}
 
@@ -144,12 +153,21 @@ public class MergeManager : MonoBehaviour {
                                 if(players[i].TryingToMerge)
                                 {
                                     mRender1.SetColors(Color.green, new Color(0,200,0,166));
-									StartCoroutine("Rumble", InputManager.Devices[i]);
-                                }
+									if(iSignalJ[i * j] == false){
+										StartCoroutine("Rumble", InputManager.Devices[j]);
+										iSignalJ[i * j] = true;
+									}
+								}
                                 if (players[j].TryingToMerge)
                                 {
                                     mRender2.SetColors(Color.green, new Color(0, 200, 0, 166));
-									StartCoroutine("Rumble", InputManager.Devices[j]);
+									if(iSignalJ[i * j] == false){
+										StartCoroutine("Rumble", InputManager.Devices[i]);
+										iSignalJ[i * j] = true;
+									}
+								}
+								if(!players[i].TryingToMerge && !players[j].TryingToMerge){
+									iSignalJ[i*j] = false;
 								}
                                 mergeVisualCues.Add(mLine1);
                                 mergeVisualCues.Add(mLine2);
