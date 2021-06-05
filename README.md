@@ -1,4 +1,4 @@
-eecs494proj
+M.E.R.G.E.
 ===========
 Senior Design Project at University of Michigan with Brian Fulper, Ryan Wawrzaszek, Kelly Dom, and myself, James Danielson.
 
