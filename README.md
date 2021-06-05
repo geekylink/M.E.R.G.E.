@@ -12,6 +12,8 @@ You can't kill the bigger baddies without merging ships with at least one other 
 
 ![info](https://raw.githubusercontent.com/geekylink/M.E.R.G.E./main/screenshots/info2.png)
 ![more info](https://raw.githubusercontent.com/geekylink/M.E.R.G.E./main/screenshots/info.png)
+![controls](https://raw.githubusercontent.com/geekylink/M.E.R.G.E./main/screenshots/controls.png)
+
 
 **Some gameplay:**
 
